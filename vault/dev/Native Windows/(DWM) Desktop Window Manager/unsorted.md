@@ -1,0 +1,9 @@
+https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/d3dkmthk/nf-d3dkmthk-d3dkmtwaitforverticalblankevent?redirectedfrom=MSDN
+https://stackoverflow.com/questions/7442939/opening-a-window-that-has-no-title-bar-with-win32
+https://github.com/valinet/WinCenterTitle
+https://github.com/7kt4/CaptionButtonFixer
+https://stackoverflow.com/questions/77523400/is-there-an-api-to-programmatically-invoke-snap-layout
+https://stackoverflow.com/questions/34222021/getthemestream-usage
+https://github.com/ALTaleX531/dwm_colorization_calculator
+https://gist.github.com/kennykerr/62923cdacaba28fedc4f3dab6e0c12ec
+https://blog.csdn.net/liu__ke/article/details/8906289

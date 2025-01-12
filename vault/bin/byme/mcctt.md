@@ -1,0 +1,2 @@
+![[Pasted image 20250111130614.png]]![[2023-05-25_14-06-16.mp4]]![[Pasted image 20250111130838.png]]![[Pasted image 20250111130845.png]]![[Pasted image 20250111130904.png]]![[Pasted image 20250111130941.png]]
+![[Pasted image 20250111131110.png]]

@@ -1,0 +1,17 @@
+`DisableProcessWindowsGhosting()`
+https://learn.microsoft.com/en-us/windows/win32/api/intshcut/nf-intshcut-inetisoffline
+https://learn.microsoft.com/en-us/windows/win32/api/winddi/
+https://learn.microsoft.com/en-us/windows/win32/api/winreg/
+https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setsystempowerstate
+https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate
+https://learn.microsoft.com/en-us/windows/win32/api/_multimedia/
+https://learn.microsoft.com/en-us/windows/win32/api/_termserv/
+https://learn.microsoft.com/en-us/windows/win32/api/_rstmgr/
+https://learn.microsoft.com/en-us/windows/win32/api/_psapi/
+https://learn.microsoft.com/en-us/windows/win32/api/_netshell/
+https://learn.microsoft.com/en-us/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_local_service_info_struct
+https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/mt708812(v=vs.85)
+https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms687066(v=vs.85)
+https://learn.microsoft.com/en-us/windows/win32/api/fileapifromapp/nf-fileapifromapp-movefilefromappw
+https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/hh828933(v=vs.85)
+https://learn.microsoft.com/en-us/windows/win32/api/winnt/ne-winnt-user_activity_presence
