@@ -31,6 +31,7 @@
               "state": {
                 "file": "bin/byme/digital interactive games design degree.md",
                 "mode": "source",
+                "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
@@ -114,7 +115,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.5
+    "width": 368.5
   },
   "right": {
     "id": "2205038d022520ec",
@@ -201,9 +202,10 @@
   },
   "active": "e4e967f1ad286924",
   "lastOpenFiles": [
-    "dev/Native Windows/Native Windows.md",
     "bin/byme/digital interactive games design degree.md",
+    "media/Pasted image 20250111231034.png",
     "Pasted image 20250111230013.png",
+    "dev/Native Windows/Native Windows.md",
     "home/unsorted.md",
     "home/recs.md",
     "home/Quotes.md",
@@ -241,7 +243,6 @@
     "media/Pasted image 20250111174447.png",
     "dev/ImGui/Vertical Text.md",
     "dev/Native Windows/Examples/unsorted.md",
-    "media/Pasted image 20250111173929.png",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",

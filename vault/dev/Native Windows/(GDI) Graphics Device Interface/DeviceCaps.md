@@ -1,1 +1,6 @@
-https://github.com/MrCsabaToth/DeviceCaps
+
+
+
+
+
+thub.com/MrCsabaToth/DeviceCaps

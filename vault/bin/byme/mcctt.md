@@ -1,2 +1,21 @@
-![[media/Pasted image 20250111130614.png]]![[media/2023-05-25_14-06-16.mp4]]![[media/Pasted image 20250111130838.png]]![[media/Pasted image 20250111130845.png]]![[media/Pasted image 20250111130904.png]]![[media/Pasted image 20250111130941.png]]
-![[media/Pasted image 20250111131110.png]]
+![[media/Pasted image 20250111130614.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111130614.png)
+
+
+![[media/2023-05-25_14-06-16.mp4]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/2023-05-25_14-06-16.mp4)
+
+
+![[media/Pasted image 20250111130838.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111130838.png)
+
+
+![[media/Pasted image 20250111130845.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111130845.png)
+
+
+![[media/Pasted image 20250111130904.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111130904.png)
+
+
+![[media/Pasted image 20250111130941.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111130941.png)
+
+
+![[media/Pasted image 20250111131110.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/media/Pasted%20image%2020250111131110.png)
+
+

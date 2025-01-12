@@ -1,1 +1,6 @@
-https://github.com/theSoberSobber/sxhkd-win32
+
+
+
+
+
+thub.com/theSoberSobber/sxhkd-win32

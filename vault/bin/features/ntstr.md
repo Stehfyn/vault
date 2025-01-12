@@ -1,3 +1,15 @@
-Tray Window Icon
-	- Update on Tray Window Open
+
+
+
+
+
+
+
+
+
+
+
+
+
+e on Tray Window Open
 	- Dynamically generate bitmap to communicate timer resolution

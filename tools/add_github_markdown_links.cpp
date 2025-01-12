@@ -11,9 +11,10 @@
 #include <sstream>
 
 namespace tools {
+namespace fs = std::filesystem;
 using iss = std::istringstream;
 using oss = std::ostringstream;
-namespace fs = std::filesystem;
+
 [[nodiscard]] inline auto get_mds(const fs::path& root) noexcept
 {
   std::list<fs::directory_entry> dirs;
@@ -23,17 +24,17 @@ namespace fs = std::filesystem;
                [](const auto& e){ return e.path().extension() == ".md"; });
   return dirs;
 }
+
 [[nodiscard]] inline auto make_link(const std::ssub_match& match)
 {
-  static const std::string prefix = "https://github.com/Stehfyn/vault/blob/main/vault/media/";
-  std::string url_encode;
-  std::string s = match.str();
-  iss _iss(s);
-  for(std::string sub; std::getline(_iss, sub, ' ');) url_encode += sub + "%20";
-  std::string url = prefix + url_encode;
-  url.erase(url.size() - 3);
-  return std::format("![<img_src={}>]({})", url, url);
+  std::string encode_url;
+  iss _iss(match.str());
+  for(std::string sub; std::getline(_iss, sub, ' ');) encode_url += sub + "%20";
+  return std::format("![]({}{})",
+                    "https://github.com/Stehfyn/vault/blob/main/vault/media/",
+                    (encode_url.erase(encode_url.size() - 3), encode_url));
 }
+
 struct task{
   fs::path     _fp;
   std::fstream _fd;
@@ -66,9 +67,7 @@ int main(void)
           if (!std::regex_search(search_start, line.cend(), matches, pattern))
             task._buf << "\n";
           else do {
-            //std::getline(task._fd, line);
-            task._buf << matches[0] << "\n";
-            task._buf << tools::make_link(matches[1]) << "\n";
+            task._buf << matches[0] << tools::make_link(matches[1]) << "\n";
             search_start = matches.suffix().first;
           } while (std::regex_search(search_start, line.cend(), matches, pattern));
         }
