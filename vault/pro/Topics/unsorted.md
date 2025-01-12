@@ -70,10 +70,10 @@
 
 
 
-![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 
 
-![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173541.png)
 
 
 
@@ -141,13 +141,13 @@
 
 
 
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 
 
 
 
-![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173043.png)
 
-![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173541.png)
 
 
 
@@ -203,14 +203,14 @@
 
 
 
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 
 
 
 
 
 
-![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173043.png)
-![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173541.png)
 
 
 
@@ -258,14 +258,14 @@
 
 
 
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 
 
 
 
 
 
-![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173043.png)
-![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173541.png)
 
 
 
@@ -307,22 +307,16 @@
 
 
 
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 
 
 
 
 
 
-![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173043.png)
-![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173541.png)
 
-
-
-
-
-
-
-o solve an uncomputable problem, you need an uncomputable oracle, which means you go from the 0th Turing degree (where computable problems live) to the first Turing degree. (PS: There are an infinite number of Turing degrees.) We describe problems that cannot be solved in polynomial time as "infeasible". Uncomputable problems are vastly harder than infeasible, they are beyond brain-melting hard, cosmically hard. They are the hardest problems except for themselves, the famous Halting Problem being the canonical example.
+utation), then you are restricted to solving only computable problems. To solve an uncomputable problem, you need an uncomputable oracle, which means you go from the 0th Turing degree (where computable problems live) to the first Turing degree. (PS: There are an infinite number of Turing degrees.) We describe problems that cannot be solved in polynomial time as "infeasible". Uncomputable problems are vastly harder than infeasible, they are beyond brain-melting hard, cosmically hard. They are the hardest problems except for themselves, the famous Halting Problem being the canonical example.
 
 The next limit is feasibility, which has already been mentioned. By convention, computer scientists speak of P (the class of problems solvable in polynomial time) as the class of "feasible" problems. A problem is feasible if it is possible that it could realistically be solved or usefully approximated. Problems requiring exponential time (and beyond) are generally treated as infeasible. There is provably an infinite hierarchy of harder and harder infeasible yet computable problems that require exponential time, or more. Note that all of these problems are still "easy" compared to the uncomputable problems mentioned in the previous paragraph!
 

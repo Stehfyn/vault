@@ -31,7 +31,7 @@ using oss = std::ostringstream;
   iss _iss(match.str());
   for(std::string sub; std::getline(_iss, sub, ' ');) encode_url += sub + "%20";
   return std::format("![]({}{})",
-                    "https://github.com/Stehfyn/vault/blob/main/vault/media/",
+                    "https://github.com/Stehfyn/vault/blob/main/vault/",
                     (encode_url.erase(encode_url.size() - 3), encode_url));
 }
 

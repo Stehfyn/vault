@@ -15,7 +15,7 @@
 
 
 
-![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250110204853.png)
+![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250110204853.png)
 
 
 
@@ -31,10 +31,7 @@
 
 
 
-
-
-![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250110204853.png)
-
+![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250110204853.png)
 
 
 
@@ -47,7 +44,7 @@
 
 
 
-![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250110204853.png)
+![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250110204853.png)
 
 
 
@@ -60,7 +57,7 @@
 
 
 
-![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250110204853.png)
+![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250110204853.png)
 
 
 
@@ -70,8 +67,8 @@
 
 
 
-![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250110204853.png)
- (nmi)
+![[Pasted image 20250110204853.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250110204853.png)
+fkSHxSoQVE?si=bdKVrlpHl30Qp-IT&t=286 (nmi)
 https://youtu.be/rfkSHxSoQVE?si=KNNNtZ3MN3IDqImT&t=471 (nmi)
 https://youtu.be/rfkSHxSoQVE?si=uDGhh3f3C2uQMHBt&t=792 (nmi) standard layout class
 https://youtu.be/rfkSHxSoQVE?si=dN5MjT-0I_kwK4Yc&t=878 (nmi)
