@@ -29,12 +29,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "home/unsorted.md",
+                "file": "bin/byme/digital interactive games design degree.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "unsorted"
+              "title": "digital interactive games design degree"
             }
           }
         ],
@@ -201,6 +201,10 @@
   },
   "active": "e4e967f1ad286924",
   "lastOpenFiles": [
+    "dev/Native Windows/Native Windows.md",
+    "bin/byme/digital interactive games design degree.md",
+    "Pasted image 20250111230013.png",
+    "home/unsorted.md",
     "home/recs.md",
     "home/Quotes.md",
     "home/haha.md",
@@ -210,7 +214,6 @@
     "bin/inspo/xbox.md",
     "bin/godbolt/unsorted.md",
     "bin/features/ntstr.md",
-    "bin/byme/digital interactive games design degree.md",
     "bin/byme/mcctt.md",
     "bin/byme/unsorted.md",
     "media/2023-05-25_14-06-16.mp4",
@@ -230,7 +233,6 @@
     "media/Pasted image 20250111175228.png",
     "media/Pasted image 20250111175222.png",
     "media/Pasted image 20250111175218.png",
-    "dev/Native Windows/Native Windows.md",
     "media/Pasted image 20250111175142.png",
     "bin/scratch/horror.md",
     "media/Pasted image 20250111175125.png",
@@ -240,9 +242,6 @@
     "dev/ImGui/Vertical Text.md",
     "dev/Native Windows/Examples/unsorted.md",
     "media/Pasted image 20250111173929.png",
-    "media/Pasted image 20250111173910.png",
-    "bin/scratch/11_08_23.md",
-    "pro/Topics/Image Processing/unsorted.md",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",

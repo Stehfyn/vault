@@ -1,4 +1,4 @@
-![[media/Pasted image 20250111173740.png]]
+![[Pasted image 20250111173740.png]]
 
 ![[media/Pasted image 20250111173740.png]]
 ![[[<img src="Pasted image 20250111173740.png">]]](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173740.png)
@@ -15,3 +15,4 @@
 
 ![[media/bd69b27a90ca8e5cd49b353c0c74e621.mp4]]
 
+![](Pasted%20image%2020250111230013.png)
