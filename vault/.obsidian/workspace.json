@@ -29,12 +29,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "bin/byme/digital interactive games design degree.md",
+                "file": "pro/Topics/unsorted.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "digital interactive games design degree"
+              "title": "unsorted"
             }
           }
         ],
@@ -201,22 +201,24 @@
   },
   "active": "e4e967f1ad286924",
   "lastOpenFiles": [
-    "dev/Native Windows/Native Windows.md",
-    "bin/byme/digital interactive games design degree.md",
-    "Pasted image 20250111230013.png",
+    "pro/Conference/Quotes.md",
+    "pro/Conference/unsorted.md",
+    "media/2023-05-25_14-06-16.mp4",
     "home/unsorted.md",
     "home/recs.md",
     "home/Quotes.md",
     "home/haha.md",
+    "bin/inspo/xbox.md",
+    "bin/inspo/www.md",
     "bin/inspo/w32.md",
     "bin/inspo/unsorted.md",
-    "bin/inspo/www.md",
-    "bin/inspo/xbox.md",
     "bin/godbolt/unsorted.md",
     "bin/features/ntstr.md",
-    "bin/byme/mcctt.md",
     "bin/byme/unsorted.md",
-    "media/2023-05-25_14-06-16.mp4",
+    "bin/byme/mcctt.md",
+    "bin/byme/digital interactive games design degree.md",
+    "Pasted image 20250111230013.png",
+    "dev/Native Windows/Native Windows.md",
     "media/Pasted image 20250111175253.png",
     "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
     "media",
@@ -240,7 +242,6 @@
     "dev/ImGui/unsorted.md",
     "media/Pasted image 20250111174447.png",
     "dev/ImGui/Vertical Text.md",
-    "dev/Native Windows/Examples/unsorted.md",
     "media/Pasted image 20250111173929.png",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
