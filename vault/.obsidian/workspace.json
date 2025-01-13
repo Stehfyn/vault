@@ -27,14 +27,12 @@
             "id": "e4e967f1ad286924",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "pro/Topics/unsorted.md",
-                "mode": "source",
-                "source": false
+                "file": "media/Pasted image 20250112181012.png"
               },
-              "icon": "lucide-file",
-              "title": "unsorted"
+              "icon": "lucide-image",
+              "title": "Pasted image 20250112181012"
             }
           }
         ],
@@ -199,15 +197,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e4e967f1ad286924",
+  "active": "fc37362c07c7f962",
   "lastOpenFiles": [
+    "Pasted image 20250112180556.png",
+    "media/Pasted image 20250112181012.png",
+    "home/haha.md",
+    "home/Quotes.md",
+    "pro/Topics/unsorted.md",
     "pro/Conference/Quotes.md",
     "pro/Conference/unsorted.md",
     "media/2023-05-25_14-06-16.mp4",
     "home/unsorted.md",
     "home/recs.md",
-    "home/Quotes.md",
-    "home/haha.md",
     "bin/inspo/xbox.md",
     "bin/inspo/www.md",
     "bin/inspo/w32.md",
@@ -222,7 +223,6 @@
     "media/Pasted image 20250111175253.png",
     "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
     "media",
-    "pro/Topics/unsorted.md",
     "bin/scratch/03_19_23.md",
     "bin/scratch/03_20_23.md",
     "dev/Native Windows/(GL) OpenGL/unsorted.md",
@@ -240,9 +240,6 @@
     "media/Pasted image 20250111175125.png",
     "bin/scratch/07_10_23.md",
     "dev/ImGui/unsorted.md",
-    "media/Pasted image 20250111174447.png",
-    "dev/ImGui/Vertical Text.md",
-    "media/Pasted image 20250111173929.png",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",
