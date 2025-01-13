@@ -47,7 +47,6 @@ int main(void)
       {
         auto& task = tasks[i];
         tools::move_to(task._fp, ".\\vault\\media");
-        
       }
     }
     return 0;
