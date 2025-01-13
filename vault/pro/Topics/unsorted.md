@@ -70,8 +70,8 @@ Transmit your timestamps across wires as ISO-8601 formatted strings, in UTC.
 The only place that may know anything about time zones is the front-end, who convert it for the current user in the appropriate way for them, using a library that does it correctly.
 
 There are edge cases, of course ("I need this to run at midnight local time in New York every Sunday"), but for 95% of cases the above system handles most bugs pretty nicely.
-![[Pasted image 20250111173043.png]]
-![[Pasted image 20250111173541.png]]
+![[Pasted image 20250111173043.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173043.png)
+![[Pasted image 20250111173541.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/Pasted%20image%2020250111173541.png)
 https://github.com/emilk/egui/issues/2091
 https://github.com/emilk/egui/issues/1042
 https://www.reddit.com/r/workingsolution/comments/xrvppd/rust_egui_how_to_upload_an_image_in_egui_and/

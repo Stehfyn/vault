@@ -22,7 +22,7 @@ if exist "%VSINSTALLPATH%\VC\Auxiliary\Build\vcvarsall.bat" (
 	rmdir /s /q %out% 2>nul
 	mkdir %out%
 	pushd %out%
-	call :%%buiild_tool%% add_github_compatible_links x64 3>&1 >nul
+	call :%%buiild_tool%% add_github_markdown_links x64 3>&1 >nul
 	popd
 )
 
