@@ -22,8 +22,23 @@
               "icon": "lucide-file",
               "title": "Native Windows"
             }
+          },
+          {
+            "id": "0f57a89528f4a2d0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "bin/byme/AlwaysOnTop.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AlwaysOnTop"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -184,20 +199,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b4f03114fa3498e5",
+  "active": "0f57a89528f4a2d0",
   "lastOpenFiles": [
+    "media/Untitled2.png",
+    "media/Untitled.png",
+    "media/Screenshot 2025-01-04 060237.png",
+    "Untitled2.png",
+    "Untitled.png",
+    "Screenshot 2025-01-04 060237.png",
+    "media/imgui-borderless-win32_win11.png",
+    "bin/byme/imgui-borderless-win32.md",
+    "imgui-borderless-win32_win11.png",
     "dev/Native Windows/Native Windows.md",
     "bin/byme/AlwaysOnTop.md",
     "media/AlwaysOnTop-TrayWnd.png",
     "media/Pasted image 20250112192021.png",
     "Pasted image 20250112192021.png",
-    "AlwaysOnTop-TrayWnd.png",
     "bin/byme/Custom Magnify.exe (GDI only).md",
-    "media/Pasted image 20250112183903.png",
-    "Pasted image 20250112183903.png",
     "bin/byme/unsorted.md",
-    "media/Pasted image 20250112181012.png",
-    "Pasted image 20250112180556.png",
     "home/haha.md",
     "home/Quotes.md",
     "pro/Topics/unsorted.md",
@@ -214,8 +233,6 @@
     "bin/features/ntstr.md",
     "bin/byme/mcctt.md",
     "bin/byme/digital interactive games design degree.md",
-    "Pasted image 20250111230013.png",
-    "media/Pasted image 20250111175253.png",
     "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
     "media",
     "bin/scratch/03_19_23.md",
@@ -226,7 +243,6 @@
     "media/f660101e1658dd1f3a7fa2756bd71d7e.mp4",
     "media/ddfe7e49156e0b77193b4233bad98b39.mp4",
     "pro/Topics/Type Theory/unsorted.md",
-    "bin/scratch/horror.md",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",
