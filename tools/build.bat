@@ -16,17 +16,18 @@ set cflags=/nologo /EHsc /openmp /O2 /Oi /MT /std:c++20 /D _NDEBUG /D UNICODE /D
 set libs=Kernel32.lib user32.lib libcmt.lib
 set lflags=/CGTHREADS:8
 
-set "buiild_tool=/?"
+set "build_tool=/?"
 
 if exist "%VSINSTALLPATH%\VC\Auxiliary\Build\vcvarsall.bat" (
 	rmdir /s /q %out% 2>nul
 	mkdir %out%
 	pushd %out%
-	call :%%buiild_tool%% add_github_markdown_links x64 3>&1 >nul
+	call :%%build_tool%% add_github_markdown_links x64 3>&1 >nul
+	call :%%build_tool%% move_pasted_media_files x64 3>&1 >nul
 	popd
 )
 
-if "%0" == ":%buiild_tool%" (
+if "%0" == ":%build_tool%" (
 	echo Build %1 %2 @call:
 	call "%VSINSTALLPATH%\VC\Auxiliary\Build\vcvarsall.bat" %2
 	taskkill /f /im %1%2.exe >NUL 2>&1
@@ -35,7 +36,7 @@ if "%0" == ":%buiild_tool%" (
 	pushd %2
 	echo. && echo %2 %1 exe
 	cl %cflags% ..\..\%1.cpp %libs% /link /MACHINE:%2 /OUT:%1.exe /SUBSYSTEM:Console
-	move %1.exe ..\%1%2.exe
+	move %1.exe ..\%1-%2.exe
 	popd
 	rmdir /s /q %2 2>nul
 )>&3

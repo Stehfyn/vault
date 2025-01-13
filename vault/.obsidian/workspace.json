@@ -27,12 +27,14 @@
             "id": "e4e967f1ad286924",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "media/Pasted image 20250112181012.png"
+                "file": "bin/byme/Custom Magnify.exe (GDI only).md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20250112181012"
+              "icon": "lucide-file",
+              "title": "Custom Magnify.exe (GDI only)"
             }
           }
         ],
@@ -197,10 +199,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fc37362c07c7f962",
+  "active": "e4e967f1ad286924",
   "lastOpenFiles": [
-    "Pasted image 20250112180556.png",
+    "media/Pasted image 20250112183903.png",
+    "Pasted image 20250112183903.png",
+    "bin/byme/unsorted.md",
+    "bin/byme/Custom Magnify.exe (GDI only).md",
+    "dev/Native Windows/Native Windows.md",
     "media/Pasted image 20250112181012.png",
+    "Pasted image 20250112180556.png",
     "home/haha.md",
     "home/Quotes.md",
     "pro/Topics/unsorted.md",
@@ -215,11 +222,9 @@
     "bin/inspo/unsorted.md",
     "bin/godbolt/unsorted.md",
     "bin/features/ntstr.md",
-    "bin/byme/unsorted.md",
     "bin/byme/mcctt.md",
     "bin/byme/digital interactive games design degree.md",
     "Pasted image 20250111230013.png",
-    "dev/Native Windows/Native Windows.md",
     "media/Pasted image 20250111175253.png",
     "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
     "media",
@@ -237,9 +242,7 @@
     "media/Pasted image 20250111175218.png",
     "media/Pasted image 20250111175142.png",
     "bin/scratch/horror.md",
-    "media/Pasted image 20250111175125.png",
     "bin/scratch/07_10_23.md",
-    "dev/ImGui/unsorted.md",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",
