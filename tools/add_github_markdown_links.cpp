@@ -4,22 +4,23 @@
 #include <list>
 #include <regex>
 #include <sstream>
+#include <set>
 #include <string>
 #include <system_error>
 #include <vector>
 
-namespace tools {
 namespace fs = std::filesystem;
+
+namespace tools {
 using iss = std::istringstream;
 using oss = std::ostringstream;
 
-[[nodiscard]] inline auto get_mds(const fs::path&& root) noexcept
+template <typename T>
+[[nodiscard]] inline auto get(const fs::path&& root, const std::set<std::string>&& exts) noexcept
 {
   std::list<fs::directory_entry> dirs;
-  std::copy_if(fs::recursive_directory_iterator(root),
-               {}, 
-               std::back_inserter(dirs),
-               [](const auto& e){ return e.path().extension() == ".md"; });
+  std::copy_if(T(root), {}, std::back_inserter(dirs),
+    [&](const auto& e){ return exts.end() != exts.find(e.path().extension().generic_string()); });
   return dirs;
 }
 
@@ -28,7 +29,7 @@ using oss = std::ostringstream;
   std::string encode_url;
   for(std::string sub; std::getline(match, sub, ' ');) encode_url += sub + "%20";
   return std::format("![](https://github.com/Stehfyn/vault/blob/main/vault/media/{})",
-                    (encode_url.erase(std::max({}, static_cast<__int64>(encode_url.size()) - 3)), encode_url));
+                    (encode_url.erase(encode_url.size() - 3), encode_url));
 }
 
 struct task{
@@ -41,7 +42,7 @@ struct task{
 
 int main(void)
 {
-    auto mds = tools::get_mds(".");
+    auto mds = tools::get<fs::recursive_directory_iterator>(".", {".md"});
     std::vector<tools::task> tasks;
     tasks.reserve(mds.size());
 
@@ -50,22 +51,21 @@ int main(void)
 
 #pragma omp parallel
     {
-      static const std::regex pattern(R"(!\[\[(.*?)\]\])");
+      static const std::regex wikilink(R"(!\[\[(.*?)\]\])");
 
 #pragma omp for nowait
       for (__int64 i = 0; i < static_cast<__int64>(tasks.size()); ++i)
       {
         auto& task = tasks[i];
-
         for (std::string line; std::getline(task._fd, line);) {
           std::smatch matches;
           std::string::const_iterator search_start(line.cbegin());
-          if (!std::regex_search(search_start, line.cend(), matches, pattern))
+          if (!std::regex_search(search_start, line.cend(), matches, wikilink))
             task._buf << line << "\n";
           else do {
             task._buf << matches[0] << tools::make_link(tools::iss(matches[1])) << "\n";
             search_start = matches.suffix().first;
-          } while (std::regex_search(search_start, line.cend(), matches, pattern));
+          } while (std::regex_search(search_start, line.cend(), matches, wikilink));
         }
         task._fd.clear();
         task._fd.seekp(0, std::ios::beg);

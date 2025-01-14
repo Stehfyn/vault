@@ -10,3 +10,4 @@ https://www.youtube.com/shorts/nbmr2HKNpkg
 ![[Pasted image 20250111172816.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111172816.png)
 ![[Pasted image 20250111173835.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250111173835.png)
 ![[Pasted image 20250112181012.png]]![](https://github.com/Stehfyn/vault/blob/main/vault/media/Pasted%20image%2020250112181012.png)
+https://www.youtube.com/watch?v=DYvhC_RdIwQ

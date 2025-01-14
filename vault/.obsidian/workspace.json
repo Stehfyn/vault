@@ -24,17 +24,17 @@
             }
           },
           {
-            "id": "0f57a89528f4a2d0",
+            "id": "d29406624af35518",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "bin/byme/AlwaysOnTop.md",
+                "file": "pro/Topics/unsorted.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AlwaysOnTop"
+              "title": "unsorted"
             }
           }
         ],
@@ -199,8 +199,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0f57a89528f4a2d0",
+  "active": "d29406624af35518",
   "lastOpenFiles": [
+    "bin/byme/Custom Magnify.exe (GDI only).md",
+    "bin/scratch/03_20_23.md",
+    "pro/Conference/Quotes.md",
+    "bin/byme/AlwaysOnTop.md",
+    "home/haha.md",
+    "pro/Conference/Cppcon/Taming the Filter View in C++ Programming - Nicolai Josuttis - CppCon 2024.md",
+    "home/Quotes.md",
+    "pro/Conference/Cppcon/Breaking Dependencies - C++ Type Erasure - The Implementation Details - Klaus Iglberger CppCon 2022.md",
+    "pro/Conference/Cppcon/Leveraging C++20-23 Features for Low Level Interactions - Jeffrey Erickson - CppCon 2024.md",
+    "pro/Conference/Cppcon/An Introduction to Multithreading in C++20 - Anthony Williams - CppCon 2022.md",
+    "pro/Conference/unsorted.md",
+    "pro/Conference/Cppcon/Untitled",
+    "dev/Native Windows/Native Windows.md",
     "media/Untitled2.png",
     "media/Untitled.png",
     "media/Screenshot 2025-01-04 060237.png",
@@ -210,18 +223,10 @@
     "media/imgui-borderless-win32_win11.png",
     "bin/byme/imgui-borderless-win32.md",
     "imgui-borderless-win32_win11.png",
-    "dev/Native Windows/Native Windows.md",
-    "bin/byme/AlwaysOnTop.md",
     "media/AlwaysOnTop-TrayWnd.png",
     "media/Pasted image 20250112192021.png",
-    "Pasted image 20250112192021.png",
-    "bin/byme/Custom Magnify.exe (GDI only).md",
     "bin/byme/unsorted.md",
-    "home/haha.md",
-    "home/Quotes.md",
     "pro/Topics/unsorted.md",
-    "pro/Conference/Quotes.md",
-    "pro/Conference/unsorted.md",
     "media/2023-05-25_14-06-16.mp4",
     "home/unsorted.md",
     "home/recs.md",
@@ -235,18 +240,13 @@
     "bin/byme/digital interactive games design degree.md",
     "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
     "media",
-    "bin/scratch/03_19_23.md",
-    "bin/scratch/03_20_23.md",
-    "dev/Native Windows/(GL) OpenGL/unsorted.md",
     "media/bd69b27a90ca8e5cd49b353c0c74e621.mp4",
     "media/f109215b89da2cc9cd76e61f9bbb954c.mp4",
     "media/f660101e1658dd1f3a7fa2756bd71d7e.mp4",
     "media/ddfe7e49156e0b77193b4233bad98b39.mp4",
-    "pro/Topics/Type Theory/unsorted.md",
     "bin/inspo/Untitled",
     "dev/Native Windows/(NT5) Source",
     "dev/Native Windows/DPI Awareness",
-    "dev/Native Windows/(MMCSS) Multimedia Class Scheduler Services",
     "Untitled.canvas"
   ]
 }

@@ -4,19 +4,17 @@
 #include <string>
 #include <vector>
 
-namespace tools {
 namespace fs = std::filesystem;
+namespace tools {
 
+template <typename T>
 [[nodiscard]] inline auto get_media(const fs::path&& root) noexcept
 {
   std::list<fs::directory_entry> media;
-  std::copy_if(fs::directory_iterator(root),
-               {}, 
-               std::back_inserter(media),
-               [](const auto& e){ return e.is_regular_file() && e.path().extension() != ".md"; });
+  std::copy_if(T(root), {}, std::back_inserter(media),
+    [](const auto& e){ return e.is_regular_file() && e.path().extension() != ".md"; });
   return media;
 }
-
 [[nodiscard]] inline auto move_to(const fs::path& file, const fs::path&& to) noexcept
 {
   fs::path to_file = to / file.filename();
@@ -33,7 +31,7 @@ struct task{
 
 int main(void)
 {
-    auto mds = tools::get_media(".\\vault");
+    auto mds = tools::get_media<fs::directory_iterator>(".\\vault");
     std::vector<tools::task> tasks;
     tasks.reserve(mds.size());
 
