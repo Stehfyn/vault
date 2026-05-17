@@ -1,29 +1,27 @@
-BOOL
-SK_IsWindowsVersionOrGreater (DWORD dwMajorVersion, DWORD dwMinorVersion, DWORD dwBuildNumber)
+# IsWindowsVersionOrGreater
+
+Use `RtlGetVersion` for an accurate OS version check (not affected by application manifesting).
+
+```cpp
+#include <windows.h>
+#include <winternl.h>
+
+bool IsWindowsVersionOrGreater(DWORD major, DWORD minor, DWORD build)
 {
-  NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW) = nullptr;
+    HMODULE ntdll = GetModuleHandleW(L"ntdll.dll");
+    auto RtlGetVersion =
+        reinterpret_cast<decltype(&::RtlGetVersion)>(GetProcAddress(ntdll, "RtlGetVersion"));
+    if (!RtlGetVersion) return false;
 
-  OSVERSIONINFOEXW
-    osInfo                     = { };
-    osInfo.dwOSVersionInfoSize = sizeof (OSVERSIONINFOEXW);
+    OSVERSIONINFOEXW os = {};
+    os.dwOSVersionInfoSize = sizeof(os);
+    if (RtlGetVersion(&os) != 0) return false;
 
-  *reinterpret_cast<FARPROC *>(&RtlGetVersion) =
-    SK_GetProcAddress (L"ntdll", "RtlGetVersion");
-
-  if (RtlGetVersion != nullptr)
-  {
-    if (NT_SUCCESS (RtlGetVersion (&osInfo)))
-    {
-      return
-        ( osInfo.dwMajorVersion   >  dwMajorVersion ||
-          ( osInfo.dwMajorVersion == dwMajorVersion &&
-            osInfo.dwMinorVersion >= dwMinorVersion &&
-            osInfo.dwBuildNumber  >= dwBuildNumber  )
-        );
-    }
-  }
-
-  return FALSE;
+    if (os.dwMajorVersion != major) return os.dwMajorVersion > major;
+    if (os.dwMinorVersion != minor) return os.dwMinorVersion > minor;
+    return os.dwBuildNumber >= build;
 }
+```
 
-https://github.com/gangelo/GetVerInfo
+## References
+- https://github.com/gangelo/GetVerInfo

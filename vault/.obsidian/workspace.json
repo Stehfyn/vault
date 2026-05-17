@@ -8,37 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b4f03114fa3498e5",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "dev/Native Windows/Native Windows.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Native Windows"
-            }
-          },
-          {
-            "id": "d29406624af35518",
+            "id": "7fd6857a24ad19ab",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "pro/Topics/unsorted.md",
+                "file": "dev/Native Windows/(GDI) Graphics Device Interface/Transparent Window GDI.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "unsorted"
+              "title": "Transparent Window GDI"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -77,7 +60,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -114,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.5
+    "width": 267.49999618530273
   },
   "right": {
     "id": "2205038d022520ec",
@@ -130,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "bin/byme/digital interactive games design degree.md",
+                "file": "dev/Native Windows/(GDI) Graphics Device Interface/Transparent Window GDI.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for digital interactive games design degree"
+              "title": "Backlinks for Transparent Window GDI"
             }
           },
           {
@@ -191,6 +175,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -199,21 +184,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d29406624af35518",
+  "active": "7fd6857a24ad19ab",
   "lastOpenFiles": [
-    "bin/byme/Custom Magnify.exe (GDI only).md",
-    "bin/scratch/03_20_23.md",
-    "pro/Conference/Quotes.md",
-    "bin/byme/AlwaysOnTop.md",
-    "home/haha.md",
-    "pro/Conference/Cppcon/Taming the Filter View in C++ Programming - Nicolai Josuttis - CppCon 2024.md",
-    "home/Quotes.md",
-    "pro/Conference/Cppcon/Breaking Dependencies - C++ Type Erasure - The Implementation Details - Klaus Iglberger CppCon 2022.md",
-    "pro/Conference/Cppcon/Leveraging C++20-23 Features for Low Level Interactions - Jeffrey Erickson - CppCon 2024.md",
-    "pro/Conference/Cppcon/An Introduction to Multithreading in C++20 - Anthony Williams - CppCon 2022.md",
-    "pro/Conference/unsorted.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Text Shaping (Uniscribe).md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Symbol Fonts.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Saving a Bitmap to a File.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Read Pixels with GetDIBits().md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Path and Outline Text.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Menu Item Bitmap.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Magnify Sample.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/How to Capture the Screen.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/GDI D2D Interop.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Flicker-Free Drawing.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/DX Crop Bitmap.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/DeviceCaps.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/Alpha Blending a Bitmap.md",
+    "dev/Native Windows/(GDI) Graphics Device Interface/32-bit BMP.md",
+    "dev/Native Windows/(GL) OpenGL/Converting HBITMAP to Texture.md",
+    "dev/Native Windows/(GL) OpenGL/GPGPU Tutorial 3.md",
+    "dev/Native Windows/(GL) OpenGL/GPU Device Selection.md",
+    "dev/Native Windows/(GL) OpenGL/How to know GPU texture unit count.md",
+    "dev/Native Windows/(GL) OpenGL/Offscreen Rendering.md",
+    "dev/Native Windows/(GL) OpenGL/OpenGL Examples.md",
+    "dev/Native Windows/(GL) OpenGL/Streaming Texture Uploads.md",
+    "dev/Native Windows/(GL) OpenGL/Textured Quad in OpenGL 1.1.md",
+    "dev/Native Windows/(GL) OpenGL/VSync (OpenGL).md",
+    "dev/Native Windows/(GL) OpenGL/Vulkan Basics.md",
+    "dev/Native Windows/(MFC) Microsoft Foundation Classes/MFC Zip.md",
+    "dev/Native Windows/(MMCSS) Multimedia Class Scheduler Services/MMCSS Research.md",
+    "delete_file.py",
+    "append_references.py",
+    "write_links.py",
+    "media/AlwaysOnTop-TrayWnd.png",
+    "media/bd69b27a90ca8e5cd49b353c0c74e621.mp4",
+    "update_vault.py",
+    "write_vault_files.py",
+    "simple_write.py",
+    "write_vault.py",
+    "dev/Native Windows/Common Controls/write_files.py",
     "pro/Conference/Cppcon/Untitled",
-    "dev/Native Windows/Native Windows.md",
     "media/Untitled2.png",
     "media/Untitled.png",
     "media/Screenshot 2025-01-04 060237.png",
@@ -221,32 +230,8 @@
     "Untitled.png",
     "Screenshot 2025-01-04 060237.png",
     "media/imgui-borderless-win32_win11.png",
-    "bin/byme/imgui-borderless-win32.md",
     "imgui-borderless-win32_win11.png",
-    "media/AlwaysOnTop-TrayWnd.png",
     "media/Pasted image 20250112192021.png",
-    "bin/byme/unsorted.md",
-    "pro/Topics/unsorted.md",
-    "media/2023-05-25_14-06-16.mp4",
-    "home/unsorted.md",
-    "home/recs.md",
-    "bin/inspo/xbox.md",
-    "bin/inspo/www.md",
-    "bin/inspo/w32.md",
-    "bin/inspo/unsorted.md",
-    "bin/godbolt/unsorted.md",
-    "bin/features/ntstr.md",
-    "bin/byme/mcctt.md",
-    "bin/byme/digital interactive games design degree.md",
-    "dev/Native Windows/(MFC) Microsoft Foundation Classes/unsorted.md",
-    "media",
-    "media/bd69b27a90ca8e5cd49b353c0c74e621.mp4",
-    "media/f109215b89da2cc9cd76e61f9bbb954c.mp4",
-    "media/f660101e1658dd1f3a7fa2756bd71d7e.mp4",
-    "media/ddfe7e49156e0b77193b4233bad98b39.mp4",
-    "bin/inspo/Untitled",
-    "dev/Native Windows/(NT5) Source",
-    "dev/Native Windows/DPI Awareness",
     "Untitled.canvas"
   ]
 }
