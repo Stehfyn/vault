@@ -1,90 +1,73 @@
 # Hook Examples
 
-## EventGhost
-EventGhost’s hook implementation spins up dedicated threads and runs a message loop while hooks are active, then tears down hooks on thread exit.  
+This note is a triage map for hook examples rather than a code bucket. EventGhost demonstrates a practical USER32 message-hook lifecycle: create a hook thread, install keyboard/mouse or task hooks, keep a message loop alive, and tear down only after the hook chain has drained. That belongs with `SetWindowsHookEx`, `Injected DLL Unload`, and message-queue notes because hook lifetime is inseparable from target threads pumping messages.
 
-Short excerpt from `hooks.c` (EventGhost) showing hook setup + message loop:
-```c
-hMod = LoadLibrary("cFunctions.pyd");
-SetKeyboardHook(hMod);
-SetMouseHook(hMod);
-PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
-SetEvent(startupEvent);
-while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)
-{
+DxWnd and UniversalHookX sit in the graphics/window-management branch of hooking: intercept presentation, input, cursor, or window APIs so old games and graphical apps can be wrapped, resized, overlaid, or corrected. Capnhook and Detour/MinHook sit in the inline/IAT branch: patch a call boundary inside the process and preserve an original path. CBTHooker is the window-manager branch: CBT hooks observe creation, activation, min/max, and destruction events before normal dispatch completes.
+
+Injection collections are different from hook libraries. They are taxonomies of ways to get code into another process so a hook can exist there. Keep the distinction clear: SetWindowsHookEx, remote thread loading, APC delivery, manual mapping, and proxy DLL loading create different artifacts and require different defensive reasoning.
+
+## USER32 Hook Shape
+
+The EventGhost and CBT examples contribute the same lifetime rule: the installing thread and target thread must both be compatible with the hook contract, and hooks that depend on messages die when the pump dies.
+
+```cpp
+LRESULT CALLBACK CbtProc(int code, WPARAM wparam, LPARAM lparam) {
+    if (code == HCBT_CREATEWND) {
+        auto* created = reinterpret_cast<CBT_CREATEWNDW*>(lparam);
+        // Inspect window creation before normal dispatch completes.
+    }
+    return CallNextHookEx(nullptr, code, wparam, lparam);
+}
+
+HHOOK hook = SetWindowsHookExW(WH_CBT, CbtProc, module, target_thread_id);
+
+MSG msg;
+while (GetMessageW(&msg, nullptr, 0, 0) > 0) {
     TranslateMessage(&msg);
-    DispatchMessage(&msg);
+    DispatchMessageW(&msg);
+}
+
+UnhookWindowsHookEx(hook);
+```
+
+## Inline/IAT Hook Shape
+
+DxWnd, UniversalHookX, capnhook, Detours, and MinHook contribute a different boundary: preserve the original callable path and make the replacement behave like the intercepted ABI. The hard parts are not the jump instruction itself; they are calling convention, reentrancy, thread safety while patching, and device/window lifetime once the hook crosses graphics APIs.
+
+```cpp
+using PresentFn = HRESULT (STDMETHODCALLTYPE*)(IDXGISwapChain*, UINT, UINT);
+PresentFn real_present = nullptr;
+
+HRESULT STDMETHODCALLTYPE HookPresent(IDXGISwapChain* swap_chain,
+                                      UINT sync_interval,
+                                      UINT flags) {
+    // Overlay, capture, or policy work must tolerate device loss and resizing.
+    return real_present(swap_chain, sync_interval, flags);
 }
 ```
 
-TaskHook.dll also shows `SetWindowsHookEx`/`UnhookWindowsHookEx` usage for CBT/Shell hooks.  
+## Injection Boundary
 
-References:
-- EventGhost hooks.c (raw)  
-  https://raw.githubusercontent.com/EventGhost/EventGhost/177be516849e74970d2e13cda82244be09f277ce/_build/extensions/cFunctions/hooks.c
-- EventGhost TaskHook hook.cpp (raw)  
-  https://raw.githubusercontent.com/EventGhost/EventGhost/177be516849e74970d2e13cda82244be09f277ce/_build/extensions/TaskHook.dll/hook.cpp
+Injection collections contribute vocabulary, not a license to blur categories. A USER32 hook, a proxy DLL, a remote-thread `LoadLibrary`, and a manual map create different loader artifacts. Notes in this vault should name which boundary they cross before discussing a hook.
 
-## DxWnd
-DxWnd.reloaded contains a broad set of Windows hooking and injection examples for DirectX/window management.  
-Reference: https://github.com/DxWnd/DxWnd.reloaded/tree/7235efb7388b25a5dd1192b74df3c4860435ff65
-
-https://github.com/katahiromz/CBTHooker
-CBT (Computer-Based Training) hooks fire before window manager events: HCBT_CREATEWND, HCBT_DESTROYWND, HCBT_ACTIVATE, HCBT_MINMAX. They run synchronously in the thread that triggered the event and can cancel creation or modify parameters.
 ```cpp
-// CBT hook to intercept window creation
-HHOOK g_hCbt = nullptr;
-
-LRESULT CALLBACK CbtProc(int code, WPARAM wParam, LPARAM lParam) {
-  if (code == HCBT_CREATEWND) {
-    CBT_CREATEWNDW* cw = (CBT_CREATEWNDW*)lParam;
-    // Inspect or modify cw->lpcs->style before the window exists
-    if (cw->lpcs->style & WS_POPUP)
-      cw->lpcs->x = 100;   // reposition popup
-  }
-  if (code == HCBT_ACTIVATE) {
-    // wParam = HWND being activated
-    HWND hwndActivating = (HWND)wParam;
-    OutputDebugStringW(L"Window activated");
-  }
-  return CallNextHookEx(g_hCbt, code, wParam, lParam);
-}
-
-g_hCbt = SetWindowsHookExW(WH_CBT, CbtProc, nullptr, GetCurrentThreadId());
-// ... later:
-UnhookWindowsHookEx(g_hCbt);
+struct HookArtifact {
+    DWORD process_id;
+    DWORD thread_id;
+    const wchar_t* boundary;  // "SetWindowsHookEx", "proxy DLL", "IAT", "inline"
+    const wchar_t* module_path;
+};
 ```
 
-https://github.com/decafcode/capnhook
-Capnhook is a Win32 API hooking framework using IAT or inline patching. The pattern: resolve the target function, overwrite its first bytes with a JMP to a trampoline, save the original bytes for the trampoline.
-```cpp
-// Minimal inline hook concept (x64 — 14 bytes for absolute JMP)
-#pragma pack(push, 1)
-struct JmpAbsolute { uint16_t jmpOp; uint32_t rip; uint64_t target; uint8_t ffE0; };
-#pragma pack(pop)
-// Actual implementation requires VirtualProtect + FlushInstructionCache
-void* orig = GetProcAddress(GetModuleHandleA("user32.dll"), "MessageBoxW");
-DWORD old;
-VirtualProtect(orig, 14, PAGE_EXECUTE_READWRITE, &old);
-// Write JMP [RIP+0] / target addr
-VirtualProtect(orig, 14, old, &old);
-FlushInstructionCache(GetCurrentProcess(), orig, 14);
-```
+## Connections
+- `SetWindowsHookEx` covers USER32 hook contracts.
+- PE injection notes cover loader and memory artifacts once code is introduced into a target.
+- WinSpy++ is the clean GUI-inspection use case for message hooks.
 
-https://github.com/AzureGreen/InjectCollection
-DLL injection collection covering CreateRemoteThread, NtCreateThreadEx, APC queue injection, and manual map. Each technique has different detection signatures and privilege requirements.
-```cpp
-// Classic CreateRemoteThread DLL injection
-HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, targetPid);
-SIZE_T sz = (wcslen(dllPath) + 1) * sizeof(wchar_t);
-LPVOID remote = VirtualAllocEx(hProcess, nullptr, sz, MEM_COMMIT, PAGE_READWRITE);
-WriteProcessMemory(hProcess, remote, dllPath, sz, nullptr);
-HANDLE hThread = CreateRemoteThread(hProcess, nullptr, 0,
-    (LPTHREAD_START_ROUTINE)GetProcAddress(
-        GetModuleHandleA("kernel32.dll"), "LoadLibraryW"),
-    remote, 0, nullptr);
-WaitForSingleObject(hThread, 5000);
-VirtualFreeEx(hProcess, remote, 0, MEM_RELEASE);
-CloseHandle(hThread);
-CloseHandle(hProcess);
-```
+## References
+- EventGhost hooks.c: https://raw.githubusercontent.com/EventGhost/EventGhost/177be516849e74970d2e13cda82244be09f277ce/_build/extensions/cFunctions/hooks.c
+- EventGhost TaskHook: https://raw.githubusercontent.com/EventGhost/EventGhost/177be516849e74970d2e13cda82244be09f277ce/_build/extensions/TaskHook.dll/hook.cpp
+- DxWnd: https://github.com/DxWnd/DxWnd.reloaded/tree/7235efb7388b25a5dd1192b74df3c4860435ff65
+- CBTHooker: https://github.com/katahiromz/CBTHooker
+- capnhook: https://github.com/decafcode/capnhook
+- InjectCollection: https://github.com/AzureGreen/InjectCollection

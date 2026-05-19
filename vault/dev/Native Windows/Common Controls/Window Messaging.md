@@ -1,53 +1,51 @@
 # Window Messaging
 
-## COPYDATASTRUCT definition
-https://learn.microsoft.com/en-us/windows/win32/api/Winuser/ns-winuser-copydatastruct
-Package a payload for WM_COPYDATA with a type tag and byte count.
-```cpp
-COPYDATASTRUCT cds = {};
-cds.dwData = 100;
-cds.cbData = (DWORD)((wcslen(text) + 1) * sizeof(wchar_t));
-cds.lpData = (PVOID)text;
-SendMessage(hwndTarget, WM_COPYDATA, (WPARAM)hwndSelf, (LPARAM)&cds);
-```
+Win32 messages are delivered to the thread that owns the target window. `SendMessage` is synchronous and can reenter the receiver; `PostMessage` is asynchronous and only queues values that remain valid after the call returns. `WM_COPYDATA` is the small structured exception: it is sent synchronously with a `COPYDATASTRUCT`, and the receiver must copy the payload before returning.
 
-## WM_COPYDATA handling
-https://learn.microsoft.com/en-us/windows/win32/dataxchg/wm-copydata
-Handle the message and copy the data before returning.
-```cpp
-case WM_COPYDATA:
-{
-    const COPYDATASTRUCT* cds = (const COPYDATASTRUCT*)lParam;
-    if (cds->lpData && cds->cbData)
-        OutputDebugStringW((const wchar_t*)cds->lpData);
-    return TRUE;
-}
-```
+The queue model drives UI architecture. `GetMessage` blocks, `PeekMessage` drains without blocking for render loops, and any wait on a GUI thread must account for messages or the app will deadlock against callers sending synchronous messages. Raymond Chen's posts are valuable here because many message bugs are not API trivia; they are contract misunderstandings about ownership, reentrancy, and lifetime.
 
-https://learn.microsoft.com/en-us/windows/win32/winmsg/messages-and-message-queues
-The message queue is per-thread. GetMessage blocks; PeekMessage does not. Use PeekMessage in game/render loops to avoid stalling the thread.
+## Queue and Reentrancy Shape
+
+The message-queue reference contributes the pump contract. On a GUI thread, long waits need a message-aware wait, and posted payloads must remain valid after `PostMessage` returns.
+
 ```cpp
-// Non-blocking render loop with message draining
-MSG msg = {};
-while (running) {
-  while (PeekMessageW(&msg, nullptr, 0, 0, PM_REMOVE)) {
-    if (msg.message == WM_QUIT) { running = false; break; }
+MSG msg;
+while (GetMessageW(&msg, nullptr, 0, 0) > 0) {
     TranslateMessage(&msg);
     DispatchMessageW(&msg);
-  }
-  if (running) RenderFrame();
 }
 ```
 
-https://devblogs.microsoft.com/oldnewthing/20110516-00/?p=10663
-Raymond Chen's Old New Thing posts explain subtle Win32 dispatch behaviors. PostMessage is asynchronous and returns immediately; the message may arrive well after the function returns.
+`SendMessage` crosses into the receiver synchronously and can reenter the sender if both windows cooperate through nested message loops. Treat it as a call into foreign code, not as a cheap queue append.
+
 ```cpp
-// PostMessage to self — processed next pump iteration
-PostMessageW(hwnd, WM_APP + 5, (WPARAM)someData, 0);
-// Always drain the queue before waiting
-while (PeekMessageW(&msg, nullptr, 0, 0, PM_REMOVE)) {
-  TranslateMessage(&msg);
-  DispatchMessageW(&msg);
-}
-WaitForSingleObject(hEvent, INFINITE);
+PostMessageW(hwnd, WM_APP + 1, static_cast<WPARAM>(id), 0);
+LRESULT result = SendMessageW(hwnd, WM_GETTEXTLENGTH, 0, 0);
 ```
+
+## WM_COPYDATA Boundary
+
+The `COPYDATASTRUCT` links contribute the structured synchronous payload rule: sender storage must remain valid during the call, and the receiver must copy anything it wants to keep.
+
+```cpp
+std::wstring payload = L"command";
+COPYDATASTRUCT cds = {};
+cds.dwData = 1;
+cds.cbData = static_cast<DWORD>((payload.size() + 1) * sizeof(wchar_t));
+cds.lpData = payload.data();
+
+SendMessageW(target, WM_COPYDATA, reinterpret_cast<WPARAM>(hwnd),
+             reinterpret_cast<LPARAM>(&cds));
+```
+
+## References
+
+- <https://learn.microsoft.com/en-us/windows/win32/api/Winuser/ns-winuser-copydatastruct> - `COPYDATASTRUCT` layout.
+- <https://learn.microsoft.com/en-us/windows/win32/dataxchg/wm-copydata> - synchronous cross-window data message contract.
+- <https://learn.microsoft.com/en-us/windows/win32/winmsg/messages-and-message-queues> - queue ownership and pump behavior.
+- <https://devblogs.microsoft.com/oldnewthing/20110516-00/?p=10663> - Old New Thing discussion of posted-message timing.
+
+## Connections
+
+- `Message Cracker Wizard (windowsx.h).md` helps decode messages after they arrive.
+- `Modify Context Menu.md` and `Arbitrary Window Activate.md` both rely on precise message/thread behavior.

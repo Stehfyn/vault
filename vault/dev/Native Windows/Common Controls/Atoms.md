@@ -1,31 +1,11 @@
-Window class atoms are integer tokens returned by `RegisterClass`/`RegisterClassEx` from USER32's internal atom table. They can be passed via `MAKEINTATOM` to `CreateWindow` instead of a class name string, and retrieved from a window with `GetClassWord(hwnd, GCW_ATOM)`. In practice they're largely an anachronism—`GetClassName` is more practical for comparisons. The global atom table (`GlobalAddAtom`) is shared across all processes in the session.
+# Atoms
 
-```cpp
-#include <windows.h>
+Window class atoms are integer identifiers returned by `RegisterClass` / `RegisterClassEx`. You can pass the atom through `MAKEINTATOM` to `CreateWindowEx` instead of a class-name string, and `GetClassWord(hwnd, GCW_ATOM)` can recover a class atom from an existing HWND. In modern code this is mostly a performance and historical detail; class names are clearer, and class lookup is rarely the bottleneck.
 
-// RegisterClass returns an ATOM identifying the class
-WNDCLASS wc = {};
-wc.lpfnWndProc   = MyWndProc;
-wc.hInstance     = hInst;
-wc.lpszClassName = TEXT("MyWindowClass");
-ATOM atom = RegisterClass(&wc);
-
-// Use the atom directly instead of a string class name
-HWND hwnd = CreateWindow(
-    MAKEINTATOM(atom),       // avoids string lookup in USER32
-    TEXT("Title"),
-    WS_OVERLAPPEDWINDOW,
-    CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
-    NULL, NULL, hInst, NULL);
-
-// Retrieve the atom from an existing window
-ATOM wndAtom = (ATOM)GetClassWord(hwnd, GCW_ATOM);
-
-// Global atom table — shared across all processes in the session
-ATOM g = GlobalAddAtom(TEXT("MySharedAtom"));
-ATOM f = GlobalFindAtom(TEXT("MySharedAtom"));  // find without adding
-GlobalDeleteAtom(g);
-```
+Do not confuse window-class atoms with the global atom table. `GlobalAddAtom` creates session-visible string atoms used by old IPC conventions and shell protocols; it is unrelated to per-process window class registration except for sharing the same broad atom-table idea.
 
 ## References
-- https://devblogs.microsoft.com/oldnewthing/20041011-00/?p=37603
+- <https://devblogs.microsoft.com/oldnewthing/20041011-00/?p=37603> - Raymond Chen explains why atoms exist and why most code should not obsess over them.
+
+## Connections
+- `cbClsExtra and cbWndExtra.md` is the adjacent class-registration storage topic.

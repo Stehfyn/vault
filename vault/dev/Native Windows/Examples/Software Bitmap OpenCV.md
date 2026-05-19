@@ -1,20 +1,8 @@
-```cpp
-namespace OpenCVBridge
-{
-    public ref class OpenCVHelper sealed
-    {
-    public:
-        OpenCVHelper() {}
+# Software Bitmap OpenCV
 
-        void Blur(
-            Windows::Graphics::Imaging::SoftwareBitmap^ input,
-            Windows::Graphics::Imaging::SoftwareBitmap^ output);
+This example sits at the boundary between Windows bitmap memory and OpenCV image matrices. The useful part is layout discipline: pixel format, channel order, stride, top-down versus bottom-up orientation, and ownership must be made explicit when wrapping a DIB or software buffer as `cv::Mat`.
 
-    private:
-        bool TryConvert(Windows::Graphics::Imaging::SoftwareBitmap^ from, cv::Mat& convertedMat);
-        bool GetPointerToPixelData(Windows::Graphics::Imaging::SoftwareBitmap^ bitmap,
-            unsigned char** pPixelData, unsigned int* capacity);
-    };
-}
-```
-https://learn.microsoft.com/en-us/windows/uwp/audio-video-camera/process-software-bitmaps-with-opencv
+Connect this to `DIB Stride Math (Old New Thing)`, GDI bitmap notes, and capture/overlay samples. Most bugs in this space are not computer-vision bugs; they are row-pitch and lifetime bugs.
+
+## References
+- Local snippet source retained in previous revision of this note.

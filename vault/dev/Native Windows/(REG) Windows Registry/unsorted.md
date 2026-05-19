@@ -1,1 +1,1 @@
-
+No loose registry topics are parked here yet. Future entries should name the exact hive/key contract, the owner component, and whether the value is documented API state, policy, compatibility plumbing, or reverse-engineered preference storage.

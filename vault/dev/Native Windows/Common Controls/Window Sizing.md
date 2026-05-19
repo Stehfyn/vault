@@ -1,34 +1,13 @@
 # Window Sizing
 
-## WM_GETMINMAXINFO basics
-https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-getminmaxinfo
-Clamp minimum tracking size during resize or move.
-```cpp
-case WM_GETMINMAXINFO:
-{
-    MINMAXINFO* mmi = (MINMAXINFO*)lParam;
-    mmi->ptMinTrackSize.x = 640;
-    mmi->ptMinTrackSize.y = 480;
-    return 0;
-}
-```
+`WM_GETMINMAXINFO` is the main hook for top-level tracking constraints. Set `ptMinTrackSize` and `ptMaxTrackSize` to control resize limits, and use `MonitorFromWindow` plus `GetMonitorInfo` when overriding maximized size or position so the work area respects taskbars and the monitor containing the window. Hard-coding primary-screen metrics is the classic multi-monitor bug.
 
-## Monitor-aware max size
-https://stackoverflow.com/questions/4134946/wm-getminmaxinfo-does-not-seem-to-work-how-to-get-a-windows-minimum-and-maximu
-Use the monitor work area to set max position and size.
-```cpp
-case WM_GETMINMAXINFO:
-{
-    MINMAXINFO* mmi = (MINMAXINFO*)lParam;
-    HMONITOR hMon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
-    MONITORINFO mi = { sizeof(mi) };
-    if (GetMonitorInfo(hMon, &mi))
-    {
-        mmi->ptMaxPosition.x = mi.rcWork.left;
-        mmi->ptMaxPosition.y = mi.rcWork.top;
-        mmi->ptMaxSize.x = mi.rcWork.right - mi.rcWork.left;
-        mmi->ptMaxSize.y = mi.rcWork.bottom - mi.rcWork.top;
-    }
-    return 0;
-}
-```
+Sizing is also a DPI problem. Minimum widths, splitter thicknesses, toolbar heights, and custom frame borders should be derived from the window's current DPI or font metrics, then recalculated on `WM_DPICHANGED`. A borderless window in particular must pair `WM_GETMINMAXINFO` with non-client hit testing or it will maximize and resize unlike a normal overlapped window.
+
+## References
+- <https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-getminmaxinfo> - tracking-size message contract.
+- <https://stackoverflow.com/questions/4134946/wm-getminmaxinfo-does-not-seem-to-work-how-to-get-a-windows-minimum-and-maximu> - monitor work-area correction for maximize bounds.
+
+## Connections
+- `Borderless Window.md` depends on this for correct custom chrome.
+- `DPI Awareness/Per-Monitor V2 DPI Reference.md` covers DPI-triggered recomputation.

@@ -1,65 +1,72 @@
 # Notification Area (Tray)
 
-Per-link references with a brief note and focused snippet.
+Tray icons are shell-owned state keyed by `(HWND, uID)` or a GUID, not child controls. A robust tray app needs a hidden/message-only window, icon recreation after Explorer restarts, DPI-aware icon resources, and policy-aware notification behavior. The references below are kept because each exposes a different part of that contract.
 
-## Notification area overview
+## Add and update an icon
 Link: https://learn.microsoft.com/en-us/windows/win32/shell/notification-area
-Brief: Add a tray icon with NOTIFYICONDATA.
+
+Contribution: the overview gives the required `NOTIFYICONDATA` state machine. `NIM_ADD` registers the icon, `NIM_SETVERSION` opts into modern callback behavior, and `NIM_MODIFY` updates tooltip/icon text without replacing the identity.
+
 ```cpp
-NOTIFYICONDATAW nid = {};
-nid.cbSize = sizeof(nid);
+constexpr UINT WM_TRAY = WM_APP + 1;
+
+NOTIFYICONDATAW nid = { sizeof(nid) };
 nid.hWnd = hwnd;
 nid.uID = 1;
 nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
+nid.uCallbackMessage = WM_TRAY;
+nid.hIcon = LoadIconW(hInst, MAKEINTRESOURCEW(IDI_APP));
+StringCchCopyW(nid.szTip, ARRAYSIZE(nid.szTip), L"Native utility");
 Shell_NotifyIconW(NIM_ADD, &nid);
+
+nid.uVersion = NOTIFYICON_VERSION_4;
+Shell_NotifyIconW(NIM_SETVERSION, &nid);
 ```
 
-## Query user notification state
+## Notification policy
 Link: https://learn.microsoft.com/en-us/windows/win32/api/shellapi/ne-shellapi-query_user_notification_state
-Brief: Defer notifications when in quiet/presentation modes.
+
+Contribution: `SHQueryUserNotificationState` is the cheap policy gate before showing noisy UI. It tells you whether the user is in quiet time, presentation mode, fullscreen, or otherwise suppressing notifications.
+
 ```cpp
 QUERY_USER_NOTIFICATION_STATE state = QUNS_ACCEPTS_NOTIFICATIONS;
-SHQueryUserNotificationState(&state);
-if (state != QUNS_ACCEPTS_NOTIFICATIONS) {
-  // defer toast
+if (SUCCEEDED(SHQueryUserNotificationState(&state)) &&
+    state != QUNS_ACCEPTS_NOTIFICATIONS) {
+    QueueToastForLater();
 }
 ```
 
-## RegisterShellHookWindow
+## Shell hook window messages
 Link: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registershellhookwindow
-Brief: Receive shell hook messages for window events.
+
+Contribution: `RegisterShellHookWindow` lets a normal HWND receive shell lifecycle messages such as top-level window creation/destruction. It is useful for tray/status tools, but it is not a global hook and does not replace UI Automation or ETW for deep observation.
+
 ```cpp
-UINT msg = RegisterWindowMessageW(L"SHELLHOOK");
+UINT shell_msg = RegisterWindowMessageW(L"SHELLHOOK");
 RegisterShellHookWindow(hwnd);
-LRESULT OnShellHook(WPARAM w, LPARAM l) {
-  if (w == HSHELL_WINDOWCREATED) { /* ... */ }
-  return 0;
+
+// In WndProc:
+if (msg == shell_msg && wParam == HSHELL_WINDOWCREATED) {
+    HWND created = (HWND)lParam;
 }
 ```
 
-## Shell_NotifyIconW
-Link: https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shell_notifyiconw
-Brief: Update tooltip text on an existing icon.
-```cpp
-NOTIFYICONDATAW nid = {};
-nid.cbSize = sizeof(nid);
-nid.hWnd = hwnd;
-nid.uID = 1;
-nid.uFlags = NIF_TIP;
-StringCchCopyW(nid.szTip, ARRAYSIZE(nid.szTip), L"My App");
-Shell_NotifyIconW(NIM_MODIFY, &nid);
-```
-
-## Taskbar extensions thumbbars
+## Thumbnail toolbar buttons
 Link: https://learn.microsoft.com/en-us/windows/win32/shell/taskbar-extensions?redirectedfrom=MSDN#thumbbars
-Brief: Add a button to the thumbnail toolbar.
+
+Contribution: `ITaskbarList3::ThumbBarAddButtons` is taskbar integration, not tray integration, but tray apps often also own a main window. Keep it here because it is the neighboring shell-notification surface.
+
 ```cpp
-ITaskbarList3* tbl = NULL;
-CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&tbl));
-THUMBBUTTON btn = {};
-btn.iId = 1; btn.dwMask = THB_TOOLTIP;
-StringCchCopyW(btn.szTip, ARRAYSIZE(btn.szTip), L"Play");
-tbl->ThumbBarAddButtons(hwnd, 1, &btn);
-tbl->Release();
+wil::com_ptr<ITaskbarList3> taskbar;
+CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_INPROC_SERVER,
+                 IID_PPV_ARGS(&taskbar));
+
+THUMBBUTTON button = {};
+button.dwMask = THB_TOOLTIP | THB_ICON;
+button.iId = 100;
+button.hIcon = LoadIconW(hInst, MAKEINTRESOURCEW(IDI_PAUSE));
+StringCchCopyW(button.szTip, ARRAYSIZE(button.szTip), L"Pause");
+taskbar->ThumbBarAddButtons(hwnd, 1, &button);
 ```
 
+Connections: `Tray App Scratch Reference.md` is the small app-shaped example; `Shell Execute.md` handles launching from menu commands; `Shell App Manager (IShellApp).md` and Game Bar notes cover newer app/presence surfaces.

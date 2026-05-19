@@ -1,33 +1,12 @@
-# Vulkan Initialization
+# Vulkan Basics
 
-Vulkan requires explicit setup of instance, physical device, logical device, and swap chain. Unlike OpenGL, there is no implicit context; every object is explicitly created and destroyed. Use validation layers (`VK_LAYER_KHRONOS_validation`) during development.
+Vulkan is included here as the explicit-API contrast to OpenGL: instance, physical device, logical device, queues, swap chain, command buffers, synchronization, and resource lifetime are all application-owned. There is no implicit context and no hidden global state machine comparable to classic GL.
 
-```cpp
-// Minimal Vulkan instance creation
-VkApplicationInfo appInfo = {};
-appInfo.sType            = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-appInfo.pApplicationName = "Demo";
-appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-appInfo.apiVersion       = VK_API_VERSION_1_2;
-
-const char* layers[] = { "VK_LAYER_KHRONOS_validation" };
-VkInstanceCreateInfo ci = {};
-ci.sType                   = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-ci.pApplicationInfo        = &appInfo;
-ci.enabledLayerCount        = 1;
-ci.ppEnabledLayerNames      = layers;
-
-VkInstance instance = VK_NULL_HANDLE;
-vkCreateInstance(&ci, nullptr, &instance);
-
-// Enumerate physical devices
-uint32_t devCount = 0;
-vkEnumeratePhysicalDevices(instance, &devCount, nullptr);
-std::vector<VkPhysicalDevice> devices(devCount);
-vkEnumeratePhysicalDevices(instance, &devCount, devices.data());
-VkPhysicalDeviceProperties props = {};
-vkGetPhysicalDeviceProperties(devices[0], &props);
-```
+For Native Windows work, the useful comparison is with D3D12 and DXGI. Vulkan owns rendering explicitly, but presentation still goes through a window-system integration layer (`VK_KHR_win32_surface` on Windows), so swap-chain and display behavior remain platform concerns.
 
 ## References
-- https://www.howtovulkan.com/
+- <https://www.howtovulkan.com/>
+
+## Connections
+- `../(DX) DirectX/(DX12) DirectX12.md`
+- `../(DX) DirectX/Cauldron — D3D12 and Vulkan Prototyping.md`

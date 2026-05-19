@@ -1,6 +1,8 @@
 # No Title Bar Window
 
-Use `WS_POPUP`/`SetWindowLong` to remove standard chrome, and strip the non-client area via `WM_NCCALCSIZE`.
+Removing the title bar is not just "use `WS_POPUP`". The moment you strip the non-client area, you inherit the work DWM and USER32 normally do for you: hit testing for resize borders, maximize/snap affordances, DPI-aware frame metrics, dark-mode caption colors, and caption button layout. `WM_NCCALCSIZE` removes the frame; `WM_NCHITTEST` and `DwmExtendFrameIntoClientArea` decide whether the resulting window still behaves like a Windows window.
+
+Use `WS_POPUP` for true borderless surfaces such as overlays or games. For normal app chrome, prefer keeping an overlapped window and customizing the non-client area, otherwise Snap Layouts and system menu behavior degrade quickly.
 
 ## Snippet
 ```c
@@ -25,3 +27,4 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 ## References
 - https://stackoverflow.com/questions/7442939/opening-a-window-that-has-no-title-bar-with-win32
+- Related: `Snap Layout API.md`, `Title Bar Customization.md`, `DWM Internals Documentation.md`

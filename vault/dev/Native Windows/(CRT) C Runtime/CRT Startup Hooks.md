@@ -1,33 +1,12 @@
 # CRT Startup Hooks
 
-The MSVC CRT runs global C++ constructors via the `.CRT$XCU` section before calling `main`. You can inject code into any CRT startup phase by placing function pointers in the right linker section. This is how ATL, WRL, and MFC register their global objects.
+MSVC discovers pre-`main` work by walking linker-sorted subsections such as `.CRT$XIA..XIZ` for C initializers and `.CRT$XCA..XCZ` for C++ dynamic initializers. User code normally lands in `.CRT$XCU`; manually allocating a function pointer into `.CRT$XCT` or another alphabetically adjacent subsection changes ordering, which is why this technique is powerful and brittle at the same time. The hook runs only if the CRT startup path runs; `/ENTRY` plus `/NODEFAULTLIB` bypasses it entirely unless you implement the same table walk yourself.
 
-```cpp
-// Run code before main via CRT initialization section
-// Priority: $XCA (earliest) .. $XCZ (latest user code) .. $XCZ+1 (ATL etc.)
-static void EarlyInit() {
-    // Runs before main, after CRT heap init
-    OutputDebugStringA("EarlyInit called\n");
-}
+Use this as a diagnostic or bootstrap escape hatch, not as hidden application architecture. At hook time, loader lock may still matter for DLLs, global object order across translation units is intentionally weak, and failure paths are ugly because the process has not reached user code yet. It also interacts badly with static CRT duplication: every statically linked DLL has its own initializer tables and teardown callbacks.
 
-// C linkage required - these are function pointers in a section array
-typedef void (__cdecl *_PVFV)();
-#pragma section(".CRT$XCT", long, read)  // T = just before user $XCU
-__declspec(allocate(".CRT$XCT")) static _PVFV p_early_init = EarlyInit;
-
-// Alternatively with a static object:
-struct Initializer {
-    Initializer()  { /* runs before main */ InitializeCriticalSection(&g_cs); }
-    ~Initializer() { /* runs after main */  DeleteCriticalSection(&g_cs); }
-};
-static Initializer g_init;
-```
-
-Key CRT sections (MSVC):
-- `.CRT$XIA` / `.CRT$XIZ` — C initializers (lowest level)
-- `.CRT$XCA` / `.CRT$XCZ` — C++ constructor table
-- `.CRT$XPA` / `.CRT$XPZ` — Pre-termination
-- `.CRT$XTA` / `.CRT$XTZ` — Termination (atexit)
+## Connections
+- `No-CRT Win32` and `Win32 No-CRT C Template` are the cases where these tables disappear unless you recreate CRT startup.
+- `CRT Linkage (MD MT DLL)` determines whether a module shares the process CRT DLL or owns a private static CRT instance.
 
 ## References
-- https://stackoverflow.com/questions/728939/how-to-execute-some-code-before-entering-the-main-routine-in-vc
+- <https://stackoverflow.com/questions/728939/how-to-execute-some-code-before-entering-the-main-routine-in-vc>

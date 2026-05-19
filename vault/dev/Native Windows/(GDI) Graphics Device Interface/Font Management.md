@@ -1,25 +1,12 @@
 # Font Management
 
-`AddFontResourceExW` with `FR_PRIVATE` loads a font file into the current process only (not visible to other apps). Use `CreateFontW` or `CreateFontIndirectW` with a `LOGFONTW` to instantiate it. `RemoveFontResourceExW` cleans up on exit.
+`AddFontResourceExW` with `FR_PRIVATE` loads a font for the current process without installing it system-wide. Create actual `HFONT` instances with `CreateFontIndirectW`, using negative `lfHeight` for character height in logical units, and remove the resource with `RemoveFontResourceExW` when the process no longer needs it. A private font still participates in GDI font matching by face name, so naming collisions and fallback remain possible.
 
-```cpp
-// Load a private font and use it
-AddFontResourceExW(L"C:\\Fonts\\MyFont.ttf", FR_PRIVATE, nullptr);
-
-LOGFONTW lf = {};
-lf.lfHeight  = -MulDiv(12, GetDeviceCaps(hdc, LOGPIXELSY), 72);  // 12pt
-lf.lfWeight  = FW_NORMAL;
-lf.lfQuality = CLEARTYPE_QUALITY;
-wcscpy_s(lf.lfFaceName, L"MyFont");
-HFONT font = CreateFontIndirectW(&lf);
-HFONT oldFont = (HFONT)SelectObject(hdc, font);
-TextOutW(hdc, 10, 10, L"Private font", 12);
-SelectObject(hdc, oldFont);
-DeleteObject(font);
-
-// Cleanup
-RemoveFontResourceExW(L"C:\\Fonts\\MyFont.ttf", FR_PRIVATE, nullptr);
-```
+`FontMod` is relevant because it shows font substitution/modification pressure in real Windows UI rather than a hello-world draw call. For application UI, the hard part is not loading the font; it is recomputing metrics, control sizes, and cached text extents when DPI, theme, or font choice changes.
 
 ## References
-- https://github.com/ysc3839/FontMod
+- <https://github.com/ysc3839/FontMod> - Windows font modification/substitution utility.
+
+## Connections
+- `Text Shaping (Uniscribe).md` covers glyph shaping beyond selecting an `HFONT`.
+- `Symbol Fonts.md` covers icon glyph fonts.

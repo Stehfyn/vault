@@ -1,24 +1,11 @@
-Magnify10 is a lightweight Windows magnifier using the Magnification API with global hotkeys and a periodic refresh timer for the lens.
+# Magnify Sample
 
-```cpp
-#include <magnification.h>
-#pragma comment(lib, "magnification.lib")
+Magnify10 uses the Windows Magnification API, not raw GDI blitting. The host creates a `WC_MAGNIFIER` child window, sets a source rectangle with `MagSetWindowSource`, and applies scale through `MagSetWindowTransform`. The API handles the capture/display loop for the magnified lens, while the app supplies hotkeys, window placement, and refresh behavior.
 
-MagInitialize();
-HWND hwndMag = CreateWindowEx(0, WC_MAGNIFIER, L"", WS_CHILD | WS_VISIBLE,
-    0, 0, 300, 200, hwndHost, nullptr, hInstance, nullptr);
-
-RECT rc = { x, y, x + sourceWidth, y + sourceHeight };
-MagSetWindowSource(hwndMag, rc);
-
-// MagSetWindowTransform for zoom factor
-MAGTRANSFORM transform;
-memset(&transform, 0, sizeof(transform));
-transform.v[0][0] = 2.0f; // 2x zoom
-transform.v[1][1] = 2.0f;
-transform.v[2][2] = 1.0f;
-MagSetWindowTransform(hwndMag, &transform);
-```
+This is the right reference when you need a desktop lens rather than a screenshot. It also has the usual desktop-capture caveats: secure surfaces, protected content, and composition details may not appear the way a naive screen DC capture suggests.
 
 ## References
-1. https://github.com/chrishermans/magnify
+- <https://github.com/chrishermans/magnify> - lightweight Magnification API sample with hotkeys.
+
+## Connections
+- `How to Capture the Screen.md` is the lower-level GDI capture alternative.

@@ -1,18 +1,11 @@
-# Dialog Units and MapDialogRect
+# Dialog Units
 
-Dialog units (DLUs) are font-relative units: 1 DLU horizontal = 1/4 of the average character width; 1 DLU vertical = 1/8 of the average character height. `MapDialogRect` converts a RECT in DLUs to pixels using the dialog's current font. This is how classic Win32 dialogs achieve DPI-like scaling before DPI awareness existed.
+Dialog units are font-relative layout units used by Win32 dialog templates: horizontal units are based on one quarter of the dialog font's average character width, and vertical units on one eighth of its height. `MapDialogRect` converts a DLU rectangle to pixels using the dialog's current font, which is why changing `DS_SETFONT` changes the apparent geometry of the whole dialog.
 
-```cpp
-// Convert a DLU-sized rect to pixels based on the dialog font
-RECT rc = { 0, 0, 100, 14 };   // 100x14 DLUs — typical button
-MapDialogRect(hDlg, &rc);
-int pxW = rc.right  - rc.left;
-int pxH = rc.bottom - rc.top;
-MoveWindow(hButton, 10, 10, pxW, pxH, TRUE);
-
-// The dialog template header stores cx/cy in DLUs too
-// DLGTEMPLATE.cx / cy are both in dialog units
-```
+DLUs are not obsolete just because DPI APIs exist. Legacy dialogs, property sheets, and resource templates still express sizes this way, and DPI-aware code often has to preserve that behavior while mixing in pixel-based custom controls. Convert at the boundary, after the dialog font is set, and do not cache DLU-to-pixel results across font or DPI changes.
 
 ## References
-- https://github.com/andlabs/windlgunits/blob/master/main.c
+- <https://github.com/andlabs/windlgunits/blob/master/main.c> - compact experiment showing how dialog-unit conversion behaves.
+
+## Connections
+- `DPI Awareness/Per-Monitor V2 DPI Reference.md` explains the modern DPI notification layer.

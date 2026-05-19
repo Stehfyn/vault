@@ -1,1 +1,1 @@
-
+No durable DirectX items parked here yet. Promote future scraps into DXGI, D3D12, D2D/DWrite, DirectComposition, capture, Media Foundation, or legacy DirectDraw notes once the link has a concrete implementation lesson.

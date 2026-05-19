@@ -1,0 +1,1 @@
+Use this for DPI-context, scaling, and coordinate-virtualization notes: process/thread/window awareness, `WM_DPICHANGED`, non-client metrics, dialog-unit conversion, and mixed-monitor bugs. If the entry is really about layout or control painting, cross-link it back to Common Controls.

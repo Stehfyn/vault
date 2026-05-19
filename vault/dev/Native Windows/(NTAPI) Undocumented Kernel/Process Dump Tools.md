@@ -1,18 +1,12 @@
 # Process Dump Tools
 
-MiniDump APIs (`MiniDumpWriteDump`) write structured crash dumps for post-mortem debugging. The dump type controls what's included: `MiniDumpWithFullMemory` captures all readable memory; `MiniDumpNormal` captures just the stack frames needed for basic analysis.
+Process dump tooling sits between legitimate diagnostics and sensitive-memory exposure. The API center is `MiniDumpWriteDump`, but the meaningful choices are dump type, handle access, target bitness, protected-process restrictions, callback filtering, and whether the dump captures only stack/module metadata or full readable memory.
 
-```cpp
-// Write a full memory minidump of a target process
-HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, targetPid);
-HANDLE hFile = CreateFileW(L"dump.dmp", GENERIC_WRITE, 0, nullptr,
-    CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-MINIDUMP_TYPE type = (MINIDUMP_TYPE)(MiniDumpWithFullMemory |
-    MiniDumpWithHandleData | MiniDumpWithUnloadedModules);
-MiniDumpWriteDump(hProcess, targetPid, hFile, type, nullptr, nullptr, nullptr);
-CloseHandle(hFile);
-CloseHandle(hProcess);
-```
+The linked `calmdump` project is useful as a compact reference for dump generation mechanics. Read it alongside PSS snapshots and NTAPI process-handle notes: modern dump tools often combine handle acquisition, snapshotting, minidump callbacks, and symbol-aware postmortem analysis rather than treating dump writing as one opaque call.
+
+## Connections
+- `ProcessSnapshot.h` covers copy-on-write snapshots that can stabilize dump capture.
+- System Informer and phnt explain the native process and handle enumeration often used before dumping.
 
 ## References
 - https://github.com/qi7chen/calmdump

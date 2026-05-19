@@ -1,15 +1,12 @@
 # NT User Message Definitions
 
-The internal ntuser messages.h defines private message ranges used between user32 and win32k. WM_USER + ranges are carefully partitioned so app-defined messages don't collide with internal notifications.
+The NTUSER `messages.h` file is useful because it shows the internal message vocabulary that sits beneath public `WM_*` documentation. Public message ranges, control-private `WM_USER` traffic, shell/window-manager notifications, and user/kernel coordination all share the same numeric transport, so range discipline is not cosmetic.
 
-```cpp
-// WM_APP is the safe base for app messages; WM_USER is control-internal
-constexpr UINT WM_APP_PING = WM_APP + 1;
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-  if (msg == WM_APP_PING) { SetWindowTextW(hwnd, L"Pong"); return 0; }
-  return DefWindowProcW(hwnd, msg, wParam, lParam);
-}
-```
+The concrete takeaway is to treat message numbers as scoped contracts. `WM_USER` belongs to a window class or common-control implementation, `WM_APP` belongs to the application, and registered messages belong to cross-component rendezvous. NTUSER's private definitions explain why sloppy constants can collide with controls or future system behavior even when the app appears to work.
+
+## Connections
+- `System-Defined Messages` covers the public classification.
+- `Message Queue Implementation` shows how those numbers move through a thread queue.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/master/Source/XPSP1/NT/windows/core/ntuser/inc/messages.h

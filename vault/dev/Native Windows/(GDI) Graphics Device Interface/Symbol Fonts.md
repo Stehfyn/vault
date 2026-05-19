@@ -1,20 +1,12 @@
-# Symbol Fonts (Segoe UI Symbol / Segoe MDL2 Assets)
+# Symbol Fonts
 
-`Segoe UI Symbol` provides Unicode dingbats and emoji; `Segoe MDL2 Assets` (Windows 8.1+) provides the flat glyph icon set used throughout modern Windows UI. Select the font with `SYMBOL_CHARSET` to suppress GDI glyph substitution. Reference the codepoints by Unicode scalar value.
+Windows icon glyph fonts such as Segoe UI Symbol and Segoe MDL2 Assets let GDI draw UI icons as text. Select the face into an `HFONT`, draw the Unicode private-use code point, and keep the background transparent if it is acting like an icon. This works well for simple monochrome glyphs that should scale with text metrics.
 
-```cpp
-// Draw a Segoe MDL2 Assets icon glyph (U+E10F = "Contact")
-HFONT iconFont = CreateFontW(
-    24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
-    SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
-    CLEARTYPE_QUALITY, FF_DONTCARE, L"Segoe MDL2 Assets");
-HFONT oldFont = (HFONT)SelectObject(hdc, iconFont);
-SetTextColor(hdc, RGB(0, 120, 215));
-SetBkMode(hdc, TRANSPARENT);
-TextOutW(hdc, 10, 10, L"\uE10F", 1);   // Contact icon
-SelectObject(hdc, oldFont);
-DeleteObject(iconFont);
-```
+The tradeoff is semantic and visual fragility. Code points can be font-specific, not all users have the same glyph coverage, and colored/variable Fluent icons are not represented by the old MDL2 font model. For modern iconography use actual assets or a maintained symbol source; for classic Win32 tools, symbol fonts remain a lightweight option.
 
 ## References
-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font
+- <https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font> - Microsoft glyph/codepoint reference for Segoe symbol assets.
+
+## Connections
+- `Font Management.md` covers selecting and loading fonts.
+- `Menu Item Bitmap.md` is the bitmap-glyph alternative for menus.

@@ -1,15 +1,12 @@
+# Registry Setup (RegInstallW)
+
+`RegInstallW` is an ADVPACK helper that applies registry instructions embedded in INF-style `RegInstall` sections, with string-table substitution for paths or identifiers. It belongs to the Internet Explorer / setup-helper lineage, not to MSI's transactional installation model.
+
+The relevant deployment detail is rollback: `RegInstallW` is just an imperative registry write helper. It does not give you MSI component key paths, repair semantics, reference counting, or automatic uninstall rollback unless the caller builds that discipline around it. It remains useful when maintaining old self-registering modules and INF-driven setup code.
+
+## Connections
+- `advpub.h` is the header surface for this function.
+- `RegStr.h` and `INI File API` are adjacent compatibility-era configuration mechanisms.
+
 ## References
-- https://learn.microsoft.com/en-us/windows/win32/api/advpub/nf-advpub-reginstallw
-
-RegInstallW applies registry updates described in a module’s RegInstall sections, using a string table to substitute values at install time.
-
-```c
-#include <advpub.h>
-
-STRTABLEW table[] = {
-    { L"INSTALLDIR", L"C:\\Program Files\\MyApp" },
-    { NULL, NULL }
-};
-
-HRESULT hr = RegInstallW(hModule, L"RegInstall", table);
-```
+- <https://learn.microsoft.com/en-us/windows/win32/api/advpub/nf-advpub-reginstallw>

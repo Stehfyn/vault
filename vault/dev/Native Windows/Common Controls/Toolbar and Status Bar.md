@@ -1,22 +1,12 @@
 # Toolbar and Status Bar
 
-Toolbars (`TOOLBARCLASSNAME`) and status bars (`STATUSCLASSNAME`) are standard comctl32 controls. The status bar auto-sizes its height to font metrics; pass `SB_SETPARTS` an array of right-edge x-coordinates (last = -1 for stretching).
+Toolbars and status bars are comctl32 controls, not decorative strips. A toolbar needs `TB_BUTTONSTRUCTSIZE` before `TB_ADDBUTTONS`, an image list sized for the current DPI, and command IDs that flow back through `WM_COMMAND`. A status bar uses `SB_SETPARTS` with right-edge coordinates; `-1` makes the final pane stretch, and forwarding `WM_SIZE` lets the control recompute its own height and position.
 
-```cpp
-// Status bar with two panes
-HWND hStatus = CreateWindowW(STATUSCLASSNAME, L"",
-    WS_CHILD | WS_VISIBLE | SBARS_SIZEGRIP,
-    0, 0, 0, 0, hwnd, (HMENU)IDC_STATUS, hInst, nullptr);
-int parts[2] = { 200, -1 };
-SendMessageW(hStatus, SB_SETPARTS, 2, (LPARAM)parts);
-SendMessageW(hStatus, SB_SETTEXTW, 0, (LPARAM)L"Ready");
-SendMessageW(hStatus, SB_SETTEXTW, 1, (LPARAM)L"0 items");
-
-// Reposition status bar on WM_SIZE
-case WM_SIZE:
-  SendMessageW(hStatus, WM_SIZE, 0, 0);
-  break;
-```
+The old MSDN toolbar/status-bar material is still useful because these controls have not fundamentally changed. Modern polish comes from the surrounding contracts: comctl32 v6 activation, visual styles, DPI-scaled image lists, and owner/custom draw only where the stock rendering cannot match the application.
 
 ## References
-- https://learn.microsoft.com/en-us/previous-versions/ms810439(v=msdn.10)?redirectedfrom=MSDN
+- <https://learn.microsoft.com/en-us/previous-versions/ms810439(v=msdn.10)?redirectedfrom=MSDN> - classic toolbar/status-bar programming reference.
+
+## Connections
+- `Custom Toolbar Header.md` covers custom drawing around toolbar/header surfaces.
+- `Visual Styles.md` covers the comctl32 v6 and theming setup.

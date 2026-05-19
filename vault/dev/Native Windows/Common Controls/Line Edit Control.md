@@ -1,25 +1,12 @@
-LineNumEdit pairs a custom static control (for line numbers) alongside a standard multiline Edit control. The static subclass intercepts `WM_PAINT` and synchronizes with `Edit_GetFirstVisibleLine` / `Edit_LineIndex` to draw line numbers, using double-buffering to eliminate flicker.
+# Line Edit Control
 
-```cpp
-#include "LineNumEdit.hpp"
+LineNumEdit demonstrates the pragmatic way to add line numbers to a standard multiline Edit control: keep the Edit for text input and scrolling, add a sibling/static gutter, and synchronize painting with `Edit_GetFirstVisibleLine` and `Edit_LineIndex`. That avoids reimplementing text editing while still producing editor-like chrome.
 
-// 1. Create a standard multiline edit control
-HWND hEdit = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), NULL,
-    WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL,
-    50, 0, 400, 300, hwndParent, (HMENU)IDC_EDIT, hInst, NULL);
-
-// 2. Wrap it — Prepare() inserts a sibling LineNumStatic and sets the edit's left margin
-LineNumEdit lineNumEdit(hEdit);
-lineNumEdit.Prepare();
-
-// Optionally highlight a specific line number with a background color
-lineNumEdit.SetHighlight(3, RGB(255, 220, 220));
-
-// Internal paint loop (inside LineNumStatic::OnDrawClient):
-//   INT iPhysicalLine = Edit_GetFirstVisibleLine(hwndEdit);
-//   INT ich           = Edit_LineIndex(hwndEdit, iPhysicalLine);
-//   // for each visible line: format number, DrawTextW right-aligned into the static
-```
+The hard parts are alignment and invalidation. The gutter must track scroll position, font changes, selection highlighting, and DPI-derived line height. Double buffering is useful because repainting the gutter separately from the Edit can otherwise produce visible tear during scroll.
 
 ## References
-- https://github.com/katahiromz/LineNumEdit
+- <https://github.com/katahiromz/LineNumEdit> - Edit-control companion gutter for line numbers and highlighting.
+
+## Connections
+- `Rendering.md` covers flicker and buffering.
+- `Custom Controls.md` explains why this is composition around a stock control rather than a full editor control.

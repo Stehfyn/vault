@@ -1,1 +1,1 @@
-
+No durable OpenGL items parked here yet. Promote future scraps into WGL/context creation, DXGI interop, texture upload, offscreen rendering, tracing, Mesa, or sample-framework notes once the link has a specific implementation lesson.

@@ -1,37 +1,8 @@
-Use `CreateToolhelp32Snapshot` with `TH32CS_SNAPTHREAD` to get a snapshot of all threads system-wide, then iterate with `Thread32First`/`Thread32Next`, filtering on `th32OwnerProcessID` to isolate threads belonging to a specific process.
+# Enumerating Threads in a Process
 
-```cpp
-#include <windows.h>
-#include <tlhelp32.h>
-#include <stdio.h>
+This example demonstrates the ToolHelp thread snapshot pattern: take a system-wide thread snapshot, iterate `THREADENTRY32`, and filter by owner process ID. The awkwardness is intentional: Win32 does not expose "enumerate threads for this process" as a single high-level call.
 
-void EnumProcessThreads(DWORD dwPID)
-{
-    HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
-    if (hSnap == INVALID_HANDLE_VALUE)
-        return;
-
-    THREADENTRY32 te;
-    te.dwSize = sizeof(te);
-
-    if (Thread32First(hSnap, &te))
-    {
-        do
-        {
-            if (te.dwSize >= FIELD_OFFSET(THREADENTRY32, th32OwnerProcessID)
-                             + sizeof(te.th32OwnerProcessID))
-            {
-                if (te.th32OwnerProcessID == dwPID)
-                    printf("Thread 0x%04x\n", te.th32ThreadID);
-            }
-            te.dwSize = sizeof(te);
-        }
-        while (Thread32Next(hSnap, &te));
-    }
-
-    CloseHandle(hSnap);
-}
-```
+Use it as the baseline before reaching for heavier process libraries. It connects to `Threaded Message Queue`, `Win32 Process Snippet Utilities`, and debugger/profiler code where thread IDs, GUI queues, and process ownership must be correlated.
 
 ## References
-- https://devblogs.microsoft.com/oldnewthing/20060223-14/?p=32173
+- <https://learn.microsoft.com/en-us/windows/win32/toolhelp/traversing-the-thread-list>

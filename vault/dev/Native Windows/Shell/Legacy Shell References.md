@@ -1,123 +1,75 @@
 # Legacy Shell References
 
-Per-link snippets for legacy shell, Control Panel, and taskbar topics.
+This is the coalesced map for older shell extension and Control Panel surfaces. Keep links here only when they show a code-bearing COM/registry boundary that still explains old tools, shell extensions, or Explorer replacements.
 
-## Shell namespace entry points
+## Namespace parsing and enumeration
 Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/bb762499(v=vs.85)
-Brief: Use the desktop IShellFolder to parse a display name.
+
+Contribution: `IShellFolder::ParseDisplayName` and `EnumObjects` are the pre-`IShellItem` core. The code pattern is PIDL ownership: the shell allocates with the COM task allocator, and callers free with `CoTaskMemFree`.
+
 ```cpp
-IShellFolder* desktop = NULL;
+wil::com_ptr<IShellFolder> desktop;
 SHGetDesktopFolder(&desktop);
-LPITEMIDLIST pidl = NULL;
-ULONG eaten = 0;
-desktop->ParseDisplayName(hwnd, NULL, L"::{CLSID}", &eaten, &pidl, NULL);
-desktop->Release();
+
+PIDLIST_RELATIVE pidl = nullptr;
+ULONG eaten = 0, attrs = 0;
+desktop->ParseDisplayName(hwnd, nullptr, L"C:\\Windows", &eaten, &pidl, &attrs);
+CoTaskMemFree(pidl);
 ```
 
-## Control Panel CPL entry point
+## Control Panel applet ABI
 Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms644697(v=vs.85)
-Brief: Implement a minimal CPlApplet handler.
+
+Contribution: a `.cpl` is a DLL exporting `CPlApplet`; Control Panel drives it with `CPL_INIT`, `CPL_GETCOUNT`, `CPL_INQUIRE`/`CPL_NEWINQUIRE`, `CPL_DBLCLK`, `CPL_STOP`, and `CPL_EXIT`. That message protocol is the important code, not the icon resource.
+
 ```cpp
-LONG CALLBACK CPlApplet(HWND hwndCpl, UINT msg, LPARAM l1, LPARAM l2) {
-  if (msg == CPL_INIT) return TRUE;
-  if (msg == CPL_GETCOUNT) return 1;
-  if (msg == CPL_DBLCLK) { /* launch UI */ }
-  return 0;
+extern "C" LONG CALLBACK CPlApplet(HWND hwnd, UINT msg, LPARAM p1, LPARAM p2) {
+    switch (msg) {
+    case CPL_INIT: return TRUE;
+    case CPL_GETCOUNT: return 1;
+    case CPL_DBLCLK: DialogBoxW(g_hinst, MAKEINTRESOURCEW(IDD_MAIN), hwnd, DlgProc); return 0;
+    case CPL_STOP:
+    case CPL_EXIT: return 0;
+    }
+    return 0;
 }
 ```
 
-## Thumbnail toolbar buttons
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/hh127450(v=vs.85)
-Brief: Add a single thumbnail toolbar button.
-```cpp
-ITaskbarList3* tbl = NULL;
-CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&tbl));
-THUMBBUTTON buttons[1] = {};
-buttons[0].iId = 1; buttons[0].dwMask = THB_FLAGS;
-buttons[0].dwFlags = THBF_ENABLED;
-tbl->ThumbBarAddButtons(hwnd, 1, buttons);
-tbl->Release();
-```
+## Context menus and property sheets
+Links:
+- https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/bb762599(v=vs.85)
+- https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/cc144195(v=vs.85)
 
-## Control Panel namespace registration
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/cc144115(v=vs.85)
-Brief: Create the Control Panel NameSpace key.
-```cpp
-HKEY key = NULL;
-RegCreateKeyExW(HKEY_LOCAL_MACHINE,
-  L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ControlPanel\\NameSpace\\{GUID}",
-  0, NULL, 0, KEY_WRITE, NULL, &key, NULL);
-RegCloseKey(key);
-```
+Contribution: `IContextMenu` extends Explorer's verb list; `IShellPropSheetExt` contributes property pages. Both are in-process shell extensions, so COM apartment behavior, DLL lifetime, registry registration, and crash isolation matter more than the menu/page UI itself.
 
-## Shell namespace extension skeleton
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ee663597(v=vs.85)
-Brief: Basic EnumObjects implementation.
 ```cpp
-HRESULT MyFolder::EnumObjects(HWND hwnd, SHCONTF flags, IEnumIDList** ppenum) {
-  *ppenum = NULL;
-  if (!(flags & SHCONTF_NONFOLDERS)) return S_FALSE;
-  return CreateEnumIDList(flags, ppenum);
+HRESULT QueryContextMenu(HMENU menu, UINT index, UINT idFirst, UINT idLast, UINT flags) {
+    InsertMenuW(menu, index, MF_BYPOSITION | MF_STRING, idFirst, L"Inspect");
+    return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 1); // one verb consumed
 }
 ```
 
-## Property sheet handler
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/cc144195(v=vs.85)
-Brief: Add a property sheet page from IShellPropSheetExt.
+## Taskbar thumbnails
+Links:
+- https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/hh127450(v=vs.85)
+- https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/hh127447(v=vs.85)
+
+Contribution: these document the Vista/Win7 taskbar extension layer: thumbnail buttons through `ITaskbarList3` and live-preview bitmaps through `DwmSetIconicThumbnail` / `DwmSetIconicLivePreviewBitmap`. They connect shell UI to DWM composition.
+
 ```cpp
-STDMETHODIMP MyPropSheet::AddPages(LPFNADDPROPSHEETPAGE add, LPARAM lParam) {
-  HPROPSHEETPAGE page = CreatePropertySheetPage(&psp);
-  if (page) { add(page, lParam); }
-  return S_OK;
-}
+THUMBBUTTON b = {};
+b.dwMask = THB_TOOLTIP | THB_FLAGS;
+b.iId = 1;
+b.dwFlags = THBF_ENABLED;
+StringCchCopyW(b.szTip, ARRAYSIZE(b.szTip), L"Capture");
+taskbar->ThumbBarAddButtons(hwnd, 1, &b);
 ```
 
-## IContextMenu basic entry
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/bb762599(v=vs.85)
-Brief: Insert a single custom command.
-```cpp
-HRESULT MyMenu::QueryContextMenu(HMENU menu, UINT index, UINT idFirst, UINT idLast, UINT flags) {
-  if (!(flags & CMF_DEFAULTONLY)) {
-    InsertMenuW(menu, index, MF_BYPOSITION, idFirst, L"My Action");
-    return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 1);
-  }
-  return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 0);
-}
-```
+## Control Panel namespace registration and policy
+Links:
+- https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/cc144115(v=vs.85)
+- https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/ne-shlobj_core-restrictions
 
-## Iconic thumbnail API
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/hh127447(v=vs.85)
-Brief: Provide thumbnail and live preview bitmaps.
-```cpp
-HBITMAP bmp = CreateCompatibleBitmap(hdc, 256, 256);
-if (bmp) {
-  DwmSetIconicThumbnail(hwnd, bmp, 0);
-  DwmSetIconicLivePreviewBitmap(hwnd, bmp, NULL, 0);
-  DeleteObject(bmp);
-}
-```
+Contribution: namespace registration is registry-backed shell discovery, while `SHRestricted` reflects policy gates. Together they explain why shell UI is not just code: registration and policy decide what Explorer surfaces.
 
-## Legacy shell enum index
-Link: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ff521656(v=vs.85)
-Brief: Resolve file association data with AssocQueryString.
-```cpp
-WCHAR buf[260];
-DWORD cch = ARRAYSIZE(buf);
-HRESULT hr = AssocQueryStringW(0, ASSOCSTR_EXECUTABLE, L".txt", NULL, buf, &cch);
-if (SUCCEEDED(hr)) {
-  // buf has executable path
-}
-```
-
-## SHRestricted flags
-Link: https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/ne-shlobj_core-restrictions
-Brief: Gate UI features on restriction policy.
-```cpp
-DWORD val = SHRestricted(REST_NORUN);
-if (val) {
-  // disable Run command
-} else {
-  // allow Run command
-}
-```
-
+Connections: `Cpl.h.md` covers the CPL ABI; `Shell Items and Folders.md` covers the newer item model; `Explorer++ (Tabbed Win32 Explorer).md` is the larger codebase where namespace enumeration, context menus, and view state are coalesced.

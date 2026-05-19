@@ -1,30 +1,12 @@
-HexCtrl is a fully-featured hex viewer/editor written in pure Win32 API, supporting data up to 16 EB via virtual data mode, bookmarks, search/replace, data interpreter, undo/redo, custom colors, and Per-Monitor V2 DPI awareness. Integrate via sources or DLL; create with `CreateHexCtrl()` then feed data with `SetData()`.
+# Hex Control
 
-```cpp
-#include "HexCtrl/HexCtrl.h"
-using namespace HEXCTRL;
+HexCtrl is a substantial pure-Win32 hex viewer/editor rather than a demo control. The important capabilities are virtual data mode for very large inputs, mutable buffers, bookmarks, search/replace, undo/redo, custom colors, data interpretation, and Per-Monitor V2 DPI support. That makes it a useful reference for how a complex custom control handles state, painting, scrolling, and command surfaces without switching UI frameworks.
 
-// Declare the smart-pointer wrapper
-IHexCtrlPtr myHex { CreateHexCtrl() };
-
-// Classic window creation
-HEXCREATE hc;
-hc.hWndParent = hwndParent;
-hc.rect       = { 0, 0, 800, 600 };
-myHex->Create(hc);
-
-// Set data from a buffer (memory mode)
-std::vector<std::byte> data(4096);
-// ... fill data ...
-HEXDATA hd;
-hd.spnData  = { data.data(), data.size() };
-hd.fMutable = true;   // allow editing
-myHex->SetData(hd);
-
-// Dialog usage: place a Custom Control with class "HexCtrl_MainWnd",
-// then in OnInitDialog:
-//   m_myHex->CreateDialogCtrl(IDC_HEX_CTRL, m_hWnd);
-```
+The integration model is also instructive: it can be created as a normal child window or attached to a dialog custom-control placeholder. For a vault of native UI notes, HexCtrl is more valuable as an architecture example than as "a hex widget": it shows the amount of infrastructure required when owner drawing stops being a cosmetic tweak and becomes an application surface.
 
 ## References
-- https://github.com/jovibor/HexCtrl
+- <https://github.com/jovibor/HexCtrl> - full-featured Win32 hex editor/viewer control.
+
+## Connections
+- `Custom Controls.md` covers the custom-control design categories.
+- `Per-Monitor V2 DPI Reference.md` explains the DPI contract HexCtrl explicitly supports.

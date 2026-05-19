@@ -1,29 +1,12 @@
 # NtCreateUserProcess
 
-`NtCreateUserProcess` is the native API for creating processes, called internally by `CreateProcessW`. It takes `OBJECT_ATTRIBUTES` for the image path and `PS_CREATE_INFO` / `PS_ATTRIBUTE_LIST` for process attributes. Useful for creating processes that bypass some `CreateProcess` hooks, or for studying process creation internals.
+`NtCreateUserProcess` is the native user-process creation syscall behind the modern Win32 process stack. It accepts native object attributes, process/thread access masks, creation flags, process parameters, creation state, and attribute lists that describe image name, parent process, mitigation policy, handle inheritance, and related metadata. Most code should call `CreateProcessW`; this entry is for understanding what the wrapper prepares.
 
-```cpp
-// Minimal process attribute list setup for NtCreateUserProcess
-// (simplified — real usage requires correct PS_CREATE_INFO fields)
-typedef NTSTATUS (NTAPI *NtCreateUserProcess_t)(
-    PHANDLE hProcess, PHANDLE hThread,
-    ACCESS_MASK processAccess, ACCESS_MASK threadAccess,
-    POBJECT_ATTRIBUTES procAttr, POBJECT_ATTRIBUTES threadAttr,
-    ULONG processFlags, ULONG threadFlags,
-    PRTL_USER_PROCESS_PARAMETERS procParams,
-    PVOID createInfo, PVOID attrList);
+The Capt. Meelo write-up matters because it maps the undocumented structures and attributes that are otherwise scattered across phnt, ReactOS, and reverse-engineering notes. The important caution is structural correctness: a call can fail for reasons that look mysterious unless `PS_CREATE_INFO.State`, NT path normalization, process parameters, and attribute sizes are exactly what the kernel expects.
 
-// Load at runtime — not in import lib
-HMODULE ntdll = GetModuleHandleA("ntdll.dll");
-auto NtCreateUserProcess = (NtCreateUserProcess_t)
-    GetProcAddress(ntdll, "NtCreateUserProcess");
-```
-
-Key differences from CreateProcessW:
-- `PS_ATTRIBUTE_PS_COMMAND_LINE` (0x60002) passes the command line
-- `PS_ATTRIBUTE_IMAGE_NAME` (0x60000) specifies the NT path (`\\??\\C:\...`)
-- `PS_CREATE_INFO.State` reflects creation outcome
-- Process and thread handles must be closed manually
+## Connections
+- `RTL_USER_PROCESS_PARAMETERS` explains the command line, image path, environment, current directory, and standard handles supplied to the new process.
+- `phnt` is the practical source for declarations; `ntstatus.h` is needed for reliable diagnostics.
 
 ## References
 - https://captmeelo.com/redteam/maldev/2022/05/10/ntcreateuserprocess.html

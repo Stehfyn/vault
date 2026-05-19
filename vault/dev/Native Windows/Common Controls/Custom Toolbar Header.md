@@ -1,44 +1,12 @@
-A custom Win32 toolbar is created with `CreateWindowEx(0, TOOLBARCLASSNAME, ...)` and populated via `TBBUTTON` structs sent with `TB_ADDBUTTONS`. For owner-draw header columns, handle `NM_CUSTOMDRAW` in the parent's `WM_NOTIFY` to override painting per column item.
+# Custom Toolbar Header
 
-```cpp
-#include <windows.h>
-#include <commctrl.h>
-#pragma comment(lib, "comctl32.lib")
+`Win32CustomToolbarHeader` is useful as a combined toolbar/header customization reference: create the toolbar with `TOOLBARCLASSNAME`, size buttons with `TB_BUTTONSTRUCTSIZE` and `TB_ADDBUTTONS`, then customize header-style painting through parent `WM_NOTIFY` handling. The point is not the creation boilerplate; it is how comctl32 controls split ownership between control state and parent-supplied drawing.
 
-HWND CreateCustomToolbar(HWND hwndParent, HINSTANCE hInst) {
-    HWND hToolbar = CreateWindowEx(0, TOOLBARCLASSNAME, NULL,
-        WS_CHILD | WS_VISIBLE | TBSTYLE_FLAT | CCS_TOP | TBSTYLE_TOOLTIPS,
-        0, 0, 0, 0, hwndParent, (HMENU)IDC_TOOLBAR, hInst, NULL);
-
-    SendMessage(hToolbar, TB_BUTTONSTRUCTSIZE, sizeof(TBBUTTON), 0);
-
-    HIMAGELIST hImgList = ImageList_Create(16, 16, ILC_COLOR32 | ILC_MASK, 3, 0);
-    SendMessage(hToolbar, TB_SETIMAGELIST, 0, (LPARAM)hImgList);
-
-    TBBUTTON tbb[] = {
-        { 0, ID_FILE_NEW,  TBSTATE_ENABLED, BTNS_BUTTON, {0}, 0, (INT_PTR)L"New"  },
-        { 1, ID_FILE_OPEN, TBSTATE_ENABLED, BTNS_BUTTON, {0}, 0, (INT_PTR)L"Open" },
-        { 0, 0,            TBSTATE_ENABLED, BTNS_SEP,    {0}, 0, 0                 },
-        { 2, ID_FILE_SAVE, TBSTATE_ENABLED, BTNS_BUTTON, {0}, 0, (INT_PTR)L"Save" },
-    };
-    SendMessage(hToolbar, TB_ADDBUTTONS, _countof(tbb), (LPARAM)tbb);
-    SendMessage(hToolbar, TB_AUTOSIZE, 0, 0);
-    return hToolbar;
-}
-
-// Custom-draw header in WM_NOTIFY handler:
-// case WM_NOTIFY: {
-//     LPNMHDR pnmh = (LPNMHDR)lParam;
-//     if (pnmh->code == NM_CUSTOMDRAW) {
-//         LPNMCUSTOMDRAW pcd = (LPNMCUSTOMDRAW)lParam;
-//         if (pcd->dwDrawStage == CDDS_ITEMPREPAINT) {
-//             FillRect(pcd->hdc, &pcd->rc, hbrHeaderBg);
-//             SetTextColor(pcd->hdc, RGB(255, 255, 255));
-//             return CDRF_SKIPDEFAULT;
-//         }
-//     }
-// }
-```
+When customizing a toolbar or header, preserve the control's layout and command semantics unless you are deliberately replacing it. Let comctl32 manage button state, tooltips, and keyboard behavior, and intervene only at the custom-draw stages you need. Full owner painting should also account for DPI-scaled image lists and visual-state changes on hover, press, disabled, and hot tracking.
 
 ## References
-- https://github.com/Alexandre-Carpentier/Win32CustomToolbarHeader
+- <https://github.com/Alexandre-Carpentier/Win32CustomToolbarHeader> - practical toolbar/header custom drawing sample.
+
+## Connections
+- `Toolbar and Status Bar.md` covers the stock controls.
+- `Rendering.md` covers the `NM_CUSTOMDRAW` stage/return-code model.

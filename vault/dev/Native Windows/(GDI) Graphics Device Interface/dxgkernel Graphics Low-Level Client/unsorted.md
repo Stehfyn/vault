@@ -1,0 +1,1 @@
+Use this for low-level graphics-kernel client notes: `D3DKMT*` entry points, VidPn ownership, present history, allocation queries, and diagnostic probes that sit below DXGI. If an entry can be explained through documented DXGI or DWM APIs, it belongs there instead.

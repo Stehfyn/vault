@@ -1,4 +1,8 @@
-Uses undocumented DWM private APIs (`DwmpCreateSharedThumbnailVisual`, `DwmpCreateSharedMultiWindowVisual`) to host DWM thumbnails as `IDCompositionVisual` nodes. This avoids the legacy `DwmRegisterThumbnail` path and enables VirtualDesktop-aware rendering by specifying which HWNDs to include/exclude. Ordinal-based `GetProcAddress` is required since these are private exports.
+# DWM Thumbnail - VirtualDesktop IDCompositionVisual
+
+Uses undocumented DWM private exports (`DwmpCreateSharedThumbnailVisual`, `DwmpCreateSharedMultiWindowVisual`, `DwmpUpdateSharedMultiWindowVisual`) to host live window thumbnails as `IDCompositionVisual` nodes. That is materially different from `DwmRegisterThumbnail`: the legacy API draws into a destination HWND through DWM-owned thumbnail plumbing, while this path gives the caller a visual that can be inserted into an existing DirectComposition tree, transformed, clipped, animated, or combined with other visuals.
+
+The VirtualDesktop angle is the important part. The multi-window visual accepts include/exclude HWND lists, so callers can ask DWM for "these windows as one composed visual" instead of scraping screen pixels. It sits near `DwmGetDxSharedSurface Window Capture.md`: both exploit DWM's redirected window surfaces, but the thumbnail visual is for composition, not CPU/GPU capture.
 
 ```c
 // Load private DWM APIs by ordinal

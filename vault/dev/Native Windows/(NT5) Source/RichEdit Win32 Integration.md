@@ -1,17 +1,12 @@
 # RichEdit Win32 Integration
 
-The XP RichEdit source (`w32win32.cpp` in re41) shows how the control creates its HWND, handles style flags, and interfaces with IME. Modern RichEdit uses `Msftedit.dll` (v4.1+). Creating with `MSFTEDIT_CLASS` gives Unicode support and better IME handling than the older `RICHEDIT_CLASS`.
+The NT5 RichEdit `w32win32.cpp` file is useful because RichEdit is not a plain edit control with more features. It owns complex Win32 integration points: window creation, style translation, notification dispatch, IME, text services, scrolling, selection rendering, and compatibility with old `RICHEDIT_CLASS` callers. That makes it a good specimen for how heavyweight controls sit on top of the message system without becoming ordinary top-level windows.
 
-```cpp
-// Create a RichEdit v4.1 control
-LoadLibraryW(L"Msftedit.dll");
-HWND hEdit = CreateWindowExW(0, MSFTEDIT_CLASS, L"",
-    WS_CHILD | WS_VISIBLE | ES_MULTILINE | WS_VSCROLL,
-    10, 10, 300, 200, hwnd, nullptr, hInst, nullptr);
-SendMessageW(hEdit, EM_SETLIMITTEXT, 0, 0);        // unlimited text
-SendMessageW(hEdit, EM_SETEVENTMASK, 0, ENM_CHANGE);
-SetFocus(hEdit);
-```
+Modern code usually loads `Msftedit.dll` and creates `MSFTEDIT_CLASS`, but the integration problems are the same: the host talks through messages, notifications, styles, and subclassing while the control maintains a much richer internal document model. The source is most useful for understanding where control behavior is window-manager contract and where it is RichEdit-specific policy.
+
+## Connections
+- `Winuser Header` defines the public messages and styles used by controls.
+- `NT User Message Definitions` explains why controls reserve `WM_USER` ranges for their own protocol.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/windows/richedit/re41/w32win32.cpp#L5212

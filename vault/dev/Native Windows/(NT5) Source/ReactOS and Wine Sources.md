@@ -1,15 +1,12 @@
 # ReactOS and Wine Sources
 
-ReactOS and Wine provide open-source reimplementations of the Windows API. ReactOS power configuration CPL (`dll/cpl/powercfg`) uses standard Win32 dialog patterns. Wine's `comctl32/animate.c` implements `SysAnimate32`. Both are invaluable for understanding expected behavior without access to the proprietary source.
+ReactOS and Wine are best used as executable commentary on Windows contracts. ReactOS aims at NT-compatible internals and therefore mirrors many kernel, win32k, USER32, and shell assumptions; Wine implements Win32 behavior on non-Windows hosts and is often excellent at documenting user-mode API edge cases through tests and compatibility fixes.
 
-```cpp
-// Animate control (SysAnimate32) — plays AVI clips in child windows
-HWND hAnim = CreateWindowW(ANIMATE_CLASS, nullptr,
-    WS_CHILD | WS_VISIBLE, 10, 10, 200, 50, hwnd, nullptr, hInst, nullptr);
-Animate_Open(hAnim, MAKEINTRESOURCEW(IDR_AVI1));
-Animate_Play(hAnim, 0, -1, -1);   // loop from frame 0 to end, infinite times
-Animate_Stop(hAnim);
-```
+The linked examples are small but representative: ReactOS power configuration code shows conventional CPL/dialog plumbing, while Wine's animate control implementation documents the message/style behavior of `SysAnimate32`. Neither source tree proves what current Windows does, but both are clean comparison material when MSDN is vague and the NT5 source is too old or legally awkward.
+
+## Connections
+- Pair with `nt5src` for proprietary historical behavior.
+- Pair with `Winuser Header`, `RichEdit Win32 Integration`, and common-control notes when reconstructing UI contracts.
 
 ## References
 - https://github.com/SpinlockLabs/reactos/blob/e1e79f248b354f0a0f257b8001932704e3eee7a5/dll/cpl/powercfg/advanced.c

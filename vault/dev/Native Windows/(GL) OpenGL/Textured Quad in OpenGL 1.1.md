@@ -1,25 +1,12 @@
-Draw a textured quad using the fixed-function pipeline (`GL_QUADS` + `glTexCoord2f` + `glVertex3f`). Texture coordinates map `(0,0)` to the bottom-left and `(1,1)` to the top-right; vertex winding is counter-clockwise. Requires `glEnable(GL_TEXTURE_2D)` and a bound texture before drawing.
+# Textured Quad in OpenGL 1.1
 
-```c
-// Setup (once)
-glEnable(GL_TEXTURE_2D);
-GLuint tex;
-glGenTextures(1, &tex);
-glBindTexture(GL_TEXTURE_2D, tex);
-glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
-             GL_RGB, GL_UNSIGNED_BYTE, pixels);
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+The fixed-function textured quad is useful only as a compatibility primitive: enable `GL_TEXTURE_2D`, bind a texture, provide texture coordinates, and draw a `GL_QUADS` rectangle. It is appropriate for old Win32/OpenGL 1.1 contexts, quick bitmap display, or understanding legacy code, not for new renderers.
 
-// Draw (each frame)
-glBindTexture(GL_TEXTURE_2D, tex);
-glBegin(GL_QUADS);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 0.0f); // bottom-left
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f, 0.0f); // bottom-right
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f, 0.0f); // top-right
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, 0.0f); // top-left
-glEnd();
-```
+The non-obvious parts are coordinate and pixel conventions. OpenGL texture coordinate `(0,0)` is the lower-left by convention, while many Windows image sources are top-down or bottom-up DIBs depending on how they were created. If a GDI-loaded bitmap appears upside down, fix the upload/coordinates deliberately rather than randomly flipping vertices.
 
 ## References
-- https://stackoverflow.com/questions/41555409/how-can-i-create-a-textured-quad-in-opengl-1-1/41555890#41555890
+- <https://stackoverflow.com/questions/41555409/how-can-i-create-a-textured-quad-in-opengl-1-1/41555890#41555890>
+
+## Connections
+- `Converting HBITMAP to Texture.md`
+- `OpenGL in MFC CView (KB Q127071).md`

@@ -1,14 +1,8 @@
 # Game Bar Presence Writer
 
-Short description: Game Bar Presence Writer is a Windows 10+ component that receives game “presence” state changes. Developers can override the default behavior by implementing an out-of-proc COM server that implements `IPresenceWriter` and handles `UpdatePresence` calls for focus/close events.
+`IPresenceWriter` is the narrow customization point behind Game Bar presence updates: an out-of-process COM server receives focus/close events and can translate a window, AUMID, and app identity into richer presence state than the default shell heuristics can infer. The interesting part is not the call shape but the registration model: the server path lives under `HKLM\SOFTWARE\Microsoft\WindowsRuntime\Server\Windows.Gaming.GameBar.Internal.PresenceWriterServer\ExePath`, so this is machine-level integration rather than a per-game plugin.
 
-Minimal usage pseudo-call:
-```cpp
-// Called by the Presence Writer server when notified by the system.
-presenceWriter->UpdatePresence(hWnd, GotFocus, appId, Aumid);
-```
+Use this entry as the missing bridge between desktop HWND lifecycle and the Xbox/Game Bar identity stack. It pairs naturally with `XboxGameBarSamples` for widget activation, `xbox-live-api` for service-side presence, and `HaloMCC-DiscordRPC` for the same concept implemented outside the Microsoft widget surface.
 
-Registry registration:
-`HKLM\SOFTWARE\Microsoft\WindowsRuntime\Server\Windows.Gaming.GameBar.Internal.PresenceWriterServer\ExePath` (REG_SZ path to the server executable).
-
-Reference: https://learn.microsoft.com/en-us/windows/win32/devnotes/gamebar-presencewriter
+## References
+- <https://learn.microsoft.com/en-us/windows/win32/devnotes/gamebar-presencewriter>

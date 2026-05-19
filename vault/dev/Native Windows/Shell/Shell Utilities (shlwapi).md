@@ -1,36 +1,49 @@
 # Shell Utilities (shlwapi)
 
-Per-link references for shlwapi helpers.
+`shlwapi.dll` is the grab-bag layer that accumulated path, URL, registry, association, formatting, and lifetime helpers around Internet Explorer and the shell. New code should not blindly import it for string work, but some functions still encode shell-specific behavior better than a homegrown replacement.
 
-## SetProcessReference
+## Host lifetime pinning
 Link: https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-setprocessreference
-Brief: Extend host lifetime while a component is active.
+
+Contribution: `SetProcessReference` is a COM-server lifetime hook. A shell extension or hosted component can hand the shell an `IUnknown` whose reference count keeps the process alive while asynchronous shell work is outstanding. It is not a generic keepalive for normal executables.
+
 ```cpp
-IUnknown* host = GetMyHostObject();
-if (host) {
-  SetProcessReference(host);
-  host->Release();
-}
+struct ProcessRef : IUnknown {
+    std::atomic<ULONG> refs{1};
+    HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppv) override {
+        if (riid == IID_IUnknown) { *ppv = static_cast<IUnknown*>(this); AddRef(); return S_OK; }
+        *ppv = nullptr; return E_NOINTERFACE;
+    }
+    ULONG STDMETHODCALLTYPE AddRef() override { return ++refs; }
+    ULONG STDMETHODCALLTYPE Release() override {
+        ULONG r = --refs;
+        if (!r) delete this;
+        return r;
+    }
+};
+
+SetProcessReference(new ProcessRef());
 ```
 
-## HashData
+## Tiny shell hash
 Link: https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-hashdata
-Brief: Hash a small byte buffer (<= 256 bytes).
+
+Contribution: `HashData` is useful only as a legacy shell-compatible checksum over a small byte buffer. It is not cryptographic and not a modern hash-table primitive; keep it when matching Explorer/IE-era persisted values.
+
 ```cpp
-BYTE data[] = { 1, 2, 3, 4 };
-BYTE hash[20] = {};
-DWORD cbHash = sizeof(hash);
-HRESULT hr = HashData(data, sizeof(data), hash, cbHash);
-if (SUCCEEDED(hr)) { /* use hash */ }
+BYTE digest[16] = {};
+const BYTE bytes[] = { 0x10, 0x20, 0x30 };
+HashData(bytes, sizeof(bytes), digest, sizeof(digest));
 ```
 
-## StrFormatByteSize64A
+## Human-readable byte formatting
 Link: https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-strformatbytesize64a
-Brief: Format human-readable sizes (base-10 on Win10+).
+
+Contribution: `StrFormatByteSize64*` preserves Explorer-style byte-size wording. Use it when matching shell UI; avoid it for protocols/logs where exact units and localization must be controlled.
+
 ```cpp
-char buf[32] = {};
-LONGLONG bytes = 123456789LL;
-StrFormatByteSize64A(bytes, buf, ARRAYSIZE(buf));
-if (buf[0] != '\0') { printf("%s\n", buf); }
+wchar_t text[64] = {};
+StrFormatByteSizeW(1536000, text, ARRAYSIZE(text)); // shell-style localized text
 ```
 
+Connections: `Shlwapi Utilities.md` in `(NT5) Source` covers the old implementation lineage; `Shell File Icons.md`, `Shell Execute.md`, and `Legacy Shell References.md` are the neighboring shell helper surfaces. Prefer `PathCch*`/`Url*` replacements when the problem is pure path normalization rather than shell compatibility.

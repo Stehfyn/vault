@@ -1,39 +1,12 @@
 # WIC Image Loading
 
-Windows Imaging Component (WIC) decodes images from files or streams. `IWICBitmapDecoder` → `IWICBitmapFrameDecode` → `IWICFormatConverter` (to 32bpp BGRA) → `IWICBitmap` or `CreateDIBSection`. Works with PNG, JPEG, BMP, TIFF, GIF, and more without additional libraries.
+Windows Imaging Component is the native decoder/encoder layer for common image formats. The normal load path is `IWICImagingFactory`, decoder, frame, optional `IWICFormatConverter`, then either copy pixels into your own buffer or into a 32-bpp DIB section. Converting to `GUID_WICPixelFormat32bppPBGRA` is a good default when the next step is GDI/Direct2D alpha composition because the pixels are already premultiplied BGRA.
 
-```cpp
-// Load a PNG and get a GDI HBITMAP via WIC
-CoInitialize(nullptr);
-ComPtr<IWICImagingFactory> wic;
-CoCreateInstance(CLSID_WICImagingFactory, nullptr, CLSCTX_INPROC_SERVER,
-    IID_PPV_ARGS(&wic));
-
-ComPtr<IWICBitmapDecoder> decoder;
-wic->CreateDecoderFromFilename(L"photo.png", nullptr, GENERIC_READ,
-    WICDecodeMetadataCacheOnLoad, &decoder);
-
-ComPtr<IWICBitmapFrameDecode> frame;
-decoder->GetFrame(0, &frame);
-
-ComPtr<IWICFormatConverter> conv;
-wic->CreateFormatConverter(&conv);
-conv->Initialize(frame.Get(), GUID_WICPixelFormat32bppPBGRA,
-    WICBitmapDitherTypeNone, nullptr, 0.0, WICBitmapPaletteTypeCustom);
-
-UINT w, h;
-conv->GetSize(&w, &h);
-BITMAPINFO bmi = {};
-bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-bmi.bmiHeader.biWidth = w;
-bmi.bmiHeader.biHeight = -(LONG)h;
-bmi.bmiHeader.biPlanes = 1;
-bmi.bmiHeader.biBitCount = 32;
-bmi.bmiHeader.biCompression = BI_RGB;
-void* bits = nullptr;
-HBITMAP hbm = CreateDIBSection(nullptr, &bmi, DIB_RGB_COLORS, &bits, nullptr, 0);
-conv->CopyPixels(nullptr, w * 4, w * h * 4, (BYTE*)bits);
-```
+Use WIC instead of hand-written decoders for PNG/JPEG/TIFF/GIF/BMP unless the point is file-format study. `RadImgViewer2` matters here because it shows WIC used in an actual viewer pipeline, not just a one-file sample.
 
 ## References
-- https://github.com/RadAd/RadImgViewer2
+- <https://github.com/RadAd/RadImgViewer2> - Windows image viewer using WIC-style loading paths.
+
+## Connections
+- `Alpha Blending a Bitmap.md` explains why premultiplied BGRA matters.
+- `BitmapPlusPlus - Single-Header BMP IO.md` is the deliberately narrow BMP-only alternative.

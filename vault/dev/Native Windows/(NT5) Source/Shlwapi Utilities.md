@@ -1,24 +1,12 @@
 # Shlwapi Utilities
 
-`shlwapi` is the shell lightweight utility DLL. `color.c` provides color conversion helpers used throughout the shell UI; `mime.cpp` maps file extensions to MIME content types via the registry. The `AssocQueryString` API wraps the same registry lookup.
+`shlwapi` is the shell's "small sharp tools" DLL: path helpers, string helpers, URL helpers, registry association helpers, color utilities, and other glue that Explorer-era code needed everywhere. The linked `color.c` and `mime.cpp` files are useful because they show mundane shell policy that often gets mistaken for generic Win32 behavior: color adjustment for UI presentation and MIME association lookup through registry-backed shell associations.
 
-```cpp
-// Query MIME type for a file extension via shlwapi
-WCHAR mime[64] = {};
-DWORD cch = ARRAYSIZE(mime);
-HRESULT hr = AssocQueryStringW(ASSOCF_NONE, ASSOCSTR_CONTENTTYPE,
-    L".png", nullptr, mime, &cch);
-if (SUCCEEDED(hr)) {
-  OutputDebugStringW(mime);  // "image/png"
-}
+The nuance is that shlwapi sits between raw Win32 and higher shell APIs. `AssocQueryString` is not a file parser; it is association policy. `ColorAdjustLuma` is not color management; it is shell UI convenience. Read these sources to understand Explorer conventions, not to infer deep kernel or loader behavior.
 
-// Adjust a color's luminance for theme tints
-COLORREF base = RGB(0, 120, 215);
-COLORREF lighter = ColorAdjustLuma(base, 30, TRUE);
-HBRUSH brush = CreateSolidBrush(lighter);
-FillRect(hdc, &rc, brush);
-DeleteObject(brush);
-```
+## Connections
+- `Systray Shell Extension` is another NT5 shell component using the same ecosystem.
+- ReactOS and Wine are useful comparison sources for shell/common-control behavior.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/shell/shlwapi/color.c#L157

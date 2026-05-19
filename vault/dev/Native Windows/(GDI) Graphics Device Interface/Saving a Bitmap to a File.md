@@ -1,24 +1,12 @@
-Utility for saving an HBITMAP to a .bmp file by manually writing BITMAPFILEHEADER + BITMAPINFOHEADER followed by raw pixel data.
+# Saving a Bitmap to a File
 
-```cpp
-BITMAPFILEHEADER bfh = {};
-BITMAPINFOHEADER bih = {};
-bih.biSize = sizeof(bih);
-bih.biWidth = width;
-bih.biHeight = -height;
-bih.biPlanes = 1;
-bih.biBitCount = 32;
-bfh.bfType = 0x4D42; // 'BM'
-bfh.bfOffBits = sizeof(bfh) + sizeof(bih);
-bfh.bfSize = bfh.bfOffBits + width * height * 4;
+Saving an `HBITMAP` as `.bmp` means writing a `BITMAPFILEHEADER`, an appropriate DIB header, optional masks/palette/profile data, then scanlines padded to DWORD stride. The common shortcut `width * height * 4` is only safe for a tightly packed 32-bpp top-down buffer you already control. For a device-dependent bitmap, query or convert through `GetDIBits` first.
 
-FILE* f = nullptr;
-_wfopen_s(&f, L"output.bmp", L"wb");
-fwrite(&bfh, 1, sizeof(bfh), f);
-fwrite(&bih, 1, sizeof(bih), f);
-fwrite(pixels, 1, width * height * 4, f);
-fclose(f);
-```
+`SaveBitmapToFile` is useful because it shows the mechanical file-format bridge from GDI objects to disk. For real image output beyond BMP, WIC is the better Windows-native encoder path.
 
 ## References
-1. https://github.com/katahiromz/SaveBitmapToFile
+- <https://github.com/katahiromz/SaveBitmapToFile> - focused HBITMAP-to-BMP helper.
+
+## Connections
+- `Read Pixels with GetDIBits().md` covers extracting a stable pixel buffer.
+- `WIC Image Loading.md` is the broader imaging component; WIC can also encode.

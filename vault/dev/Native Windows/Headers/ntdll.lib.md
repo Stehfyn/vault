@@ -1,30 +1,8 @@
-`ntdll.lib` is the import library for `ntdll.dll`, which exposes the NT native API — the lowest user-mode layer of Windows, sitting below the Win32 subsystem. Functions are prefixed `Nt`/`Zw` (kernel-mode synonyms) or `Rtl` (runtime library helpers). Linking against `ntdll.lib` (with matching headers from the WDK or phnt) allows direct native API calls without going through `kernel32.dll`, useful for malware analysis, sandboxing, or low-level tooling.
+# ntdll.lib
 
-```c
-#include <windows.h>
-#include <winternl.h>   // SYSTEM_INFORMATION_CLASS, NTSTATUS, etc.
+Import library for `ntdll.dll`, the lowest stable user-mode DLL in the Windows process: system-call stubs (`Nt*`), runtime support (`Rtl*`), loader internals (`Ldr*`), heap helpers, exception/unwind machinery, and activation-context plumbing. Linking directly against `ntdll.lib` is different from dynamically probing `GetProcAddress`: it bakes an import-table dependency and assumes the target routine is exported by name on the target OS. That is fine for documented `Rtl*` helpers and WDK-level code, much riskier for undocumented `Nt*` or `Ldr*` routines whose structure contracts drift between builds.
 
-// ntdll exports not declared in the public SDK — declare manually
-typedef NTSTATUS (NTAPI *PNtQuerySystemInformation)(
-    SYSTEM_INFORMATION_CLASS SystemInformationClass,
-    PVOID                    SystemInformation,
-    ULONG                    SystemInformationLength,
-    PULONG                   ReturnLength);
-
-// Resolve at runtime to avoid a hard ntdll.lib dependency
-HMODULE hNtdll = GetModuleHandleW(L"ntdll.dll");
-PNtQuerySystemInformation NtQuerySystemInformation =
-    (PNtQuerySystemInformation)GetProcAddress(hNtdll,
-                                              "NtQuerySystemInformation");
-
-// Query basic system information (class 0)
-SYSTEM_BASIC_INFORMATION sbi = {0};
-ULONG retLen = 0;
-NTSTATUS st = NtQuerySystemInformation(SystemBasicInformation,
-                                       &sbi, sizeof(sbi), &retLen);
-if (NT_SUCCESS(st))
-    printf("Number of processors: %u\n", sbi.NumberOfProcessors);
-```
+Connections: `winternl.h` is the sanitized public view, `phnt` is the broader community header set, and `(NTAPI) Undocumented Kernel/NtCreateUserProcess.md` shows why skipping the Win32 wrapper means you inherit all the parameter-building work `kernel32` normally hides.
 
 ## References
 

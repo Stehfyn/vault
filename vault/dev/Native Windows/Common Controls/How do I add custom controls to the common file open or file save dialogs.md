@@ -1,42 +1,11 @@
-Since Windows Vista, the `IFileDialogCustomize` interface allows declaratively adding controls (check buttons, combo boxes, labels, separators, edit boxes) to the common file open/save dialogs. The OS handles layout; the app queries control state after the dialog closes, making it forward-compatible with future dialog redesigns.
+# Custom Controls in Common File Dialogs
 
-```cpp
-#include <shobjidl.h>
+On Vista and later, `IFileDialogCustomize` is the supported way to add small pieces of UI to the common open/save dialogs. It can add check buttons, combo boxes, edit boxes, push buttons, radio lists, visual groups, and separators while leaving layout and visual integration to the shell. The application assigns control IDs, shows the dialog, then queries state through the same interface.
 
-#define IDC_CUSTOM_CHECK  601
-#define IDC_CUSTOM_COMBO  602
-
-void ShowCustomFileDialog(HWND hwndOwner) {
-    IFileOpenDialog *pDlg = nullptr;
-    CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER,
-                     IID_PPV_ARGS(&pDlg));
-
-    IFileDialogCustomize *pCustom = nullptr;
-    pDlg->QueryInterface(IID_PPV_ARGS(&pCustom));
-
-    // Add a check button
-    pCustom->AddCheckButton(IDC_CUSTOM_CHECK, L"Include subfolders", FALSE);
-
-    // Add a labelled combo box
-    pCustom->StartVisualGroup(700, L"File Type");
-    pCustom->AddComboBox(IDC_CUSTOM_COMBO);
-    pCustom->AddControlItem(IDC_CUSTOM_COMBO, 0, L"All Files");
-    pCustom->AddControlItem(IDC_CUSTOM_COMBO, 1, L"Text Only");
-    pCustom->SetSelectedControlItem(IDC_CUSTOM_COMBO, 0);
-    pCustom->EndVisualGroup();
-    pCustom->Release();
-
-    if (SUCCEEDED(pDlg->Show(hwndOwner))) {
-        pDlg->QueryInterface(IID_PPV_ARGS(&pCustom));
-        BOOL bChecked = FALSE;
-        pCustom->GetCheckButtonState(IDC_CUSTOM_CHECK, &bChecked);
-        DWORD dwSelected = 0;
-        pCustom->GetSelectedControlItem(IDC_CUSTOM_COMBO, &dwSelected);
-        pCustom->Release();
-    }
-    pDlg->Release();
-}
-```
+This is not the old hook-template model from `GetOpenFileName`; it is COM customization layered onto the modern shell dialog. That distinction matters because the Vista+ dialog can change layout across Windows versions without breaking your control placement. Use it for options tightly coupled to file selection, not for building a general settings panel inside the file picker.
 
 ## References
-- https://devblogs.microsoft.com/oldnewthing/20211227-00/?p=106054
+- <https://devblogs.microsoft.com/oldnewthing/20211227-00/?p=106054> - Raymond Chen's concise example of `IFileDialogCustomize` control insertion.
+
+## Connections
+- `Custom Controls.md` covers HWND controls; file dialog customization is a shell COM surface instead.

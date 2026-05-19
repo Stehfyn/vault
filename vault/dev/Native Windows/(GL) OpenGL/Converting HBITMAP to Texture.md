@@ -1,35 +1,19 @@
-Load a BMP file as an `HBITMAP` with `LoadImage`, retrieve the pixel pointer via `GetObject`/`BITMAP`, swap BGR to RGB bytes in-place, then upload with `glTexImage2D`. The bitmap bits are bottom-up (Windows DIB convention), so vertical flipping may be needed for correct orientation.
+# Converting HBITMAP to Texture
+
+The StackOverflow answer shows the old Win32 path: load a BMP as an `HBITMAP`, retrieve `BITMAP.bmBits`, account for Windows' BGR/BGRA layout and bottom-up DIB orientation, then upload with `glTexImage2D`. The part that matters is format discipline. If the DIB is 24-bit BGR, a blind `GL_RGB` upload after in-place byte swapping may work; for 32-bit DIBs, use `GL_BGRA` where available and avoid a CPU swizzle.
+
+For anything beyond a tiny utility, prefer WIC/stb_image/DirectXTex-style image loading and keep `HBITMAP` conversion as interop glue for GDI-generated pixels, icons, screenshots, or legacy controls.
 
 ```c
-GLuint LoadTextureFromBMP(const char *filename)
-{
-    HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, filename, IMAGE_BITMAP, 0, 0,
-                                         LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-    BITMAP bm;
-    GetObject(hBitmap, sizeof(BITMAP), &bm);
-
-    // Swap BGR -> RGB in-place
-    unsigned char *data = (unsigned char *)bm.bmBits;
-    for (int i = 0; i < bm.bmWidth * bm.bmHeight; i++) {
-        int idx = i * 3;
-        unsigned char tmp = data[idx];      // B
-        data[idx]     = data[idx + 2];      // R -> B slot
-        data[idx + 2] = tmp;                // B -> R slot
-    }
-
-    GLuint tex;
-    glGenTextures(1, &tex);
-    glBindTexture(GL_TEXTURE_2D, tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-                 bm.bmWidth, bm.bmHeight, 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, bm.bmBits);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    DeleteObject(hBitmap);
-    return tex;
-}
+glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+glBindTexture(GL_TEXTURE_2D, tex);
+glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height,
+                GL_BGRA, GL_UNSIGNED_BYTE, dibBits);
 ```
 
 ## References
-- https://stackoverflow.com/questions/23301171/loading-and-converting-a-hbitmap-to-an-opengl-texture/23301463#23301463
+- <https://stackoverflow.com/questions/23301171/loading-and-converting-a-hbitmap-to-an-opengl-texture/23301463#23301463>
+
+## Connections
+- `Textured Quad in OpenGL 1.1.md`
+- `Streaming Texture Uploads.md`

@@ -1,16 +1,13 @@
 # Message Queue Implementation (queue.c)
 
-The NT user kernel message queue dispatches input and posted messages in FIFO order. GetMessage blocks the calling thread until a message arrives; PeekMessage returns immediately. The actual ring buffer is per-thread (THREADINFO.mlPost) and is manipulated under a spinlock.
+`queue.c` is where the polite `GetMessage` story becomes concrete. NTUSER tracks per-thread queue state, posted-message lists, wake masks, sent-message processing, input attachment, foreground activation, and the rules that decide whether a caller blocks or returns. The important correction is that Windows message delivery is not simply FIFO: sent messages, input, paint, timers, quit state, and wake conditions each have distinct precedence and side effects.
 
-```cpp
-// Standard message pump — equivalent to the dequeue path in queue.c
-MSG msg = {};
-while (GetMessageW(&msg, nullptr, 0, 0)) {
-  TranslateMessage(&msg);
-  DispatchMessageW(&msg);
-}
-return (int)msg.wParam;
-```
+This file is the backend for many visible Win32 oddities: `SendMessage` reentrancy, modal loops during moves/resizes, hooks that require pumping, and GUI threads that deadlock when they wait without `MsgWaitForMultipleObjects`. Use it when a bug looks like "the message loop is stuck"; the cause is often queue ownership or a synchronous send path, not the loop body.
+
+## Connections
+- `SendMessage Path` covers the synchronous delivery side.
+- `dtc` shows an architectural response to modal queue behavior.
+- Hooks and WinSpy++ rely on the same thread queues to observe message traffic.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/windows/core/ntuser/kernel/queue.c#L5307

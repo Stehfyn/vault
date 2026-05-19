@@ -1,25 +1,13 @@
-# Trackbar (Slider) Control
+# Trackbar
 
-The trackbar (`TRACKBAR_CLASS`, formerly `msctls_trackbar32`) is the Win32 slider. Key messages: `TBM_SETRANGE`, `TBM_SETPOS`, `TBM_GETPOS`, `TBM_SETTICFREQ`. Parent receives `WM_HSCROLL`/`WM_VSCROLL` with `TB_THUMBPOSITION` or `TB_THUMBTRACK` in `LOWORD(wParam)`.
+The trackbar (`TRACKBAR_CLASS`) is the stock slider. Range and position are controlled with `TBM_SETRANGE`, `TBM_SETPOS`, and `TBM_GETPOS`; the parent receives `WM_HSCROLL` or `WM_VSCROLL` with `TB_THUMBTRACK`, `TB_THUMBPOSITION`, line/page changes, and end-tracking codes in `LOWORD(wParam)`. If live updates matter, handle thumb tracking, not just final thumb position.
 
-```cpp
-// Create and configure a horizontal trackbar
-HWND hTrack = CreateWindowW(TRACKBAR_CLASS, L"",
-    WS_CHILD | WS_VISIBLE | TBS_AUTOTICKS | TBS_TOOLTIPS,
-    10, 10, 220, 30, hwnd, (HMENU)IDC_SLIDER, hInst, nullptr);
-SendMessageW(hTrack, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
-SendMessageW(hTrack, TBM_SETTICFREQ, 10, 0);
-SendMessageW(hTrack, TBM_SETPOS, TRUE, 25);
-
-// Read position in WM_HSCROLL
-case WM_HSCROLL:
-  if ((HWND)lParam == hTrack) {
-    int pos = (int)SendMessageW(hTrack, TBM_GETPOS, 0, 0);
-    // use pos (0..100)
-  }
-  break;
-```
+Custom coloring is not a style bit. Use `NM_CUSTOMDRAW` for channel/thumb painting where supported, and expect to preserve tick marks, disabled state, focus cues, and DPI-sized geometry yourself. The linked examples are valuable because they show both ordinary slider wiring and a real audio-player trackbar where continuous update behavior matters.
 
 ## References
-- https://github.com/gammasoft71/Examples_Win32/blob/master/Win32.Gui/Controls/TrackBar/TrackBar.cpp
-- https://github.com/MarcoBellini/WinAudio-Player/blob/master/WinAudio/WA_UI_Trackbar.c#L142
+- <https://github.com/gammasoft71/Examples_Win32/blob/master/Win32.Gui/Controls/TrackBar/TrackBar.cpp> - basic trackbar creation and message handling.
+- <https://github.com/MarcoBellini/WinAudio-Player/blob/master/WinAudio/WA_UI_Trackbar.c#L142> - application trackbar integrated with playback state.
+
+## Connections
+- `Rendering.md` covers `NM_CUSTOMDRAW` mechanics.
+- `Ms Player.md` is the adjacent media-control example.

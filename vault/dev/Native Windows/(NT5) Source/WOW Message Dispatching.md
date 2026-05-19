@@ -1,16 +1,12 @@
 # WOW Message Dispatching
 
-WOW (Windows-on-Windows) compatibility code in ntuser client marshals old-format Win16/WOW messages into the standard Win32 message structure. The translation happens transparently as the message is dispatched through the queue.
+The NT5 WOW client code shows how Win16 compatibility survived inside the Win32 message path. Old-format messages, handles, pointers, and calling conventions had to be translated so 16-bit applications could participate in the same desktop, queues, and USER objects as native Win32 processes.
 
-```cpp
-// Seeing a WOW-aware dispatch in action: SendMessage ends up calling the
-// WOW stub which re-packs the message before reaching the client wndproc
-HWND hwnd = CreateWindowW(L"STATIC", L"Demo", WS_OVERLAPPEDWINDOW,
-    CW_USEDEFAULT, CW_USEDEFAULT, 240, 80, nullptr, nullptr, hInst, nullptr);
-SendMessageW(hwnd, WM_SETTEXT, 0, (LPARAM)L"Wow message");
-ShowWindow(hwnd, SW_SHOW);
-UpdateWindow(hwnd);
-```
+The point is not to emulate WOW today; it is to understand why USER32 contains so many compatibility seams. Message dispatch is a boundary where ABI details become visible: thunking, structure packing, pointer width, handle translation, and default procedure behavior all have to preserve old application expectations.
+
+## Connections
+- `Windows 1.0 Hello World` shows the source-era model WOW had to preserve.
+- `SendMessage Path` and `Message Queue Implementation` show the modern dispatch machinery that compatibility code plugs into.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/windows/core/ntuser/client/wow.c#L763

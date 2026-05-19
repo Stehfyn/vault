@@ -1,0 +1,1 @@
+No durable DWM items parked here yet. Move future scraps into a named note once they identify a concrete surface: public `dwmapi`, DirectComposition timing, DWM thumbnails/shared surfaces, non-client customization, or compositor injection.

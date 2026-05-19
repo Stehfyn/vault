@@ -1,111 +1,74 @@
 # DXGI (Microsoft DirectX Graphics Infrastructure)
 
-## DXGI overview
-https://learn.microsoft.com/en-us/windows/win32/direct3ddxgi/dx-graphics-dxgi
-Brief: Core DXGI concepts like factories, adapters, and outputs.
+DXGI is the ownership layer between graphics APIs and the Windows display stack: factories enumerate adapters and outputs, swap chains own presentation, and shared resources cross API/process boundaries. D3D11 and D3D12 differ radically above it, but both eventually need DXGI for adapter selection, flip-model swap chains, fullscreen/Alt+Enter policy, tearing flags, output duplication, HDR metadata, and frame statistics.
+
+The two mistakes this note should prevent are adapter drift and accidental window-policy drift. If a D2D/D3D/DComp pipeline mixes devices from different adapters, sharing fails or silently copies. If you let DXGI handle Alt+Enter or window changes while also running custom fullscreen code, you get conflicting style changes and resize behavior. `IDXGIFactory6::EnumAdapterByGpuPreference`, `MakeWindowAssociation`, and flip-model swap-chain creation are therefore not boilerplate; they decide where the frame actually goes.
+
+The Godot OpenGL/DXGI branch is relevant because it shows DXGI as a presentation solution even when rendering is not D3D: render GL into a shared texture, then present through a DXGI swap chain. That connects directly to `OpenGL on DXGI Swapchain.md` and the WGL interop notes.
+
+## Adapter Identity
+
+The API catalog, `EnumAdapterByGpuPreference` answer, and sandbox examples all contribute to the same rule: choose the adapter once, then make D3D, D2D, DComp, and capture code live on that adapter unless a copy is intentional.
+
 ```cpp
-IDXGIFactory1* factory = nullptr;
-CreateDXGIFactory1(IID_PPV_ARGS(&factory));
-IDXGIAdapter1* adapter = nullptr;
-if (factory->EnumAdapters1(0, &adapter) == S_OK) {
+wil::com_ptr<IDXGIFactory6> factory;
+CreateDXGIFactory2(0, IID_PPV_ARGS(&factory));
+
+wil::com_ptr<IDXGIAdapter1> adapter;
+for (UINT i = 0; factory->EnumAdapterByGpuPreference(
+         i, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(&adapter)) != DXGI_ERROR_NOT_FOUND; ++i) {
     DXGI_ADAPTER_DESC1 desc = {};
     adapter->GetDesc1(&desc);
-    adapter->Release();
+    if (!(desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)) {
+        break;
+    }
+    adapter.reset();
 }
-factory->Release();
 ```
 
-## DXGI programming guide
-https://learn.microsoft.com/en-us/windows/win32/direct3ddxgi/d3d10-graphics-programming-guide-dxgi
-Brief: Swap chain creation path used by D3D10/D3D11 applications.
-```cpp
-DXGI_SWAP_CHAIN_DESC1 scd = {};
-scd.Width = width;
-scd.Height = height;
-scd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-scd.BufferCount = 2;
-factory->CreateSwapChainForHwnd(commandQueue, hwnd, &scd, nullptr, nullptr, &swap);
-```
+## Window Policy and Swap Chains
 
-## Calling DXGI from C without __uuidof
-https://stackoverflow.com/questions/57223294/how-to-call-dxgi-from-c-without-uuidof
-Brief: Use IID_* constants with initguid in pure C.
-```c
-#define COBJMACROS
-#include <initguid.h>
-#include <dxgi.h>
-IDXGIFactory1* factory = NULL;
-HRESULT hr = CreateDXGIFactory1(&IID_IDXGIFactory1, (void**)&factory);
-if (SUCCEEDED(hr)) factory->lpVtbl->Release(factory);
-```
+The programming guide and best-practices link contribute the flip-model/window-policy boundary. Disable DXGI's Alt+Enter behavior when the application owns fullscreen transitions, and create a swap chain that matches the compositor-era presentation model.
 
-## DXGI API reference
-https://learn.microsoft.com/en-us/windows/win32/api/_direct3ddxgi/
-Brief: Use modern swap chain interfaces for frame indexing.
-```cpp
-IDXGISwapChain3* swap3 = nullptr;
-swap->QueryInterface(IID_PPV_ARGS(&swap3));
-UINT index = swap3->GetCurrentBackBufferIndex();
-swap3->Release();
-```
-
-https://github.com/toivjon/dxgi-sandbox
-DXGI sandbox for adapter enumeration and swap chain creation patterns. IDXGIFactory6::EnumAdapterByGpuPreference lets you select the high-performance (discrete) GPU explicitly.
-```cpp
-ComPtr<IDXGIFactory6> factory;
-CreateDXGIFactory1(IID_PPV_ARGS(&factory));
-ComPtr<IDXGIAdapter1> adapter;
-// Prefer discrete GPU
-factory->EnumAdapterByGpuPreference(0,
-    DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(&adapter));
-DXGI_ADAPTER_DESC1 desc = {};
-adapter->GetDesc1(&desc);
-```
-
-https://stackoverflow.com/a/59732413
-DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE selects the dedicated GPU; MINIMUM_POWER selects the integrated one. Available via IDXGIFactory6 (DXGI 1.6, Windows 10 1803+).
-```cpp
-ComPtr<IDXGIFactory6> factory6;
-CreateDXGIFactory1(IID_PPV_ARGS(&factory6));
-ComPtr<IDXGIAdapter1> gpu;
-factory6->EnumAdapterByGpuPreference(0,
-    DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(&gpu));
-D3D12CreateDevice(gpu.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&device));
-```
-
-https://learn.microsoft.com/fr-fr/windows/win32/direct3darticles/dxgi-best-practices#full-screen-issues
-Disable DXGI's built-in Alt+Enter handler with MakeWindowAssociation — it can conflict with custom fullscreen logic. Always call it after swap chain creation.
 ```cpp
 factory->MakeWindowAssociation(hwnd, DXGI_MWA_NO_ALT_ENTER);
-// Manual fullscreen toggle
-bool isFullscreen = false;
-if (toggleKey) {
-  isFullscreen = !isFullscreen;
-  swapChain->SetFullscreenState(isFullscreen, nullptr);
-  // Resize buffers after state change
-  swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-}
-```
 
-https://learn.microsoft.com/fr-fr/windows/win32/api/dxgi/nf-dxgi-idxgifactory-makewindowassociation
-DXGI_MWA_NO_ALT_ENTER suppresses the automatic fullscreen switch on Alt+Enter. Pair with DXGI_MWA_NO_WINDOW_CHANGES to prevent DXGI from modifying the window style.
-```cpp
-UINT flags = DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES;
-factory->MakeWindowAssociation(hwnd, flags);
-```
-
-https://github.com/godotengine/godot/compare/master...alvinhochun:godot:opengl-with-dxgi-present
-Godot branch experimenting with DXGI swap chain for OpenGL presentation. The key trick: create a D3D11 device and swap chain for presentation, render into a shared texture from OpenGL, then blit to the back buffer.
-```cpp
 DXGI_SWAP_CHAIN_DESC1 desc = {};
-desc.Format      = DXGI_FORMAT_B8G8R8A8_UNORM;
+desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 desc.BufferCount = 2;
-desc.Width       = width;
-desc.Height      = height;
-desc.SwapEffect  = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 desc.SampleDesc.Count = 1;
-ComPtr<IDXGISwapChain1> swapChain;
-factory->CreateSwapChainForHwnd(queue.Get(), hwnd, &desc, nullptr, nullptr, &swapChain);
-swapChain->Present(1, 0);
+desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+desc.AlphaMode = DXGI_ALPHA_MODE_IGNORE;
+
+wil::com_ptr<IDXGISwapChain1> swap_chain;
+factory->CreateSwapChainForHwnd(d3d_device.get(), hwnd, &desc, nullptr, nullptr, &swap_chain);
 ```
+
+## C COM and GL Presentation
+
+The C `__uuidof` link contributes the pure-C COM shape; the Godot branch contributes the larger insight that DXGI can be the presentation layer even when the renderer is OpenGL, provided shared texture/device ownership is explicit.
+
+```c
+#include <initguid.h>
+#include <dxgi1_6.h>
+
+IDXGIFactory6* factory = NULL;
+HRESULT hr = CreateDXGIFactory2(0, &IID_IDXGIFactory6, (void**)&factory);
+```
+
+## References
+- <https://learn.microsoft.com/en-us/windows/win32/direct3ddxgi/dx-graphics-dxgi> - DXGI factories, adapters, outputs, and swap chains.
+- <https://learn.microsoft.com/en-us/windows/win32/direct3ddxgi/d3d10-graphics-programming-guide-dxgi> - programming guide for swap-chain setup.
+- <https://learn.microsoft.com/en-us/windows/win32/api/_direct3ddxgi/> - API reference.
+- <https://stackoverflow.com/questions/57223294/how-to-call-dxgi-from-c-without-uuidof> - pure-C COM/IID pattern.
+- <https://github.com/toivjon/dxgi-sandbox> - adapter enumeration and swap-chain experiments.
+- <https://stackoverflow.com/a/59732413> - `IDXGIFactory6::EnumAdapterByGpuPreference` usage.
+- <https://learn.microsoft.com/en-us/windows/win32/direct3darticles/dxgi-best-practices#full-screen-issues> - fullscreen and Alt+Enter pitfalls.
+- <https://github.com/godotengine/godot/compare/master...alvinhochun:godot:opengl-with-dxgi-present> - GL rendering presented through DXGI.
+
+## Connections
+- `DXGI Output Duplication Capture.md`
+- `DXGI Disable VBlank Virtualization.md`
+- `DXGI SwapChain2 SetSourceSize.md`
+- `OpenGL on DXGI Swapchain.md`

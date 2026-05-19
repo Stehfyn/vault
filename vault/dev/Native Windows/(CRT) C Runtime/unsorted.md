@@ -1,0 +1,1 @@
+No loose CRT topics are parked here yet. Future notes should be promoted into a named entry when they change a build decision: CRT linkage, startup, allocator ownership, exception support, binary size, or deliberate no-CRT operation.

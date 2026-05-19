@@ -1,42 +1,13 @@
 # Flicker-Free Drawing
 
-GDI double-buffering: create a compatible DC and bitmap, draw into it, then BitBlt to the window DC. Return 1 from WM_ERASEBKGND to suppress the default background erase (which causes the flash). The layered window approach (`WS_EX_LAYERED` + `UpdateLayeredWindow`) is the alternative for transparent UIs.
+Classic GDI flicker usually comes from two paints: USER erases the background, then the app paints content. If your `WM_PAINT` redraws the whole invalid region, return nonzero from `WM_ERASEBKGND` and paint into a memory DC backed by a compatible bitmap or DIB section, then `BitBlt` once to the window DC. Also avoid resizing/moving child windows one at a time without batching.
 
-```cpp
-case WM_ERASEBKGND:
-  return 1;   // suppress erase — we'll paint everything in WM_PAINT
-
-case WM_PAINT: {
-  PAINTSTRUCT ps;
-  HDC hdc = BeginPaint(hwnd, &ps);
-  RECT rc;
-  GetClientRect(hwnd, &rc);
-  int w = rc.right, h = rc.bottom;
-
-  // Back buffer
-  HDC mem = CreateCompatibleDC(hdc);
-  HBITMAP bmp = CreateCompatibleBitmap(hdc, w, h);
-  HBITMAP old = (HBITMAP)SelectObject(mem, bmp);
-
-  // Draw into back buffer
-  FillRect(mem, &rc, (HBRUSH)(COLOR_WINDOW + 1));
-  DrawContent(mem, &rc);
-
-  // Blit to screen in one shot
-  BitBlt(hdc, 0, 0, w, h, mem, 0, 0, SRCCOPY);
-  SelectObject(mem, old);
-  DeleteObject(bmp);
-  DeleteDC(mem);
-  EndPaint(hwnd, &ps);
-  return 0;
-}
-
-// Layered transparent window approach:
-LONG_PTR ex = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
-SetWindowLongPtrW(hwnd, GWL_EXSTYLE, ex | WS_EX_LAYERED);
-SetLayeredWindowAttributes(hwnd, RGB(0, 0, 0), 220, LWA_ALPHA);
-```
+Layered windows solve a different problem: per-pixel top-level alpha through `UpdateLayeredWindow` or whole-window opacity through `SetLayeredWindowAttributes`. They can eliminate some flicker because presentation is atomic, but they change hit testing, redirection, capture behavior, and composition cost. Do not use them merely because a control repaints badly.
 
 ## References
-- https://stackoverflow.com/a/20959649
-- https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/using-double-buffering?view=netframeworkdesktop-4.8
+- <https://stackoverflow.com/a/20959649> - practical GDI double-buffering pattern.
+- <https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/using-double-buffering?view=netframeworkdesktop-4.8> - managed overview, useful for the same erase/paint model.
+
+## Connections
+- `Common Controls/Rendering.md` covers custom draw and resize flicker.
+- `Transparent Window GDI.md` covers layered-window alpha.

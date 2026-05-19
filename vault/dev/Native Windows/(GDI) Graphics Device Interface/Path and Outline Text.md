@@ -1,29 +1,13 @@
 # Path and Outline Text
 
-GDI paths let you trace glyph outlines with `BeginPath`/`TextOut`/`EndPath`. After `EndPath`, call `StrokePath`, `FillPath`, or `StrokeAndFillPath`. World transforms (`SetWorldTransform`, `GM_ADVANCED`) allow arbitrary scaling and rotation of the path before stroking.
+GDI paths can turn text into geometry: call `BeginPath`, emit glyphs with `TextOut` or `ExtTextOut`, `EndPath`, then `StrokePath`, `FillPath`, or `StrokeAndFillPath`. With `GM_ADVANCED`, world transforms can scale, rotate, or shear that geometry before stroking. This is useful for outline text, decals, simple vector effects, and teaching how text output becomes paths.
 
-```cpp
-// Outline text using GDI paths
-HFONT font = CreateFontW(64, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE,
-    DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
-    ANTIALIASED_QUALITY, FF_DONTCARE, L"Segoe UI");
-SelectObject(hdc, font);
-HPEN pen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
-SelectObject(hdc, pen);
-SelectObject(hdc, GetStockObject(HOLLOW_BRUSH));
-
-BeginPath(hdc);
-TextOutW(hdc, 20, 20, L"Outlined", 8);
-EndPath(hdc);
-StrokePath(hdc);   // or StrokeAndFillPath for filled+outlined
-
-// 3D-style via world transform rotation
-SetGraphicsMode(hdc, GM_ADVANCED);
-XFORM xf = { 1.0f, 0.1f, -0.1f, 1.0f, 0.0f, 0.0f };  // shear
-SetWorldTransform(hdc, &xf);
-Rectangle(hdc, 0, 0, 60, 40);
-```
+The limitation is text quality. Path conversion is not a shaping engine, and complex scripts still require shaping before glyph output. For modern high-quality text, DirectWrite is the successor; for legacy GDI effects, paths remain a compact trick.
 
 ## References
-- https://github.com/shaovoon/outline-text
-- https://github.com/thenanisore/gdi-3d-renderer
+- <https://github.com/shaovoon/outline-text> - outline text rendered through GDI path operations.
+- <https://github.com/thenanisore/gdi-3d-renderer> - adjacent use of GDI transforms/projection for geometry.
+
+## Connections
+- `Text Shaping (Uniscribe).md` covers shaping before drawing text.
+- `gdi-3d-renderer - Pure GDI Software 3D.md` covers transform-heavy GDI experiments.

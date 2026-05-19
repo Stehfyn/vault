@@ -1,26 +1,12 @@
-Read pixel data from an HBITMAP into a CPU buffer using GetDIBits(). Create a compatible DC, select the bitmap, then call GetDIBits with a BITMAPINFO describing the desired format.
+# Read Pixels with GetDIBits
 
-```cpp
-HDC hdc = GetDC(nullptr);
-HDC memDC = CreateCompatibleDC(hdc);
-SelectObject(memDC, hBitmap);
+`GetDIBits` copies pixels from an `HBITMAP` into a caller-supplied buffer using the format described by `BITMAPINFO`. The usual pattern is to select the bitmap into a compatible DC, request a top-down 32-bpp `BI_RGB` DIB by setting negative height, and size the buffer for stride rather than assuming `width * bytesPerPixel` for every format.
 
-BITMAPINFOHEADER bi = {};
-bi.biSize        = sizeof(bi);
-bi.biWidth       = width;
-bi.biHeight      = -height; // top-down
-bi.biPlanes      = 1;
-bi.biBitCount    = 32;
-bi.biCompression = BI_RGB;
-
-std::vector<BYTE> pixels(width * height * 4);
-BITMAPINFO bmi = {};
-bmi.bmiHeader = bi;
-GetDIBits(memDC, hBitmap, 0, height, pixels.data(), &bmi, DIB_RGB_COLORS);
-
-DeleteDC(memDC);
-ReleaseDC(nullptr, hdc);
-```
+If you control bitmap creation, a DIB section is often simpler because the pixel pointer is available from `CreateDIBSection` and no extraction call is needed. `GetDIBits` is still the right bridge when an API hands you an `HBITMAP` and you need CPU-visible bytes.
 
 ## References
-1. https://stackoverflow.com/questions/26233848/c-read-pixels-with-getdibits/26238387#26238387
+- <https://stackoverflow.com/questions/26233848/c-read-pixels-with-getdibits/26238387#26238387> - practical `GetDIBits` extraction pattern.
+
+## Connections
+- `How to Capture the Screen.md` uses this after `BitBlt`.
+- `Win32Bitmaps - DIB Section Tutorial.md` covers creating CPU-visible DIB sections directly.

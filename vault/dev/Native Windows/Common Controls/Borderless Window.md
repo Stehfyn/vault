@@ -1,56 +1,46 @@
 # Borderless Window
 
-## CS_DROPSHADOW for popup windows
-https://stackoverflow.com/questions/66165781/it-is-possible-to-adjust-the-offset-of-cs-dropshadow-on-a-window-class
-Use CS_DROPSHADOW on a tool or popup window class for classic shadows.
+A credible borderless Win32 window is not just `WS_POPUP`. You need non-client behavior back: resize hit-testing in `WM_NCHITTEST`, monitor-aware maximize bounds through `WM_GETMINMAXINFO`, and a DWM shadow or frame extension if the window should still read as a top-level app. Removing `WS_CAPTION` while keeping `WS_THICKFRAME` is the common compromise; after changing styles at runtime, call `SetWindowPos(..., SWP_FRAMECHANGED)` so USER recalculates the non-client area.
+
+## Runtime Style Change
+
+The BorderlessWindow sample contributes the style-toggle pattern. USER caches frame metrics, so the frame-changed `SetWindowPos` call is not optional.
+
 ```cpp
-WNDCLASSEX wc = { sizeof(wc) };
-wc.style = CS_DROPSHADOW;
-wc.lpfnWndProc = WndProc;
-wc.hInstance = hInst;
-wc.lpszClassName = L"PopupShadow";
-RegisterClassEx(&wc);
-HWND hwnd = CreateWindowEx(WS_EX_TOOLWINDOW, wc.lpszClassName, L"", WS_POPUP,
-    100, 100, 300, 200, 0, 0, hInst, 0);
+LONG_PTR style = GetWindowLongPtrW(hwnd, GWL_STYLE);
+style &= ~WS_CAPTION;
+style |= WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+SetWindowLongPtrW(hwnd, GWL_STYLE, style);
+SetWindowPos(hwnd, nullptr, 0, 0, 0, 0,
+             SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER |
+             SWP_NOACTIVATE | SWP_FRAMECHANGED);
 ```
 
-## Borderless resizable hit testing
-https://stackoverflow.com/questions/39731497/create-window-without-titlebar-with-resizable-border-and-without-bogus-6px-whit
-Implement WM_NCHITTEST to expose resize borders inside the client area.
+## Hit Testing and DWM Frame
+
+The custom-frame and Stack Overflow links contribute the missing behavior: resize borders and DWM-owned shadow/chrome need explicit hit-test and frame handling.
+
 ```cpp
-case WM_NCHITTEST:
-{
+case WM_NCHITTEST: {
     POINT pt = { GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) };
-    ScreenToClient(hwnd, &pt);
-    RECT rc; GetClientRect(hwnd, &rc);
-    if (pt.y < 6) return HTTOP;
-    if (pt.x < 6) return HTLEFT;
-    if (pt.x > rc.right - 6) return HTRIGHT;
+    RECT rc;
+    GetWindowRect(hwnd, &rc);
+    const int grip = GetSystemMetrics(SM_CXFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+    if (pt.x < rc.left + grip) return HTLEFT;
+    if (pt.x >= rc.right - grip) return HTRIGHT;
+    if (pt.y < rc.top + grip) return HTTOP;
+    if (pt.y >= rc.bottom - grip) return HTBOTTOM;
     return HTCLIENT;
 }
 ```
 
-## Runtime borderless toggle (BorderlessWindow)
-https://github.com/melak47/BorderlessWindow
-Toggle caption and frame styles, then force a non-client recalculation.
-```cpp
-LONG_PTR style = GetWindowLongPtr(hwnd, GWL_STYLE);
-style &= ~WS_CAPTION;
-style |= WS_THICKFRAME;
-SetWindowLongPtr(hwnd, GWL_STYLE, style);
-SetWindowPos(hwnd, NULL, 0, 0, 0, 0,
-    SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-```
+## References
 
-## DWM custom frame
-https://learn.microsoft.com/en-us/windows/win32/dwm/customframe
-Extend the DWM frame into the client area to keep the aero shadow.
-```cpp
-BOOL comp = FALSE;
-DwmIsCompositionEnabled(&comp);
-if (comp)
-{
-    MARGINS m = { 0, 0, 0, 0 };
-    DwmExtendFrameIntoClientArea(hwnd, &m);
-}
-```
+- <https://github.com/melak47/BorderlessWindow> - focused runtime style-toggle example.
+- <https://learn.microsoft.com/en-us/windows/win32/dwm/customframe> - Microsoft's DWM custom-frame baseline.
+- <https://stackoverflow.com/questions/39731497/create-window-without-titlebar-with-resizable-border-and-without-bogus-6px-whit> - discusses client-area hit testing for borderless resize.
+
+## Connections
+
+- `Window Sizing.md` covers `WM_GETMINMAXINFO`.
+- `Darkmode.md` covers DWM attributes that often accompany custom chrome.

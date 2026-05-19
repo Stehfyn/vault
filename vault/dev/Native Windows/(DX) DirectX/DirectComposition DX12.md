@@ -1,24 +1,12 @@
-# DirectComposition + DirectX 12
+# DirectComposition DX12
 
-Create a DirectComposition device and set a DXGI swap chain as the visual content so the DX12 render target is composed by DComp.
+DirectComposition with D3D12 is mostly a swap-chain ownership problem. The app renders with D3D12, presents through a DXGI swap chain, and gives that swap chain to a DComp visual. DComp then schedules the visual tree into DWM rather than letting the HWND own presentation directly.
 
-```cpp
-#include <dcomp.h>
-#pragma comment(lib, "dcomp.lib")
-
-IDCompositionDevice* dcomp = nullptr;
-DCompositionCreateDevice(dxgiDevice, IID_PPV_ARGS(&dcomp));
-
-IDCompositionTarget* target = nullptr;
-dcomp->CreateTargetForHwnd(hwnd, TRUE, &target);
-
-IDCompositionVisual* visual = nullptr;
-dcomp->CreateVisual(&visual);
-
-visual->SetContent(swapChain);  // IDXGISwapChain1/3
-target->SetRoot(visual);
-dcomp->Commit();
-```
+The distinction from `DirectComposition + D3D12 Interop.md` is editorial, not technical; keep both notes only if one tracks the sample and the other tracks the minimal API pattern. The useful nearby topics are DComp clock timing, transparent windows, and DWM shared thumbnail visuals.
 
 ## References
-- https://github.com/PJayB/DirectCompositionDirectX12Sample
+- <https://github.com/PJayB/DirectCompositionDirectX12Sample>
+
+## Connections
+- `Windows Composition Engine.md`
+- `../(DWM) Desktop Window Manager/DWM Thumbnail - VirtualDesktop IDCompositionVisual.md`

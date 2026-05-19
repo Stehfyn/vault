@@ -1,51 +1,8 @@
 # WTL Examples
 
-WTL wraps Win32 window plumbing with ATL-style classes and message maps. Typical usage derives from `CWindowImpl`, overrides handlers, and uses `BEGIN_MSG_MAP`.
+WTL is ATL's windowing layer grown into a lightweight application framework: `CWindowImpl`, `CFrameWindowImpl`, message maps, command/update UI routing, dialog helpers, and wrappers over common controls. The examples are useful when they show how WTL maps classic Win32 concepts into templates without hiding the message model entirely.
 
-```cpp
-#include <atlbase.h>
-#include <atlwin.h>
-
-class CMainWnd : public CWindowImpl<CMainWnd>
-{
-public:
-    DECLARE_WND_CLASS(L"WTLMainWnd")
-
-    BEGIN_MSG_MAP(CMainWnd)
-        MESSAGE_HANDLER(WM_PAINT, OnPaint)
-        MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
-    END_MSG_MAP()
-
-    LRESULT OnPaint(UINT, WPARAM, LPARAM, BOOL&)
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(&ps);
-        TextOutW(hdc, 10, 10, L"WTL", 3);
-        EndPaint(&ps);
-        return 0;
-    }
-
-    LRESULT OnDestroy(UINT, WPARAM, LPARAM, BOOL&)
-    {
-        PostQuitMessage(0);
-        return 0;
-    }
-};
-
-int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, PWSTR, int nCmdShow)
-{
-    CMainWnd wnd;
-    wnd.Create(nullptr, CWindow::rcDefault, L"WTL Sample");
-    wnd.ShowWindow(nCmdShow);
-
-    MSG msg = {};
-    while (GetMessageW(&msg, nullptr, 0, 0)) {
-        TranslateMessage(&msg);
-        DispatchMessageW(&msg);
-    }
-    return 0;
-}
-```
+The key distinction from MFC is deployment and thickness. WTL is mostly headers/templates over ATL and the platform SDK; it does not impose the same runtime library or document/view architecture. The distinction from raw Win32 is the object-to-HWND thunk and message-map dispatch, which is why the ATL x64 thunk note belongs in the same folder.
 
 ## References
-- https://github.com/wyrover/wtl-examples
+- <https://github.com/wyrover/wtl-examples> - sample WTL applications demonstrating ATL-style windows, message maps, and control wrappers.

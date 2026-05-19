@@ -1,16 +1,13 @@
 # MMCSS Research
 
-Short description: Community research notes indicate the hidden MMCSS “Latency Sensitive” task value defaults to `TRUE` on Windows 10 and drives latency-sensitive hints under heavy CPU load. The registry path used for per-task settings is `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MultiMedia\systemprofile\Tasks\<TaskName>`. Additional notes cover Clock Rate behavior and BackgroundPriority effects on base thread priority when Scheduling Category is LOW.
+MMCSS is the compromise Windows uses for media workloads that need low jitter but cannot be allowed to monopolize the machine like a hard real-time scheduler. Threads call `AvSetMmThreadCharacteristicsW` with task names such as `Audio`, `Pro Audio`, or `Games`; policy then comes from `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\<TaskName>`.
 
-Optional usage snippet (tag a thread with MMCSS):
-```c
-DWORD taskIndex = 0;
-HANDLE mmcssHandle = AvSetMmThreadCharacteristicsW(L"Audio", &taskIndex);
-// ... work ...
-if (mmcssHandle) {
-    AvRevertMmThreadCharacteristics(mmcssHandle);
-}
-```
+The useful research detail in the linked thread is not a magic registry tweak; it is the interaction among `Scheduling Category`, `BackgroundPriority`, clock-rate behavior, and the hidden-looking `Latency Sensitive` value under load. Treat the values as workload policy: changes should be measured with ETW/audio glitch counters, not copied as universal "latency optimization."
 
-References:
-- https://www.overclock.net/threads/research-on-multimedia-class-scheduler-service-mmcss.1774590/
+## Connections
+- `Low-Latency Audio - ASIO Driver Samples` for a workload that actually needs MMCSS.
+- `Power State APIs` because media apps often coordinate scheduler hints with sleep/display inhibition.
+- `Windows-11-Latency-Optimization Scripts` as the cautionary opposite: broad tweaks without a workload model are hard to trust.
+
+## References
+- <https://www.overclock.net/threads/research-on-multimedia-class-scheduler-service-mmcss.1774590/>

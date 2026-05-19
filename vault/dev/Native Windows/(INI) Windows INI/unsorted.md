@@ -1,0 +1,1 @@
+No loose INI topics are parked here yet. Keep future notes tied to the actual profile APIs (`GetPrivateProfileStringW`, `WritePrivateProfileStringW`) or to installer/search behavior, because generic "INI files are key-value text" material belongs in neither this Native Windows section nor the registry section.

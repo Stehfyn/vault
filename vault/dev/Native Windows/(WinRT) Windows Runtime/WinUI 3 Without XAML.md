@@ -1,21 +1,8 @@
 # WinUI 3 Without XAML
 
-WinUI 3 can create UI entirely in code — no `.xaml` files required. The `Application::Start` lambda receives the `IApplicationActivationFactory` and can construct a `Window` programmatically with any `UIElement` as its content.
+WinUI 3 can create its UI entirely in code because the runtime surface is an object model. XAML files are convenient declarative input to that object model; they are not a requirement for `Application::Start`, `Window`, `StackPanel`, `Button`, or event wiring. That makes code-only WinUI useful for tiny repros, generated UIs, non-MSBuild experiments, and cases where XAML compilation is the problem being isolated.
 
-```cpp
-// C++/WinRT — WinUI 3 minimal code-only window
-#include <winrt/Microsoft.UI.Xaml.h>
-#include <winrt/Microsoft.UI.Xaml.Controls.h>
-
-winrt::init_apartment();
-winrt::Microsoft::UI::Xaml::Application::Start([](auto&&) {
-  winrt::Microsoft::UI::Xaml::Window win;
-  winrt::Microsoft::UI::Xaml::Controls::TextBlock tb;
-  tb.Text(L"Hello WinUI3");
-  win.Content(tb);
-  win.Activate();
-});
-```
+This entry intentionally overlaps the sotanakamura sample but should stay as the conceptual note. Link to the sample when the reader needs a buildable repo; use this note when distinguishing XAML markup from WinRT/WinUI activation itself.
 
 ## References
-- https://github.com/sotanakamura/winui3-without-xaml
+- <https://github.com/sotanakamura/winui3-without-xaml> - buildable C++/WinRT sample for constructing WinUI 3 controls without `.xaml` files.

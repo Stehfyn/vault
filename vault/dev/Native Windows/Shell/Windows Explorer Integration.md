@@ -1,41 +1,69 @@
 # Windows Explorer Integration
 
-Per-link references for Explorer automation and dialogs.
+Explorer integration sits at the Shell COM boundary: `IShellWindows` for existing Explorer windows, `IFileDialog` for brokered file/folder picking, `IShellItem`/PIDLs for namespace objects, and helper functions such as `SHOpenFolderAndSelectItems` for driving Explorer UI. Coalesce anything here with the deeper shell notes instead of leaving one-off "open a dialog" snippets.
 
-## Developing with Windows Explorer
+## Enumerate Explorer windows
 Link: https://learn.microsoft.com/en-us/windows/win32/shell/developing-with-windows-explorer
-Brief: Enumerate Explorer windows with IShellWindows.
+
+Contribution: the useful pattern is `IShellWindows` -> `IWebBrowserApp` -> `LocationURL`/`HWND`, which is still the simplest way to find live Explorer windows without walking random top-level HWNDs.
+
 ```cpp
-IShellWindows* sw = NULL;
-CoCreateInstance(CLSID_ShellWindows, NULL, CLSCTX_LOCAL_SERVER, IID_PPV_ARGS(&sw));
+wil::com_ptr<IShellWindows> windows;
+CoCreateInstance(CLSID_ShellWindows, nullptr, CLSCTX_ALL, IID_PPV_ARGS(&windows));
+
 long count = 0;
-sw->get_Count(&count);
-for (long i = 0; i < count; ++i) { /* inspect */ }
-sw->Release();
-```
+windows->get_Count(&count);
+for (long i = 0; i < count; ++i) {
+    VARIANT v; VariantInit(&v);
+    v.vt = VT_I4; v.lVal = i;
 
-## Common file dialog
-Link: https://learn.microsoft.com/en-us/windows/win32/shell/common-file-dialog
-Brief: Use IFileOpenDialog to select a file.
-```cpp
-IFileOpenDialog* dlg = NULL;
-CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&dlg));
-if (SUCCEEDED(dlg->Show(hwnd))) {
-  IShellItem* item = NULL;
-  dlg->GetResult(&item);
-  item->Release();
+    wil::com_ptr<IDispatch> disp;
+    if (SUCCEEDED(windows->Item(v, &disp)) && disp) {
+        wil::com_ptr<IWebBrowserApp> app;
+        if (SUCCEEDED(disp.query_to(&app))) {
+            SHANDLE_PTR hwnd = 0;
+            app->get_HWND(&hwnd);
+        }
+    }
 }
-dlg->Release();
 ```
 
-## FileBookmark sample
-Link: https://github.com/sgrottel/FileBookmark
-Brief: Open a folder and select items in Explorer.
+## File/folder picking
+Link: https://learn.microsoft.com/en-us/windows/win32/shell/common-file-dialog
+
+Contribution: `IFileOpenDialog` supersedes `GetOpenFileNameW` because it returns `IShellItem`, not just a path buffer. That matters for libraries, known folders, cloud placeholders, and namespace extensions where the path is not the real object identity.
+
 ```cpp
-PIDLIST_ABSOLUTE pidl = NULL;
-SFGAOF attrs = 0;
-SHParseDisplayName(L"C:\\Projects", NULL, &pidl, 0, &attrs);
-SHOpenFolderAndSelectItems(pidl, 0, NULL, 0);
-CoTaskMemFree(pidl);
+wil::com_ptr<IFileOpenDialog> dlg;
+CoCreateInstance(CLSID_FileOpenDialog, nullptr, CLSCTX_INPROC_SERVER,
+                 IID_PPV_ARGS(&dlg));
+dlg->SetOptions(FOS_PICKFOLDERS | FOS_FORCEFILESYSTEM);
+
+if (SUCCEEDED(dlg->Show(hwnd))) {
+    wil::com_ptr<IShellItem> item;
+    dlg->GetResult(&item);
+    wil::unique_cotaskmem_string path;
+    item->GetDisplayName(SIGDN_FILESYSPATH, &path);
+}
 ```
 
+## Select a file in Explorer
+Link: https://github.com/sgrottel/FileBookmark
+
+Contribution: `FileBookmark` is useful because it drives Explorer to a concrete selection instead of merely launching a folder. The underlying primitive is `SHOpenFolderAndSelectItems`: build a folder PIDL and child PIDLs, then let Explorer handle view activation.
+
+```cpp
+PIDLIST_ABSOLUTE folder = nullptr;
+SHParseDisplayName(LR"(C:\Temp)", nullptr, &folder, 0, nullptr);
+
+PIDLIST_RELATIVE child = nullptr;
+SHParseDisplayName(LR"(C:\Temp\log.txt)", nullptr, &child, 0, nullptr);
+
+PCUITEMID_CHILD items[] = { ILFindLastID(child) };
+SHOpenFolderAndSelectItems(folder, ARRAYSIZE(items), items, 0);
+
+CoTaskMemFree(child);
+CoTaskMemFree(folder);
+```
+
+Connections: `Shell Items and Folders.md` is the object model; `Shell Shortcuts.md` persists shell targets; `Explorer++ (Tabbed Win32 Explorer).md` is the larger codebase showing namespace enumeration, context menus, and drag/drop together.

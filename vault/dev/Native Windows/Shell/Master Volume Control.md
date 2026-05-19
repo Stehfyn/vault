@@ -1,43 +1,58 @@
 # Master Volume Control
 
-Per-link references for endpoint volume control.
+Master volume is a Core Audio endpoint operation, not a mixer-control operation. The useful link between the sample code, the C `__uuidof` workaround, and the `SndVol.exe` note is this split: programmatic control uses COM interfaces, while the shell UI remains a separate process that can be launched when the user needs policy/UI instead of silent state change.
 
-## mastervol.c sample
-Link: https://raw.githubusercontent.com/myfreeer/mastervol/master/mastervol.c
-Brief: Use IAudioEndpointVolume to set master volume.
+## Endpoint Volume
+
+The `mastervol.c` sample contributes the core call chain: device enumerator, default render endpoint, `IAudioEndpointVolume`, scalar volume. Use a `GUID` event context if you also subscribe to notifications so your own writes can be distinguished from user or system writes.
+
 ```cpp
-CoInitialize(NULL);
-IMMDeviceEnumerator* en = NULL;
-IMMDevice* dev = NULL;
-IAudioEndpointVolume* vol = NULL;
-CoCreateInstance(&CLSID_MMDeviceEnumerator, NULL, CLSCTX_ALL,
-                 &IID_IMMDeviceEnumerator, (void**)&en);
-en->GetDefaultAudioEndpoint(eRender, eConsole, &dev);
-dev->Activate(&IID_IAudioEndpointVolume, CLSCTX_ALL, NULL, (void**)&vol);
-vol->SetMasterVolumeLevelScalar(0.5f, NULL);
+wil::com_ptr<IMMDeviceEnumerator> enumerator;
+CoCreateInstance(__uuidof(MMDeviceEnumerator), nullptr, CLSCTX_ALL,
+                 IID_PPV_ARGS(&enumerator));
+
+wil::com_ptr<IMMDevice> endpoint;
+enumerator->GetDefaultAudioEndpoint(eRender, eConsole, &endpoint);
+
+wil::com_ptr<IAudioEndpointVolume> volume;
+endpoint->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_ALL, nullptr,
+                   reinterpret_cast<void**>(&volume));
+
+GUID context = { 0x8f6d4f3b, 0x7b0c, 0x49d4,
+                 { 0x9c, 0x4d, 0x9f, 0x40, 0x47, 0x2e, 0x8b, 0x11 } };
+volume->SetMasterVolumeLevelScalar(0.35f, &context);
 ```
 
-## __uuidof in C workaround
-Link: https://stackoverflow.com/questions/47012491/uuidof-in-c-master-volume-windows/47014922#47014922
-Brief: Include initguid.h and use &CLSID_*/&IID_*.
-```cpp
+## C Without `__uuidof`
+
+The C workaround is not cosmetic. In C, COM activation needs real `CLSID_*` and `IID_*` objects, so include `initguid.h` in exactly one translation unit or link against a library that defines them.
+
+```c
 #include <initguid.h>
 #include <mmdeviceapi.h>
-IMMDeviceEnumerator* en = NULL;
+#include <endpointvolume.h>
+
+IMMDeviceEnumerator* enumerator = NULL;
 HRESULT hr = CoCreateInstance(&CLSID_MMDeviceEnumerator, NULL, CLSCTX_ALL,
-                              &IID_IMMDeviceEnumerator, (void**)&en);
-if (SUCCEEDED(hr)) { en->Release(); }
+                              &IID_IMMDeviceEnumerator, (void**)&enumerator);
 ```
 
-## SndVol.exe notes
-Link: https://learn.microsoft.com/en-us/windows/win32/devnotes/sndvol32-exe-
-Brief: Launch the legacy UI with command-line switches.
+## Shell Volume UI
+
+`SndVol.exe` is the right contribution when the program should hand control to the user rather than impersonate the user. This keeps per-session audio policy, device selection, and accessibility behavior in the shell-owned UI.
+
 ```cpp
-STARTUPINFO si = { sizeof(si) };
-PROCESS_INFORMATION pi = {};
-CreateProcessW(L"C:\\Windows\\System32\\SndVol.exe",
-               L" -r", NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
-CloseHandle(pi.hThread);
-CloseHandle(pi.hProcess);
+ShellExecuteW(nullptr, L"open", L"sndvol.exe", nullptr, nullptr, SW_SHOWNORMAL);
 ```
 
+## Connections
+
+- `Shell Execute.md` is the launch boundary for delegating volume policy to `SndVol.exe`.
+- `Notification Area (Tray).md` is where endpoint volume often becomes status UI.
+- `Media Foundation` and WASAPI notes use the same endpoint/session split from the rendering side.
+
+## References
+
+- <https://raw.githubusercontent.com/myfreeer/mastervol/master/mastervol.c>
+- <https://stackoverflow.com/questions/47012491/uuidof-in-c-master-volume-windows/47014922#47014922>
+- <https://learn.microsoft.com/en-us/windows/win32/devnotes/sndvol32-exe->

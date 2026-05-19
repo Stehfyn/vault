@@ -1,29 +1,8 @@
-```cpp
-auto CreateDispatcherQueueController()
-{
-    namespace abi = ABI::Windows::System;
+# WinRT WRL Example
 
-    DispatcherQueueOptions options
-    {
-        sizeof(DispatcherQueueOptions),
-        DQTYPE_THREAD_CURRENT,
-        DQTAT_COM_STA
-    };
+This example demonstrates using the Windows Runtime from C++ through WRL, the pre-C++/WinRT projection style built around COM interfaces, `ComPtr`, activation factories, and HRESULT-first control flow. It is useful when reading older Windows 8/10 samples or codebases that never migrated to C++/WinRT.
 
-    Windows::System::DispatcherQueueController controller{ nullptr };
-    check_hresult(CreateDispatcherQueueController(options, reinterpret_cast<abi::IDispatcherQueueController**>(put_abi(controller))));
-    return controller;
-}
+Connect it to `Acrylic via WinRT Composition Interop`, `XboxGameBarSamples`, and Kenny Kerr's modern C++/Windows writing. WRL shows the ABI shape plainly; C++/WinRT is usually the better authoring experience.
 
-DesktopWindowTarget CreateDesktopWindowTarget(Compositor const& compositor, HWND window)
-{
-    namespace abi = ABI::Windows::UI::Composition::Desktop;
-
-    auto interop = compositor.as<abi::ICompositorDesktopInterop>();
-    DesktopWindowTarget target{ nullptr };
-    check_hresult(interop->CreateDesktopWindowTarget(window, true, reinterpret_cast<abi::IDesktopWindowTarget**>(put_abi(target))));
-    return target;
-}
-```
-https://gist.github.com/kennykerr/62923cdacaba28fedc4f3dab6e0c12ec
-
+## References
+- Local snippet source retained in previous revision of this note.

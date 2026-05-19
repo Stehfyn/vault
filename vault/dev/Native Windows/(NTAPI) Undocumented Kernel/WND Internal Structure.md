@@ -1,50 +1,48 @@
 # WND Internal Structure
 
-`GetWindowLongPtr(hWnd, -1)` returns a pointer to the internal `WF` struct — a nested part of USER32's undocumented `WND` structure — exposing window state flags, styles, and fnid beyond what `GetWindowLong` reveals.
+The internal `WND`/`WF` material is valuable as a reverse-engineering map of USER32 and win32k window state: styles, extended styles, state flags, server-side procedure markers, destruction state, fullscreen hints, shell-hook registration, and control `fnid` classifications. It explains why public calls such as `GetWindowLongPtr`, `GetWindowRect`, class queries, and message inspection expose only a curated projection of a larger object.
 
-## Snippet
+Treat the offsets and flag values as version-sensitive diagnostics, not a programming interface. Geoff Chappell's notes, ReactOS headers, reverse-engineering answers, and tinysec's `fnID` list are useful because they triangulate the same object family from different evidence. Writing through these structures or assuming a fixed layout across builds is the wrong lesson.
+
+## Supported Projection
+
+The reverse-engineering references contribute names for internal state, but ordinary tools should stay on supported projections: handles, styles, class names, thread/process IDs, and messages.
 
 ```cpp
-// Undocumented: index -1 returns a pointer to the WF struct inside WND.
-// Do NOT write through this pointer — read-only diagnostic use only.
+DWORD pid = 0;
+DWORD tid = GetWindowThreadProcessId(hwnd, &pid);
 
-struct WF {
-    DWORD state;    // WF_STATE bitfield  (WNDS_* flags)
-    DWORD state2;   // WF_STATE2 bitfield (WNDS2_* flags)
-    DWORD ExStyles; // Extended styles with extra undocumented bits
-    DWORD Styles;   // Window styles with extra undocumented bits
-    HMODULE hModule;
-    USHORT reserved;
-    USHORT fnid;    // Control class identifier (e.g. FNID_BUTTON = 0x02A1)
-};
+LONG_PTR style = GetWindowLongPtrW(hwnd, GWL_STYLE);
+LONG_PTR ex_style = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
 
-WF* pWf = reinterpret_cast<WF*>(::GetWindowLongPtr(hWnd, -1));
-if (pWf) {
-    bool isDialog      = (pWf->state  & 0x00010000) != 0; // WNDS_DIALOGWINDOW
-    bool isFullscreen  = (pWf->state2 & 0x00000040) != 0; // WNDS2_FULLSCREEN
-    bool isDestroyed   = (pWf->state  & 0x80000000) != 0; // WNDS_DESTROYED
-}
+wchar_t class_name[256];
+GetClassNameW(hwnd, class_name, ARRAYSIZE(class_name));
 ```
 
-### WF_STATE selected flags (state)
-| Flag | Value | Meaning |
-|------|-------|---------|
-| `WNDS_HASMENU` | `0x00000001` | Window has a menu |
-| `WNDS_HASCAPTION` | `0x00000008` | Has a title bar |
-| `WNDS_DIALOGWINDOW` | `0x00010000` | Is a dialog window |
-| `WNDS_SERVERSIDEWINDOWPROC` | `0x00040000` | WndProc is in win32k.sys |
-| `WNDS_DESTROYED` | `0x80000000` | Window is being destroyed |
+## Diagnostic Record
 
-### WF_STATE2 selected flags (state2)
-| Flag | Value | Meaning |
-|------|-------|---------|
-| `WNDS2_HASCLIENTEDGE` | `0x00000010` | Has `WS_EX_CLIENTEDGE` |
-| `WNDS2_FULLSCREEN` | `0x00000040` | Fullscreen mode |
-| `WNDS2_INDESTROY` | `0x00000080` | Inside `DestroyWindow` |
-| `WNDS2_SHELLHOOKREGISTERED` | `0x40000000` | Registered shell hook |
+Geoff Chappell, ReactOS, and the `fnID` list are best used to label observations from supported APIs and debugger output. Keep version-specific offsets out of normal code paths.
+
+```cpp
+struct WindowDiagnosticRecord {
+    HWND hwnd;
+    DWORD owner_thread;
+    DWORD owner_process;
+    LONG_PTR style;
+    LONG_PTR ex_style;
+    std::wstring class_name;
+    std::wstring title;
+};
+```
+
+## Connections
+
+- `Win32k Kernel Structures` is the NT5 source-side counterpart.
+- WinSpy++ observes window hierarchy and messages from the supported side, using handles and hooks rather than raw structure mutation.
 
 ## References
-- https://reverseengineering.stackexchange.com/a/21135
-- https://www.geoffchappell.com/studies/windows/win32/user32/structs/wnd/index.htm
-- https://doxygen.reactos.org/dd/d79/include_2ntuser_8h_source.html#l00572
-- https://github.com/tinysec/public/blob/master/win32k/fnID.md
+
+- <https://reverseengineering.stackexchange.com/a/21135>
+- <https://www.geoffchappell.com/studies/windows/win32/user32/structs/wnd/index.htm>
+- <https://doxygen.reactos.org/dd/d79/include_2ntuser_8h_source.html#l00572>
+- <https://github.com/tinysec/public/blob/master/win32k/fnID.md>

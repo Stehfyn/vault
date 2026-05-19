@@ -1,1 +1,1 @@
-
+Use this only for GDI links that do not yet fit the sharper buckets: DIB/DDB pixel ownership, text shaping, palette/color-management, capture, printing, or old driver-DDI material. If a link is really about compositor presentation, move it to DWM/DXGI; if it is about controls painting themselves, move it to Common Controls.

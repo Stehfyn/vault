@@ -1,0 +1,1 @@
+No loose installer topics are parked here yet. Future notes should identify whether they concern MSI database/component behavior, MSIX package structure, legacy INF/ADVPACK setup, driver installation, or image-based deployment; those are different systems with different failure modes.

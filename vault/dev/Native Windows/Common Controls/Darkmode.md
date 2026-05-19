@@ -1,58 +1,39 @@
-Windows 10 1809+ exposes undocumented dark mode APIs in `uxtheme.dll`. Key functions—`AllowDarkModeForApp` (ordinal 132), `AllowDarkModeForWindow` (133), `RefreshImmersiveColorPolicyState` (104)—must be loaded by ordinal. After enabling, call `SetWindowTheme` and send `WM_THEMECHANGED` to force controls to repaint in dark mode.
+# Darkmode
+
+Native Win32 dark mode is a patchwork. Classic controls are themed through UxTheme, top-level chrome through DWM attributes such as `DWMWA_USE_IMMERSIVE_DARK_MODE`, and older Windows 10 builds require undocumented UxTheme ordinals popularized by `ysc3839/win32-darkmode`. Calling one function is not enough; every HWND that owns themed drawing may need `AllowDarkModeForWindow`, `SetWindowTheme`, and invalidation on `WM_THEMECHANGED`.
+
+## DWM Chrome
+
+ThemeEngine and MicaForEveryone contribute the public DWM side: titlebar color and backdrop are per-window attributes, guarded by OS build support.
 
 ```cpp
-#include <windows.h>
-#include <uxtheme.h>
+BOOL dark = TRUE;
+DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE,
+                      &dark, sizeof(dark));
 
-using fnAllowDarkModeForApp    = BOOL(WINAPI*)(BOOL);
-using fnAllowDarkModeForWindow = BOOL(WINAPI*)(HWND, BOOL);
-using fnRefreshColorPolicy     = void(WINAPI*)();
+DWORD backdrop = 2; // DWMSBT_MAINWINDOW on supported Windows 11 builds.
+DwmSetWindowAttribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE,
+                      &backdrop, sizeof(backdrop));
+```
 
-static fnAllowDarkModeForApp    pAllowDarkModeForApp    = nullptr;
-static fnAllowDarkModeForWindow pAllowDarkModeForWindow = nullptr;
-static fnRefreshColorPolicy     pRefreshColorPolicy     = nullptr;
+## UxTheme Controls
 
-void InitDarkMode() {
-    HMODULE hUx = LoadLibraryExW(L"uxtheme.dll", nullptr,
-                                 LOAD_LIBRARY_SEARCH_SYSTEM32);
-    pAllowDarkModeForApp    = (fnAllowDarkModeForApp)   GetProcAddress(hUx, MAKEINTRESOURCEA(132));
-    pAllowDarkModeForWindow = (fnAllowDarkModeForWindow)GetProcAddress(hUx, MAKEINTRESOURCEA(133));
-    pRefreshColorPolicy     = (fnRefreshColorPolicy)    GetProcAddress(hUx, MAKEINTRESOURCEA(104));
+The `win32-darkmode` link contributes the missing classic-control layer. `SetWindowTheme` and invalidation are what the child controls actually see; DWM attributes alone do not recolor them.
 
-    if (pAllowDarkModeForApp)    pAllowDarkModeForApp(TRUE);
-    if (pRefreshColorPolicy)     pRefreshColorPolicy();
-}
-
-void EnableWindowDarkMode(HWND hwnd) {
-    if (pAllowDarkModeForWindow) pAllowDarkModeForWindow(hwnd, TRUE);
-    SetWindowTheme(hwnd, L"DarkMode_Explorer", nullptr);
-    SendMessage(hwnd, WM_THEMECHANGED, 0, 0);
-}
+```cpp
+SetWindowTheme(list_view, L"Explorer", nullptr);
+SendMessageW(list_view, WM_THEMECHANGED, 0, 0);
+InvalidateRect(list_view, nullptr, TRUE);
 ```
 
 ## References
-- https://github.com/ysc3839/win32-darkmode
 
-https://github.com/HFaeiro/ThemeEngine
-DwmSetWindowAttribute can set dark mode and Mica effects. DWMWA_USE_IMMERSIVE_DARK_MODE enables the dark title bar; DWMWA_SYSTEMBACKDROP_TYPE = 2 enables Mica on Windows 11.
-```cpp
-BOOL dark = TRUE;
-DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &dark, sizeof(dark));
-INT backdrop = 2; // DWMSBT_MAINWINDOW = Mica
-DwmSetWindowAttribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE, &backdrop, sizeof(backdrop));
+- <https://github.com/ysc3839/win32-darkmode> - canonical undocumented UxTheme ordinal shim.
+- <https://github.com/HFaeiro/ThemeEngine> - DWM dark titlebar/backdrop attribute usage.
+- <https://github.com/MicaForEveryone/MicaForEveryone/blob/669b6b21df5801faedba112981f922bd3338c956/MicaForEveryone.App/Services/RuleService.cs#L258-L271> - process-rule based use of `DWMWA_SYSTEMBACKDROP_TYPE`.
 
-// Also apply to any comctl32 controls via SetWindowTheme
-SetWindowTheme(hCtrl, L"DarkMode_Explorer", nullptr);
-InvalidateRect(hwnd, nullptr, TRUE);
-```
+## Connections
 
-https://github.com/MicaForEveryone/MicaForEveryone/blob/669b6b21df5801faedba112981f922bd3338c956/MicaForEveryone.App/Services/RuleService.cs#L258-L271
-MicaForEveryone applies DWM backdrop attributes per-window based on process rules. The key attribute is DWMWA_SYSTEMBACKDROP_TYPE (38) available on Windows 11 Build 22000+.
-```cpp
-// DWMWA_SYSTEMBACKDROP_TYPE values:
-// 0 = Auto, 1 = None, 2 = Mica, 3 = Acrylic, 4 = Tabbed
-int backdropType = 2;
-DwmSetWindowAttribute(hwnd, 38 /*DWMWA_SYSTEMBACKDROP_TYPE*/,
-    &backdropType, sizeof(backdropType));
-```
-
+- `Dark Mode (C Port).md` is the C-only version of the ordinal approach.
+- `Custom Menubar.md` covers the remaining menubar gap.
+- `Custom Frame` entries outside this folder go deeper on non-client theming.

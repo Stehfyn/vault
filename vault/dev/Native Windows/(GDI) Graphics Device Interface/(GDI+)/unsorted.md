@@ -1,0 +1,1 @@
+Hold GDI+ material here only when it depends on the `GdiplusStartup` object model, image codecs, `Graphics` state, or path/brush abstractions. Plain bitmap-header work belongs in the parent GDI folder; WIC decode/encode belongs with WIC rather than GDI+.

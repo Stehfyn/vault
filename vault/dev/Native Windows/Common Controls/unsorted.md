@@ -1,1 +1,1 @@
-
+Use this only for Win32 control entries that do not yet deserve a dedicated note: subclassing, custom draw, owner draw, notification routing, theme-data boundaries, or comctl32 versioning. Shell UI, custom frames, and DirectUI belong outside this folder.

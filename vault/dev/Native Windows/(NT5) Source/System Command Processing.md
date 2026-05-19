@@ -1,22 +1,12 @@
 # System Command Processing (syscmd.c)
 
-`syscmd.c` in win32k routes `WM_SYSCOMMAND` messages to internal handlers for `SC_MINIMIZE`, `SC_MAXIMIZE`, `SC_CLOSE`, `SC_MOVE`, `SC_SIZE`, and others. The low 4 bits of `wParam` carry mouse position info and should be masked off before comparing.
+`syscmd.c` routes `WM_SYSCOMMAND` into the window-manager actions behind close, move, size, minimize, maximize, restore, menu tracking, screensaver, and monitor-power commands. The low bits of `wParam` are not part of the command identity, which is why correct code masks with `0xFFF0` before comparing.
 
-```cpp
-case WM_SYSCOMMAND:
-  switch (wParam & 0xFFF0) {
-    case SC_CLOSE:
-      DestroyWindow(hwnd);
-      return 0;
-    case SC_MINIMIZE:
-      ShowWindow(hwnd, SW_MINIMIZE);
-      return 0;
-    case SC_MAXIMIZE:
-      ShowWindow(hwnd, SW_MAXIMIZE);
-      return 0;
-  }
-  break;
-```
+The file matters because system commands bridge UI decoration and window state. Caption buttons, Alt+Space menus, keyboard accelerators, and non-client hit tests all converge here. Custom chrome that intercepts `WM_NCHITTEST` or `WM_NCPAINT` still has to preserve the system-command contract or it will break keyboard access, move/size loops, and default close/minimize behavior.
+
+## Connections
+- `Caption Rendering` emits the visual affordances that generate many system commands.
+- `MinMax Size Computation` constrains commands such as size, maximize, and restore.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/windows/core/ntuser/kernel/syscmd.c

@@ -1,16 +1,12 @@
 # MinMax Size Computation (minmax.c)
 
-`minmax.c` in win32k computes the constrained window size during resize. It clamps `ptMinTrackSize` / `ptMaxTrackSize` in the `MINMAXINFO` structure. Apps respond to `WM_GETMINMAXINFO` to override the defaults before this clamping occurs.
+`minmax.c` is the internal side of resize constraints. It combines monitor/work-area metrics, frame metrics, style bits, zoom/maximize state, and `WM_GETMINMAXINFO` application overrides into the track limits the user actually experiences during sizing. The practical nuance is that the application's `MINMAXINFO` response is not the whole answer; NTUSER still applies policy around the non-client frame and monitor geometry.
 
-```cpp
-case WM_GETMINMAXINFO: {
-  MINMAXINFO* mmi = (MINMAXINFO*)lParam;
-  mmi->ptMinTrackSize.x = 320;
-  mmi->ptMinTrackSize.y = 200;
-  // ptMaxTrackSize defaults to screen dimensions
-  return 0;
-}
-```
+This is where custom chrome and multi-monitor behavior often go wrong. A window can claim a client minimum that becomes impossible after frame inflation, DPI scaling, or work-area clamping. Reading the NT5 implementation makes clear why resize bugs often involve both `WM_GETMINMAXINFO` and `SetWindowPos`/`SWP_FRAMECHANGED`.
+
+## Connections
+- `Caption Rendering` explains the frame whose metrics feed the calculation.
+- `Window Manager Internals` applies the resulting size and z-order changes.
 
 ## References
 - https://github.com/tongzx/nt5src/blob/daad8a087a4e75422ec96b7911f1df4669989611/Source/XPSP1/NT/windows/core/ntuser/kernel/minmax.c
