@@ -1,0 +1,4397 @@
+﻿; CreateProcessInternalW
+; rva=0x88F10  va=0x180088F10  size=0x645E (25694 bytes)
+; unwind_rva=0x368D9C
+
+0x180088F10  push   rbx
+0x180088F12  push   rsi
+0x180088F13  push   rdi
+0x180088F14  push   r12
+0x180088F16  push   r13
+0x180088F18  push   r14
+0x180088F1A  push   r15
+0x180088F1C  mov    eax, 0x20a0
+0x180088F21  call   0x180194913
+0x180088F26  sub    rsp, rax
+0x180088F29  mov    rax, qword ptr [rip + 0x3161a0]
+0x180088F30  xor    rax, rsp
+0x180088F33  mov    qword ptr [rsp + 0x2090], rax
+0x180088F3B  mov    qword ptr [rsp + 0x770], rsp
+0x180088F43  mov    rax, r9
+0x180088F46  mov    qword ptr [rsp + 0x358], rax
+0x180088F4E  mov    rsi, r8
+0x180088F51  mov    rbx, rdx
+0x180088F54  mov    r15, rcx
+0x180088F57  mov    r14d, dword ptr [rsp + 0x2110]
+0x180088F5F  mov    qword ptr [rsp + 0x198], rcx
+0x180088F67  mov    qword ptr [rsp + 0x118], rdx
+0x180088F6F  mov    qword ptr [rsp + 0x108], r8
+0x180088F77  mov    qword ptr [rsp + 0x428], rax
+0x180088F7F  mov    qword ptr [rsp + 0x5e8], rax
+0x180088F87  mov    qword ptr [rsp + 0x618], rax
+0x180088F8F  mov    qword ptr [rsp + 0x608], rax
+0x180088F97  mov    qword ptr [rsp + 0x5f8], rax
+0x180088F9F  mov    rax, qword ptr [rsp + 0x2100]
+0x180088FA7  mov    qword ptr [rsp + 0x360], rax
+0x180088FAF  mov    qword ptr [rsp + 0x430], rax
+0x180088FB7  mov    qword ptr [rsp + 0x5f0], rax
+0x180088FBF  mov    qword ptr [rsp + 0x620], rax
+0x180088FC7  mov    qword ptr [rsp + 0x610], rax
+0x180088FCF  mov    qword ptr [rsp + 0x600], rax
+0x180088FD7  mov    dword ptr [rsp + 0xe8], r14d
+0x180088FDF  mov    rax, qword ptr [rsp + 0x2118]
+0x180088FE7  mov    qword ptr [rsp + 0x170], rax
+0x180088FEF  mov    rax, qword ptr [rsp + 0x2120]
+0x180088FF7  mov    qword ptr [rsp + 0x1e8], rax
+0x180088FFF  mov    rax, qword ptr [rsp + 0x2128]
+0x180089007  mov    qword ptr [rsp + 0x3a0], rax
+0x18008900F  mov    r12, qword ptr [rsp + 0x2130]
+0x180089017  mov    qword ptr [rsp + 0x2b8], r12
+0x18008901F  mov    qword ptr [rsp + 0x590], r12
+0x180089027  xor    edi, edi
+0x180089029  mov    dword ptr [rsp + 0x3b8], edi
+0x180089030  mov    dword ptr [rsp + 0xd0], edi
+0x180089037  mov    qword ptr [rsp + 0x1f0], rdi
+0x18008903F  mov    word ptr [rsp + 0x16c], di
+0x180089047  mov    dword ptr [rsp + 0x1d0], edi
+0x18008904E  mov    dword ptr [rsp + 0x154], edi
+0x180089055  mov    dword ptr [rsp + 0x158], edi
+0x18008905C  mov    qword ptr [rsp + 0x580], rdi
+0x180089064  mov    qword ptr [rsp + 0x570], rdi
+0x18008906C  mov    qword ptr [rsp + 0x438], rdi
+0x180089074  xor    eax, eax
+0x180089076  mov    dword ptr [rsp + 0x694], eax
+0x18008907D  xor    edx, edx
+0x18008907F  lea    r8d, [rdi + 0x64]
+0x180089083  lea    rcx, [rsp + 0x690]
+0x18008908B  call   0x1801298d1
+0x180089090  mov    qword ptr [rsp + 0x370], rdi
+0x180089098  mov    qword ptr [rsp + 0x350], rdi
+0x1800890A0  xor    edx, edx
+0x1800890A2  mov    r8d, 0x3b8
+0x1800890A8  lea    rcx, [rsp + 0xe30]
+0x1800890B0  call   0x1801298d1
+0x1800890B5  mov    dword ptr [rsp + 0x2c8], edi
+0x1800890BC  xor    eax, eax
+0x1800890BE  xorps  xmm0, xmm0
+0x1800890C1  movups xmmword ptr [rsp + 0x778], xmm0
+0x1800890C9  movups xmmword ptr [rsp + 0x788], xmm0
+0x1800890D1  mov    qword ptr [rsp + 0x798], rax
+0x1800890D9  mov    dword ptr [rsp + 0x7a0], eax
+0x1800890E0  movups xmmword ptr [rsp + 0x7a8], xmm0
+0x1800890E8  movups xmmword ptr [rsp + 0x7b8], xmm0
+0x1800890F0  mov    qword ptr [rsp + 0x7c8], rax
+0x1800890F8  mov    dword ptr [rsp + 0x7d0], eax
+0x1800890FF  mov    qword ptr [rsp + 0x5a0], rdi
+0x180089107  mov    qword ptr [rsp + 0x598], rdi
+0x18008910F  movups xmmword ptr [rsp + 0x320], xmm0
+0x180089117  xorps  xmm1, xmm1
+0x18008911A  movups xmmword ptr [rsp + 0x250], xmm1
+0x180089122  movups xmmword ptr [rsp + 0x950], xmm0
+0x18008912A  movups xmmword ptr [rsp + 0x960], xmm0
+0x180089132  mov    qword ptr [rsp + 0x5d8], 0x140012
+0x18008913E  lea    rax, [rip + 0x213d2b]
+0x180089145  mov    qword ptr [rsp + 0x5e0], rax
+0x18008914D  xor    edx, edx
+0x18008914F  lea    r8d, [rdi + 0x58]
+0x180089153  lea    rcx, [rsp + 0x500]
+0x18008915B  call   0x1801298d1
+0x180089160  mov    dword ptr [rsp + 0x3e4], edi
+0x180089167  mov    dword ptr [rsp + 0x384], edi
+0x18008916E  mov    dword ptr [rsp + 0x3e0], edi
+0x180089175  xor    edx, edx
+0x180089177  lea    r8d, [rdi + 0x40]
+0x18008917B  lea    rcx, [rsp + 0x710]
+0x180089183  call   0x1801298d1
+0x180089188  xorps  xmm0, xmm0
+0x18008918B  movups xmmword ptr [rsp + 0x560], xmm0
+0x180089193  mov    qword ptr [rsp + 0x468], rdi
+0x18008919B  mov    dword ptr [rsp + 0x3c8], edi
+0x1800891A2  mov    dword ptr [rsp + 0x234], edi
+0x1800891A9  mov    qword ptr [rsp + 0x3e8], rdi
+0x1800891B1  mov    qword ptr [rsp + 0x5d0], rdi
+0x1800891B9  mov    r13d, 0x428
+0x1800891BF  mov    r8d, r13d
+0x1800891C2  xor    edx, edx
+0x1800891C4  lea    rcx, [rsp + 0xa00]
+0x1800891CC  call   0x1801298d1
+0x1800891D1  mov    r8d, r13d
+0x1800891D4  xor    edx, edx
+0x1800891D6  lea    rcx, [rsp + 0x11f0]
+0x1800891DE  call   0x1801298d1
+0x1800891E3  mov    qword ptr [rsp + 0x208], rdi
+0x1800891EB  xorps  xmm0, xmm0
+0x1800891EE  movups xmmword ptr [rsp + 0x5c0], xmm0
+0x1800891F6  mov    qword ptr [rsp + 0x1e0], rdi
+0x1800891FE  mov    qword ptr [rsp + 0x408], rdi
+0x180089206  mov    byte ptr [rsp + 0x17b], dil
+0x18008920E  mov    word ptr [rsp + 0x188], di
+0x180089216  mov    word ptr [rsp + 0x2c0], di
+0x18008921E  mov    word ptr [rsp + 0x18c], di
+0x180089226  mov    dword ptr [rsp + 0x3d4], edi
+0x18008922D  movups xmmword ptr [rsp + 0x980], xmm0
+0x180089235  xorps  xmm1, xmm1
+0x180089238  movups xmmword ptr [rsp + 0x970], xmm1
+0x180089240  movups xmmword ptr [rsp + 0x9b8], xmm0
+0x180089248  movups xmmword ptr [rsp + 0x9a8], xmm1
+0x180089250  mov    dword ptr [rsp + 0x380], edi
+0x180089257  mov    qword ptr [rsp + 0x5b0], rdi
+0x18008925F  mov    qword ptr [rsp + 0x5b8], rdi
+0x180089267  test   rbx, rbx
+0x18008926A  jne    0x18008927b  ; -> +0x36B
+0x18008926C  test   rsi, rsi
+0x18008926F  jne    0x18008927b  ; -> +0x36B
+0x180089271  mov    ecx, 0xc0000030
+0x180089276  jmp    0x18008f343  ; -> +0x6433
+0x18008927B  test   r12, r12
+0x18008927E  je     0x18008f33e  ; -> +0x642E
+0x180089284  mov    rbx, qword ptr [rsp + 0x3a0]
+0x18008928C  test   rbx, rbx
+0x18008928F  je     0x18008f33e  ; -> +0x642E
+0x180089295  mov    qword ptr [rsp + 0x270], rdi
+0x18008929D  mov    qword ptr [rsp + 0x1d8], rdi
+0x1800892A5  mov    qword ptr [rsp + 0x368], rdi
+0x1800892AD  mov    qword ptr [rsp + 0xf8], rdi
+0x1800892B5  mov    qword ptr [rsp + 0x190], rdi
+0x1800892BD  mov    qword ptr [rsp + 0x398], rdi
+0x1800892C5  mov    qword ptr [rsp + 0x280], rdi
+0x1800892CD  mov    qword ptr [rsp + 0x2a8], rdi
+0x1800892D5  mov    qword ptr [rsp + 0x290], rdi
+0x1800892DD  mov    dword ptr [rsp + 0x4e0], edi
+0x1800892E4  mov    qword ptr [rsp + 0x278], rdi
+0x1800892EC  mov    qword ptr [rsp + 0x630], rdi
+0x1800892F4  mov    qword ptr [rsp + 0x3f0], rdi
+0x1800892FC  mov    qword ptr [rsp + 0x470], rdi
+0x180089304  mov    byte ptr [rsp + 0x141], dil
+0x18008930C  mov    byte ptr [rsp + 0x144], dil
+0x180089314  mov    byte ptr [rsp + 0xf4], dil
+0x18008931C  mov    byte ptr [rsp + 0x140], dil
+0x180089324  mov    qword ptr [rsp + 0x348], rdi
+0x18008932C  mov    qword ptr [rsp + 0x2a0], rdi
+0x180089334  mov    qword ptr [rsp + 0x210], rdi
+0x18008933C  mov    dword ptr [rsp + 0x1cc], edi
+0x180089343  mov    qword ptr [rsp + 0x318], rdi
+0x18008934B  mov    dword ptr [rsp + 0x230], edi
+0x180089352  mov    qword ptr [rsp + 0x298], rdi
+0x18008935A  mov    dword ptr [rsp + 0x200], edi
+0x180089361  mov    dword ptr [rsp + 0x1b0], edi
+0x180089368  mov    dword ptr [rsp + 0x3bc], edi
+0x18008936F  mov    qword ptr [rsp + 0x340], rdi
+0x180089377  mov    dword ptr [rsp + 0x22c], edi
+0x18008937E  mov    qword ptr [rsp + 0x418], rdi
+0x180089386  mov    dword ptr [rsp + 0x2d8], edi
+0x18008938D  mov    dword ptr [rsp + 0x148], edi
+0x180089394  mov    dword ptr [rsp + 0xf0], edi
+0x18008939B  mov    dword ptr [rsp + 0x228], edi
+0x1800893A2  mov    qword ptr [rsp + 0x5a8], rdi
+0x1800893AA  mov    dword ptr [rsp + 0x3c0], edi
+0x1800893B1  mov    qword ptr [rsp + 0x588], rdi
+0x1800893B9  mov    qword ptr [rsp + 0x578], rdi
+0x1800893C1  movups xmmword ptr [rsp + 0x700], xmm0
+0x1800893C9  xor    eax, eax
+0x1800893CB  movups xmmword ptr [rsp + 0x990], xmm1
+0x1800893D3  mov    qword ptr [rsp + 0x9a0], rax
+0x1800893DB  movups xmmword ptr [rsp + 0x9e0], xmm0
+0x1800893E3  mov    qword ptr [rsp + 0x9f0], rax
+0x1800893EB  mov    qword ptr [rsp + 0x400], rdi
+0x1800893F3  mov    dword ptr [rsp + 0x490], edi
+0x1800893FA  mov    dword ptr [rsp + 0x3d0], edi
+0x180089401  mov    dword ptr [rsp + 0x23c], edi
+0x180089408  mov    dword ptr [rsp + 0x1fc], edi
+0x18008940F  mov    dword ptr [rsp + 0x1c8], edi
+0x180089416  mov    byte ptr [rsp + 0x130], dil
+0x18008941E  movups xmmword ptr [rsp + 0x9c8], xmm0
+0x180089426  mov    qword ptr [rsp + 0x9d8], rax
+0x18008942E  xor    edx, edx
+0x180089430  lea    r8d, [rax + 0x58]
+0x180089434  lea    rcx, [rsp + 0x8f0]
+0x18008943C  call   0x1801298d1
+0x180089441  xorps  xmm0, xmm0
+0x180089444  xor    eax, eax
+0x180089446  movups xmmword ptr [rsp + 0x440], xmm0
+0x18008944E  movups xmmword ptr [rsp + 0x450], xmm0
+0x180089456  mov    qword ptr [rsp + 0x460], rax
+0x18008945E  movups xmmword ptr [rsp + 0x330], xmm0
+0x180089466  mov    rax, qword ptr gs:[0x60]
+0x18008946F  mov    qword ptr [rsp + 0x410], rax
+0x180089477  mov    r12, qword ptr [rax + 0x30]
+0x18008947B  mov    qword ptr [rsp + 0xd8], r12
+0x180089483  mov    qword ptr [rsp + 0x4c0], r12
+0x18008948B  mov    byte ptr [rsp + 0x142], dil
+0x180089493  mov    byte ptr [rsp + 0x143], dil
+0x18008949B  mov    byte ptr [rsp + 0x168], dil
+0x1800894A3  movups xmmword ptr [rsp + 0x218], xmm0
+0x1800894AB  mov    r13d, 0x100
+0x1800894B1  mov    r8d, r13d
+0x1800894B4  xor    edx, edx
+0x1800894B6  lea    rcx, [rsp + 0x1d70]
+0x1800894BE  call   0x1801298d1
+0x1800894C3  mov    qword ptr [rsp + 0x288], rdi
+0x1800894CB  mov    qword ptr [rsp + 0x248], rdi
+0x1800894D3  mov    qword ptr [rsp + 0x240], rdi
+0x1800894DB  mov    qword ptr [rsp + 0x2b0], rdi
+0x1800894E3  mov    qword ptr [rsp + 0x180], rdi
+0x1800894EB  mov    qword ptr [rsp + 0x3f8], rdi
+0x1800894F3  mov    byte ptr [rsp + 0x169], dil
+0x1800894FB  mov    dword ptr [rsp + 0x1ac], edi
+0x180089502  mov    qword ptr [rsp + 0x100], rdi
+0x18008950A  mov    qword ptr [rsp + 0x160], rdi
+0x180089512  mov    dword ptr [rsp + 0x238], edi
+0x180089519  mov    qword ptr [rsp + 0x308], rdi
+0x180089521  mov    byte ptr [rsp + 0xf6], dil
+0x180089529  mov    byte ptr [rsp + 0xf5], dil
+0x180089531  mov    qword ptr [rsp + 0x420], rdi
+0x180089539  mov    qword ptr [rsp + 0x390], rdi
+0x180089541  mov    dword ptr [rsp + 0x3c4], edi
+0x180089548  mov    dword ptr [rsp + 0x2d4], edi
+0x18008954F  xorps  xmm0, xmm0
+0x180089552  xor    eax, eax
+0x180089554  movups xmmword ptr [rsp + 0x7d8], xmm0
+0x18008955C  movups xmmword ptr [rsp + 0x7e8], xmm0
+0x180089564  movups xmmword ptr [rsp + 0x7f8], xmm0
+0x18008956C  mov    qword ptr [rsp + 0x808], rax
+0x180089574  movups xmmword ptr [rsp + 0x750], xmm0
+0x18008957C  mov    qword ptr [rsp + 0x628], rdi
+0x180089584  lea    esi, [rax + 1]
+0x180089587  mov    dword ptr [rsp + 0x3cc], esi
+0x18008958E  mov    dword ptr [rsp + 0x2ec], edi
+0x180089595  mov    word ptr [rsp + 0x1e70], di
+0x18008959D  mov    dword ptr [rsp + 0x3ac], edi
+0x1800895A4  mov    qword ptr [rsp + 0x260], rdi
+0x1800895AC  mov    dword ptr [rsp + 0x3d8], edi
+0x1800895B3  mov    eax, r14d
+0x1800895B6  and    eax, 0x18
+0x1800895B9  cmp    al, 0x18
+0x1800895BB  je     0x1800895d4  ; -> +0x6C4
+0x1800895BD  mov    edx, 0x800
+0x1800895C2  mov    ecx, dword ptr [rsp + 0xe8]
+0x1800895C9  test   edx, r14d
+0x1800895CC  je     0x1800895ea  ; -> +0x6DA
+0x1800895CE  bt     ecx, 0xc
+0x1800895D2  jae    0x180089609  ; -> +0x6F9
+0x1800895D4  mov    ecx, 0x57
+0x1800895D9  call   qword ptr [rip + 0x20bff0]  ; -> ntdll.dll!RtlSetLastWin32Error
+0x1800895E0  nop    dword ptr [rax + rax]
+0x1800895E5  jmp    0x18008f348  ; -> +0x6438
+0x1800895EA  bt     ecx, 0xc
+0x1800895EE  jb     0x180089609  ; -> +0x6F9
+0x1800895F0  mov    rax, qword ptr [rip + 0x31b6f9]
+0x1800895F7  cmp    byte ptr [rax + 0x7f4], dil
+0x1800895FE  je     0x180089609  ; -> +0x6F9
+0x180089600  or     ecx, edx
+0x180089602  mov    dword ptr [rsp + 0xe8], ecx
+0x180089609  test   cl, 0x40
+0x18008960C  je     0x180089613  ; -> +0x703
+0x18008960E  mov    al, sil
+0x180089611  jmp    0x180089668  ; -> +0x758
+0x180089613  bt     ecx, 0xe
+0x180089617  jae    0x180089620  ; -> +0x710
+0x180089619  mov    eax, 5
+0x18008961E  jmp    0x180089668  ; -> +0x758
+0x180089620  test   cl, 0x20
+0x180089623  je     0x180089630  ; -> +0x720
+0x180089625  mov    r13d, 2
+0x18008962B  mov    al, r13b
+0x18008962E  jmp    0x18008966e  ; -> +0x75E
+0x180089630  bt     ecx, 0xf
+0x180089634  jae    0x18008963a  ; -> +0x72A
+0x180089636  mov    al, 6
+0x180089638  jmp    0x180089668  ; -> +0x758
+0x18008963A  test   cl, cl
+0x18008963C  jns    0x180089642  ; -> +0x732
+0x18008963E  mov    al, 3
+0x180089640  jmp    0x180089668  ; -> +0x758
+0x180089642  test   r13d, ecx
+0x180089645  je     0x180089665  ; -> +0x755
+0x180089647  test   r15, r15
+0x18008964A  setne  dl
+0x18008964D  xor    ecx, ecx
+0x18008964F  call   0x18013b2e4
+0x180089654  test   rax, rax
+0x180089657  setne  al
+0x18008965A  add    al, 3
+0x18008965C  mov    ecx, dword ptr [rsp + 0xe8]
+0x180089663  jmp    0x180089668  ; -> +0x758
+0x180089665  mov    al, dil
+0x180089668  mov    r13d, 2
+0x18008966E  mov    byte ptr [rsp + 0x178], al
+0x180089675  and    ecx, 0xffff3e1f
+0x18008967B  mov    dword ptr [rsp + 0xe8], ecx
+0x180089682  bt     ecx, 0x12
+0x180089686  jae    0x180089690  ; -> +0x780
+0x180089688  or     dword ptr [rsp + 0xf0], 0x40
+0x180089690  bt     ecx, 0x18
+0x180089694  jae    0x18008969d  ; -> +0x78D
+0x180089696  or     dword ptr [rsp + 0xf0], esi
+0x18008969D  bt     ecx, 0x10
+0x1800896A1  jae    0x1800896ac  ; -> +0x79C
+0x1800896A3  bts    dword ptr [rsp + 0xf0], 8
+0x1800896AC  test   byte ptr [rsp + 0xe8], 4
+0x1800896B4  jne    0x1800896bf  ; -> +0x7AF
+0x1800896B6  bts    dword ptr [rsp + 0xf0], 9
+0x1800896BF  test   byte ptr [rsp + 0xe8], 3
+0x1800896C7  je     0x18008970b  ; -> +0x7FB
+0x1800896C9  call   qword ptr [rip + 0x20cfa8]  ; -> ntdll.dll!DbgUiConnectToDbg
+0x1800896D0  nop    dword ptr [rax + rax]
+0x1800896D5  test   eax, eax
+0x1800896D7  jns    0x1800896e0  ; -> +0x7D0
+0x1800896D9  mov    ecx, eax
+0x1800896DB  jmp    0x18008f343  ; -> +0x6433
+0x1800896E0  call   qword ptr [rip + 0x20d221]  ; -> ntdll.dll!DbgUiGetThreadDebugObject
+0x1800896E7  nop    dword ptr [rax + rax]
+0x1800896EC  mov    rcx, rax
+0x1800896EF  mov    qword ptr [rsp + 0x398], rax
+0x1800896F7  test   byte ptr [rsp + 0xe8], r13b
+0x1800896FF  je     0x180089713  ; -> +0x803
+0x180089701  or     dword ptr [rsp + 0xf0], r13d
+0x180089709  jmp    0x180089713  ; -> +0x803
+0x18008970B  mov    rcx, qword ptr [rsp + 0x398]
+0x180089713  mov    qword ptr [rsp + 0xa08], 0x20005
+0x18008971F  mov    qword ptr [rsp + 0xa20], rdi
+0x180089727  mov    qword ptr [rsp + 0xa28], 0x10003
+0x180089733  mov    qword ptr [rsp + 0xa30], 0x10
+0x18008973F  mov    qword ptr [rsp + 0xa40], rdi
+0x180089747  lea    rax, [rsp + 0x5c0]
+0x18008974F  mov    qword ptr [rsp + 0xa38], rax
+0x180089757  mov    qword ptr [rsp + 0xa48], 6
+0x180089763  mov    qword ptr [rsp + 0xa50], 0x40
+0x18008976F  mov    qword ptr [rsp + 0xa60], rdi
+0x180089777  lea    rax, [rsp + 0x710]
+0x18008977F  mov    qword ptr [rsp + 0xa58], rax
+0x180089787  mov    dword ptr [rsp + 0xd4], 3
+0x180089792  mov    eax, 3
+0x180089797  mov    r15d, 8
+0x18008979D  test   rcx, rcx
+0x1800897A0  je     0x1800897d6  ; -> +0x8C6
+0x1800897A2  mov    qword ptr [rsp + 0xa68], 0x60001
+0x1800897AE  mov    qword ptr [rsp + 0xa70], r15
+0x1800897B6  mov    qword ptr [rsp + 0xa80], rdi
+0x1800897BE  mov    qword ptr [rsp + 0xa78], rcx
+0x1800897C6  mov    dword ptr [rsp + 0xd4], 4
+0x1800897D1  mov    eax, 4
+0x1800897D6  cmp    byte ptr [rsp + 0x178], dil
+0x1800897DE  je     0x180089841  ; -> +0x931
+0x1800897E0  shl    rax, 5
+0x1800897E4  mov    qword ptr [rsp + rax + 0xa08], 0x20008
+0x1800897F0  mov    eax, dword ptr [rsp + 0xd4]
+0x1800897F7  shl    rax, 5
+0x1800897FB  mov    qword ptr [rsp + rax + 0xa10], rsi
+0x180089803  mov    eax, dword ptr [rsp + 0xd4]
+0x18008980A  shl    rax, 5
+0x18008980E  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x180089816  mov    eax, dword ptr [rsp + 0xd4]
+0x18008981D  shl    rax, 5
+0x180089821  lea    rcx, [rsp + 0x178]
+0x180089829  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x180089831  mov    eax, dword ptr [rsp + 0xd4]
+0x180089838  add    eax, esi
+0x18008983A  mov    dword ptr [rsp + 0xd4], eax
+0x180089841  test   dword ptr [rsp + 0xe8], 0x4000000
+0x18008984C  je     0x1800898ba  ; -> +0x9AA
+0x18008984E  mov    dword ptr [rsp + 0x384], esi
+0x180089855  shl    rax, 5
+0x180089859  mov    qword ptr [rsp + rax + 0xa08], 0x20009
+0x180089865  mov    eax, dword ptr [rsp + 0xd4]
+0x18008986C  shl    rax, 5
+0x180089870  mov    qword ptr [rsp + rax + 0xa10], 4
+0x18008987C  mov    eax, dword ptr [rsp + 0xd4]
+0x180089883  shl    rax, 5
+0x180089887  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008988F  mov    eax, dword ptr [rsp + 0xd4]
+0x180089896  shl    rax, 5
+0x18008989A  lea    rcx, [rsp + 0x384]
+0x1800898A2  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x1800898AA  mov    eax, dword ptr [rsp + 0xd4]
+0x1800898B1  add    eax, esi
+0x1800898B3  mov    dword ptr [rsp + 0xd4], eax
+0x1800898BA  mov    r13d, 0x400000
+0x1800898C0  test   dword ptr [rsp + 0xe8], r13d
+0x1800898C8  je     0x180089922  ; -> +0xA12
+0x1800898CA  shl    rax, 5
+0x1800898CE  mov    qword ptr [rsp + rax + 0xa08], 0x20012
+0x1800898DA  mov    eax, dword ptr [rsp + 0xd4]
+0x1800898E1  shl    rax, 5
+0x1800898E5  mov    qword ptr [rsp + rax + 0xa10], r15
+0x1800898ED  mov    eax, dword ptr [rsp + 0xd4]
+0x1800898F4  shl    rax, 5
+0x1800898F8  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x180089900  mov    eax, dword ptr [rsp + 0xd4]
+0x180089907  shl    rax, 5
+0x18008990B  lea    rcx, [rsp + 0x9c8]
+0x180089913  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x18008991B  add    dword ptr [rsp + 0xd4], esi
+0x180089922  xorps  xmm0, xmm0
+0x180089925  xor    eax, eax
+0x180089927  mov    r14, qword ptr [rsp + 0x2b8]
+0x18008992F  movups xmmword ptr [r14], xmm0
+0x180089933  mov    qword ptr [r14 + 0x10], rax
+0x180089937  mov    rcx, qword ptr [rsp + 0x170]
+0x18008993F  test   rcx, rcx
+0x180089942  je     0x1800899a7  ; -> +0xA97
+0x180089944  test   dword ptr [rsp + 0xe8], 0x400
+0x18008994F  jne    0x1800899a7  ; -> +0xA97
+0x180089951  mov    r8d, esi
+0x180089954  lea    rdx, [rsp + 0x438]
+0x18008995C  call   qword ptr [rip + 0x20cfad]  ; -> ntdll.dll!RtlCreateEnvironmentEx
+0x180089963  nop    dword ptr [rax + rax]
+0x180089968  mov    dword ptr [rsp + 0xe0], eax
+0x18008996F  test   eax, eax
+0x180089971  jns    0x18008998e  ; -> +0xA7E
+0x180089973  mov    ecx, eax
+0x180089975  call   0x1800353c0
+0x18008997A  lea    rdx, [rip + 0x59c7]
+0x180089981  mov    rcx, qword ptr [rsp + 0x770]
+0x180089989  call   0x18019491f
+0x18008998E  mov    rax, qword ptr [rsp + 0x438]
+0x180089996  mov    qword ptr [rsp + 0x170], rax
+0x18008999E  bts    dword ptr [rsp + 0xe8], 0xa
+0x1800899A7  movups xmm2, xmmword ptr [rbx]
+0x1800899AA  movaps xmmword ptr [rsp + 0x690], xmm2
+0x1800899B2  movups xmm0, xmmword ptr [rbx + 0x10]
+0x1800899B6  movaps xmmword ptr [rsp + 0x6a0], xmm0
+0x1800899BE  movups xmm1, xmmword ptr [rbx + 0x20]
+0x1800899C2  movaps xmmword ptr [rsp + 0x6b0], xmm1
+0x1800899CA  movups xmm0, xmmword ptr [rbx + 0x30]
+0x1800899CE  movaps xmmword ptr [rsp + 0x6c0], xmm0
+0x1800899D6  movups xmm1, xmmword ptr [rbx + 0x40]
+0x1800899DA  movaps xmmword ptr [rsp + 0x6d0], xmm1
+0x1800899E2  movups xmm0, xmmword ptr [rbx + 0x50]
+0x1800899E6  movaps xmmword ptr [rsp + 0x6e0], xmm0
+0x1800899EE  movsd  xmm1, qword ptr [rbx + 0x60]
+0x1800899F3  movsd  qword ptr [rsp + 0x6f0], xmm1
+0x1800899FC  mov    r14d, 0x80000
+0x180089A02  test   dword ptr [rsp + 0xe8], r14d
+0x180089A0A  je     0x180089c41  ; -> +0xD31
+0x180089A10  movd   eax, xmm2
+0x180089A14  cmp    eax, 0x70
+0x180089A17  je     0x180089a2f  ; -> +0xB1F
+0x180089A19  mov    ecx, 0xc000000d
+0x180089A1E  call   0x1800353c0
+0x180089A23  mov    dword ptr [rsp + 0xd0], edi
+0x180089A2A  jmp    0x18008e2e5  ; -> +0x53D5
+0x180089A2F  mov    rcx, qword ptr [rbx + 0x68]
+0x180089A33  mov    qword ptr [rsp + 0x1e0], rcx
+0x180089A3B  test   rcx, rcx
+0x180089A3E  je     0x180089c41  ; -> +0xD31
+0x180089A44  mov    dword ptr [rsp + 0xc0], 0x1c
+0x180089A4F  lea    rax, [rsp + 0xd4]
+0x180089A57  mov    qword ptr [rsp + 0xb8], rax
+0x180089A5F  lea    rax, [rsp + 0xa00]
+0x180089A67  mov    qword ptr [rsp + 0xb0], rax
+0x180089A6F  lea    rax, [rsp + 0xf0]
+0x180089A77  mov    qword ptr [rsp + 0xa8], rax
+0x180089A7F  lea    rax, [rsp + 0x9c8]
+0x180089A87  mov    qword ptr [rsp + 0xa0], rax
+0x180089A8F  lea    rax, [rsp + 0x628]
+0x180089A97  mov    qword ptr [rsp + 0x98], rax
+0x180089A9F  lea    rax, [rsp + 0x750]
+0x180089AA7  mov    qword ptr [rsp + 0x90], rax
+0x180089AAF  lea    rax, [rsp + 0x7d8]
+0x180089AB7  mov    qword ptr [rsp + 0x88], rax
+0x180089ABF  lea    rax, [rsp + 0x380]
+0x180089AC7  mov    qword ptr [rsp + 0x80], rax
+0x180089ACF  lea    rax, [rsp + 0x1c8]
+0x180089AD7  mov    qword ptr [rsp + 0x78], rax
+0x180089ADC  lea    rax, [rsp + 0x440]
+0x180089AE4  mov    qword ptr [rsp + 0x70], rax
+0x180089AE9  lea    rax, [rsp + 0x418]
+0x180089AF1  mov    qword ptr [rsp + 0x68], rax
+0x180089AF6  lea    rax, [rsp + 0x490]
+0x180089AFE  mov    qword ptr [rsp + 0x60], rax
+0x180089B03  lea    rax, [rsp + 0x3d0]
+0x180089B0B  mov    qword ptr [rsp + 0x58], rax
+0x180089B10  lea    rax, [rsp + 0x400]
+0x180089B18  mov    qword ptr [rsp + 0x50], rax
+0x180089B1D  lea    rax, [rsp + 0x9e0]
+0x180089B25  mov    qword ptr [rsp + 0x48], rax
+0x180089B2A  lea    rax, [rsp + 0x990]
+0x180089B32  mov    qword ptr [rsp + 0x40], rax
+0x180089B37  lea    rax, [rsp + 0x700]
+0x180089B3F  mov    qword ptr [rsp + 0x38], rax
+0x180089B44  lea    rax, [rsp + 0x348]
+0x180089B4C  mov    qword ptr [rsp + 0x30], rax
+0x180089B51  lea    rax, [rsp + 0x169]
+0x180089B59  mov    qword ptr [rsp + 0x28], rax
+0x180089B5E  lea    rax, [rsp + 0x2b0]
+0x180089B66  mov    qword ptr [rsp + 0x20], rax
+0x180089B6B  lea    r9, [rsp + 0x218]
+0x180089B73  lea    r8, [rsp + 0x228]
+0x180089B7B  xor    edx, edx
+0x180089B7D  call   0x1800c7c1c
+0x180089B82  mov    dword ptr [rsp + 0xe0], eax
+0x180089B89  test   eax, eax
+0x180089B8B  jns    0x180089b94  ; -> +0xC84
+0x180089B8D  mov    ecx, eax
+0x180089B8F  jmp    0x180089a1e  ; -> +0xB0E
+0x180089B94  call   0x180187bb4
+0x180089B99  test   eax, eax
+0x180089B9B  je     0x180089bdc  ; -> +0xCCC
+0x180089B9D  cmp    dword ptr [rsp + 0x380], edi
+0x180089BA4  je     0x180089bdc  ; -> +0xCCC
+0x180089BA6  mov    rcx, qword ptr [rsp + 0x410]
+0x180089BAE  call   0x18018c680
+0x180089BB3  test   eax, eax
+0x180089BB5  je     0x180089bdc  ; -> +0xCCC
+0x180089BB7  lea    r8, [rsp + 0x5b8]
+0x180089BBF  lea    rdx, [rsp + 0xd4]
+0x180089BC7  lea    rcx, [rsp + 0xa00]
+0x180089BCF  call   0x18018b77c
+0x180089BD4  mov    qword ptr [rsp + 0x5b0], rax
+0x180089BDC  mov    rax, qword ptr [rsp + 0x1e0]
+0x180089BE4  mov    ecx, dword ptr [rax]
+0x180089BE6  bt     ecx, 8
+0x180089BEA  jae    0x180089c02  ; -> +0xCF2
+0x180089BEC  mov    byte ptr [rsp + 0x142], sil
+0x180089BF4  cmp    qword ptr [rsp + 0x2b0], rdi
+0x180089BFC  jne    0x180089a19  ; -> +0xB09
+0x180089C02  test   r14d, ecx
+0x180089C05  mov    eax, dword ptr [rsp + 0x23c]
+0x180089C0C  cmovne eax, esi
+0x180089C0F  mov    dword ptr [rsp + 0x23c], eax
+0x180089C16  test   byte ptr [rsp + 0x228], 4
+0x180089C1E  je     0x180089c29  ; -> +0xD19
+0x180089C20  bts    dword ptr [rsp + 0xf0], 0xa
+0x180089C29  mov    rax, qword ptr [rsp + 0x1e0]
+0x180089C31  test   dword ptr [rax], 0x20000000
+0x180089C37  je     0x180089c41  ; -> +0xD31
+0x180089C39  or     dword ptr [rsp + 0xe8], r13d
+0x180089C41  mov    ebx, 0x800
+0x180089C46  test   dword ptr [rsp + 0xe8], ebx
+0x180089C4D  jne    0x180089c94  ; -> +0xD84
+0x180089C4F  or     rcx, 0xffffffffffffffff
+0x180089C53  cmp    qword ptr [rsp + 0x348], rdi
+0x180089C5B  cmovne rcx, qword ptr [rsp + 0x348]
+0x180089C64  lea    r8, [rsp + 0x3e4]
+0x180089C6C  xor    edx, edx
+0x180089C6E  call   0x1800e57d0  ; -> IsProcessInJob
+0x180089C73  test   eax, eax
+0x180089C75  je     0x180089c94  ; -> +0xD84
+0x180089C77  cmp    dword ptr [rsp + 0x3e4], edi
+0x180089C7E  je     0x180089c94  ; -> +0xD84
+0x180089C80  mov    eax, dword ptr [rsp + 0xe8]
+0x180089C87  btr    eax, 0xc
+0x180089C8B  or     eax, ebx
+0x180089C8D  mov    dword ptr [rsp + 0xe8], eax
+0x180089C94  mov    eax, dword ptr [rsp + 0x6cc]
+0x180089C9B  bt     eax, 8
+0x180089C9F  jae    0x180089cb3  ; -> +0xDA3
+0x180089CA1  test   eax, 0x600
+0x180089CA6  je     0x180089cb3  ; -> +0xDA3
+0x180089CA8  btr    eax, 8
+0x180089CAC  mov    dword ptr [rsp + 0x6cc], eax
+0x180089CB3  cmp    qword ptr [rsp + 0x1e8], rdi
+0x180089CBB  je     0x180089d76  ; -> +0xE66
+0x180089CC1  mov    r14d, 0x206
+0x180089CC7  mov    r8d, r14d
+0x180089CCA  xor    edx, edx
+0x180089CCC  mov    rcx, r12
+0x180089CCF  call   qword ptr [rip + 0x20ce32]  ; -> ntdll.dll!RtlAllocateHeap
+0x180089CD6  nop    dword ptr [rax + rax]
+0x180089CDB  mov    qword ptr [rsp + 0x278], rax
+0x180089CE3  test   rax, rax
+0x180089CE6  jne    0x180089cf2  ; -> +0xDE2
+0x180089CE8  mov    ecx, 0xc0000017
+0x180089CED  jmp    0x180089a1e  ; -> +0xB0E
+0x180089CF2  mov    dword ptr [rsp + 0x110], edi
+0x180089CF9  lea    rax, [rsp + 0x110]
+0x180089D01  mov    qword ptr [rsp + 0x20], rax
+0x180089D06  lea    r9, [rsp + 0x630]
+0x180089D0E  mov    r8, qword ptr [rsp + 0x278]
+0x180089D16  mov    edx, r14d
+0x180089D19  mov    rcx, qword ptr [rsp + 0x1e8]
+0x180089D21  call   qword ptr [rip + 0x20cca0]  ; -> ntdll.dll!RtlGetFullPathName_UEx
+0x180089D28  nop    dword ptr [rax + rax]
+0x180089D2D  test   eax, eax
+0x180089D2F  jns    0x180089d38  ; -> +0xE28
+0x180089D31  mov    ecx, eax
+0x180089D33  call   0x1800353c0
+0x180089D38  mov    eax, dword ptr [rsp + 0x110]
+0x180089D3F  shr    eax, 1
+0x180089D41  cmp    eax, 0x104
+0x180089D46  jb     0x180089d5e  ; -> +0xE4E
+0x180089D48  mov    ecx, 0x10b
+0x180089D4D  call   qword ptr [rip + 0x20b87c]  ; -> ntdll.dll!RtlSetLastWin32Error
+0x180089D54  nop    dword ptr [rax + rax]
+0x180089D59  jmp    0x180089a23  ; -> +0xB13
+0x180089D5E  test   eax, eax
+0x180089D60  je     0x180089a23  ; -> +0xB13
+0x180089D66  mov    rax, qword ptr [rsp + 0x278]
+0x180089D6E  mov    qword ptr [rsp + 0x1e8], rax
+0x180089D76  lea    r9, [rsp + 0x5a0]
+0x180089D7E  xor    r8d, r8d
+0x180089D81  mov    rdx, qword ptr [rsp + 0x358]
+0x180089D89  lea    rcx, [rsp + 0x778]
+0x180089D91  call   0x180084300  ; -> BaseFormatObjectAttributes
+0x180089D96  mov    dword ptr [rsp + 0xe0], eax
+0x180089D9D  test   eax, eax
+0x180089D9F  js     0x180089b8d  ; -> +0xC7D
+0x180089DA5  lea    r9, [rsp + 0x598]
+0x180089DAD  xor    r8d, r8d
+0x180089DB0  mov    rdx, qword ptr [rsp + 0x360]
+0x180089DB8  lea    rcx, [rsp + 0x7a8]
+0x180089DC0  call   0x180084300  ; -> BaseFormatObjectAttributes
+0x180089DC5  mov    dword ptr [rsp + 0xe0], eax
+0x180089DCC  test   eax, eax
+0x180089DCE  js     0x180089b8d  ; -> +0xC7D
+0x180089DD4  mov    eax, dword ptr [rsp + 0xd4]
+0x180089DDB  mov    dword ptr [rsp + 0x498], eax
+0x180089DE2  mov    rax, qword ptr [rsp + 0x118]
+0x180089DEA  mov    qword ptr [rsp + 0x4a8], rax
+0x180089DF2  mov    rax, qword ptr [rsp + 0x108]
+0x180089DFA  mov    qword ptr [rsp + 0x4b0], rax
+0x180089E02  mov    rax, qword ptr [rsp + 0x198]
+0x180089E0A  mov    qword ptr [rsp + 0x310], rax
+0x180089E12  mov    rax, qword ptr [rsp + 0x170]
+0x180089E1A  mov    qword ptr [rsp + 0x638], rax
+0x180089E22  mov    eax, dword ptr [rsp + 0x498]
+0x180089E29  mov    dword ptr [rsp + 0xd4], eax
+0x180089E30  cmp    dword ptr [rsp + 0x2108], edi
+0x180089E37  je     0x180089e4a  ; -> +0xF3A
+0x180089E39  cmp    byte ptr [rsp + 0x169], dil
+0x180089E41  mov    dword ptr [rsp + 0x110], esi
+0x180089E48  je     0x180089e51  ; -> +0xF41
+0x180089E4A  mov    dword ptr [rsp + 0x110], edi
+0x180089E51  mov    r15d, dword ptr [rsp + 0x110]
+0x180089E59  mov    dword ptr [rsp + 0x388], r15d
+0x180089E61  mov    rbx, qword ptr [rsp + 0x310]
+0x180089E69  mov    qword ptr [rsp + 0x1c0], rbx
+0x180089E71  mov    qword ptr [rsp + 0x198], rbx
+0x180089E79  mov    rax, qword ptr [rsp + 0x638]
+0x180089E81  mov    qword ptr [rsp + 0x170], rax
+0x180089E89  mov    rax, qword ptr [rsp + 0x160]
+0x180089E91  test   rax, rax
+0x180089E94  je     0x180089ea7  ; -> +0xF97
+0x180089E96  cmp    dword ptr [rax + 0x224], esi
+0x180089E9C  je     0x180089ea7  ; -> +0xF97
+0x180089E9E  mov    rbx, qword ptr [rax + 0x228]
+0x180089EA5  jmp    0x180089ebd  ; -> +0xFAD
+0x180089EA7  mov    rdx, qword ptr [rsp + 0x100]
+0x180089EAF  test   rdx, rdx
+0x180089EB2  je     0x180089ecf  ; -> +0xFBF
+0x180089EB4  cmp    dword ptr [rdx + 0x20], esi
+0x180089EB7  je     0x180089ecf  ; -> +0xFBF
+0x180089EB9  mov    rbx, qword ptr [rdx + 0x10]
+0x180089EBD  mov    qword ptr [rsp + 0x1c0], rbx
+0x180089EC5  mov    qword ptr [rsp + 0x198], rbx
+0x180089ECD  jmp    0x180089f0c  ; -> +0xFFC
+0x180089ECF  mov    rcx, qword ptr [rsp + 0x240]
+0x180089ED7  test   rcx, rcx
+0x180089EDA  je     0x180089f0c  ; -> +0xFFC
+0x180089EDC  mov    rax, qword ptr [rsp + 0x4a8]
+0x180089EE4  mov    qword ptr [rsp + 0x118], rax
+0x180089EEC  mov    rax, qword ptr [rsp + 0x4b0]
+0x180089EF4  mov    qword ptr [rsp + 0x108], rax
+0x180089EFC  mov    qword ptr [rsp + 0x1c0], rcx
+0x180089F04  mov    qword ptr [rsp + 0x198], rcx
+0x180089F0C  call   0x180122d38
+0x180089F11  test   eax, eax
+0x180089F13  je     0x180089f3f  ; -> +0x102F
+0x180089F15  cmp    byte ptr [rsp + 0x168], dil
+0x180089F1D  je     0x180089f3f  ; -> +0x102F
+0x180089F1F  mov    rax, qword ptr [rsp + 0x4a8]
+0x180089F27  mov    qword ptr [rsp + 0x118], rax
+0x180089F2F  mov    rax, qword ptr [rsp + 0x4b0]
+0x180089F37  mov    qword ptr [rsp + 0x108], rax
+0x180089F3F  mov    rax, qword ptr [rsp + 0x280]
+0x180089F47  test   rax, rax
+0x180089F4A  je     0x180089f87  ; -> +0x1077
+0x180089F4C  cmp    qword ptr [rsp + 0x118], rax
+0x180089F54  jne    0x180089f66  ; -> +0x1056
+0x180089F56  mov    rax, qword ptr [rsp + 0x4a8]
+0x180089F5E  mov    qword ptr [rsp + 0x118], rax
+0x180089F66  mov    r8, qword ptr [rsp + 0x280]
+0x180089F6E  xor    edx, edx
+0x180089F70  mov    rcx, r12
+0x180089F73  call   qword ptr [rip + 0x20bfe6]  ; -> ntdll.dll!RtlFreeHeap
+0x180089F7A  nop    dword ptr [rax + rax]
+0x180089F7F  mov    qword ptr [rsp + 0x280], rdi
+0x180089F87  mov    r8, qword ptr [rsp + 0x370]
+0x180089F8F  test   r8, r8
+0x180089F92  je     0x180089fad  ; -> +0x109D
+0x180089F94  xor    edx, edx
+0x180089F96  mov    rcx, r12
+0x180089F99  call   qword ptr [rip + 0x20bfc0]  ; -> ntdll.dll!RtlFreeHeap
+0x180089FA0  nop    dword ptr [rax + rax]
+0x180089FA5  mov    qword ptr [rsp + 0x370], rdi
+0x180089FAD  lea    rcx, [rsp + 0x320]
+0x180089FB5  call   qword ptr [rip + 0x20b4e4]  ; -> ntdll.dll!RtlFreeUnicodeString
+0x180089FBC  nop    dword ptr [rax + rax]
+0x180089FC1  mov    rbx, qword ptr [rsp + 0x2a0]
+0x180089FC9  test   rbx, rbx
+0x180089FCC  je     0x18008a009  ; -> +0x10F9
+0x180089FCE  cmp    qword ptr [rsp + 0x108], rbx
+0x180089FD6  jne    0x180089fe8  ; -> +0x10D8
+0x180089FD8  mov    rax, qword ptr [rsp + 0x4b0]
+0x180089FE0  mov    qword ptr [rsp + 0x108], rax
+0x180089FE8  mov    r8, qword ptr [rsp + 0x2a0]
+0x180089FF0  xor    edx, edx
+0x180089FF2  mov    rcx, r12
+0x180089FF5  call   qword ptr [rip + 0x20bf64]  ; -> ntdll.dll!RtlFreeHeap
+0x180089FFC  nop    dword ptr [rax + rax]
+0x18008A001  mov    qword ptr [rsp + 0x2a0], rdi
+0x18008A009  mov    r14, qword ptr [rsp + 0x1d8]
+0x18008A011  test   r14, r14
+0x18008A014  je     0x18008a02d  ; -> +0x111D
+0x18008A016  mov    rcx, r14
+0x18008A019  call   qword ptr [rip + 0x20bbe0]  ; -> ntdll.dll!NtClose
+0x18008A020  nop    dword ptr [rax + rax]
+0x18008A025  mov    qword ptr [rsp + 0x1d8], rdi
+0x18008A02D  mov    rcx, qword ptr [rsp + 0x248]
+0x18008A035  test   rcx, rcx
+0x18008A038  je     0x18008a04e  ; -> +0x113E
+0x18008A03A  call   qword ptr [rip + 0x20bbbf]  ; -> ntdll.dll!NtClose
+0x18008A041  nop    dword ptr [rax + rax]
+0x18008A046  mov    qword ptr [rsp + 0x248], rdi
+0x18008A04E  mov    rcx, qword ptr [rsp + 0x288]
+0x18008A056  test   rcx, rcx
+0x18008A059  je     0x18008a06f  ; -> +0x115F
+0x18008A05B  call   qword ptr [rip + 0x20c7a6]  ; -> ntdll.dll!RtlDestroyEnvironment
+0x18008A062  nop    dword ptr [rax + rax]
+0x18008A067  mov    qword ptr [rsp + 0x288], rdi
+0x18008A06F  mov    rax, qword ptr [rsp + 0x180]
+0x18008A077  test   rax, rax
+0x18008A07A  je     0x18008a0ad  ; -> +0x119D
+0x18008A07C  mov    rcx, qword ptr [rsp + 0x3f8]
+0x18008A084  test   rcx, rcx
+0x18008A087  je     0x18008a09d  ; -> +0x118D
+0x18008A089  call   qword ptr [rip + 0x3325e8]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepReleaseAppXContext
+0x18008A090  nop    dword ptr [rax + rax]
+0x18008A095  mov    rax, qword ptr [rsp + 0x180]
+0x18008A09D  mov    qword ptr [rsp + 0x3f8], rax
+0x18008A0A5  mov    qword ptr [rsp + 0x180], rdi
+0x18008A0AD  mov    rcx, qword ptr [rsp + 0x368]
+0x18008A0B5  test   rcx, rcx
+0x18008A0B8  je     0x18008a0ce  ; -> +0x11BE
+0x18008A0BA  call   qword ptr [rip + 0x20bb3f]  ; -> ntdll.dll!NtClose
+0x18008A0C1  nop    dword ptr [rax + rax]
+0x18008A0C6  mov    qword ptr [rsp + 0x368], rdi
+0x18008A0CE  cmp    qword ptr [rsp + 0x190], rdi
+0x18008A0D6  je     0x18008a14a  ; -> +0x123A
+0x18008A0D8  mov    rax, qword ptr [rsp + 0x398]
+0x18008A0E0  test   rax, rax
+0x18008A0E3  je     0x18008a0fc  ; -> +0x11EC
+0x18008A0E5  mov    rdx, rax
+0x18008A0E8  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008A0F0  call   qword ptr [rip + 0x20c821]  ; -> ntdll.dll!NtRemoveProcessDebug
+0x18008A0F7  nop    dword ptr [rax + rax]
+0x18008A0FC  mov    edx, 0xc000022d
+0x18008A101  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008A109  call   qword ptr [rip + 0x20b768]  ; -> ntdll.dll!NtTerminateProcess
+0x18008A110  nop    dword ptr [rax + rax]
+0x18008A115  xor    r8d, r8d
+0x18008A118  xor    edx, edx
+0x18008A11A  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008A122  call   qword ptr [rip + 0x20b4af]  ; -> ntdll.dll!NtWaitForSingleObject
+0x18008A129  nop    dword ptr [rax + rax]
+0x18008A12E  mov    rcx, qword ptr [rsp + 0x190]
+0x18008A136  call   qword ptr [rip + 0x20bac3]  ; -> ntdll.dll!NtClose
+0x18008A13D  nop    dword ptr [rax + rax]
+0x18008A142  mov    qword ptr [rsp + 0x190], rdi
+0x18008A14A  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008A152  test   rcx, rcx
+0x18008A155  je     0x18008a16b  ; -> +0x125B
+0x18008A157  call   qword ptr [rip + 0x20baa2]  ; -> ntdll.dll!NtClose
+0x18008A15E  nop    dword ptr [rax + rax]
+0x18008A163  mov    qword ptr [rsp + 0xf8], rdi
+0x18008A16B  call   0x18012ca04
+0x18008A170  test   al, al
+0x18008A172  je     0x18008a1c5  ; -> +0x12B5
+0x18008A174  mov    r8, qword ptr [rsp + 0x298]
+0x18008A17C  mov    rdx, qword ptr [rsp + 0x318]
+0x18008A184  mov    rcx, qword ptr [rsp + 0x210]
+0x18008A18C  call   qword ptr [rip + 0x3324ed]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepFreeAppCompatData
+0x18008A193  nop    dword ptr [rax + rax]
+0x18008A198  mov    qword ptr [rsp + 0x210], rdi
+0x18008A1A0  mov    dword ptr [rsp + 0x1cc], edi
+0x18008A1A7  mov    qword ptr [rsp + 0x318], rdi
+0x18008A1AF  mov    dword ptr [rsp + 0x230], edi
+0x18008A1B6  mov    qword ptr [rsp + 0x298], rdi
+0x18008A1BE  mov    dword ptr [rsp + 0x200], edi
+0x18008A1C5  cmp    dword ptr [rsp + 0x158], edi
+0x18008A1CC  jne    0x18008a1fe  ; -> +0x12EE
+0x18008A1CE  call   0x18012ca04
+0x18008A1D3  test   al, al
+0x18008A1D5  je     0x18008a1fe  ; -> +0x12EE
+0x18008A1D7  lea    rcx, [rsp + 0x8f0]
+0x18008A1DF  call   qword ptr [rip + 0x3324a2]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepReleaseSxsCreateProcessUtilityStruct
+0x18008A1E6  nop    dword ptr [rax + rax]
+0x18008A1EB  xor    edx, edx
+0x18008A1ED  lea    r8d, [rdx + 0x58]
+0x18008A1F1  lea    rcx, [rsp + 0x8f0]
+0x18008A1F9  call   0x1801298d1
+0x18008A1FE  mov    rcx, qword ptr [rsp + 0x290]
+0x18008A206  test   rcx, rcx
+0x18008A209  je     0x18008a21f  ; -> +0x130F
+0x18008A20B  call   qword ptr [rip + 0x20b86e]  ; -> ntdll.dll!CsrFreeCaptureBuffer
+0x18008A212  nop    dword ptr [rax + rax]
+0x18008A217  mov    qword ptr [rsp + 0x290], rdi
+0x18008A21F  lea    rcx, [rsp + 0x440]
+0x18008A227  call   0x1800f9a40
+0x18008A22C  mov    r12b, dil
+0x18008A22F  mov    byte ptr [rsp + 0x1b6], dil
+0x18008A237  mov    r13b, dil
+0x18008A23A  mov    byte ptr [rsp + 0x17a], dil
+0x18008A242  mov    dword ptr [rsp + 0x2cc], esi
+0x18008A249  cmp    qword ptr [rsp + 0x118], rdi
+0x18008A251  jne    0x18008a51b  ; -> +0x160B
+0x18008A257  xor    edx, edx
+0x18008A259  mov    r8d, 0x208
+0x18008A25F  mov    rbx, qword ptr [rsp + 0xd8]
+0x18008A267  mov    rcx, rbx
+0x18008A26A  call   qword ptr [rip + 0x20c897]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008A271  nop    dword ptr [rax + rax]
+0x18008A276  mov    qword ptr [rsp + 0x280], rax
+0x18008A27E  test   rax, rax
+0x18008A281  jne    0x18008a299  ; -> +0x1389
+0x18008A283  mov    ecx, 0xc0000017
+0x18008A288  call   0x1800353c0
+0x18008A28D  mov    dword ptr [rsp + 0xd0], edi
+0x18008A294  jmp    0x18008e2ed  ; -> +0x53DD
+0x18008A299  mov    r14d, edi
+0x18008A29C  mov    dword ptr [rsp + 0x4d0], edi
+0x18008A2A3  mov    rax, qword ptr [rsp + 0x108]
+0x18008A2AB  mov    qword ptr [rsp + 0x118], rax
+0x18008A2B3  mov    qword ptr [rsp + 0x1f0], rax
+0x18008A2BB  mov    rbx, rax
+0x18008A2BE  mov    qword ptr [rsp + 0x378], rax
+0x18008A2C6  cmp    word ptr [rax], 0x22
+0x18008A2CA  jne    0x18008a31d  ; -> +0x140D
+0x18008A2CC  mov    r15b, dil
+0x18008A2CF  mov    byte ptr [rsp + 0x179], dil
+0x18008A2D7  lea    rbx, [rax + 2]
+0x18008A2DB  mov    qword ptr [rsp + 0x378], rbx
+0x18008A2E3  mov    qword ptr [rsp + 0x118], rbx
+0x18008A2EB  cmp    word ptr [rbx], di
+0x18008A2EE  je     0x18008a365  ; -> +0x1455
+0x18008A2F0  cmp    word ptr [rbx], 0x22
+0x18008A2F4  jne    0x18008a307  ; -> +0x13F7
+0x18008A2F6  mov    qword ptr [rsp + 0x1f0], rbx
+0x18008A2FE  mov    dword ptr [rsp + 0x2cc], edi
+0x18008A305  jmp    0x18008a365  ; -> +0x1455
+0x18008A307  add    rbx, 2
+0x18008A30B  mov    qword ptr [rsp + 0x378], rbx
+0x18008A313  mov    qword ptr [rsp + 0x1f0], rbx
+0x18008A31B  jmp    0x18008a2eb  ; -> +0x13DB
+0x18008A31D  mov    r15b, sil
+0x18008A320  mov    byte ptr [rsp + 0x179], sil
+0x18008A328  mov    qword ptr [rsp + 0x118], rax
+0x18008A330  mov    eax, 0x20
+0x18008A335  lea    ecx, [rax - 0x17]
+0x18008A338  cmp    word ptr [rbx], di
+0x18008A33B  je     0x18008a365  ; -> +0x1455
+0x18008A33D  cmp    word ptr [rbx], ax
+0x18008A340  je     0x18008a35d  ; -> +0x144D
+0x18008A342  cmp    word ptr [rbx], cx
+0x18008A345  je     0x18008a35d  ; -> +0x144D
+0x18008A347  add    rbx, 2
+0x18008A34B  mov    qword ptr [rsp + 0x378], rbx
+0x18008A353  mov    qword ptr [rsp + 0x1f0], rbx
+0x18008A35B  jmp    0x18008a338  ; -> +0x1428
+0x18008A35D  mov    qword ptr [rsp + 0x1f0], rbx
+0x18008A365  mov    r8, qword ptr [rsp + 0x1f0]
+0x18008A36D  movzx  eax, word ptr [r8]
+0x18008A371  mov    word ptr [rsp + 0x16c], ax
+0x18008A379  mov    word ptr [r8], di
+0x18008A37D  mov    rcx, qword ptr [rsp + 0x350]
+0x18008A385  test   rcx, rcx
+0x18008A388  je     0x18008a39e  ; -> +0x148E
+0x18008A38A  call   qword ptr [rip + 0x20bf0f]  ; -> ntdll.dll!RtlReleasePath
+0x18008A391  nop    dword ptr [rax + rax]
+0x18008A396  mov    qword ptr [rsp + 0x350], rdi
+0x18008A39E  lea    rdx, [rsp + 0x350]
+0x18008A3A6  mov    rcx, qword ptr [rsp + 0x118]
+0x18008A3AE  call   qword ptr [rip + 0x20c56b]  ; -> ntdll.dll!RtlGetExePath
+0x18008A3B5  nop    dword ptr [rax + rax]
+0x18008A3BA  mov    dword ptr [rsp + 0xe0], eax
+0x18008A3C1  mov    ecx, edi
+0x18008A3C3  test   eax, eax
+0x18008A3C5  setns  cl
+0x18008A3C8  test   ecx, ecx
+0x18008A3CA  je     0x180089b8d  ; -> +0xC7D
+0x18008A3D0  mov    qword ptr [rsp + 0x28], rdi
+0x18008A3D5  mov    rax, qword ptr [rsp + 0x280]
+0x18008A3DD  mov    qword ptr [rsp + 0x20], rax
+0x18008A3E2  mov    r9d, 0x104
+0x18008A3E8  lea    r8, [rip + 0x2161a9]
+0x18008A3EF  mov    rdx, qword ptr [rsp + 0x118]
+0x18008A3F7  mov    rcx, qword ptr [rsp + 0x350]
+0x18008A3FF  call   0x1800e4e50  ; -> SearchPathW
+0x18008A404  mov    dword ptr [rsp + 0x3b8], eax
+0x18008A40B  test   eax, eax
+0x18008A40D  je     0x18008a424  ; -> +0x1514
+0x18008A40F  cmp    eax, 0x104
+0x18008A414  jb     0x18008a4ba  ; -> +0x15AA
+0x18008A41A  mov    ecx, 0xc0000106
+0x18008A41F  call   0x1800353c0
+0x18008A424  test   r14d, r14d
+0x18008A427  jne    0x18008a462  ; -> +0x1552
+0x18008A429  mov    r14d, dword ptr gs:[0x68]
+0x18008A432  mov    dword ptr [rsp + 0x4d0], r14d
+0x18008A43A  mov    rbx, qword ptr [rsp + 0x378]
+0x18008A442  mov    r13b, byte ptr [rsp + 0x17a]
+0x18008A44A  mov    r15b, byte ptr [rsp + 0x179]
+0x18008A452  mov    rax, qword ptr [rsp + 0x198]
+0x18008A45A  mov    qword ptr [rsp + 0x1c0], rax
+0x18008A462  movzx  ecx, word ptr [rsp + 0x16c]
+0x18008A46A  mov    rax, qword ptr [rsp + 0x1f0]
+0x18008A472  mov    word ptr [rax], cx
+0x18008A475  cmp    word ptr [rbx], di
+0x18008A478  je     0x18008a513  ; -> +0x1603
+0x18008A47E  test   r15b, r15b
+0x18008A481  je     0x18008a513  ; -> +0x1603
+0x18008A487  add    rbx, 2
+0x18008A48B  mov    qword ptr [rsp + 0x378], rbx
+0x18008A493  mov    qword ptr [rsp + 0x1f0], rbx
+0x18008A49B  mov    r12b, sil
+0x18008A49E  mov    byte ptr [rsp + 0x1b6], sil
+0x18008A4A6  mov    dword ptr [rsp + 0x2cc], edi
+0x18008A4AD  mov    rax, qword ptr [rsp + 0x108]
+0x18008A4B5  jmp    0x18008a328  ; -> +0x1418
+0x18008A4BA  mov    rcx, qword ptr [rsp + 0x280]
+0x18008A4C2  call   0x180053a10  ; -> GetFileAttributesW
+0x18008A4C7  cmp    eax, -1
+0x18008A4CA  je     0x18008a424  ; -> +0x1514
+0x18008A4D0  test   al, 0x10
+0x18008A4D2  je     0x18008a4de  ; -> +0x15CE
+0x18008A4D4  mov    ecx, 0xc00000ba
+0x18008A4D9  jmp    0x18008a41f  ; -> +0x150F
+0x18008A4DE  movzx  ecx, word ptr [rsp + 0x16c]
+0x18008A4E6  mov    rax, qword ptr [rsp + 0x1f0]
+0x18008A4EE  mov    word ptr [rax], cx
+0x18008A4F1  mov    rax, qword ptr [rsp + 0x280]
+0x18008A4F9  mov    qword ptr [rsp + 0x118], rax
+0x18008A501  mov    rcx, qword ptr [rsp + 0x108]
+0x18008A509  mov    r15d, dword ptr [rsp + 0x388]
+0x18008A511  jmp    0x18008a548  ; -> +0x1638
+0x18008A513  mov    ecx, r14d
+0x18008A516  jmp    0x180089d4d  ; -> +0xE3D
+0x18008A51B  mov    rcx, qword ptr [rsp + 0x108]
+0x18008A523  test   rcx, rcx
+0x18008A526  je     0x18008a52d  ; -> +0x161D
+0x18008A528  cmp    word ptr [rcx], di
+0x18008A52B  jne    0x18008a548  ; -> +0x1638
+0x18008A52D  mov    r13b, sil
+0x18008A530  mov    byte ptr [rsp + 0x17a], sil
+0x18008A538  mov    rcx, qword ptr [rsp + 0x118]
+0x18008A540  mov    qword ptr [rsp + 0x108], rcx
+0x18008A548  test   r12b, r12b
+0x18008A54B  jne    0x18008a556  ; -> +0x1646
+0x18008A54D  test   r13b, r13b
+0x18008A550  je     0x18008a629  ; -> +0x1719
+0x18008A556  call   qword ptr [rip + 0x20afc3]  ; -> ntdll.dll!wcslen
+0x18008A55D  nop    dword ptr [rax + rax]
+0x18008A562  lea    r14, [rax*2 + 6]
+0x18008A56A  mov    r8, r14
+0x18008A56D  xor    edx, edx
+0x18008A56F  mov    r13, qword ptr [rsp + 0xd8]
+0x18008A577  mov    rcx, r13
+0x18008A57A  call   qword ptr [rip + 0x20c587]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008A581  nop    dword ptr [rax + rax]
+0x18008A586  mov    qword ptr [rsp + 0x2a0], rax
+0x18008A58E  test   rax, rax
+0x18008A591  je     0x18008a631  ; -> +0x1721
+0x18008A597  lea    r8, [rip + 0x21252a]
+0x18008A59E  mov    rdx, r14
+0x18008A5A1  mov    rcx, rax
+0x18008A5A4  call   0x1800941dc
+0x18008A5A9  test   r12b, r12b
+0x18008A5AC  je     0x18008a5c6  ; -> +0x16B6
+0x18008A5AE  mov    r8, qword ptr [rsp + 0x1f0]
+0x18008A5B6  movzx  eax, word ptr [r8]
+0x18008A5BA  mov    word ptr [rsp + 0x16c], ax
+0x18008A5C2  mov    word ptr [r8], di
+0x18008A5C6  mov    r8, qword ptr [rsp + 0x108]
+0x18008A5CE  mov    rdx, r14
+0x18008A5D1  mov    rbx, qword ptr [rsp + 0x2a0]
+0x18008A5D9  mov    rcx, rbx
+0x18008A5DC  call   0x1800f4898
+0x18008A5E1  lea    r8, [rip + 0x2124e0]
+0x18008A5E8  mov    rdx, r14
+0x18008A5EB  mov    rcx, rbx
+0x18008A5EE  call   0x1800f4898
+0x18008A5F3  test   r12b, r12b
+0x18008A5F6  je     0x18008a617  ; -> +0x1707
+0x18008A5F8  movzx  eax, word ptr [rsp + 0x16c]
+0x18008A600  mov    r8, qword ptr [rsp + 0x1f0]
+0x18008A608  mov    word ptr [r8], ax
+0x18008A60C  mov    rdx, r14
+0x18008A60F  mov    rcx, rbx
+0x18008A612  call   0x1800f4898
+0x18008A617  mov    rax, qword ptr [rsp + 0x2a0]
+0x18008A61F  mov    qword ptr [rsp + 0x108], rax
+0x18008A627  jmp    0x18008a631  ; -> +0x1721
+0x18008A629  mov    r13, qword ptr [rsp + 0xd8]
+0x18008A631  xor    r9d, r9d
+0x18008A634  xor    r8d, r8d
+0x18008A637  lea    rdx, [rsp + 0x320]
+0x18008A63F  mov    rcx, qword ptr [rsp + 0x118]
+0x18008A647  call   qword ptr [rip + 0x20af42]  ; -> ntdll.dll!RtlDosPathNameToNtPathName_U
+0x18008A64E  nop    dword ptr [rax + rax]
+0x18008A653  test   al, al
+0x18008A655  jne    0x18008a661  ; -> +0x1751
+0x18008A657  mov    ecx, 3
+0x18008A65C  jmp    0x180089d4d  ; -> +0xE3D
+0x18008A661  mov    rdx, qword ptr [rsp + 0x118]
+0x18008A669  lea    rcx, [rsp + 0x250]
+0x18008A671  call   qword ptr [rip + 0x20b580]  ; -> ntdll.dll!RtlInitUnicodeStringEx
+0x18008A678  nop    dword ptr [rax + rax]
+0x18008A67D  mov    ebx, eax
+0x18008A67F  mov    dword ptr [rsp + 0xe0], eax
+0x18008A686  test   eax, eax
+0x18008A688  js     0x180089b8d  ; -> +0xC7D
+0x18008A68E  mov    rcx, qword ptr [rsp + 0x118]
+0x18008A696  call   qword ptr [rip + 0x20b06b]  ; -> ntdll.dll!RtlDetermineDosPathNameType_U
+0x18008A69D  nop    dword ptr [rax + rax]
+0x18008A6A2  mov    dword ptr [rsp + 0x3e0], eax
+0x18008A6A9  lea    ecx, [rax - 1]
+0x18008A6AC  cmp    ecx, esi
+0x18008A6AE  jbe    0x18008a6b7  ; -> +0x17A7
+0x18008A6B0  add    eax, -6
+0x18008A6B3  cmp    eax, esi
+0x18008A6B5  ja     0x18008a6cc  ; -> +0x17BC
+0x18008A6B7  lea    rcx, [rsp + 0x250]
+0x18008A6BF  call   0x1800e428c
+0x18008A6C4  test   eax, eax
+0x18008A6C6  jne    0x18008a75c  ; -> +0x184C
+0x18008A6CC  xorps  xmm0, xmm0
+0x18008A6CF  movups xmmword ptr [rsp + 0x560], xmm0
+0x18008A6D7  mov    word ptr [rsp + 0x562], di
+0x18008A6DF  mov    qword ptr [rsp + 0x568], rdi
+0x18008A6E7  mov    qword ptr [rsp + 0x38], rdi
+0x18008A6EC  lea    rax, [rsp + 0x3e0]
+0x18008A6F4  mov    qword ptr [rsp + 0x30], rax
+0x18008A6F9  mov    qword ptr [rsp + 0x28], rdi
+0x18008A6FE  mov    qword ptr [rsp + 0x20], rdi
+0x18008A703  xor    r9d, r9d
+0x18008A706  lea    r8, [rsp + 0x560]
+0x18008A70E  xor    edx, edx
+0x18008A710  lea    rcx, [rsp + 0x250]
+0x18008A718  call   qword ptr [rip + 0x20c209]  ; -> ntdll.dll!RtlGetFullPathName_UstrEx
+0x18008A71F  nop    dword ptr [rax + rax]
+0x18008A724  mov    ebx, eax
+0x18008A726  mov    dword ptr [rsp + 0xe0], eax
+0x18008A72D  test   eax, eax
+0x18008A72F  js     0x180089b8d  ; -> +0xC7D
+0x18008A735  movaps xmm0, xmmword ptr [rsp + 0x560]
+0x18008A73D  movdqa xmmword ptr [rsp + 0x250], xmm0
+0x18008A746  psrldq xmm0, 8
+0x18008A74B  movq   qword ptr [rsp + 0x370], xmm0
+0x18008A754  mov    qword ptr [rsp + 0x568], rdi
+0x18008A75C  mov    eax, dword ptr [rsp + 0x1c8]
+0x18008A763  and    eax, 3
+0x18008A766  cmp    al, 3
+0x18008A768  je     0x180089a19  ; -> +0xB09
+0x18008A76E  mov    r14, qword ptr [rsp + 0x410]
+0x18008A776  test   byte ptr [r14 + 3], 0x10
+0x18008A77B  je     0x18008a8b9  ; -> +0x19A9
+0x18008A781  cmp    qword ptr [rsp + 0x100], rdi
+0x18008A789  jne    0x18008a8b9  ; -> +0x19A9
+0x18008A78F  cmp    qword ptr [rsp + 0x160], rdi
+0x18008A797  jne    0x18008a8b9  ; -> +0x19A9
+0x18008A79D  mov    dword ptr [rsp + 0x2c4], 0xb0001
+0x18008A7A8  lea    rdx, [rsp + 0x2c4]
+0x18008A7B0  mov    r12, 0xfffffffffffffffa
+0x18008A7B7  mov    rcx, r12
+0x18008A7BA  call   0x180106f30
+0x18008A7BF  test   eax, eax
+0x18008A7C1  js     0x18008a83c  ; -> +0x192C
+0x18008A7C3  cmp    dword ptr [rsp + 0x2c4], 0xb0000
+0x18008A7CE  jne    0x18008a7da  ; -> +0x18CA
+0x18008A7D0  test   byte ptr [rsp + 0x1c8], 6
+0x18008A7D8  je     0x18008a7f5  ; -> +0x18E5
+0x18008A7DA  cmp    dword ptr [rsp + 0x2c4], 0xb0002
+0x18008A7E5  jne    0x18008a83c  ; -> +0x192C
+0x18008A7E7  mov    eax, dword ptr [rsp + 0x1c8]
+0x18008A7EE  and    al, 5
+0x18008A7F0  cmp    al, sil
+0x18008A7F3  jne    0x18008a83c  ; -> +0x192C
+0x18008A7F5  call   0x18012c470
+0x18008A7FA  test   al, al
+0x18008A7FC  je     0x18008a830  ; -> +0x1920
+0x18008A7FE  lea    rdx, [rsp + 0x1ac]
+0x18008A806  mov    rcx, qword ptr [rsp + 0x258]
+0x18008A80E  call   qword ptr [rip + 0x331b23]  ; -> DELAY:ext-ms-win-appmodel-daxcore-l1-1-0.dll!CheckAppXPackageBreakaway
+0x18008A815  nop    dword ptr [rax + rax]
+0x18008A81A  mov    ebx, eax
+0x18008A81C  mov    dword ptr [rsp + 0xe0], eax
+0x18008A823  test   eax, eax
+0x18008A825  jns    0x18008a83c  ; -> +0x192C
+0x18008A827  mov    dword ptr [rsp + 0x1ac], edi
+0x18008A82E  jmp    0x18008a83c  ; -> +0x192C
+0x18008A830  mov    ebx, 0xc0000001
+0x18008A835  mov    dword ptr [rsp + 0xe0], ebx
+0x18008A83C  test   ebx, ebx
+0x18008A83E  jns    0x18008a847  ; -> +0x1937
+0x18008A840  mov    ecx, ebx
+0x18008A842  jmp    0x180089a1e  ; -> +0xB0E
+0x18008A847  mov    dword ptr [rsp + 0x3dc], 0x250000
+0x18008A852  mov    qword ptr [rsp + 0x640], rdi
+0x18008A85A  mov    qword ptr [rsp + 0x648], rdi
+0x18008A862  lea    rax, [rsp + 0x640]
+0x18008A86A  mov    qword ptr [rsp + 0x20], rax
+0x18008A86F  lea    r9, [rsp + 0x648]
+0x18008A877  lea    r8, [rsp + 0x3dc]
+0x18008A87F  mov    edx, 0x25
+0x18008A884  mov    rcx, r12
+0x18008A887  call   0x180106f90
+0x18008A88C  or     eax, 0x10000000
+0x18008A891  jl     0x18008a8a9  ; -> +0x1999
+0x18008A893  cmp    dword ptr [rsp + 0x3dc], 0x250001
+0x18008A89E  jne    0x18008a8b5  ; -> +0x19A5
+0x18008A8A0  mov    dword ptr [rsp + 0x2d4], esi
+0x18008A8A7  jmp    0x18008a8b5  ; -> +0x19A5
+0x18008A8A9  mov    ebx, 0xc0000001
+0x18008A8AE  mov    dword ptr [rsp + 0xe0], ebx
+0x18008A8B5  test   ebx, ebx
+0x18008A8B7  js     0x18008a840  ; -> +0x1930
+0x18008A8B9  call   0x18018b9f0
+0x18008A8BE  test   eax, eax
+0x18008A8C0  je     0x18008a948  ; -> +0x1A38
+0x18008A8C6  mov    rax, qword ptr [rsp + 0x100]
+0x18008A8CE  test   rax, rax
+0x18008A8D1  je     0x18008a948  ; -> +0x1A38
+0x18008A8D3  cmp    dword ptr [rax + 0x20], edi
+0x18008A8D6  jne    0x18008a948  ; -> +0x1A38
+0x18008A8D8  mov    rcx, qword ptr [rax + 0x38]
+0x18008A8DC  test   rcx, rcx
+0x18008A8DF  je     0x18008a948  ; -> +0x1A38
+0x18008A8E1  cmp    word ptr [rcx], di
+0x18008A8E4  je     0x18008a948  ; -> +0x1A38
+0x18008A8E6  mov    dword ptr [rsp + 0x3d8], 4
+0x18008A8F1  mov    qword ptr [rsp + 0x11f8], 0x20019
+0x18008A8FD  mov    qword ptr [rsp + 0x1200], 4
+0x18008A909  mov    qword ptr [rsp + 0x1210], rdi
+0x18008A911  lea    rax, [rsp + 0x3d8]
+0x18008A919  mov    qword ptr [rsp + 0x1208], rax
+0x18008A921  mov    dword ptr [rsp + 0x20], 0x1c
+0x18008A929  lea    r9, [rsp + 0xd4]
+0x18008A931  lea    r8, [rsp + 0xa00]
+0x18008A939  mov    edx, esi
+0x18008A93B  lea    rcx, [rsp + 0x11f0]
+0x18008A943  call   0x180115298
+0x18008A948  cmp    dword ptr [rsp + 0x1ac], edi
+0x18008A94F  jne    0x18008aadc  ; -> +0x1BCC
+0x18008A955  cmp    word ptr [rsp + 0x218], di
+0x18008A95D  jne    0x18008a977  ; -> +0x1A67
+0x18008A95F  test   byte ptr [r14 + 3], 0x10
+0x18008A964  je     0x18008aadc  ; -> +0x1BCC
+0x18008A96A  cmp    dword ptr [rsp + 0x2d4], edi
+0x18008A971  jne    0x18008aadc  ; -> +0x1BCC
+0x18008A977  call   0x18012ca04
+0x18008A97C  test   al, al
+0x18008A97E  je     0x18008a9c8  ; -> +0x1AB8
+0x18008A980  lea    rax, [rsp + 0x288]
+0x18008A988  mov    qword ptr [rsp + 0x28], rax
+0x18008A98D  lea    rax, [rsp + 0x180]
+0x18008A995  mov    qword ptr [rsp + 0x20], rax
+0x18008A99A  mov    r9, qword ptr [rsp + 0x170]
+0x18008A9A2  mov    r8, qword ptr [rsp + 0x2b0]
+0x18008A9AA  lea    rdx, [rsp + 0x218]
+0x18008A9B2  mov    rcx, qword ptr [rsp + 0x1c0]
+0x18008A9BA  call   qword ptr [rip + 0x331ccf]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepAppXExtension
+0x18008A9C1  nop    dword ptr [rax + rax]
+0x18008A9C6  jmp    0x18008a9cd  ; -> +0x1ABD
+0x18008A9C8  mov    eax, 0xc0000001
+0x18008A9CD  mov    dword ptr [rsp + 0xe0], eax
+0x18008A9D4  test   eax, eax
+0x18008A9D6  jns    0x18008a9ed  ; -> +0x1ADD
+0x18008A9D8  mov    qword ptr [rsp + 0x180], rdi
+0x18008A9E0  mov    qword ptr [rsp + 0x288], rdi
+0x18008A9E8  jmp    0x180089b8d  ; -> +0xC7D
+0x18008A9ED  call   0x180122d38
+0x18008A9F2  movzx  ecx, byte ptr [rsp + 0x143]
+0x18008A9FA  test   eax, eax
+0x18008A9FC  cmovne ecx, esi
+0x18008A9FF  mov    byte ptr [rsp + 0x143], cl
+0x18008AA06  mov    rax, qword ptr [rsp + 0x288]
+0x18008AA0E  test   rax, rax
+0x18008AA11  je     0x18008aa1b  ; -> +0x1B0B
+0x18008AA13  mov    qword ptr [rsp + 0x170], rax
+0x18008AA1B  mov    rdx, qword ptr [rsp + 0x180]
+0x18008AA23  test   rdx, rdx
+0x18008AA26  je     0x18008aac1  ; -> +0x1BB1
+0x18008AA2C  mov    rdx, qword ptr [rdx + 0x18]
+0x18008AA30  lea    rcx, [rsp + 0x218]
+0x18008AA38  call   qword ptr [rip + 0x20aa69]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008AA3F  nop    dword ptr [rax + rax]
+0x18008AA44  mov    rax, qword ptr [rsp + 0x180]
+0x18008AA4C  mov    rcx, qword ptr [rax]
+0x18008AA4F  test   rcx, rcx
+0x18008AA52  je     0x18008aa5c  ; -> +0x1B4C
+0x18008AA54  mov    qword ptr [rsp + 0x2b0], rcx
+0x18008AA5C  cmp    qword ptr [rax + 0x10], rdi
+0x18008AA60  je     0x18008aadc  ; -> +0x1BCC
+0x18008AA62  cmp    qword ptr [rsp + 0x100], rdi
+0x18008AA6A  jne    0x18008aadc  ; -> +0x1BCC
+0x18008AA6C  mov    rcx, qword ptr [rsp + 0x160]
+0x18008AA74  test   rcx, rcx
+0x18008AA77  je     0x18008aa82  ; -> +0x1B72
+0x18008AA79  cmp    byte ptr [rcx + 0x220], dil
+0x18008AA80  jne    0x18008aadc  ; -> +0x1BCC
+0x18008AA82  mov    rbx, qword ptr [rsp + 0x278]
+0x18008AA8A  test   rbx, rbx
+0x18008AA8D  je     0x18008aab3  ; -> +0x1BA3
+0x18008AA8F  mov    r8, rbx
+0x18008AA92  xor    edx, edx
+0x18008AA94  mov    rcx, r13
+0x18008AA97  call   qword ptr [rip + 0x20b4c2]  ; -> ntdll.dll!RtlFreeHeap
+0x18008AA9E  nop    dword ptr [rax + rax]
+0x18008AAA3  mov    qword ptr [rsp + 0x278], rdi
+0x18008AAAB  mov    rax, qword ptr [rsp + 0x180]
+0x18008AAB3  mov    rax, qword ptr [rax + 0x10]
+0x18008AAB7  mov    qword ptr [rsp + 0x1e8], rax
+0x18008AABF  jmp    0x18008aadc  ; -> +0x1BCC
+0x18008AAC1  xorps  xmm0, xmm0
+0x18008AAC4  movups xmmword ptr [rsp + 0x218], xmm0
+0x18008AACC  mov    word ptr [rsp + 0x21a], di
+0x18008AAD4  mov    qword ptr [rsp + 0x220], rdi
+0x18008AADC  lea    r9, [rsp + 0x3d4]
+0x18008AAE4  lea    r8, [rsp + 0x400]
+0x18008AAEC  lea    rdx, [rsp + 0x990]
+0x18008AAF4  lea    rcx, [rsp + 0x7d8]
+0x18008AAFC  call   qword ptr [rip + 0x33155d]  ; -> DELAY:api-ms-win-security-isolationpolicy-l1-2-0.dll!GetEmbeddedImageMitigationPolicy
+0x18008AB03  nop    dword ptr [rax + rax]
+0x18008AB08  mov    dword ptr [rsp + 0xe0], eax
+0x18008AB0F  cmp    dword ptr [rsp + 0x3d4], edi
+0x18008AB16  je     0x18008abce  ; -> +0x1CBE
+0x18008AB1C  test   eax, eax
+0x18008AB1E  js     0x180089b8d  ; -> +0xC7D
+0x18008AB24  mov    dword ptr [rsp + 0x1f8], edi
+0x18008AB2B  mov    qword ptr [rsp + 0x11f8], 0x20010
+0x18008AB37  mov    qword ptr [rsp + 0x1200], 0x18
+0x18008AB43  mov    qword ptr [rsp + 0x1210], rdi
+0x18008AB4B  lea    rax, [rsp + 0x990]
+0x18008AB53  mov    qword ptr [rsp + 0x1208], rax
+0x18008AB5B  mov    edx, esi
+0x18008AB5D  mov    dword ptr [rsp + 0x1f8], edx
+0x18008AB64  cmp    dword ptr [rsp + 0x404], edi
+0x18008AB6B  je     0x18008aba9  ; -> +0x1C99
+0x18008AB6D  mov    qword ptr [rsp + 0x1218], 0x20016
+0x18008AB79  mov    qword ptr [rsp + 0x1220], 8
+0x18008AB85  mov    qword ptr [rsp + 0x1230], rdi
+0x18008AB8D  lea    rax, [rsp + 0x400]
+0x18008AB95  mov    qword ptr [rsp + 0x1228], rax
+0x18008AB9D  mov    edx, 2
+0x18008ABA2  mov    dword ptr [rsp + 0x1f8], edx
+0x18008ABA9  mov    dword ptr [rsp + 0x20], 0x1c
+0x18008ABB1  lea    r9, [rsp + 0xd4]
+0x18008ABB9  lea    r8, [rsp + 0xa00]
+0x18008ABC1  lea    rcx, [rsp + 0x11f0]
+0x18008ABC9  call   0x180115298
+0x18008ABCE  cmp    dword ptr [rsp + 0x3d0], edi
+0x18008ABD5  je     0x18008ac5c  ; -> +0x1D4C
+0x18008ABDB  mov    rax, qword ptr [rsp + 0x9a0]
+0x18008ABE3  and    rax, 0xffffffffcfffffff
+0x18008ABE9  mov    qword ptr [rsp + 0x9a0], rax
+0x18008ABF1  bts    rax, 0x1c
+0x18008ABF6  mov    qword ptr [rsp + 0x9a0], rax
+0x18008ABFE  mov    dword ptr [rsp + 0x1f8], esi
+0x18008AC05  mov    qword ptr [rsp + 0x11f8], 0x20010
+0x18008AC11  mov    qword ptr [rsp + 0x1200], 0x18
+0x18008AC1D  mov    qword ptr [rsp + 0x1210], rdi
+0x18008AC25  lea    rax, [rsp + 0x990]
+0x18008AC2D  mov    qword ptr [rsp + 0x1208], rax
+0x18008AC35  mov    dword ptr [rsp + 0x20], 0x1c
+0x18008AC3D  lea    r9, [rsp + 0xd4]
+0x18008AC45  lea    r8, [rsp + 0xa00]
+0x18008AC4D  mov    edx, esi
+0x18008AC4F  lea    rcx, [rsp + 0x11f0]
+0x18008AC57  call   0x180115298
+0x18008AC5C  mov    rdx, qword ptr [rsp + 0x2b0]
+0x18008AC64  test   rdx, rdx
+0x18008AC67  je     0x18008ad43  ; -> +0x1E33
+0x18008AC6D  lea    r8, [rsp + 0x248]
+0x18008AC75  mov    rbx, qword ptr [rsp + 0x1c0]
+0x18008AC7D  mov    rcx, rbx
+0x18008AC80  call   0x18004ee6c
+0x18008AC85  mov    dword ptr [rsp + 0xe0], eax
+0x18008AC8C  test   eax, eax
+0x18008AC8E  jns    0x18008ac9d  ; -> +0x1D8D
+0x18008AC90  mov    qword ptr [rsp + 0x248], rdi
+0x18008AC98  jmp    0x180089b8d  ; -> +0xC7D
+0x18008AC9D  mov    qword ptr [rsp + 0x408], rdi
+0x18008ACA5  call   0x18012ca04
+0x18008ACAA  test   al, al
+0x18008ACAC  je     0x18008acd7  ; -> +0x1DC7
+0x18008ACAE  lea    r8, [rsp + 0x408]
+0x18008ACB6  mov    rdx, qword ptr [rsp + 0x170]
+0x18008ACBE  mov    rcx, qword ptr [rsp + 0x2b0]
+0x18008ACC6  mov    rcx, qword ptr [rcx]
+0x18008ACC9  call   qword ptr [rip + 0x3319c8]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepAppContainerEnvironmentExtension
+0x18008ACD0  nop    dword ptr [rax + rax]
+0x18008ACD5  jmp    0x18008acd9  ; -> +0x1DC9
+0x18008ACD7  mov    eax, edi
+0x18008ACD9  mov    dword ptr [rsp + 0xe0], eax
+0x18008ACE0  test   eax, eax
+0x18008ACE2  js     0x18008ac90  ; -> +0x1D80
+0x18008ACE4  cmp    qword ptr [rsp + 0x248], rdi
+0x18008ACEC  cmovne rbx, qword ptr [rsp + 0x248]
+0x18008ACF5  mov    qword ptr [rsp + 0x1c0], rbx
+0x18008ACFD  mov    qword ptr [rsp + 0x198], rbx
+0x18008AD05  mov    rax, qword ptr [rsp + 0x408]
+0x18008AD0D  test   rax, rax
+0x18008AD10  je     0x18008ad43  ; -> +0x1E33
+0x18008AD12  mov    rcx, qword ptr [rsp + 0x288]
+0x18008AD1A  test   rcx, rcx
+0x18008AD1D  je     0x18008ad33  ; -> +0x1E23
+0x18008AD1F  call   qword ptr [rip + 0x20bae2]  ; -> ntdll.dll!RtlDestroyEnvironment
+0x18008AD26  nop    dword ptr [rax + rax]
+0x18008AD2B  mov    rax, qword ptr [rsp + 0x408]
+0x18008AD33  mov    qword ptr [rsp + 0x288], rax
+0x18008AD3B  mov    qword ptr [rsp + 0x170], rax
+0x18008AD43  cmp    dword ptr [rsp + 0x1fc], edi
+0x18008AD4A  je     0x18008ad93  ; -> +0x1E83
+0x18008AD4C  mov    dword ptr [rsp + 0x30], 0x28
+0x18008AD54  lea    rax, [rsp + 0x440]
+0x18008AD5C  mov    qword ptr [rsp + 0x28], rax
+0x18008AD61  mov    dword ptr [rsp + 0x20], 0x20018
+0x18008AD69  mov    r9d, 0x1c
+0x18008AD6F  lea    r8, [rsp + 0xd4]
+0x18008AD77  lea    rdx, [rsp + 0xa00]
+0x18008AD7F  lea    rcx, [rsp + 0x11f0]
+0x18008AD87  call   0x18018b168
+0x18008AD8C  mov    dword ptr [rsp + 0x23c], esi
+0x18008AD93  cmp    dword ptr [rsp + 0x23c], edi
+0x18008AD9A  je     0x18008ae49  ; -> +0x1F39
+0x18008ADA0  cmp    qword ptr [rsp + 0x2b0], rdi
+0x18008ADA8  jne    0x18008ae3f  ; -> +0x1F2F
+0x18008ADAE  mov    rax, qword ptr gs:[0x60]
+0x18008ADB7  mov    ebx, 0x20
+0x18008ADBC  test   byte ptr [rax + 3], bl
+0x18008ADBF  jne    0x18008ae3f  ; -> +0x1F2F
+0x18008ADC1  cmp    qword ptr [rsp + 0x458], rdi
+0x18008ADC9  jne    0x18008ae22  ; -> +0x1F12
+0x18008ADCB  cmp    byte ptr [rsp + 0x460], dil
+0x18008ADD3  jne    0x18008ade6  ; -> +0x1ED6
+0x18008ADD5  mov    dword ptr [rsp + 0xe0], edi
+0x18008ADDC  mov    r12, qword ptr [rsp + 0x198]
+0x18008ADE4  jmp    0x18008ae56  ; -> +0x1F46
+0x18008ADE6  cmp    qword ptr [rsp + 0x448], rdi
+0x18008ADEE  jne    0x18008ae01  ; -> +0x1EF1
+0x18008ADF0  mov    eax, 0xc000000d
+0x18008ADF5  mov    dword ptr [rsp + 0xe0], eax
+0x18008ADFC  jmp    0x180089b8d  ; -> +0xC7D
+0x18008AE01  lea    rdx, [rsp + 0x440]
+0x18008AE09  mov    r12, qword ptr [rsp + 0x198]
+0x18008AE11  mov    rcx, r12
+0x18008AE14  call   0x180187c80
+0x18008AE19  mov    dword ptr [rsp + 0xe0], eax
+0x18008AE20  jmp    0x18008ae36  ; -> +0x1F26
+0x18008AE22  mov    eax, 0xc000000d
+0x18008AE27  mov    dword ptr [rsp + 0xe0], eax
+0x18008AE2E  mov    r12, qword ptr [rsp + 0x198]
+0x18008AE36  test   eax, eax
+0x18008AE38  jns    0x18008ae56  ; -> +0x1F46
+0x18008AE3A  jmp    0x180089b8d  ; -> +0xC7D
+0x18008AE3F  mov    ecx, 0xc00000bb
+0x18008AE44  jmp    0x180089a1e  ; -> +0xB0E
+0x18008AE49  mov    r12, qword ptr [rsp + 0x1c0]
+0x18008AE51  mov    ebx, 0x20
+0x18008AE56  mov    rcx, qword ptr [rsp + 0x1e8]
+0x18008AE5E  test   rcx, rcx
+0x18008AE61  je     0x18008ae79  ; -> +0x1F69
+0x18008AE63  call   0x180053a10  ; -> GetFileAttributesW
+0x18008AE68  cmp    eax, -1
+0x18008AE6B  je     0x180089d48  ; -> +0xE38
+0x18008AE71  test   al, 0x10
+0x18008AE73  je     0x180089d48  ; -> +0xE38
+0x18008AE79  test   r12, r12
+0x18008AE7C  je     0x18008aed9  ; -> +0x1FC9
+0x18008AE7E  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AE85  shl    rax, 5
+0x18008AE89  mov    qword ptr [rsp + rax + 0xa08], 0x60002
+0x18008AE95  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AE9C  shl    rax, 5
+0x18008AEA0  mov    qword ptr [rsp + rax + 0xa10], 8
+0x18008AEAC  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AEB3  shl    rax, 5
+0x18008AEB7  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008AEBF  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AEC6  shl    rax, 5
+0x18008AECA  mov    qword ptr [rsp + rax + 0xa18], r12
+0x18008AED2  add    dword ptr [rsp + 0xd4], esi
+0x18008AED9  mov    rax, qword ptr [rsp + 0x180]
+0x18008AEE1  test   rax, rax
+0x18008AEE4  je     0x18008af94  ; -> +0x2084
+0x18008AEEA  test   byte ptr [rax + 0x50], sil
+0x18008AEEE  je     0x18008af94  ; -> +0x2084
+0x18008AEF4  call   0x18012caac
+0x18008AEF9  test   al, al
+0x18008AEFB  je     0x18008af28  ; -> +0x2018
+0x18008AEFD  lea    rdx, [rsp + 0x3cc]
+0x18008AF05  mov    rcx, qword ptr [rsp + 0x258]
+0x18008AF0D  call   qword ptr [rip + 0x331844]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-3.dll!BasepCheckPplSupport
+0x18008AF14  nop    dword ptr [rax + rax]
+0x18008AF19  mov    dword ptr [rsp + 0xe0], eax
+0x18008AF20  test   eax, eax
+0x18008AF22  js     0x180089b8d  ; -> +0xC7D
+0x18008AF28  cmp    dword ptr [rsp + 0x3cc], edi
+0x18008AF2F  je     0x18008af94  ; -> +0x2084
+0x18008AF31  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AF38  shl    rax, 5
+0x18008AF3C  mov    qword ptr [rsp + rax + 0xa08], 0x60011
+0x18008AF48  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AF4F  shl    rax, 5
+0x18008AF53  mov    qword ptr [rsp + rax + 0xa10], rsi
+0x18008AF5B  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AF62  shl    rax, 5
+0x18008AF66  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008AF6E  mov    eax, dword ptr [rsp + 0xd4]
+0x18008AF75  shl    rax, 5
+0x18008AF79  mov    qword ptr [rsp + rax + 0xa18], 0x81
+0x18008AF85  add    dword ptr [rsp + 0xd4], esi
+0x18008AF8C  or     dword ptr [rsp + 0xf0], 0x40
+0x18008AF94  cmp    dword ptr [rsp + 0x2108], edi
+0x18008AF9B  je     0x18008afa7  ; -> +0x2097
+0x18008AF9D  or     dword ptr [rsp + 0xf0], 4
+0x18008AFA5  jmp    0x18008afaf  ; -> +0x209F
+0x18008AFA7  and    dword ptr [rsp + 0xf0], 0xfffffffb
+0x18008AFAF  mov    r13d, 0x58
+0x18008AFB5  mov    r8d, r13d
+0x18008AFB8  xor    edx, edx
+0x18008AFBA  lea    rcx, [rsp + 0x500]
+0x18008AFC2  call   0x1801298d1
+0x18008AFC7  mov    qword ptr [rsp + 0x500], r13
+0x18008AFCF  mov    eax, dword ptr [rsp + 0x158]
+0x18008AFD6  test   eax, eax
+0x18008AFD8  jne    0x18008b16b  ; -> +0x225B
+0x18008AFDE  test   r15d, r15d
+0x18008AFE1  jne    0x18008b0a9  ; -> +0x2199
+0x18008AFE7  test   dword ptr [rsp + 0x6cc], 0x100
+0x18008AFF2  jne    0x18008b0a9  ; -> +0x2199
+0x18008AFF8  cmp    qword ptr [rsp + 0x348], rdi
+0x18008B000  jne    0x18008b0a9  ; -> +0x2199
+0x18008B006  test   dword ptr [rsp + 0xe8], 0x8000018
+0x18008B011  jne    0x18008b0a9  ; -> +0x2199
+0x18008B017  mov    eax, dword ptr [rsp + 0x208]
+0x18008B01E  and    eax, 0xfffffffd
+0x18008B021  or     eax, esi
+0x18008B023  mov    dword ptr [rsp + 0x208], eax
+0x18008B02A  mov    dword ptr [rsp + 0x20c], 3
+0x18008B035  and    eax, 0xffffffe3
+0x18008B038  mov    dword ptr [rsp + 0x208], eax
+0x18008B03F  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B046  shl    rax, 5
+0x18008B04A  mov    qword ptr [rsp + rax + 0xa08], 0x2000a
+0x18008B056  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B05D  shl    rax, 5
+0x18008B061  mov    qword ptr [rsp + rax + 0xa10], 8
+0x18008B06D  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B074  shl    rax, 5
+0x18008B078  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008B080  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B087  shl    rax, 5
+0x18008B08B  lea    rcx, [rsp + 0x208]
+0x18008B093  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x18008B09B  add    dword ptr [rsp + 0xd4], esi
+0x18008B0A2  mov    eax, dword ptr [rsp + 0x158]
+0x18008B0A9  test   eax, eax
+0x18008B0AB  jne    0x18008b16b  ; -> +0x225B
+0x18008B0B1  test   r15d, r15d
+0x18008B0B4  jne    0x18008b16b  ; -> +0x225B
+0x18008B0BA  test   dword ptr [rsp + 0x6cc], 0x100
+0x18008B0C5  je     0x18008b16b  ; -> +0x225B
+0x18008B0CB  lea    r13d, [rax + 2]
+0x18008B0CF  lea    r15d, [rax + 8]
+0x18008B0D3  cmp    qword ptr [rsp + 0x348], rdi
+0x18008B0DB  je     0x18008b175  ; -> +0x2265
+0x18008B0E1  mov    eax, dword ptr [rsp + 0x208]
+0x18008B0E8  and    eax, 0xfffffffe
+0x18008B0EB  or     eax, r13d
+0x18008B0EE  mov    dword ptr [rsp + 0x208], eax
+0x18008B0F5  mov    dword ptr [rsp + 0x20c], 3
+0x18008B100  and    eax, 0xffffffe3
+0x18008B103  mov    dword ptr [rsp + 0x208], eax
+0x18008B10A  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B111  shl    rax, 5
+0x18008B115  mov    qword ptr [rsp + rax + 0xa08], 0x2000a
+0x18008B121  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B128  shl    rax, 5
+0x18008B12C  mov    qword ptr [rsp + rax + 0xa10], r15
+0x18008B134  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B13B  shl    rax, 5
+0x18008B13F  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008B147  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B14E  shl    rax, 5
+0x18008B152  lea    rcx, [rsp + 0x208]
+0x18008B15A  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x18008B162  add    dword ptr [rsp + 0xd4], esi
+0x18008B169  jmp    0x18008b175  ; -> +0x2265
+0x18008B16B  mov    r13d, 2
+0x18008B171  lea    r15d, [r13 + 6]
+0x18008B175  test   byte ptr [rsp + 0xe8], 3
+0x18008B17D  je     0x18008b1a1  ; -> +0x2291
+0x18008B17F  cmp    byte ptr [r14 + 1], dil
+0x18008B183  jne    0x18008b1a1  ; -> +0x2291
+0x18008B185  mov    al, byte ptr [rsp + 0x510]
+0x18008B18C  or     al, 4
+0x18008B18E  mov    byte ptr [rsp + 0x510], al
+0x18008B195  or     al, r15b
+0x18008B198  mov    byte ptr [rsp + 0x510], al
+0x18008B19F  jmp    0x18008b1bb  ; -> +0x22AB
+0x18008B1A1  cmp    byte ptr [rsp + 0x140], dil
+0x18008B1A9  je     0x18008b1bb  ; -> +0x22AB
+0x18008B1AB  mov    byte ptr [rsp + 0x140], dil
+0x18008B1B3  or     byte ptr [rsp + 0x510], 4
+0x18008B1BB  or     byte ptr [rsp + 0x510], sil
+0x18008B1C3  mov    eax, 0x2000
+0x18008B1C8  mov    word ptr [rsp + 0x512], ax
+0x18008B1D0  mov    dword ptr [rsp + 0x514], 0x81
+0x18008B1DB  cmp    qword ptr [rsp + 0x6a0], rdi
+0x18008B1E3  jne    0x18008b1f8  ; -> +0x22E8
+0x18008B1E5  mov    rax, qword ptr [r14 + 0x20]
+0x18008B1E9  mov    rcx, qword ptr [rax + 0xc8]
+0x18008B1F0  mov    qword ptr [rsp + 0x6a0], rcx
+0x18008B1F8  mov    rax, qword ptr [rsp + 0x180]
+0x18008B200  test   rax, rax
+0x18008B203  je     0x18008b219  ; -> +0x2309
+0x18008B205  mov    rcx, qword ptr [rax + 0x18]
+0x18008B209  test   rcx, rcx
+0x18008B20C  je     0x18008b219  ; -> +0x2309
+0x18008B20E  cmp    word ptr [rcx], di
+0x18008B211  je     0x18008b219  ; -> +0x2309
+0x18008B213  test   byte ptr [rax + 0x50], 4
+0x18008B217  je     0x18008b221  ; -> +0x2311
+0x18008B219  or     byte ptr [rsp + 0x510], r13b
+0x18008B221  lea    r8, [rsp + 0x18c]
+0x18008B229  lea    rdx, [rsp + 0x2c0]
+0x18008B231  or     rcx, 0xffffffffffffffff
+0x18008B235  call   qword ptr [rip + 0x20b674]  ; -> ntdll.dll!RtlWow64GetProcessMachines
+0x18008B23C  nop    dword ptr [rax + rax]
+0x18008B241  mov    eax, 0xaa64
+0x18008B246  cmp    word ptr [rsp + 0x18c], ax
+0x18008B24E  jne    0x18008b394  ; -> +0x2484
+0x18008B254  call   0x18012ca04
+0x18008B259  test   al, al
+0x18008B25B  je     0x18008b394  ; -> +0x2484
+0x18008B261  lea    rax, [rsp + 0x340]
+0x18008B269  mov    qword ptr [rsp + 0x50], rax
+0x18008B26E  lea    rax, [rsp + 0x230]
+0x18008B276  mov    qword ptr [rsp + 0x48], rax
+0x18008B27B  lea    rax, [rsp + 0x318]
+0x18008B283  mov    qword ptr [rsp + 0x40], rax
+0x18008B288  lea    rax, [rsp + 0x200]
+0x18008B290  mov    qword ptr [rsp + 0x38], rax
+0x18008B295  lea    rax, [rsp + 0x298]
+0x18008B29D  mov    qword ptr [rsp + 0x30], rax
+0x18008B2A2  lea    rax, [rsp + 0x218]
+0x18008B2AA  mov    qword ptr [rsp + 0x28], rax
+0x18008B2AF  mov    rax, qword ptr [rsp + 0x170]
+0x18008B2B7  mov    qword ptr [rsp + 0x20], rax
+0x18008B2BC  lea    r9, [rsp + 0x5d8]
+0x18008B2C4  mov    r8, qword ptr [rsp + 0x258]
+0x18008B2CC  mov    edx, ebx
+0x18008B2CE  lea    rcx, [rsp + 0x950]
+0x18008B2D6  call   qword ptr [rip + 0x331433]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepQueryModuleChpeSettings
+0x18008B2DD  nop    dword ptr [rax + rax]
+0x18008B2E2  test   eax, eax
+0x18008B2E4  jne    0x18008b394  ; -> +0x2484
+0x18008B2EA  test   byte ptr [rsp + 0x344], r15b
+0x18008B2F2  je     0x18008b458  ; -> +0x2548
+0x18008B2F8  movabs rcx, 0xfffffcffffffffff
+0x18008B302  mov    rax, qword ptr [rsp + 0x990]
+0x18008B30A  and    rax, rcx
+0x18008B30D  mov    qword ptr [rsp + 0x990], rax
+0x18008B315  movabs rcx, 0x20000000000
+0x18008B31F  or     rax, rcx
+0x18008B322  mov    qword ptr [rsp + 0x990], rax
+0x18008B32A  mov    dword ptr [rsp + 0x1f8], edi
+0x18008B331  mov    qword ptr [rsp + 0x11f8], 0x20010
+0x18008B33D  mov    qword ptr [rsp + 0x1200], 0x18
+0x18008B349  mov    qword ptr [rsp + 0x1210], rdi
+0x18008B351  lea    rax, [rsp + 0x990]
+0x18008B359  mov    qword ptr [rsp + 0x1208], rax
+0x18008B361  mov    dword ptr [rsp + 0x1f8], esi
+0x18008B368  mov    dword ptr [rsp + 0x20], 0x1c
+0x18008B370  lea    r9, [rsp + 0xd4]
+0x18008B378  lea    r8, [rsp + 0xa00]
+0x18008B380  mov    edx, esi
+0x18008B382  lea    rcx, [rsp + 0x11f0]
+0x18008B38A  call   0x180115298
+0x18008B38F  jmp    0x18008b458  ; -> +0x2548
+0x18008B394  mov    qword ptr [rsp + 0x950], rdi
+0x18008B39C  mov    dword ptr [rsp + 0x958], 0x80000000
+0x18008B3A7  mov    dword ptr [rsp + 0x95c], edi
+0x18008B3AE  mov    word ptr [rsp + 0x960], di
+0x18008B3B6  mov    byte ptr [rsp + 0x962], dil
+0x18008B3BE  mov    al, byte ptr [rsp + 0x963]
+0x18008B3C5  and    al, 0xf2
+0x18008B3C7  or     al, r13b
+0x18008B3CA  mov    byte ptr [rsp + 0x963], al
+0x18008B3D1  and    al, 0xf
+0x18008B3D3  mov    byte ptr [rsp + 0x963], al
+0x18008B3DA  mov    al, byte ptr [rsp + 0x964]
+0x18008B3E1  and    al, 0xfc
+0x18008B3E3  mov    byte ptr [rsp + 0x964], al
+0x18008B3EA  or     al, 4
+0x18008B3EC  mov    byte ptr [rsp + 0x964], al
+0x18008B3F3  or     al, r15b
+0x18008B3F6  mov    byte ptr [rsp + 0x964], al
+0x18008B3FD  and    al, 0xef
+0x18008B3FF  mov    byte ptr [rsp + 0x964], al
+0x18008B406  or     al, bl
+0x18008B408  mov    byte ptr [rsp + 0x964], al
+0x18008B40F  or     al, 0x40
+0x18008B411  mov    byte ptr [rsp + 0x964], al
+0x18008B418  and    al, 0x7f
+0x18008B41A  mov    byte ptr [rsp + 0x964], al
+0x18008B421  mov    al, byte ptr [rsp + 0x965]
+0x18008B428  or     al, sil
+0x18008B42B  mov    byte ptr [rsp + 0x965], al
+0x18008B432  or     al, r13b
+0x18008B435  mov    byte ptr [rsp + 0x965], al
+0x18008B43C  and    al, 0xfb
+0x18008B43E  mov    byte ptr [rsp + 0x965], al
+0x18008B445  and    al, 0xf7
+0x18008B447  mov    byte ptr [rsp + 0x965], al
+0x18008B44E  xor    eax, eax
+0x18008B450  mov    qword ptr [rsp + 0x968], rax
+0x18008B458  mov    eax, dword ptr [rsp + 0x1ac]
+0x18008B45F  neg    eax
+0x18008B461  sbb    ecx, ecx
+0x18008B463  and    ecx, 0x10000
+0x18008B469  cmp    word ptr [rsp + 0x218], di
+0x18008B471  setne  r9b
+0x18008B475  mov    rax, qword ptr [rsp + 0x180]
+0x18008B47D  test   rax, rax
+0x18008B480  je     0x18008b488  ; -> +0x2578
+0x18008B482  mov    r8, qword ptr [rax + 0x58]
+0x18008B486  jmp    0x18008b48b  ; -> +0x257B
+0x18008B488  mov    r8, rdi
+0x18008B48B  test   rax, rax
+0x18008B48E  je     0x18008b496  ; -> +0x2586
+0x18008B490  mov    rdx, qword ptr [rax + 8]
+0x18008B494  jmp    0x18008b499  ; -> +0x2589
+0x18008B496  mov    rdx, rdi
+0x18008B499  or     ecx, dword ptr [rsp + 0xf0]
+0x18008B4A0  mov    rax, qword ptr [rsp + 0x348]
+0x18008B4A8  mov    qword ptr [rsp + 0x68], rax
+0x18008B4AD  lea    rax, [rsp + 0x700]
+0x18008B4B5  mov    qword ptr [rsp + 0x60], rax
+0x18008B4BA  mov    dword ptr [rsp + 0x58], ecx
+0x18008B4BE  mov    eax, dword ptr [rsp + 0x110]
+0x18008B4C5  mov    dword ptr [rsp + 0x50], eax
+0x18008B4C9  mov    eax, dword ptr [rsp + 0xe8]
+0x18008B4D0  mov    dword ptr [rsp + 0x48], eax
+0x18008B4D4  lea    rax, [rsp + 0x690]
+0x18008B4DC  mov    qword ptr [rsp + 0x40], rax
+0x18008B4E1  mov    rax, qword ptr [rsp + 0x170]
+0x18008B4E9  mov    qword ptr [rsp + 0x38], rax
+0x18008B4EE  mov    byte ptr [rsp + 0x30], r9b
+0x18008B4F3  mov    qword ptr [rsp + 0x28], r8
+0x18008B4F8  mov    qword ptr [rsp + 0x20], rdx
+0x18008B4FD  mov    r9, qword ptr [rsp + 0x108]
+0x18008B505  mov    r8, qword ptr [rsp + 0x1e8]
+0x18008B50D  lea    rdx, [rsp + 0x250]
+0x18008B515  mov    rcx, qword ptr [rsp + 0x118]
+0x18008B51D  call   0x1800edb70
+0x18008B522  mov    r14, rax
+0x18008B525  mov    qword ptr [rsp + 0x1c0], rax
+0x18008B52D  test   rax, rax
+0x18008B530  je     0x180089a23  ; -> +0xB13
+0x18008B536  mov    rax, qword ptr [rsp + 0x180]
+0x18008B53E  test   rax, rax
+0x18008B541  je     0x18008b555  ; -> +0x2645
+0x18008B543  test   byte ptr [rax + 0x50], r13b
+0x18008B547  je     0x18008b555  ; -> +0x2645
+0x18008B549  mov    eax, dword ptr [r14 + 8]
+0x18008B54D  bts    eax, 0x1b
+0x18008B551  mov    dword ptr [r14 + 8], eax
+0x18008B555  cmp    qword ptr [rsp + 0x100], rdi
+0x18008B55D  jne    0x18008b575  ; -> +0x2665
+0x18008B55F  mov    rax, qword ptr [rsp + 0x160]
+0x18008B567  test   rax, rax
+0x18008B56A  je     0x18008b5d0  ; -> +0x26C0
+0x18008B56C  cmp    byte ptr [rax + 0x220], dil
+0x18008B573  je     0x18008b5d0  ; -> +0x26C0
+0x18008B575  cmp    qword ptr [rsp + 0x1e8], rdi
+0x18008B57D  jne    0x18008b5d0  ; -> +0x26C0
+0x18008B57F  movzx  r15d, word ptr [r14 + 0x38]
+0x18008B584  lea    r8, [r15 + 2]
+0x18008B588  xor    edx, edx
+0x18008B58A  mov    rcx, qword ptr [rsp + 0xd8]
+0x18008B592  call   qword ptr [rip + 0x20b56f]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008B599  nop    dword ptr [rax + rax]
+0x18008B59E  mov    qword ptr [rsp + 0x278], rax
+0x18008B5A6  test   rax, rax
+0x18008B5A9  je     0x180089ce8  ; -> +0xDD8
+0x18008B5AF  mov    r8, qword ptr [r14 + 0x40]
+0x18008B5B3  lea    rdx, [r15 + 2]
+0x18008B5B7  mov    rbx, rax
+0x18008B5BA  mov    rcx, rax
+0x18008B5BD  call   0x1800941dc
+0x18008B5C2  mov    qword ptr [rsp + 0x1e8], rbx
+0x18008B5CA  mov    r15d, 8
+0x18008B5D0  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B5D7  shl    rax, 5
+0x18008B5DB  mov    qword ptr [rsp + rax + 0xa08], 0x6001a
+0x18008B5E7  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B5EE  shl    rax, 5
+0x18008B5F2  mov    qword ptr [rsp + rax + 0xa10], rsi
+0x18008B5FA  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B601  shl    rax, 5
+0x18008B605  mov    qword ptr [rsp + rax + 0xa20], rdi
+0x18008B60D  movzx  edx, byte ptr [rsp + 0x965]
+0x18008B615  and    edx, esi
+0x18008B617  lea    rcx, [rsp + 0x320]
+0x18008B61F  call   0x18011d330
+0x18008B624  movsxd rcx, eax
+0x18008B627  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B62E  shl    rax, 5
+0x18008B632  mov    qword ptr [rsp + rax + 0xa18], rcx
+0x18008B63A  mov    eax, dword ptr [rsp + 0xd4]
+0x18008B641  inc    eax
+0x18008B643  mov    ecx, eax
+0x18008B645  mov    dword ptr [rsp + 0xd4], eax
+0x18008B64C  mov    rax, qword ptr [rsp + 0x328]
+0x18008B654  mov    qword ptr [rsp + 0xa18], rax
+0x18008B65C  movzx  eax, word ptr [rsp + 0x320]
+0x18008B664  mov    qword ptr [rsp + 0xa10], rax
+0x18008B66C  shl    rcx, 5
+0x18008B670  add    rcx, r15
+0x18008B673  mov    qword ptr [rsp + 0xa00], rcx
+0x18008B67B  mov    rax, qword ptr [rsp + 0x160]
+0x18008B683  test   rax, rax
+0x18008B686  je     0x18008b723  ; -> +0x2813
+0x18008B68C  cmp    dword ptr [rax + 0x224], esi
+0x18008B692  je     0x18008b723  ; -> +0x2813
+0x18008B698  mov    rax, qword ptr gs:[0x30]
+0x18008B6A1  cmp    dword ptr [rax + 0x179c], edi
+0x18008B6A7  je     0x18008b6e5  ; -> +0x27D5
+0x18008B6A9  lea    r9, [rsp + 0x308]
+0x18008B6B1  mov    r8b, sil
+0x18008B6B4  mov    edx, 0xc
+0x18008B6B9  mov    rcx, 0xfffffffffffffffe
+0x18008B6C0  call   qword ptr [rip + 0x20a9a1]  ; -> ntdll.dll!NtOpenThreadToken
+0x18008B6C7  nop    dword ptr [rax + rax]
+0x18008B6CC  test   eax, eax
+0x18008B6CE  jns    0x18008b6db  ; -> +0x27CB
+0x18008B6D0  mov    ecx, eax
+0x18008B6D2  call   0x1800353c0
+0x18008B6D7  mov    eax, edi
+0x18008B6D9  jmp    0x18008b6dd  ; -> +0x27CD
+0x18008B6DB  mov    eax, esi
+0x18008B6DD  test   eax, eax
+0x18008B6DF  je     0x180089a23  ; -> +0xB13
+0x18008B6E5  mov    rcx, qword ptr [rsp + 0x160]
+0x18008B6ED  mov    rcx, qword ptr [rcx + 0x228]
+0x18008B6F4  call   0x1800deed0  ; -> ImpersonateLoggedOnUser
+0x18008B6F9  test   eax, eax
+0x18008B6FB  jne    0x18008b793  ; -> +0x2883
+0x18008B701  mov    rcx, qword ptr [rsp + 0x308]
+0x18008B709  test   rcx, rcx
+0x18008B70C  je     0x180089a23  ; -> +0xB13
+0x18008B712  call   qword ptr [rip + 0x20a4e7]  ; -> ntdll.dll!NtClose
+0x18008B719  nop    dword ptr [rax + rax]
+0x18008B71E  jmp    0x180089a23  ; -> +0xB13
+0x18008B723  mov    rax, qword ptr [rsp + 0x100]
+0x18008B72B  test   rax, rax
+0x18008B72E  je     0x18008b7aa  ; -> +0x289A
+0x18008B730  cmp    dword ptr [rax + 0x20], esi
+0x18008B733  je     0x18008b7aa  ; -> +0x289A
+0x18008B735  mov    rax, qword ptr gs:[0x30]
+0x18008B73E  cmp    dword ptr [rax + 0x179c], edi
+0x18008B744  je     0x18008b782  ; -> +0x2872
+0x18008B746  lea    r9, [rsp + 0x308]
+0x18008B74E  mov    r8b, sil
+0x18008B751  mov    edx, 0xc
+0x18008B756  mov    rcx, 0xfffffffffffffffe
+0x18008B75D  call   qword ptr [rip + 0x20a904]  ; -> ntdll.dll!NtOpenThreadToken
+0x18008B764  nop    dword ptr [rax + rax]
+0x18008B769  test   eax, eax
+0x18008B76B  jns    0x18008b778  ; -> +0x2868
+0x18008B76D  mov    ecx, eax
+0x18008B76F  call   0x1800353c0
+0x18008B774  mov    eax, edi
+0x18008B776  jmp    0x18008b77a  ; -> +0x286A
+0x18008B778  mov    eax, esi
+0x18008B77A  test   eax, eax
+0x18008B77C  je     0x180089a23  ; -> +0xB13
+0x18008B782  mov    rcx, qword ptr [rsp + 0x100]
+0x18008B78A  mov    rcx, qword ptr [rcx + 0x10]
+0x18008B78E  jmp    0x18008b6f4  ; -> +0x27E4
+0x18008B793  mov    dword ptr [rsp + 0x238], esi
+0x18008B79A  mov    r12, qword ptr [rsp + 0x198]
+0x18008B7A2  mov    r14, qword ptr [rsp + 0x1c0]
+0x18008B7AA  mov    eax, dword ptr [rsp + 0xf0]
+0x18008B7B1  bt     eax, 0x13
+0x18008B7B5  jae    0x18008b7ca  ; -> +0x28BA
+0x18008B7B7  mov    eax, dword ptr [r14 + 8]
+0x18008B7BB  bts    eax, 0x19
+0x18008B7BF  mov    dword ptr [r14 + 8], eax
+0x18008B7C3  mov    eax, dword ptr [rsp + 0xf0]
+0x18008B7CA  lea    rcx, [rsp + 0xa00]
+0x18008B7D2  mov    qword ptr [rsp + 0x50], rcx
+0x18008B7D7  lea    rcx, [rsp + 0x500]
+0x18008B7DF  mov    qword ptr [rsp + 0x48], rcx
+0x18008B7E4  mov    qword ptr [rsp + 0x40], r14
+0x18008B7E9  mov    dword ptr [rsp + 0x38], esi
+0x18008B7ED  mov    dword ptr [rsp + 0x30], eax
+0x18008B7F1  mov    rax, qword ptr [rsp + 0x598]
+0x18008B7F9  mov    qword ptr [rsp + 0x28], rax
+0x18008B7FE  mov    rax, qword ptr [rsp + 0x5a0]
+0x18008B806  mov    qword ptr [rsp + 0x20], rax
+0x18008B80B  mov    eax, 0x2000000
+0x18008B810  mov    r9d, eax
+0x18008B813  mov    r8d, eax
+0x18008B816  lea    rdx, [rsp + 0x190]
+0x18008B81E  lea    rcx, [rsp + 0xf8]
+0x18008B826  call   qword ptr [rip + 0x20b103]  ; -> ntdll.dll!NtCreateUserProcess
+0x18008B82D  nop    dword ptr [rax + rax]
+0x18008B832  mov    ebx, eax
+0x18008B834  mov    dword ptr [rsp + 0xe0], eax
+0x18008B83B  cmp    dword ptr [rsp + 0x238], esi
+0x18008B842  jne    0x18008b880  ; -> +0x2970
+0x18008B844  mov    dword ptr [rsp + 0x238], edi
+0x18008B84B  mov    rcx, qword ptr [rsp + 0x308]
+0x18008B853  test   rcx, rcx
+0x18008B856  je     0x18008b87b  ; -> +0x296B
+0x18008B858  call   0x1800deed0  ; -> ImpersonateLoggedOnUser
+0x18008B85D  mov    rcx, qword ptr [rsp + 0x308]
+0x18008B865  test   eax, eax
+0x18008B867  je     0x18008b712  ; -> +0x2802
+0x18008B86D  call   qword ptr [rip + 0x20a38c]  ; -> ntdll.dll!NtClose
+0x18008B874  nop    dword ptr [rax + rax]
+0x18008B879  jmp    0x18008b880  ; -> +0x2970
+0x18008B87B  call   0x1800dc8d0  ; -> RevertToSelf
+0x18008B880  mov    rcx, r14
+0x18008B883  call   qword ptr [rip + 0x20a766]  ; -> ntdll.dll!RtlDestroyProcessParameters
+0x18008B88A  nop    dword ptr [rax + rax]
+0x18008B88F  test   ebx, ebx
+0x18008B891  jns    0x18008c4f6  ; -> +0x35E6
+0x18008B897  mov    qword ptr [rsp + 0xf8], rdi
+0x18008B89F  mov    qword ptr [rsp + 0x190], rdi
+0x18008B8A7  mov    ecx, dword ptr [rsp + 0x508]
+0x18008B8AE  test   ecx, ecx
+0x18008B8B0  je     0x18008a840  ; -> +0x1930
+0x18008B8B6  sub    ecx, 1
+0x18008B8B9  je     0x18008c08d  ; -> +0x317D
+0x18008B8BF  sub    ecx, 1
+0x18008B8C2  je     0x18008bbe5  ; -> +0x2CD5
+0x18008B8C8  sub    ecx, 1
+0x18008B8CB  je     0x18008bbdb  ; -> +0x2CCB
+0x18008B8D1  sub    ecx, 1
+0x18008B8D4  je     0x18008bb5e  ; -> +0x2C4E
+0x18008B8DA  cmp    ecx, 1
+0x18008B8DD  jne    0x18008c4f6  ; -> +0x35E6
+0x18008B8E3  mov    r14, qword ptr [rsp + 0x510]
+0x18008B8EB  mov    r12, qword ptr [rsp + 0xd8]
+0x18008B8F3  cmp    qword ptr [rsp + 0x2a8], rdi
+0x18008B8FB  jne    0x18008b938  ; -> +0x2A28
+0x18008B8FD  xor    edx, edx
+0x18008B8FF  mov    r8d, 0x20a
+0x18008B905  mov    rcx, r12
+0x18008B908  call   qword ptr [rip + 0x20b1f9]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008B90F  nop    dword ptr [rax + rax]
+0x18008B914  mov    qword ptr [rsp + 0x2a8], rax
+0x18008B91C  test   rax, rax
+0x18008B91F  jne    0x18008b938  ; -> +0x2A28
+0x18008B921  mov    rcx, r14
+0x18008B924  call   qword ptr [rip + 0x20a2d5]  ; -> ntdll.dll!NtClose
+0x18008B92B  nop    dword ptr [rax + rax]
+0x18008B930  mov    ecx, r15d
+0x18008B933  jmp    0x180089d4d  ; -> +0xE3D
+0x18008B938  lea    rax, [rsp + 0x2c8]
+0x18008B940  mov    qword ptr [rsp + 0x28], rax
+0x18008B945  mov    dword ptr [rsp + 0x20], 0x208
+0x18008B94D  mov    r9, qword ptr [rsp + 0x2a8]
+0x18008B955  mov    r8d, esi
+0x18008B958  lea    rdx, [rip + 0x219ec9]
+0x18008B95F  mov    rcx, r14
+0x18008B962  call   qword ptr [rip + 0x20af77]  ; -> ntdll.dll!LdrQueryImageFileKeyOption
+0x18008B969  nop    dword ptr [rax + rax]
+0x18008B96E  mov    dword ptr [rsp + 0xe0], eax
+0x18008B975  test   eax, eax
+0x18008B977  js     0x18008ba08  ; -> +0x2AF8
+0x18008B97D  cmp    qword ptr [rsp + 0x180], rdi
+0x18008B985  je     0x18008b98e  ; -> +0x2A7E
+0x18008B987  mov    dword ptr [rsp + 0x2c8], edi
+0x18008B98E  test   eax, eax
+0x18008B990  js     0x18008ba08  ; -> +0x2AF8
+0x18008B992  cmp    dword ptr [rsp + 0x2c8], r13d
+0x18008B99A  jb     0x18008ba08  ; -> +0x2AF8
+0x18008B99C  mov    rbx, qword ptr [rsp + 0x2a8]
+0x18008B9A4  cmp    word ptr [rbx], di
+0x18008B9A7  je     0x18008ba08  ; -> +0x2AF8
+0x18008B9A9  mov    rcx, r14
+0x18008B9AC  call   qword ptr [rip + 0x20a24d]  ; -> ntdll.dll!NtClose
+0x18008B9B3  nop    dword ptr [rax + rax]
+0x18008B9B8  mov    word ptr [rbx + 0x208], di
+0x18008B9BF  lea    rax, [rsp + 0x468]
+0x18008B9C7  mov    qword ptr [rsp + 0x20], rax
+0x18008B9CC  mov    r9, qword ptr [rsp + 0x108]
+0x18008B9D4  xor    r8d, r8d
+0x18008B9D7  mov    rdx, rbx
+0x18008B9DA  lea    ecx, [r8 + 3]
+0x18008B9DE  call   0x180118e08
+0x18008B9E3  test   eax, eax
+0x18008B9E5  je     0x180089a23  ; -> +0xB13
+0x18008B9EB  mov    rax, qword ptr [rsp + 0x470]
+0x18008B9F3  mov    qword ptr [rsp + 0x108], rax
+0x18008B9FB  mov    qword ptr [rsp + 0x118], rdi
+0x18008BA03  jmp    0x18008c30a  ; -> +0x33FA
+0x18008BA08  mov    r8, qword ptr [rsp + 0x2a8]
+0x18008BA10  xor    edx, edx
+0x18008BA12  mov    rcx, r12
+0x18008BA15  call   qword ptr [rip + 0x20a544]  ; -> ntdll.dll!RtlFreeHeap
+0x18008BA1C  nop    dword ptr [rax + rax]
+0x18008BA21  mov    qword ptr [rsp + 0x2a8], rdi
+0x18008BA29  cmp    qword ptr [rsp + 0x100], rdi
+0x18008BA31  jne    0x18008bb31  ; -> +0x2C21
+0x18008BA37  lea    rax, [rsp + 0x100]
+0x18008BA3F  mov    qword ptr [rsp + 0x20], rax
+0x18008BA44  mov    r9, r12
+0x18008BA47  mov    r8, qword ptr [rsp + 0x310]
+0x18008BA4F  mov    rdx, qword ptr [rsp + 0x258]
+0x18008BA57  mov    rcx, r14
+0x18008BA5A  call   0x18011a124
+0x18008BA5F  mov    dword ptr [rsp + 0xe0], eax
+0x18008BA66  test   eax, eax
+0x18008BA68  js     0x18008bb4d  ; -> +0x2C3D
+0x18008BA6E  mov    rdx, qword ptr [rsp + 0x100]
+0x18008BA76  test   rdx, rdx
+0x18008BA79  je     0x18008bb4d  ; -> +0x2C3D
+0x18008BA7F  mov    rax, qword ptr [rdx + 8]
+0x18008BA83  mov    qword ptr [rsp + 0x118], rax
+0x18008BA8B  mov    rax, qword ptr [rdx + 0x10]
+0x18008BA8F  mov    qword ptr [rsp + 0x198], rax
+0x18008BA97  mov    r8, r12
+0x18008BA9A  mov    rcx, qword ptr [rsp + 0x108]
+0x18008BAA2  call   0x18018b47c
+0x18008BAA7  mov    qword ptr [rsp + 0x420], rax
+0x18008BAAF  test   rax, rax
+0x18008BAB2  je     0x18008babc  ; -> +0x2BAC
+0x18008BAB4  mov    qword ptr [rsp + 0x108], rax
+0x18008BABC  mov    rax, qword ptr [rsp + 0x100]
+0x18008BAC4  cmp    dword ptr [rax + 0x20], esi
+0x18008BAC7  je     0x18008baef  ; -> +0x2BDF
+0x18008BAC9  mov    rdx, qword ptr [rax]
+0x18008BACC  lea    rcx, [rsp + 0x218]
+0x18008BAD4  call   qword ptr [rip + 0x2099cd]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008BADB  nop    dword ptr [rax + rax]
+0x18008BAE0  mov    dword ptr [rsp + 0x1ac], edi
+0x18008BAE7  mov    rax, qword ptr [rsp + 0x100]
+0x18008BAEF  cmp    qword ptr [rax + 0x30], rdi
+0x18008BAF3  je     0x18008bb31  ; -> +0x2C21
+0x18008BAF5  lea    rcx, [rsp + 0x440]
+0x18008BAFD  call   0x1800f9a40
+0x18008BB02  mov    rdx, qword ptr [rsp + 0x100]
+0x18008BB0A  mov    rdx, qword ptr [rdx + 0x30]
+0x18008BB0E  lea    rcx, [rsp + 0x440]
+0x18008BB16  call   qword ptr [rip + 0x20998b]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008BB1D  nop    dword ptr [rax + rax]
+0x18008BB22  mov    byte ptr [rsp + 0x460], sil
+0x18008BB2A  mov    dword ptr [rsp + 0x1fc], esi
+0x18008BB31  mov    rcx, r14
+0x18008BB34  call   qword ptr [rip + 0x20a0c5]  ; -> ntdll.dll!NtClose
+0x18008BB3B  nop    dword ptr [rax + rax]
+0x18008BB40  mov    byte ptr [rsp + 0x140], sil
+0x18008BB48  jmp    0x18008c30a  ; -> +0x33FA
+0x18008BB4D  mov    ecx, 0xc0073d00
+0x18008BB52  cmp    eax, ecx
+0x18008BB54  jne    0x18008bb31  ; -> +0x2C21
+0x18008BB56  mov    rcx, r14
+0x18008BB59  jmp    0x18008b712  ; -> +0x2802
+0x18008BB5E  mov    eax, 0xaa64
+0x18008BB63  cmp    word ptr [rsp + 0x18c], ax
+0x18008BB6B  je     0x18008bbb7  ; -> +0x2CA7
+0x18008BB6D  mov    dword ptr [rsp + 0x3c8], 6
+0x18008BB78  lea    rax, [rsp + 0x320]
+0x18008BB80  mov    qword ptr [rsp + 0x760], rax
+0x18008BB88  lea    rax, [rsp + 0x3c8]
+0x18008BB90  mov    qword ptr [rsp + 0x28], rax
+0x18008BB95  mov    dword ptr [rsp + 0x20], esi
+0x18008BB99  lea    r9, [rsp + 0x760]
+0x18008BBA1  mov    r8d, esi
+0x18008BBA4  mov    edx, esi
+0x18008BBA6  mov    ecx, 0x40000023
+0x18008BBAB  call   qword ptr [rip + 0x20ad16]  ; -> ntdll.dll!NtRaiseHardError
+0x18008BBB2  nop    dword ptr [rax + rax]
+0x18008BBB7  mov    rax, qword ptr [rsp + 0x410]
+0x18008BBBF  cmp    dword ptr [rax + 0x12c], 3
+0x18008BBC6  mov    ecx, 0xc1
+0x18008BBCB  jbe    0x180089d4d  ; -> +0xE3D
+0x18008BBD1  mov    ecx, 0xd8
+0x18008BBD6  jmp    0x180089d4d  ; -> +0xE3D
+0x18008BBDB  mov    ecx, 0xc1
+0x18008BBE0  jmp    0x180089d4d  ; -> +0xE3D
+0x18008BBE5  mov    rax, qword ptr [rsp + 0x510]
+0x18008BBED  mov    qword ptr [rsp + 0x1d8], rax
+0x18008BBF5  cmp    ebx, 0xc0000022
+0x18008BBFB  jne    0x18008bc07  ; -> +0x2CF7
+0x18008BBFD  mov    ecx, 5
+0x18008BC02  jmp    0x180089d4d  ; -> +0xE3D
+0x18008BC07  cmp    byte ptr [rsp + 0xf4], dil
+0x18008BC0F  jne    0x18008a840  ; -> +0x1930
+0x18008BC15  cmp    ebx, 0xc000012f
+0x18008BC1B  jne    0x18008bda8  ; -> +0x2E98
+0x18008BC21  cmp    word ptr [rsp + 0x320], r15w
+0x18008BC2A  jb     0x18008bdb6  ; -> +0x2EA6
+0x18008BC30  movzx  ecx, word ptr [rsp + 0x320]
+0x18008BC38  shr    rcx, 1
+0x18008BC3B  mov    rax, qword ptr [rsp + 0x328]
+0x18008BC43  lea    r14, [rax + rcx*2]
+0x18008BC47  mov    r8d, 4
+0x18008BC4D  lea    rdx, [rip + 0x25360c]
+0x18008BC54  lea    rcx, [r14 - 8]
+0x18008BC58  call   qword ptr [rip + 0x209959]  ; -> ntdll.dll!_wcsnicmp
+0x18008BC5F  nop    dword ptr [rax + rax]
+0x18008BC64  test   eax, eax
+0x18008BC66  je     0x18008bc8d  ; -> +0x2D7D
+0x18008BC68  mov    r8d, 4
+0x18008BC6E  lea    rdx, [rip + 0x2535db]
+0x18008BC75  lea    rcx, [r14 - 8]
+0x18008BC79  call   qword ptr [rip + 0x209938]  ; -> ntdll.dll!_wcsnicmp
+0x18008BC80  nop    dword ptr [rax + rax]
+0x18008BC85  test   eax, eax
+0x18008BC87  jne    0x18008bdb6  ; -> +0x2EA6
+0x18008BC8D  mov    byte ptr [rsp + 0x144], sil
+0x18008BC95  mov    rcx, qword ptr gs:[0x60]
+0x18008BC9E  mov    r8d, 0x20e
+0x18008BCA4  mov    edx, dword ptr [rip + 0x318ef6]
+0x18008BCAA  mov    rcx, qword ptr [rcx + 0x30]
+0x18008BCAE  call   qword ptr [rip + 0x20ae53]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008BCB5  nop    dword ptr [rax + rax]
+0x18008BCBA  mov    rbx, rax
+0x18008BCBD  mov    qword ptr [rsp + 0x3f0], rax
+0x18008BCC5  test   rax, rax
+0x18008BCC8  je     0x180089ce8  ; -> +0xDD8
+0x18008BCCE  mov    r8d, 0x104
+0x18008BCD4  mov    rdx, rax
+0x18008BCD7  lea    rcx, [rip + 0x253562]
+0x18008BCDE  call   0x1800dd2e0  ; -> GetEnvironmentVariableW
+0x18008BCE3  cmp    eax, 0x104
+0x18008BCE8  jb     0x18008bcf4  ; -> +0x2DE4
+0x18008BCEA  mov    ecx, 0xc000000f
+0x18008BCEF  jmp    0x180089a1e  ; -> +0xB0E
+0x18008BCF4  test   eax, eax
+0x18008BCF6  jne    0x18008bd2e  ; -> +0x2E1E
+0x18008BCF8  mov    r8d, 0xf3
+0x18008BCFE  mov    rdx, rbx
+0x18008BD01  lea    rcx, [rip + 0x253520]
+0x18008BD08  call   0x1800dd2e0  ; -> GetEnvironmentVariableW
+0x18008BD0D  dec    eax
+0x18008BD0F  cmp    eax, 0xf1
+0x18008BD14  ja     0x18008bd9e  ; -> +0x2E8E
+0x18008BD1A  lea    r8, [rip + 0x2534df]
+0x18008BD21  mov    edx, 0x104
+0x18008BD26  mov    rcx, rbx
+0x18008BD29  call   0x1801167f0
+0x18008BD2E  lea    r8, [rip + 0x2535cb]
+0x18008BD35  mov    edx, 0x107
+0x18008BD3A  mov    rcx, rbx
+0x18008BD3D  call   0x1801167f0
+0x18008BD42  lea    rax, [rsp + 0x468]
+0x18008BD4A  mov    qword ptr [rsp + 0x20], rax
+0x18008BD4F  mov    r9, qword ptr [rsp + 0x108]
+0x18008BD57  xor    r8d, r8d
+0x18008BD5A  mov    rdx, rbx
+0x18008BD5D  mov    ecx, dword ptr [rsp + 0x2cc]
+0x18008BD64  call   0x180118e08
+0x18008BD69  test   eax, eax
+0x18008BD6B  je     0x180089a23  ; -> +0xB13
+0x18008BD71  mov    rax, qword ptr [rsp + 0x470]
+0x18008BD79  mov    qword ptr [rsp + 0x108], rax
+0x18008BD81  mov    qword ptr [rsp + 0x118], rdi
+0x18008BD89  mov    byte ptr [rsp + 0xf4], sil
+0x18008BD91  mov    r12, qword ptr [rsp + 0xd8]
+0x18008BD99  jmp    0x180089e22  ; -> +0xF12
+0x18008BD9E  mov    ecx, 0xc0000103
+0x18008BDA3  jmp    0x180089a1e  ; -> +0xB0E
+0x18008BDA8  cmp    byte ptr [rsp + 0xf4], dil
+0x18008BDB0  jne    0x18008a840  ; -> +0x1930
+0x18008BDB6  test   dword ptr [rsp + 0xe8], 0x2000000
+0x18008BDC1  jne    0x18008be65  ; -> +0x2F55
+0x18008BDC7  mov    r14b, sil
+0x18008BDCA  mov    byte ptr [rsp + 0x1b4], sil
+0x18008BDD2  cmp    ebx, 0xc000011b
+0x18008BDD8  je     0x18008be24  ; -> +0x2F14
+0x18008BDDA  cmp    ebx, 0xc000012f
+0x18008BDE0  je     0x18008bdf6  ; -> +0x2EE6
+0x18008BDE2  lea    eax, [rbx + 0x3ffffed0]
+0x18008BDE8  cmp    eax, esi
+0x18008BDEA  jbe    0x18008be24  ; -> +0x2F14
+0x18008BDEC  cmp    ebx, 0xc0000267
+0x18008BDF2  je     0x18008be24  ; -> +0x2F14
+0x18008BDF4  jmp    0x18008be19  ; -> +0x2F09
+0x18008BDF6  call   0x18012ca04
+0x18008BDFB  test   al, al
+0x18008BDFD  je     0x18008be19  ; -> +0x2F09
+0x18008BDFF  mov    edx, ebx
+0x18008BE01  lea    rcx, [rsp + 0x320]
+0x18008BE09  call   qword ptr [rip + 0x3308b8]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseIsDosApplication
+0x18008BE10  nop    dword ptr [rax + rax]
+0x18008BE15  test   eax, eax
+0x18008BE17  jne    0x18008be24  ; -> +0x2F14
+0x18008BE19  mov    r14b, dil
+0x18008BE1C  mov    byte ptr [rsp + 0x1b4], dil
+0x18008BE24  test   r14b, r14b
+0x18008BE27  je     0x18008be65  ; -> +0x2F55
+0x18008BE29  call   0x18012ca04
+0x18008BE2E  test   al, al
+0x18008BE30  je     0x18008be5b  ; -> +0x2F4B
+0x18008BE32  lea    r9, [rsp + 0x218]
+0x18008BE3A  mov    r8, qword ptr [rsp + 0x1d8]
+0x18008BE42  mov    rdx, qword ptr [rsp + 0x118]
+0x18008BE4A  mov    rcx, r12
+0x18008BE4D  call   qword ptr [rip + 0x33087c]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepCheckWinSaferRestrictions
+0x18008BE54  nop    dword ptr [rax + rax]
+0x18008BE59  jmp    0x18008be5d  ; -> +0x2F4D
+0x18008BE5B  mov    eax, edi
+0x18008BE5D  test   eax, eax
+0x18008BE5F  js     0x180089b8d  ; -> +0xC7D
+0x18008BE65  cmp    ebx, 0xc0000131
+0x18008BE6B  jne    0x18008bf4d  ; -> +0x303D
+0x18008BE71  call   0x18012ca04
+0x18008BE76  test   al, al
+0x18008BE78  je     0x18008bf03  ; -> +0x2FF3
+0x18008BE7E  mov    qword ptr [rsp + 0x58], rdi
+0x18008BE83  mov    rax, qword ptr [rsp + 0x2b8]
+0x18008BE8B  mov    qword ptr [rsp + 0x50], rax
+0x18008BE90  mov    rax, qword ptr [rsp + 0x3a0]
+0x18008BE98  mov    qword ptr [rsp + 0x48], rax
+0x18008BE9D  mov    rax, qword ptr [rsp + 0x1e8]
+0x18008BEA5  mov    qword ptr [rsp + 0x40], rax
+0x18008BEAA  mov    rax, qword ptr [rsp + 0x170]
+0x18008BEB2  mov    qword ptr [rsp + 0x38], rax
+0x18008BEB7  mov    eax, dword ptr [rsp + 0xe8]
+0x18008BEBE  mov    dword ptr [rsp + 0x30], eax
+0x18008BEC2  mov    eax, dword ptr [rsp + 0x2108]
+0x18008BEC9  mov    dword ptr [rsp + 0x28], eax
+0x18008BECD  mov    rax, qword ptr [rsp + 0x360]
+0x18008BED5  mov    qword ptr [rsp + 0x20], rax
+0x18008BEDA  mov    r9, qword ptr [rsp + 0x358]
+0x18008BEE2  mov    r8, qword ptr [rsp + 0x108]
+0x18008BEEA  mov    rdx, qword ptr [rsp + 0x118]
+0x18008BEF2  mov    rcx, r12
+0x18008BEF5  call   qword ptr [rip + 0x3307dc]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!NtVdm64CreateProcessInternalW
+0x18008BEFC  nop    dword ptr [rax + rax]
+0x18008BF01  jmp    0x18008bf05  ; -> +0x2FF5
+0x18008BF03  mov    eax, edi
+0x18008BF05  mov    dword ptr [rsp + 0xd0], eax
+0x18008BF0C  test   eax, eax
+0x18008BF0E  jne    0x18008e2e5  ; -> +0x53D5
+0x18008BF14  mov    eax, dword ptr gs:[0x68]
+0x18008BF1C  cmp    eax, 0xd8
+0x18008BF21  jne    0x18008e2e5  ; -> +0x53D5
+0x18008BF27  call   0x18012ca04
+0x18008BF2C  test   al, al
+0x18008BF2E  je     0x18008e2e5  ; -> +0x53D5
+0x18008BF34  lea    rcx, [rsp + 0x320]
+0x18008BF3C  call   qword ptr [rip + 0x33079d]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!RaiseInvalid16BitExeError
+0x18008BF43  nop    dword ptr [rax + rax]
+0x18008BF48  jmp    0x18008e2e5  ; -> +0x53D5
+0x18008BF4D  call   0x18012ca04
+0x18008BF52  test   al, al
+0x18008BF54  je     0x18008c069  ; -> +0x3159
+0x18008BF5A  lea    rax, [rsp + 0x270]
+0x18008BF62  mov    qword ptr [rsp + 0xa0], rax
+0x18008BF6A  lea    rax, [rsp + 0x4e0]
+0x18008BF72  mov    qword ptr [rsp + 0x98], rax
+0x18008BF7A  lea    rax, [rsp + 0x158]
+0x18008BF82  mov    qword ptr [rsp + 0x90], rax
+0x18008BF8A  lea    rax, [rsp + 0x154]
+0x18008BF92  mov    qword ptr [rsp + 0x88], rax
+0x18008BF9A  lea    rax, [rsp + 0x570]
+0x18008BFA2  mov    qword ptr [rsp + 0x80], rax
+0x18008BFAA  lea    rax, [rsp + 0x580]
+0x18008BFB2  mov    qword ptr [rsp + 0x78], rax
+0x18008BFB7  lea    rax, [rsp + 0x468]
+0x18008BFBF  mov    qword ptr [rsp + 0x70], rax
+0x18008BFC4  lea    rax, [rsp + 0x1d0]
+0x18008BFCC  mov    qword ptr [rsp + 0x68], rax
+0x18008BFD1  lea    rax, [rsp + 0xe30]
+0x18008BFD9  mov    qword ptr [rsp + 0x60], rax
+0x18008BFDE  lea    rax, [rsp + 0x690]
+0x18008BFE6  mov    qword ptr [rsp + 0x58], rax
+0x18008BFEB  lea    rax, [rsp + 0x170]
+0x18008BFF3  mov    qword ptr [rsp + 0x50], rax
+0x18008BFF8  lea    rax, [rsp + 0x141]
+0x18008C000  mov    qword ptr [rsp + 0x48], rax
+0x18008C005  lea    rax, [rsp + 0x320]
+0x18008C00D  mov    qword ptr [rsp + 0x40], rax
+0x18008C012  lea    rax, [rsp + 0x2108]
+0x18008C01A  mov    qword ptr [rsp + 0x38], rax
+0x18008C01F  lea    rax, [rsp + 0xe8]
+0x18008C027  mov    qword ptr [rsp + 0x30], rax
+0x18008C02C  mov    rax, qword ptr [rsp + 0x1e8]
+0x18008C034  mov    qword ptr [rsp + 0x28], rax
+0x18008C039  lea    rax, [rsp + 0x108]
+0x18008C041  mov    qword ptr [rsp + 0x20], rax
+0x18008C046  lea    r9, [rsp + 0x118]
+0x18008C04E  mov    r8, qword ptr [rsp + 0x258]
+0x18008C056  mov    rdx, r12
+0x18008C059  mov    ecx, ebx
+0x18008C05B  call   qword ptr [rip + 0x330686]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepProcessInvalidImage
+0x18008C062  nop    dword ptr [rax + rax]
+0x18008C067  jmp    0x18008c06b  ; -> +0x315B
+0x18008C069  mov    eax, edi
+0x18008C06B  mov    dword ptr [rsp + 0xd0], eax
+0x18008C072  test   eax, eax
+0x18008C074  je     0x18008e2e5  ; -> +0x53D5
+0x18008C07A  cmp    qword ptr [rsp + 0x270], rdi
+0x18008C082  jne    0x18008e162  ; -> +0x5252
+0x18008C088  jmp    0x18008bd89  ; -> +0x2E79
+0x18008C08D  cmp    dword ptr [rsp + 0x3c4], edi
+0x18008C094  jne    0x18008c30f  ; -> +0x33FF
+0x18008C09A  call   0x18012cb00
+0x18008C09F  test   al, al
+0x18008C0A1  je     0x18008c30f  ; -> +0x33FF
+0x18008C0A7  call   0x18018babc
+0x18008C0AC  test   eax, eax
+0x18008C0AE  je     0x18008c0bf  ; -> +0x31AF
+0x18008C0B0  cmp    ebx, 0xc0000279
+0x18008C0B6  jne    0x18008c0bf  ; -> +0x31AF
+0x18008C0B8  mov    eax, 0xc0070002
+0x18008C0BD  jmp    0x18008c0e1  ; -> +0x31D1
+0x18008C0BF  lea    r9, [rsp + 0x160]
+0x18008C0C7  mov    r8d, esi
+0x18008C0CA  mov    rdx, r12
+0x18008C0CD  mov    rcx, qword ptr [rsp + 0x118]
+0x18008C0D5  call   qword ptr [rip + 0x330664]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-2.dll!BasepGetPackagedAppInfoForFile
+0x18008C0DC  nop    dword ptr [rax + rax]
+0x18008C0E1  mov    dword ptr [rsp + 0x3c4], esi
+0x18008C0E8  test   eax, eax
+0x18008C0EA  js     0x18008c30f  ; -> +0x33FF
+0x18008C0F0  mov    rdx, qword ptr [rsp + 0x160]
+0x18008C0F8  test   rdx, rdx
+0x18008C0FB  je     0x18008c30f  ; -> +0x33FF
+0x18008C101  mov    rax, qword ptr [rdx + 0x208]
+0x18008C108  mov    qword ptr [rsp + 0x118], rax
+0x18008C110  cmp    dword ptr [rdx + 0x224], esi
+0x18008C116  jne    0x18008c264  ; -> +0x3354
+0x18008C11C  lea    rcx, [rdx + 2]
+0x18008C120  cmp    byte ptr [rdx + 0x220], dil
+0x18008C127  je     0x18008c1cd  ; -> +0x32BD
+0x18008C12D  call   qword ptr [rip + 0x2093ec]  ; -> ntdll.dll!wcslen
+0x18008C134  nop    dword ptr [rax + rax]
+0x18008C139  mov    rbx, rax
+0x18008C13C  mov    rcx, qword ptr [rsp + 0x108]
+0x18008C144  call   qword ptr [rip + 0x2093d5]  ; -> ntdll.dll!wcslen
+0x18008C14B  nop    dword ptr [rax + rax]
+0x18008C150  add    ebx, eax
+0x18008C152  lea    eax, [rbx*2 + 4]
+0x18008C159  movsxd r14, eax
+0x18008C15C  mov    r8, r14
+0x18008C15F  xor    edx, edx
+0x18008C161  mov    r12, qword ptr [rsp + 0xd8]
+0x18008C169  mov    rcx, r12
+0x18008C16C  call   qword ptr [rip + 0x20a995]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008C173  nop    dword ptr [rax + rax]
+0x18008C178  mov    rbx, rax
+0x18008C17B  mov    qword ptr [rsp + 0x390], rax
+0x18008C183  test   rax, rax
+0x18008C186  je     0x18008c30a  ; -> +0x33FA
+0x18008C18C  mov    r8, qword ptr [rsp + 0x160]
+0x18008C194  add    r8, 2
+0x18008C198  mov    rdx, r14
+0x18008C19B  mov    rcx, rax
+0x18008C19E  call   0x1800941dc
+0x18008C1A3  lea    r8, [rip + 0x253052]
+0x18008C1AA  mov    rdx, r14
+0x18008C1AD  mov    rcx, rbx
+0x18008C1B0  call   0x1800f4898
+0x18008C1B5  mov    r8, qword ptr [rsp + 0x108]
+0x18008C1BD  mov    rdx, r14
+0x18008C1C0  mov    rcx, rbx
+0x18008C1C3  call   0x1800f4898
+0x18008C1C8  jmp    0x18008c302  ; -> +0x33F2
+0x18008C1CD  call   qword ptr [rip + 0x20934c]  ; -> ntdll.dll!wcslen
+0x18008C1D4  nop    dword ptr [rax + rax]
+0x18008C1D9  mov    rbx, rax
+0x18008C1DC  lea    rcx, [rip + 0x25308d]
+0x18008C1E3  call   qword ptr [rip + 0x209336]  ; -> ntdll.dll!wcslen
+0x18008C1EA  nop    dword ptr [rax + rax]
+0x18008C1EF  add    ebx, eax
+0x18008C1F1  mov    rcx, qword ptr [rsp + 0x108]
+0x18008C1F9  call   qword ptr [rip + 0x209320]  ; -> ntdll.dll!wcslen
+0x18008C200  nop    dword ptr [rax + rax]
+0x18008C205  add    eax, ebx
+0x18008C207  lea    eax, [rax*2 + 2]
+0x18008C20E  movsxd r14, eax
+0x18008C211  mov    r8, r14
+0x18008C214  xor    edx, edx
+0x18008C216  mov    r12, qword ptr [rsp + 0xd8]
+0x18008C21E  mov    rcx, r12
+0x18008C221  call   qword ptr [rip + 0x20a8e0]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008C228  nop    dword ptr [rax + rax]
+0x18008C22D  mov    rbx, rax
+0x18008C230  mov    qword ptr [rsp + 0x390], rax
+0x18008C238  test   rax, rax
+0x18008C23B  je     0x18008c30a  ; -> +0x33FA
+0x18008C241  mov    r8, qword ptr [rsp + 0x160]
+0x18008C249  add    r8, 2
+0x18008C24D  mov    rdx, r14
+0x18008C250  mov    rcx, rax
+0x18008C253  call   0x1800941dc
+0x18008C258  lea    r8, [rip + 0x253011]
+0x18008C25F  jmp    0x18008c1aa  ; -> +0x329A
+0x18008C264  mov    rax, qword ptr [rdx + 0x228]
+0x18008C26B  mov    qword ptr [rsp + 0x198], rax
+0x18008C273  add    rdx, 0x106
+0x18008C27A  lea    rcx, [rsp + 0x218]
+0x18008C282  call   qword ptr [rip + 0x20921f]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008C289  nop    dword ptr [rax + rax]
+0x18008C28E  mov    dword ptr [rsp + 0x1ac], edi
+0x18008C295  mov    rcx, qword ptr [rsp + 0x108]
+0x18008C29D  call   qword ptr [rip + 0x20927c]  ; -> ntdll.dll!wcslen
+0x18008C2A4  nop    dword ptr [rax + rax]
+0x18008C2A9  lea    eax, [rax*2 + 2]
+0x18008C2B0  movsxd r14, eax
+0x18008C2B3  mov    r8, r14
+0x18008C2B6  xor    edx, edx
+0x18008C2B8  mov    r12, qword ptr [rsp + 0xd8]
+0x18008C2C0  mov    rcx, r12
+0x18008C2C3  call   qword ptr [rip + 0x20a83e]  ; -> ntdll.dll!RtlAllocateHeap
+0x18008C2CA  nop    dword ptr [rax + rax]
+0x18008C2CF  mov    rbx, rax
+0x18008C2D2  mov    qword ptr [rsp + 0x390], rax
+0x18008C2DA  test   rax, rax
+0x18008C2DD  je     0x18008c30a  ; -> +0x33FA
+0x18008C2DF  mov    dword ptr [rsp + 0x28], 0x900
+0x18008C2E7  mov    qword ptr [rsp + 0x20], rdi
+0x18008C2EC  xor    r9d, r9d
+0x18008C2EF  mov    r8, qword ptr [rsp + 0x108]
+0x18008C2F7  mov    rdx, r14
+0x18008C2FA  mov    rcx, rax
+0x18008C2FD  call   0x1801285b4
+0x18008C302  mov    qword ptr [rsp + 0x108], rbx
+0x18008C30A  jmp    0x180089e22  ; -> +0xF12
+0x18008C30F  cmp    qword ptr [rsp + 0x100], rdi
+0x18008C317  jne    0x18008c4d0  ; -> +0x35C0
+0x18008C31D  cmp    ebx, 0xc0000279
+0x18008C323  je     0x18008c331  ; -> +0x3421
+0x18008C325  cmp    ebx, 0xc0000022
+0x18008C32B  jne    0x18008c4d0  ; -> +0x35C0
+0x18008C331  mov    r14d, 0xc0000002
+0x18008C337  mov    dword ptr [rsp + 0x2d0], r14d
+0x18008C33F  cmp    ebx, 0xc0000022
+0x18008C345  jne    0x18008c3aa  ; -> +0x349A
+0x18008C347  lea    rax, [rsp + 0x100]
+0x18008C34F  mov    qword ptr [rsp + 0x20], rax
+0x18008C354  mov    r12, qword ptr [rsp + 0xd8]
+0x18008C35C  mov    r9, r12
+0x18008C35F  mov    r8, qword ptr [rsp + 0x310]
+0x18008C367  mov    rdx, qword ptr [rsp + 0x258]
+0x18008C36F  xor    ecx, ecx
+0x18008C371  call   0x18011a124
+0x18008C376  mov    r14d, eax
+0x18008C379  mov    dword ptr [rsp + 0x2d0], eax
+0x18008C380  test   eax, eax
+0x18008C382  js     0x18008c3e9  ; -> +0x34D9
+0x18008C384  mov    rdx, qword ptr [rsp + 0x100]
+0x18008C38C  test   rdx, rdx
+0x18008C38F  je     0x18008c3e9  ; -> +0x34D9
+0x18008C391  mov    rcx, qword ptr [rsp + 0x258]
+0x18008C399  call   0x180003e34
+0x18008C39E  mov    r14d, eax
+0x18008C3A1  mov    dword ptr [rsp + 0x2d0], eax
+0x18008C3A8  jmp    0x18008c3e9  ; -> +0x34D9
+0x18008C3AA  call   0x18012d87c
+0x18008C3AF  test   al, al
+0x18008C3B1  je     0x18008c3e1  ; -> +0x34D1
+0x18008C3B3  lea    r8, [rsp + 0x100]
+0x18008C3BB  mov    rdx, qword ptr [rsp + 0x310]
+0x18008C3C3  mov    rcx, qword ptr [rsp + 0x258]
+0x18008C3CB  call   qword ptr [rip + 0x32ff1e]  ; -> DELAY:ext-ms-win-appmodel-appexecutionalias-l1-1-0.dll!LoadAppExecutionAliasInfoEx
+0x18008C3D2  nop    dword ptr [rax + rax]
+0x18008C3D7  mov    r14d, eax
+0x18008C3DA  mov    dword ptr [rsp + 0x2d0], eax
+0x18008C3E1  mov    r12, qword ptr [rsp + 0xd8]
+0x18008C3E9  test   r14d, r14d
+0x18008C3EC  js     0x18008c4be  ; -> +0x35AE
+0x18008C3F2  mov    rdx, qword ptr [rsp + 0x100]
+0x18008C3FA  test   rdx, rdx
+0x18008C3FD  je     0x18008c4be  ; -> +0x35AE
+0x18008C403  mov    rax, qword ptr [rdx + 8]
+0x18008C407  mov    qword ptr [rsp + 0x118], rax
+0x18008C40F  mov    rax, qword ptr [rdx + 0x10]
+0x18008C413  mov    qword ptr [rsp + 0x198], rax
+0x18008C41B  mov    r8, r12
+0x18008C41E  mov    rcx, qword ptr [rsp + 0x108]
+0x18008C426  call   0x18018b47c
+0x18008C42B  mov    qword ptr [rsp + 0x420], rax
+0x18008C433  test   rax, rax
+0x18008C436  je     0x18008c440  ; -> +0x3530
+0x18008C438  mov    qword ptr [rsp + 0x108], rax
+0x18008C440  mov    rdx, qword ptr [rsp + 0x100]
+0x18008C448  cmp    dword ptr [rdx + 0x20], esi
+0x18008C44B  je     0x18008c46b  ; -> +0x355B
+0x18008C44D  mov    rdx, qword ptr [rdx]
+0x18008C450  lea    rcx, [rsp + 0x218]
+0x18008C458  call   qword ptr [rip + 0x209049]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008C45F  nop    dword ptr [rax + rax]
+0x18008C464  mov    dword ptr [rsp + 0x1ac], edi
+0x18008C46B  mov    rax, qword ptr [rsp + 0x100]
+0x18008C473  cmp    qword ptr [rax + 0x30], rdi
+0x18008C477  je     0x18008c30a  ; -> +0x33FA
+0x18008C47D  lea    rcx, [rsp + 0x440]
+0x18008C485  call   0x1800f9a40
+0x18008C48A  mov    rdx, qword ptr [rsp + 0x100]
+0x18008C492  mov    rdx, qword ptr [rdx + 0x30]
+0x18008C496  lea    rcx, [rsp + 0x440]
+0x18008C49E  call   qword ptr [rip + 0x209003]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008C4A5  nop    dword ptr [rax + rax]
+0x18008C4AA  mov    byte ptr [rsp + 0x460], sil
+0x18008C4B2  mov    dword ptr [rsp + 0x1fc], esi
+0x18008C4B9  jmp    0x18008c30a  ; -> +0x33FA
+0x18008C4BE  mov    eax, 0xc0073d00
+0x18008C4C3  cmp    r14d, eax
+0x18008C4C6  cmove  ebx, eax
+0x18008C4C9  mov    dword ptr [rsp + 0xe0], ebx
+0x18008C4D0  mov    rcx, qword ptr [rsp + 0x118]
+0x18008C4D8  call   qword ptr [rip + 0x209209]  ; -> ntdll.dll!RtlIsDosDeviceName_U
+0x18008C4DF  nop    dword ptr [rax + rax]
+0x18008C4E4  test   eax, eax
+0x18008C4E6  je     0x18008a840  ; -> +0x1930
+0x18008C4EC  mov    ecx, 0x4b0
+0x18008C4F1  jmp    0x180089d4d  ; -> +0xE3D
+0x18008C4F6  mov    rax, qword ptr [rsp + 0x518]
+0x18008C4FE  mov    qword ptr [rsp + 0x1d8], rax
+0x18008C506  mov    rax, qword ptr [rsp + 0x520]
+0x18008C50E  mov    qword ptr [rsp + 0x368], rax
+0x18008C516  mov    eax, dword ptr [rsp + 0x730]
+0x18008C51D  add    eax, -2
+0x18008C520  cmp    eax, esi
+0x18008C522  jbe    0x18008c52e  ; -> +0x361E
+0x18008C524  mov    ecx, 0x81
+0x18008C529  jmp    0x180089d4d  ; -> +0xE3D
+0x18008C52E  movzx  edx, word ptr [rsp + 0x734]
+0x18008C536  movzx  eax, word ptr [rsp + 0x736]
+0x18008C53E  mov    ebx, 0xa
+0x18008C543  cmp    eax, 3
+0x18008C546  jb     0x18008c568  ; -> +0x3658
+0x18008C548  jne    0x18008c54e  ; -> +0x363E
+0x18008C54A  cmp    edx, ebx
+0x18008C54C  jb     0x18008c568  ; -> +0x3658
+0x18008C54E  mov    ecx, dword ptr [0x7ffe026c]
+0x18008C555  cmp    eax, ecx
+0x18008C557  ja     0x18008c568  ; -> +0x3658
+0x18008C559  jne    0x18008c564  ; -> +0x3654
+0x18008C55B  cmp    edx, dword ptr [0x7ffe0270]
+0x18008C562  ja     0x18008c568  ; -> +0x3658
+0x18008C564  mov    eax, esi
+0x18008C566  jmp    0x18008c56a  ; -> +0x365A
+0x18008C568  mov    eax, edi
+0x18008C56A  test   eax, eax
+0x18008C56C  je     0x18008bbdb  ; -> +0x2CCB
+0x18008C572  test   byte ptr [rsp + 0x510], r15b
+0x18008C57A  je     0x18008c59a  ; -> +0x368A
+0x18008C57C  mov    rax, qword ptr [rsp + 0x548]
+0x18008C584  mov    qword ptr [rsp + 0x5a8], rax
+0x18008C58C  mov    eax, dword ptr [rsp + 0x550]
+0x18008C593  mov    dword ptr [rsp + 0x3c0], eax
+0x18008C59A  call   0x18012ca04
+0x18008C59F  test   al, al
+0x18008C5A1  je     0x18008c5b9  ; -> +0x36A9
+0x18008C5A3  mov    rcx, qword ptr [rsp + 0x1d8]
+0x18008C5AB  call   qword ptr [rip + 0x33013e]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepCheckWebBladeHashes
+0x18008C5B2  nop    dword ptr [rax + rax]
+0x18008C5B7  jmp    0x18008c5bb  ; -> +0x36AB
+0x18008C5B9  mov    eax, edi
+0x18008C5BB  cmp    eax, 0xc0000022
+0x18008C5C0  jne    0x18008c5cc  ; -> +0x36BC
+0x18008C5C2  mov    ecx, 0x4fd
+0x18008C5C7  jmp    0x180089d4d  ; -> +0xE3D
+0x18008C5CC  test   eax, eax
+0x18008C5CE  jns    0x18008c5da  ; -> +0x36CA
+0x18008C5D0  mov    ecx, 0x4fe
+0x18008C5D5  jmp    0x180089d4d  ; -> +0xE3D
+0x18008C5DA  call   0x18012ca04
+0x18008C5DF  test   al, al
+0x18008C5E1  je     0x18008c5f9  ; -> +0x36E9
+0x18008C5E3  mov    rcx, qword ptr [rsp + 0x118]
+0x18008C5EB  call   qword ptr [rip + 0x330106]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepIsProcessAllowed
+0x18008C5F2  nop    dword ptr [rax + rax]
+0x18008C5F7  jmp    0x18008c5fb  ; -> +0x36EB
+0x18008C5F9  mov    eax, edi
+0x18008C5FB  mov    dword ptr [rsp + 0xe0], eax
+0x18008C602  test   eax, eax
+0x18008C604  js     0x180089b8d  ; -> +0xC7D
+0x18008C60A  cmp    byte ptr [rsp + 0x141], dil
+0x18008C612  jne    0x18008c62a  ; -> +0x371A
+0x18008C614  test   dword ptr [rsp + 0xe8], 0x800
+0x18008C61F  je     0x18008c62a  ; -> +0x371A
+0x18008C621  btr    dword ptr [rsp + 0xe8], 0xb
+0x18008C62A  cmp    dword ptr [rsp + 0x158], edi
+0x18008C631  je     0x18008c696  ; -> +0x3786
+0x18008C633  mov    rax, qword ptr [rsp + 0xf8]
+0x18008C63B  mov    qword ptr [rsp + 0x270], rax
+0x18008C643  call   0x18012ca04
+0x18008C648  test   al, al
+0x18008C64A  je     0x18008c674  ; -> +0x3764
+0x18008C64C  mov    r9d, dword ptr [rsp + 0x158]
+0x18008C654  mov    r8d, dword ptr [rsp + 0x1d0]
+0x18008C65C  lea    rdx, [rsp + 0x270]
+0x18008C664  mov    ecx, esi
+0x18008C666  call   qword ptr [rip + 0x330093]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseUpdateVDMEntry
+0x18008C66D  nop    dword ptr [rax + rax]
+0x18008C672  jmp    0x18008c676  ; -> +0x3766
+0x18008C674  mov    eax, edi
+0x18008C676  mov    dword ptr [rsp + 0xd0], eax
+0x18008C67D  test   eax, eax
+0x18008C67F  jne    0x18008c68e  ; -> +0x377E
+0x18008C681  mov    qword ptr [rsp + 0x270], rdi
+0x18008C689  jmp    0x18008e2e5  ; -> +0x53D5
+0x18008C68E  or     dword ptr [rsp + 0x154], r13d
+0x18008C696  mov    rax, qword ptr [rsp + 0x538]
+0x18008C69E  mov    qword ptr [rsp + 0x1c0], rax
+0x18008C6A6  cmp    byte ptr [rsp + 0xf4], dil
+0x18008C6AE  jne    0x18008c6f9  ; -> +0x37E9
+0x18008C6B0  test   dword ptr [rsp + 0xe8], 0x2000000
+0x18008C6BB  jne    0x18008c6f9  ; -> +0x37E9
+0x18008C6BD  call   0x18012ca04
+0x18008C6C2  test   al, al
+0x18008C6C4  je     0x18008c6ef  ; -> +0x37DF
+0x18008C6C6  lea    r9, [rsp + 0x218]
+0x18008C6CE  mov    r8, qword ptr [rsp + 0x1d8]
+0x18008C6D6  mov    rdx, qword ptr [rsp + 0x118]
+0x18008C6DE  mov    rcx, r12
+0x18008C6E1  call   qword ptr [rip + 0x32ffe8]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepCheckWinSaferRestrictions
+0x18008C6E8  nop    dword ptr [rax + rax]
+0x18008C6ED  jmp    0x18008c6f1  ; -> +0x37E1
+0x18008C6EF  mov    eax, edi
+0x18008C6F1  test   eax, eax
+0x18008C6F3  js     0x180089b8d  ; -> +0xC7D
+0x18008C6F9  xor    edx, edx
+0x18008C6FB  mov    r8d, 0x1c8
+0x18008C701  lea    rcx, [rsp + 0xea8]
+0x18008C709  call   0x1801298d1
+0x18008C70E  movzx  edx, word ptr [rsp + 0x740]
+0x18008C716  mov    ecx, edx
+0x18008C718  sub    ecx, 0x14c
+0x18008C71E  je     0x18008c777  ; -> +0x3867
+0x18008C720  sub    ecx, 0x78
+0x18008C723  je     0x18008c770  ; -> +0x3860
+0x18008C725  sub    ecx, 0x38a0
+0x18008C72B  je     0x18008c78b  ; -> +0x387B
+0x18008C72D  sub    ecx, 0x4c00
+0x18008C733  je     0x18008c769  ; -> +0x3859
+0x18008C735  cmp    ecx, 0x2400
+0x18008C73B  je     0x18008c758  ; -> +0x3848
+0x18008C73D  lea    rcx, [rip + 0x252b7c]
+0x18008C744  call   0x180129840
+0x18008C749  mov    eax, 0xffff
+0x18008C74E  mov    word ptr [rsp + 0x110], ax
+0x18008C756  jmp    0x18008c793  ; -> +0x3883
+0x18008C758  mov    r14d, 0xc
+0x18008C75E  mov    word ptr [rsp + 0x110], r14w
+0x18008C767  jmp    0x18008c799  ; -> +0x3889
+0x18008C769  mov    eax, 9
+0x18008C76E  jmp    0x18008c74e  ; -> +0x383E
+0x18008C770  mov    eax, 5
+0x18008C775  jmp    0x18008c74e  ; -> +0x383E
+0x18008C777  test   byte ptr [rsp + 0x510], r13b
+0x18008C77F  je     0x18008c78b  ; -> +0x387B
+0x18008C781  mov    ax, word ptr [0x7ffe026a]
+0x18008C789  jmp    0x18008c74e  ; -> +0x383E
+0x18008C78B  mov    word ptr [rsp + 0x110], bx
+0x18008C793  mov    r14d, 0xc
+0x18008C799  test   dword ptr [rsp + 0xe8], 0x400000
+0x18008C7A4  jne    0x18008e131  ; -> +0x5221
+0x18008C7AA  test   byte ptr [rsp + 0x510], 0x10
+0x18008C7B2  je     0x18008c80d  ; -> +0x38FD
+0x18008C7B4  cmp    qword ptr [rsp + 0x180], rdi
+0x18008C7BC  je     0x18008c80d  ; -> +0x38FD
+0x18008C7BE  mov    qword ptr [rsp + 0x20], rdi
+0x18008C7C3  mov    r9d, esi
+0x18008C7C6  lea    r8, [rsp + 0x17b]
+0x18008C7CE  mov    edx, 0x3d
+0x18008C7D3  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008C7DB  call   qword ptr [rip + 0x209456]  ; -> ntdll.dll!NtQueryInformationProcess
+0x18008C7E2  nop    dword ptr [rax + rax]
+0x18008C7E7  mov    dword ptr [rsp + 0xe0], eax
+0x18008C7EE  test   eax, eax
+0x18008C7F0  js     0x18008c806  ; -> +0x38F6
+0x18008C7F2  cmp    byte ptr [rsp + 0x17b], 0x81
+0x18008C7FA  jne    0x18008c80d  ; -> +0x38FD
+0x18008C7FC  mov    byte ptr [rsp + 0x130], sil
+0x18008C804  jmp    0x18008c80d  ; -> +0x38FD
+0x18008C806  mov    dword ptr [rsp + 0xe0], edi
+0x18008C80D  mov    word ptr [rsp + 0x188], di
+0x18008C815  test   byte ptr [rsp + 0x510], sil
+0x18008C81D  je     0x18008c82d  ; -> +0x391D
+0x18008C81F  cmp    byte ptr [rsp + 0x130], dil
+0x18008C827  je     0x18008c94f  ; -> +0x3A3F
+0x18008C82D  call   0x18012ca04
+0x18008C832  test   al, al
+0x18008C834  je     0x18008c94f  ; -> +0x3A3F
+0x18008C83A  movzx  edx, byte ptr [rsp + 0x510]
+0x18008C842  shr    edx, 1
+0x18008C844  and    edx, esi
+0x18008C846  lea    rax, [rsp + 0x2d8]
+0x18008C84E  mov    qword ptr [rsp + 0x88], rax
+0x18008C856  lea    rax, [rsp + 0x418]
+0x18008C85E  mov    qword ptr [rsp + 0x80], rax
+0x18008C866  lea    rax, [rsp + 0x188]
+0x18008C86E  mov    qword ptr [rsp + 0x78], rax
+0x18008C873  lea    rax, [rsp + 0x22c]
+0x18008C87B  mov    qword ptr [rsp + 0x70], rax
+0x18008C880  lea    rax, [rsp + 0x340]
+0x18008C888  mov    qword ptr [rsp + 0x68], rax
+0x18008C88D  lea    rax, [rsp + 0x3bc]
+0x18008C895  mov    qword ptr [rsp + 0x60], rax
+0x18008C89A  lea    rax, [rsp + 0x230]
+0x18008C8A2  mov    qword ptr [rsp + 0x58], rax
+0x18008C8A7  lea    rax, [rsp + 0x318]
+0x18008C8AF  mov    qword ptr [rsp + 0x50], rax
+0x18008C8B4  lea    rax, [rsp + 0x200]
+0x18008C8BC  mov    qword ptr [rsp + 0x48], rax
+0x18008C8C1  lea    rax, [rsp + 0x298]
+0x18008C8C9  mov    qword ptr [rsp + 0x40], rax
+0x18008C8CE  lea    rax, [rsp + 0x218]
+0x18008C8D6  mov    qword ptr [rsp + 0x38], rax
+0x18008C8DB  mov    rax, qword ptr [rsp + 0x170]
+0x18008C8E3  mov    qword ptr [rsp + 0x30], rax
+0x18008C8E8  mov    rax, qword ptr [rsp + 0x258]
+0x18008C8F0  mov    qword ptr [rsp + 0x28], rax
+0x18008C8F5  mov    rax, qword ptr [rsp + 0xf8]
+0x18008C8FD  mov    qword ptr [rsp + 0x20], rax
+0x18008C902  mov    r9, qword ptr [rsp + 0x1d8]
+0x18008C90A  movzx  r8d, word ptr [rsp + 0x110]
+0x18008C913  lea    rcx, [rsp + 0x710]
+0x18008C91B  call   qword ptr [rip + 0x32fde6]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepQueryAppCompat
+0x18008C922  nop    dword ptr [rax + rax]
+0x18008C927  mov    eax, dword ptr [rsp + 0xf0]
+0x18008C92E  mov    ecx, 0x80000
+0x18008C933  test   ecx, eax
+0x18008C935  jne    0x18008c94f  ; -> +0x3A3F
+0x18008C937  test   byte ptr [rsp + 0x344], 0x10
+0x18008C93F  je     0x18008c94f  ; -> +0x3A3F
+0x18008C941  or     eax, ecx
+0x18008C943  mov    dword ptr [rsp + 0xf0], eax
+0x18008C94A  jmp    0x18008bd91  ; -> +0x2E81
+0x18008C94F  mov    al, byte ptr [rsp + 0x510]
+0x18008C956  test   sil, al
+0x18008C959  je     0x18008c963  ; -> +0x3A53
+0x18008C95B  test   al, 0x10
+0x18008C95D  je     0x18008ca9e  ; -> +0x3B8E
+0x18008C963  mov    eax, dword ptr [rsp + 0x534]
+0x18008C96A  mov    dword ptr [rsp + 0x234], eax
+0x18008C971  mov    dword ptr [rsp + 0xeac], eax
+0x18008C978  mov    word ptr [rsp + 0xf4c], di
+0x18008C980  mov    qword ptr [rsp + 0xf60], rdi
+0x18008C988  call   0x18012ca04
+0x18008C98D  test   al, al
+0x18008C98F  je     0x18008ca8d  ; -> +0x3B7D
+0x18008C995  mov    rax, qword ptr [rsp + 0x180]
+0x18008C99D  test   rax, rax
+0x18008C9A0  je     0x18008c9ae  ; -> +0x3A9E
+0x18008C9A2  test   byte ptr [rax + 0x50], 4
+0x18008C9A6  jne    0x18008c9ae  ; -> +0x3A9E
+0x18008C9A8  mov    r8, qword ptr [rax + 0x10]
+0x18008C9AC  jmp    0x18008c9b1  ; -> +0x3AA1
+0x18008C9AE  mov    r8, rdi
+0x18008C9B1  movzx  ecx, word ptr [rsp + 0x73e]
+0x18008C9B9  shr    ecx, 9
+0x18008C9BC  and    ecx, esi
+0x18008C9BE  movzx  edx, byte ptr [rsp + 0x510]
+0x18008C9C6  shr    edx, 2
+0x18008C9C9  and    edx, esi
+0x18008C9CB  lea    rax, [rsp + 0x8f0]
+0x18008C9D3  mov    qword ptr [rsp + 0x88], rax
+0x18008C9DB  lea    rax, [rsp + 0xea8]
+0x18008C9E3  mov    qword ptr [rsp + 0x80], rax
+0x18008C9EB  lea    rax, [rsp + 0x234]
+0x18008C9F3  mov    qword ptr [rsp + 0x78], rax
+0x18008C9F8  mov    eax, dword ptr [rsp + 0x3c0]
+0x18008C9FF  mov    dword ptr [rsp + 0x70], eax
+0x18008CA03  mov    rax, qword ptr [rsp + 0x5a8]
+0x18008CA0B  mov    qword ptr [rsp + 0x68], rax
+0x18008CA10  mov    rax, qword ptr [rsp + 0x1c0]
+0x18008CA18  mov    qword ptr [rsp + 0x60], rax
+0x18008CA1D  mov    qword ptr [rsp + 0x58], r8
+0x18008CA22  mov    dword ptr [rsp + 0x50], ecx
+0x18008CA26  mov    eax, dword ptr [rsp + 0x230]
+0x18008CA2D  mov    dword ptr [rsp + 0x48], eax
+0x18008CA31  mov    rax, qword ptr [rsp + 0x318]
+0x18008CA39  mov    qword ptr [rsp + 0x40], rax
+0x18008CA3E  mov    eax, dword ptr [rsp + 0x3bc]
+0x18008CA45  mov    dword ptr [rsp + 0x38], eax
+0x18008CA49  mov    dword ptr [rsp + 0x30], edx
+0x18008CA4D  mov    qword ptr [rsp + 0x28], r12
+0x18008CA52  mov    rax, qword ptr [rsp + 0x368]
+0x18008CA5A  mov    qword ptr [rsp + 0x20], rax
+0x18008CA5F  mov    r9, qword ptr [rsp + 0xf8]
+0x18008CA67  mov    r8, qword ptr [rsp + 0x1d8]
+0x18008CA6F  lea    rdx, [rsp + 0x250]
+0x18008CA77  lea    rcx, [rsp + 0x320]
+0x18008CA7F  call   qword ptr [rip + 0x32fbea]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepConstructSxsCreateProcessMessage
+0x18008CA86  nop    dword ptr [rax + rax]
+0x18008CA8B  jmp    0x18008ca8f  ; -> +0x3B7F
+0x18008CA8D  mov    eax, edi
+0x18008CA8F  mov    dword ptr [rsp + 0xe0], eax
+0x18008CA96  test   eax, eax
+0x18008CA98  js     0x180089b8d  ; -> +0xC7D
+0x18008CA9E  mov    eax, dword ptr [rsp + 0x540]
+0x18008CAA5  mov    qword ptr [rsp + 0x1078], rax
+0x18008CAAD  mov    rax, qword ptr [rsp + 0x538]
+0x18008CAB5  mov    qword ptr [rsp + 0x1070], rax
+0x18008CABD  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008CAC5  mov    qword ptr [rsp + 0xe70], rcx
+0x18008CACD  mov    rax, qword ptr [rsp + 0x190]
+0x18008CAD5  mov    qword ptr [rsp + 0xe78], rax
+0x18008CADD  movdqu xmm0, xmmword ptr [rsp + 0x5c0]
+0x18008CAE6  movdqu xmmword ptr [rsp + 0xe80], xmm0
+0x18008CAEF  movzx  eax, word ptr [rsp + 0x110]
+0x18008CAF7  mov    word ptr [rsp + 0x1080], ax
+0x18008CAFF  mov    eax, dword ptr [rsp + 0xe8]
+0x18008CB06  and    eax, 0xfffffffc
+0x18008CB09  mov    dword ptr [rsp + 0xe90], eax
+0x18008CB10  cmp    dword ptr [rsp + 0x730], r13d
+0x18008CB18  je     0x18008cb24  ; -> +0x3C14
+0x18008CB1A  cmp    byte ptr [rsp + 0x141], dil
+0x18008CB22  je     0x18008cb59  ; -> +0x3C49
+0x18008CB24  or     rcx, r13
+0x18008CB27  mov    qword ptr [rsp + 0xe70], rcx
+0x18008CB2F  xor    ecx, ecx
+0x18008CB31  call   0x1800cd1d0  ; -> GetModuleHandleA
+0x18008CB36  mov    rcx, rax
+0x18008CB39  call   qword ptr [rip + 0x209480]  ; -> ntdll.dll!RtlImageNtHeader
+0x18008CB40  nop    dword ptr [rax + rax]
+0x18008CB45  test   rax, rax
+0x18008CB48  je     0x18008cb59  ; -> +0x3C49
+0x18008CB4A  cmp    word ptr [rax + 0x5c], r13w
+0x18008CB4F  jne    0x18008cb59  ; -> +0x3C49
+0x18008CB51  or     qword ptr [rsp + 0xe70], rsi
+0x18008CB59  test   r12, r12
+0x18008CB5C  je     0x18008cbc9  ; -> +0x3CB9
+0x18008CB5E  mov    dword ptr [rsp + 0x3b4], edi
+0x18008CB65  lea    rax, [rsp + 0x3b8]
+0x18008CB6D  mov    qword ptr [rsp + 0x20], rax
+0x18008CB72  mov    r9d, 4
+0x18008CB78  lea    r8, [rsp + 0x3b4]
+0x18008CB80  mov    edx, r14d
+0x18008CB83  mov    rcx, r12
+0x18008CB86  call   qword ptr [rip + 0x208ed3]  ; -> ntdll.dll!NtQueryInformationToken
+0x18008CB8D  nop    dword ptr [rax + rax]
+0x18008CB92  mov    dword ptr [rsp + 0xe0], eax
+0x18008CB99  test   eax, eax
+0x18008CB9B  js     0x180089b8d  ; -> +0xC7D
+0x18008CBA1  mov    rcx, qword ptr gs:[0x60]
+0x18008CBAA  mov    eax, dword ptr [rsp + 0x3b4]
+0x18008CBB1  cmp    eax, dword ptr [rcx + 0x2c0]
+0x18008CBB7  je     0x18008cbc1  ; -> +0x3CB1
+0x18008CBB9  or     qword ptr [rsp + 0xe78], rsi
+0x18008CBC1  mov    r12, qword ptr [rsp + 0x198]
+0x18008CBC9  mov    eax, dword ptr [rsp + 0x6cc]
+0x18008CBD0  test   al, 0x40
+0x18008CBD2  je     0x18008cbdc  ; -> +0x3CCC
+0x18008CBD4  or     qword ptr [rsp + 0xe70], rsi
+0x18008CBDC  test   al, al
+0x18008CBDE  jns    0x18008cbe9  ; -> +0x3CD9
+0x18008CBE0  and    qword ptr [rsp + 0xe70], 0xfffffffffffffffe
+0x18008CBE9  bt     eax, 0x10
+0x18008CBED  jae    0x18008cbf8  ; -> +0x3CE8
+0x18008CBEF  and    qword ptr [rsp + 0xe70], 0xfffffffffffffffc
+0x18008CBF8  mov    eax, dword ptr [rsp + 0x158]
+0x18008CBFF  mov    dword ptr [rsp + 0xe94], eax
+0x18008CC06  test   eax, eax
+0x18008CC08  je     0x18008cc38  ; -> +0x3D28
+0x18008CC0A  mov    eax, dword ptr [rsp + 0x1d0]
+0x18008CC11  test   eax, eax
+0x18008CC13  je     0x18008cc1a  ; -> +0x3D0A
+0x18008CC15  mov    rcx, rdi
+0x18008CC18  jmp    0x18008cc29  ; -> +0x3D19
+0x18008CC1A  call   0x180126e04
+0x18008CC1F  mov    rcx, rax
+0x18008CC22  mov    eax, dword ptr [rsp + 0x1d0]
+0x18008CC29  mov    qword ptr [rsp + 0xea0], rcx
+0x18008CC31  mov    dword ptr [rsp + 0xe98], eax
+0x18008CC38  mov    al, byte ptr [rsp + 0x510]
+0x18008CC3F  test   sil, al
+0x18008CC42  je     0x18008cc50  ; -> +0x3D40
+0x18008CC44  test   al, 0x10
+0x18008CC46  jne    0x18008cc50  ; -> +0x3D40
+0x18008CC48  or     qword ptr [rsp + 0xe78], r13
+0x18008CC50  lea    rdx, [rsp + 0x290]
+0x18008CC58  lea    rcx, [rsp + 0xea8]
+0x18008CC60  call   0x1800fa6f0
+0x18008CC65  mov    dword ptr [rsp + 0xe0], eax
+0x18008CC6C  test   eax, eax
+0x18008CC6E  js     0x180089b8d  ; -> +0xC7D
+0x18008CC74  mov    r9d, 0x218
+0x18008CC7A  mov    r8d, 0x1001d
+0x18008CC80  mov    rdx, qword ptr [rsp + 0x290]
+0x18008CC88  lea    rcx, [rsp + 0xe30]
+0x18008CC90  call   qword ptr [rip + 0x208dd9]  ; -> ntdll.dll!CsrClientCallServer
+0x18008CC97  nop    dword ptr [rax + rax]
+0x18008CC9C  mov    ecx, dword ptr [rsp + 0xe64]
+0x18008CCA3  test   ecx, ecx
+0x18008CCA5  jns    0x18008ccbf  ; -> +0x3DAF
+0x18008CCA7  call   0x1800353c0
+0x18008CCAC  mov    eax, dword ptr [rsp + 0xe64]
+0x18008CCB3  mov    dword ptr [rsp + 0x148], eax
+0x18008CCBA  jmp    0x180089a23  ; -> +0xB13
+0x18008CCBF  test   byte ptr [rsp + 0x510], sil
+0x18008CCC7  jne    0x18008cd24  ; -> +0x3E14
+0x18008CCC9  mov    eax, dword ptr [rsp + 0xeac]
+0x18008CCD0  mov    dword ptr [rsp + 0x234], eax
+0x18008CCD7  cmp    eax, dword ptr [rsp + 0x534]
+0x18008CCDE  je     0x18008cd24  ; -> +0x3E14
+0x18008CCE0  lea    rax, [rsp + 0x500]
+0x18008CCE8  mov    qword ptr [rsp + 0x30], rax
+0x18008CCED  mov    qword ptr [rsp + 0x28], r15
+0x18008CCF2  mov    qword ptr [rsp + 0x20], r15
+0x18008CCF7  mov    r9d, 4
+0x18008CCFD  mov    r8d, r9d
+0x18008CD00  lea    rdx, [rsp + 0x234]
+0x18008CD08  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008CD10  call   0x180103a68
+0x18008CD15  mov    dword ptr [rsp + 0xe0], eax
+0x18008CD1C  test   eax, eax
+0x18008CD1E  js     0x180089b8d  ; -> +0xC7D
+0x18008CD24  cmp    byte ptr [rsp + 0x144], dil
+0x18008CD2C  jne    0x18008cf0f  ; -> +0x3FFF
+0x18008CD32  test   byte ptr [rsp + 0x228], r13b
+0x18008CD3A  jne    0x18008cf0f  ; -> +0x3FFF
+0x18008CD40  cmp    qword ptr [rsp + 0x2b0], rdi
+0x18008CD48  jne    0x18008cf0f  ; -> +0x3FFF
+0x18008CD4E  or     dword ptr [rsp + 0x1b0], esi
+0x18008CD55  call   0x18012ca04
+0x18008CD5A  test   al, al
+0x18008CD5C  je     0x18008cec8  ; -> +0x3FB8
+0x18008CD62  call   0x18018ba78
+0x18008CD67  lea    r9, [rsp + 0x1b0]
+0x18008CD6F  test   eax, eax
+0x18008CD71  je     0x18008ce58  ; -> +0x3F48
+0x18008CD77  mov    dword ptr [rsp + 0x3b0], edi
+0x18008CD7E  lea    rax, [rsp + 0x3b0]
+0x18008CD86  mov    qword ptr [rsp + 0x50], rax
+0x18008CD8B  mov    qword ptr [rsp + 0x48], rdi
+0x18008CD90  mov    qword ptr [rsp + 0x40], r12
+0x18008CD95  mov    eax, dword ptr [rsp + 0x22c]
+0x18008CD9C  mov    dword ptr [rsp + 0x38], eax
+0x18008CDA0  lea    rax, [rsp + 0xf50]
+0x18008CDA8  mov    qword ptr [rsp + 0x30], rax
+0x18008CDAD  lea    rax, [rsp + 0xf40]
+0x18008CDB5  mov    qword ptr [rsp + 0x28], rax
+0x18008CDBA  mov    rax, qword ptr [rsp + 0x340]
+0x18008CDC2  mov    qword ptr [rsp + 0x20], rax
+0x18008CDC7  mov    r8, qword ptr [rsp + 0x258]
+0x18008CDCF  mov    r14, qword ptr [rsp + 0x1d8]
+0x18008CDD7  mov    rdx, r14
+0x18008CDDA  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008CDE2  call   qword ptr [rip + 0x32f92f]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseCheckElevation
+0x18008CDE9  nop    dword ptr [rax + rax]
+0x18008CDEE  mov    ebx, eax
+0x18008CDF0  mov    dword ptr [rsp + 0xe0], eax
+0x18008CDF7  call   0x18019483c
+0x18008CDFC  test   eax, eax
+0x18008CDFE  je     0x18008ced1  ; -> +0x3FC1
+0x18008CE04  test   ebx, ebx
+0x18008CE06  js     0x18008ced5  ; -> +0x3FC5
+0x18008CE0C  call   0x18012ca58
+0x18008CE11  test   al, al
+0x18008CE13  je     0x18008ced1  ; -> +0x3FC1
+0x18008CE19  mov    eax, dword ptr [rsp + 0x3b0]
+0x18008CE20  mov    dword ptr [rsp + 0x28], eax
+0x18008CE24  mov    eax, dword ptr [rsp + 0x22c]
+0x18008CE2B  mov    dword ptr [rsp + 0x20], eax
+0x18008CE2F  lea    r9, [rsp + 0xf50]
+0x18008CE37  mov    r8, qword ptr [rsp + 0x118]
+0x18008CE3F  mov    rdx, r14
+0x18008CE42  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008CE4A  call   qword ptr [rip + 0x32f93f]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-2-1.dll!BaseMarkProcessTokenForInstallers
+0x18008CE51  nop    dword ptr [rax + rax]
+0x18008CE56  jmp    0x18008ced1  ; -> +0x3FC1
+0x18008CE58  mov    qword ptr [rsp + 0x50], rdi
+0x18008CE5D  mov    qword ptr [rsp + 0x48], rdi
+0x18008CE62  mov    qword ptr [rsp + 0x40], r12
+0x18008CE67  mov    eax, dword ptr [rsp + 0x22c]
+0x18008CE6E  mov    dword ptr [rsp + 0x38], eax
+0x18008CE72  lea    rax, [rsp + 0xf50]
+0x18008CE7A  mov    qword ptr [rsp + 0x30], rax
+0x18008CE7F  lea    rax, [rsp + 0xf40]
+0x18008CE87  mov    qword ptr [rsp + 0x28], rax
+0x18008CE8C  mov    rax, qword ptr [rsp + 0x340]
+0x18008CE94  mov    qword ptr [rsp + 0x20], rax
+0x18008CE99  mov    r8, qword ptr [rsp + 0x258]
+0x18008CEA1  mov    rdx, qword ptr [rsp + 0x1d8]
+0x18008CEA9  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008CEB1  call   qword ptr [rip + 0x32f860]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseCheckElevation
+0x18008CEB8  nop    dword ptr [rax + rax]
+0x18008CEBD  mov    ebx, eax
+0x18008CEBF  mov    dword ptr [rsp + 0xe0], eax
+0x18008CEC6  jmp    0x18008ced1  ; -> +0x3FC1
+0x18008CEC8  mov    ebx, edi
+0x18008CECA  mov    dword ptr [rsp + 0xe0], ebx
+0x18008CED1  test   ebx, ebx
+0x18008CED3  jns    0x18008cf0f  ; -> +0x3FFF
+0x18008CED5  cmp    ebx, 0xc000042c
+0x18008CEDB  jne    0x18008cefc  ; -> +0x3FEC
+0x18008CEDD  test   byte ptr [rsp + 0x228], sil
+0x18008CEE5  jne    0x18008cefc  ; -> +0x3FEC
+0x18008CEE7  call   0x18012ca04
+0x18008CEEC  test   al, al
+0x18008CEEE  je     0x18008cefc  ; -> +0x3FEC
+0x18008CEF0  call   qword ptr [rip + 0x32f829]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseWriteErrorElevationRequiredEvent
+0x18008CEF7  nop    dword ptr [rax + rax]
+0x18008CEFC  mov    ecx, ebx
+0x18008CEFE  call   0x1800353c0
+0x18008CF03  mov    dword ptr [rsp + 0x148], ebx
+0x18008CF0A  jmp    0x180089a23  ; -> +0xB13
+0x18008CF0F  call   0x18018b9ac
+0x18008CF14  test   eax, eax
+0x18008CF16  je     0x18008d220  ; -> +0x4310
+0x18008CF1C  cmp    word ptr [rsp + 0xf68], di
+0x18008CF24  jne    0x18008d220  ; -> +0x4310
+0x18008CF2A  cmp    byte ptr [rsp + 0x142], dil
+0x18008CF32  jne    0x18008d220  ; -> +0x4310
+0x18008CF38  cmp    qword ptr [rsp + 0x100], rdi
+0x18008CF40  jne    0x18008d220  ; -> +0x4310
+0x18008CF46  cmp    qword ptr [rsp + 0x240], rdi
+0x18008CF4E  jne    0x18008d220  ; -> +0x4310
+0x18008CF54  lea    rdx, [rsp + 0x9b8]
+0x18008CF5C  mov    ecx, esi
+0x18008CF5E  call   qword ptr [rip + 0x2099d3]  ; -> ntdll.dll!EtwEventActivityIdControl
+0x18008CF65  nop    dword ptr [rax + rax]
+0x18008CF6A  lea    rdx, [rsp + 0x9a8]
+0x18008CF72  mov    r14d, 5
+0x18008CF78  mov    ecx, r14d
+0x18008CF7B  call   qword ptr [rip + 0x2099b6]  ; -> ntdll.dll!EtwEventActivityIdControl
+0x18008CF82  nop    dword ptr [rax + rax]
+0x18008CF87  cmp    dword ptr [rip + 0x312092], r14d
+0x18008CF8E  jbe    0x18008d10e  ; -> +0x41FE
+0x18008CF94  mov    qword ptr [rsp + 0x650], 0x1000000
+0x18008CFA0  lea    rax, [rsp + 0x650]
+0x18008CFA8  mov    qword ptr [rsp + 0x1a90], rax
+0x18008CFB0  mov    qword ptr [rsp + 0x1a98], 8
+0x18008CFBC  mov    rdx, qword ptr [rsp + 0x118]
+0x18008CFC4  lea    rcx, [rsp + 0x1aa0]
+0x18008CFCC  call   0x18006f9b4
+0x18008CFD1  cmp    qword ptr [rsp + 0x358], rdi
+0x18008CFD9  setne  byte ptr [rsp + 0x1a8]
+0x18008CFE1  lea    rax, [rsp + 0x1a8]
+0x18008CFE9  mov    qword ptr [rsp + 0x1ab0], rax
+0x18008CFF1  mov    qword ptr [rsp + 0x1ab8], 1
+0x18008CFFD  cmp    qword ptr [rsp + 0x360], rdi
+0x18008D005  setne  byte ptr [rsp + 0x1a6]
+0x18008D00D  lea    rax, [rsp + 0x1a6]
+0x18008D015  mov    qword ptr [rsp + 0x1ac0], rax
+0x18008D01D  mov    qword ptr [rsp + 0x1ac8], 1
+0x18008D029  cmp    dword ptr [rsp + 0x2108], esi
+0x18008D030  sete   byte ptr [rsp + 0x1a5]
+0x18008D038  lea    rax, [rsp + 0x1a5]
+0x18008D040  mov    qword ptr [rsp + 0x1ad0], rax
+0x18008D048  mov    qword ptr [rsp + 0x1ad8], 1
+0x18008D054  mov    eax, dword ptr [rsp + 0xe8]
+0x18008D05B  mov    dword ptr [rsp + 0x488], eax
+0x18008D062  lea    rax, [rsp + 0x488]
+0x18008D06A  mov    qword ptr [rsp + 0x1ae0], rax
+0x18008D072  mov    qword ptr [rsp + 0x1ae8], 4
+0x18008D07E  cmp    qword ptr [rsp + 0x170], rdi
+0x18008D086  setne  byte ptr [rsp + 0x1a4]
+0x18008D08E  lea    rax, [rsp + 0x1a4]
+0x18008D096  mov    qword ptr [rsp + 0x1af0], rax
+0x18008D09E  mov    qword ptr [rsp + 0x1af8], 1
+0x18008D0AA  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008D0B2  setne  byte ptr [rsp + 0x1a3]
+0x18008D0BA  lea    rax, [rsp + 0x1a3]
+0x18008D0C2  mov    qword ptr [rsp + 0x1b00], rax
+0x18008D0CA  mov    qword ptr [rsp + 0x1b08], 1
+0x18008D0D6  lea    rax, [rsp + 0x1a70]
+0x18008D0DE  mov    qword ptr [rsp + 0x28], rax
+0x18008D0E3  mov    dword ptr [rsp + 0x20], 0xa
+0x18008D0EB  lea    r9, [rsp + 0x9a8]
+0x18008D0F3  lea    r8, [rsp + 0x9b8]
+0x18008D0FB  lea    rdx, [rip + 0x2cdfb3]
+0x18008D102  lea    rcx, [rip + 0x311f17]
+0x18008D109  call   0x180106118
+0x18008D10E  mov    word ptr [rsp + 0x1e70], di
+0x18008D116  mov    r8d, 0x82
+0x18008D11C  lea    rdx, [rsp + 0x1e70]
+0x18008D124  mov    rcx, qword ptr [rsp + 0x118]
+0x18008D12C  call   0x18018bb00
+0x18008D131  mov    dword ptr [rsp + 0x3ac], eax
+0x18008D138  cmp    dword ptr [rip + 0x311ee1], r14d
+0x18008D13F  jbe    0x18008d226  ; -> +0x4316
+0x18008D145  mov    qword ptr [rsp + 0x658], 0x1000000
+0x18008D151  lea    rcx, [rsp + 0x658]
+0x18008D159  mov    qword ptr [rsp + 0x1c70], rcx
+0x18008D161  mov    qword ptr [rsp + 0x1c78], 8
+0x18008D16D  mov    dword ptr [rsp + 0x484], eax
+0x18008D174  lea    rax, [rsp + 0x484]
+0x18008D17C  mov    qword ptr [rsp + 0x1c80], rax
+0x18008D184  mov    qword ptr [rsp + 0x1c88], 4
+0x18008D190  lea    rdx, [rsp + 0x1e70]
+0x18008D198  cmp    word ptr [rsp + 0x1e70], di
+0x18008D1A0  lea    rax, [rip + 0x20fc8d]
+0x18008D1A7  cmove  rdx, rax
+0x18008D1AB  lea    rcx, [rsp + 0x1c90]
+0x18008D1B3  call   0x18006f9b4
+0x18008D1B8  mov    rcx, qword ptr [rsp + 0x2b8]
+0x18008D1C0  mov    eax, dword ptr [rcx + 0x10]
+0x18008D1C3  mov    dword ptr [rsp + 0x480], eax
+0x18008D1CA  lea    rax, [rsp + 0x480]
+0x18008D1D2  mov    qword ptr [rsp + 0x1ca0], rax
+0x18008D1DA  mov    qword ptr [rsp + 0x1ca8], 4
+0x18008D1E6  lea    rax, [rsp + 0x1c50]
+0x18008D1EE  mov    qword ptr [rsp + 0x28], rax
+0x18008D1F3  mov    dword ptr [rsp + 0x20], 6
+0x18008D1FB  lea    r9, [rsp + 0x9a8]
+0x18008D203  lea    r8, [rsp + 0x9b8]
+0x18008D20B  lea    rdx, [rip + 0x2cdf76]
+0x18008D212  lea    rcx, [rip + 0x311e07]
+0x18008D219  call   0x180106118
+0x18008D21E  jmp    0x18008d226  ; -> +0x4316
+0x18008D220  mov    r14d, 5
+0x18008D226  cmp    word ptr [rsp + 0xf68], di
+0x18008D22E  jne    0x18008d24b  ; -> +0x433B
+0x18008D230  cmp    dword ptr [rsp + 0x3ac], edi
+0x18008D237  jl     0x18008d7fc  ; -> +0x48EC
+0x18008D23D  cmp    word ptr [rsp + 0x1e70], di
+0x18008D245  je     0x18008d7fc  ; -> +0x48EC
+0x18008D24B  cmp    byte ptr [rsp + 0x142], dil
+0x18008D253  jne    0x18008d7fc  ; -> +0x48EC
+0x18008D259  cmp    qword ptr [rsp + 0x100], rdi
+0x18008D261  jne    0x18008d7fc  ; -> +0x48EC
+0x18008D267  cmp    qword ptr [rsp + 0x240], rdi
+0x18008D26F  jne    0x18008d7fc  ; -> +0x48EC
+0x18008D275  lea    rax, [rsp + 0xf68]
+0x18008D27D  lea    rcx, [rsp + 0x1e70]
+0x18008D285  cmp    word ptr [rsp + 0xf68], di
+0x18008D28D  cmove  rax, rcx
+0x18008D291  mov    qword ptr [rsp + 0x260], rax
+0x18008D299  lea    rdx, [rsp + 0x970]
+0x18008D2A1  mov    ecx, r14d
+0x18008D2A4  call   qword ptr [rip + 0x20968d]  ; -> ntdll.dll!EtwEventActivityIdControl
+0x18008D2AB  nop    dword ptr [rax + rax]
+0x18008D2B0  lea    rdx, [rsp + 0x980]
+0x18008D2B8  mov    ecx, esi
+0x18008D2BA  call   qword ptr [rip + 0x209677]  ; -> ntdll.dll!EtwEventActivityIdControl
+0x18008D2C1  nop    dword ptr [rax + rax]
+0x18008D2C6  mov    dword ptr [rsp + 0x2ec], esi
+0x18008D2CD  movabs r13, 0x400000000000
+0x18008D2D7  cmp    dword ptr [rip + 0x311d42], r14d
+0x18008D2DE  jbe    0x18008d488  ; -> +0x4578
+0x18008D2E4  test   qword ptr [rip + 0x311d45], r13
+0x18008D2EB  je     0x18008d303  ; -> +0x43F3
+0x18008D2ED  mov    rax, qword ptr [rip + 0x311d44]
+0x18008D2F4  and    rax, r13
+0x18008D2F7  cmp    rax, qword ptr [rip + 0x311d3a]
+0x18008D2FE  mov    al, sil
+0x18008D301  je     0x18008d306  ; -> +0x43F6
+0x18008D303  mov    al, dil
+0x18008D306  test   al, al
+0x18008D308  je     0x18008d488  ; -> +0x4578
+0x18008D30E  mov    qword ptr [rsp + 0x660], 0x1000000
+0x18008D31A  lea    rax, [rsp + 0x660]
+0x18008D322  mov    qword ptr [rsp + 0x1b30], rax
+0x18008D32A  mov    qword ptr [rsp + 0x1b38], 8
+0x18008D336  mov    rdx, qword ptr [rsp + 0x260]
+0x18008D33E  lea    rcx, [rsp + 0x1b40]
+0x18008D346  call   0x18006f9b4
+0x18008D34B  cmp    qword ptr [rsp + 0x358], rdi
+0x18008D353  setne  byte ptr [rsp + 0x1a2]
+0x18008D35B  lea    rax, [rsp + 0x1a2]
+0x18008D363  mov    qword ptr [rsp + 0x1b50], rax
+0x18008D36B  mov    qword ptr [rsp + 0x1b58], 1
+0x18008D377  cmp    qword ptr [rsp + 0x360], rdi
+0x18008D37F  setne  byte ptr [rsp + 0x1a1]
+0x18008D387  lea    rax, [rsp + 0x1a1]
+0x18008D38F  mov    qword ptr [rsp + 0x1b60], rax
+0x18008D397  mov    qword ptr [rsp + 0x1b68], 1
+0x18008D3A3  cmp    dword ptr [rsp + 0x2108], esi
+0x18008D3AA  sete   byte ptr [rsp + 0x1a0]
+0x18008D3B2  lea    rax, [rsp + 0x1a0]
+0x18008D3BA  mov    qword ptr [rsp + 0x1b70], rax
+0x18008D3C2  mov    qword ptr [rsp + 0x1b78], 1
+0x18008D3CE  mov    eax, dword ptr [rsp + 0xe8]
+0x18008D3D5  mov    dword ptr [rsp + 0x47c], eax
+0x18008D3DC  lea    rax, [rsp + 0x47c]
+0x18008D3E4  mov    qword ptr [rsp + 0x1b80], rax
+0x18008D3EC  mov    qword ptr [rsp + 0x1b88], 4
+0x18008D3F8  cmp    qword ptr [rsp + 0x170], rdi
+0x18008D400  setne  byte ptr [rsp + 0x1a7]
+0x18008D408  lea    rax, [rsp + 0x1a7]
+0x18008D410  mov    qword ptr [rsp + 0x1b90], rax
+0x18008D418  mov    qword ptr [rsp + 0x1b98], 1
+0x18008D424  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008D42C  sete   byte ptr [rsp + 0x1b8]
+0x18008D434  lea    rax, [rsp + 0x1b8]
+0x18008D43C  mov    qword ptr [rsp + 0x1ba0], rax
+0x18008D444  mov    qword ptr [rsp + 0x1ba8], 1
+0x18008D450  lea    rax, [rsp + 0x1b10]
+0x18008D458  mov    qword ptr [rsp + 0x28], rax
+0x18008D45D  mov    dword ptr [rsp + 0x20], 0xa
+0x18008D465  lea    r9, [rsp + 0x970]
+0x18008D46D  lea    r8, [rsp + 0x980]
+0x18008D475  lea    rdx, [rip + 0x2cdd61]
+0x18008D47C  lea    rcx, [rip + 0x311b9d]
+0x18008D483  call   0x180106118
+0x18008D488  call   0x18018b954
+0x18008D48D  test   eax, eax
+0x18008D48F  je     0x18008d528  ; -> +0x4618
+0x18008D495  mov    ebx, edi
+0x18008D497  mov    dword ptr [rsp + 0x478], ebx
+0x18008D49E  test   byte ptr [rsp + 0x1c8], 2
+0x18008D4A6  je     0x18008d4ff  ; -> +0x45EF
+0x18008D4A8  mov    dword ptr [rsp + 0x3a8], edi
+0x18008D4AF  lea    rdx, [rsp + 0x3a8]
+0x18008D4B7  mov    rcx, qword ptr [rsp + 0x260]
+0x18008D4BF  call   0x18018b65c
+0x18008D4C4  mov    dword ptr [rsp + 0xe0], eax
+0x18008D4CB  test   eax, eax
+0x18008D4CD  jns    0x18008d4ee  ; -> +0x45DE
+0x18008D4CF  mov    dword ptr [rsp + 0x148], 0xc0000001
+0x18008D4DA  mov    dword ptr [rsp + 0xd0], edi
+0x18008D4E1  mov    rbx, qword ptr [rsp + 0xd8]
+0x18008D4E9  jmp    0x18008e2f7  ; -> +0x53E7
+0x18008D4EE  cmp    dword ptr [rsp + 0x3a8], edi
+0x18008D4F5  cmovne ebx, esi
+0x18008D4F8  mov    dword ptr [rsp + 0x478], ebx
+0x18008D4FF  lea    r9, [rsp + 0x330]
+0x18008D507  mov    r8d, ebx
+0x18008D50A  mov    rdx, qword ptr [rsp + 0x310]
+0x18008D512  mov    rcx, qword ptr [rsp + 0x260]
+0x18008D51A  call   qword ptr [rip + 0x32f257]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-2-0.dll!BasepGetPackageActivationTokenForSxS3
+0x18008D521  nop    dword ptr [rax + rax]
+0x18008D526  jmp    0x18008d54c  ; -> +0x463C
+0x18008D528  lea    r8, [rsp + 0x330]
+0x18008D530  mov    rdx, qword ptr [rsp + 0x310]
+0x18008D538  mov    rcx, qword ptr [rsp + 0x260]
+0x18008D540  call   qword ptr [rip + 0x32f221]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-2-0.dll!BasepGetPackageActivationTokenForSxS2
+0x18008D547  nop    dword ptr [rax + rax]
+0x18008D54C  mov    ebx, eax
+0x18008D54E  cmp    dword ptr [rip + 0x311acb], r14d
+0x18008D555  jbe    0x18008d631  ; -> +0x4721
+0x18008D55B  test   qword ptr [rip + 0x311ace], r13
+0x18008D562  je     0x18008d57a  ; -> +0x466A
+0x18008D564  mov    rax, qword ptr [rip + 0x311acd]
+0x18008D56B  and    rax, r13
+0x18008D56E  cmp    rax, qword ptr [rip + 0x311ac3]
+0x18008D575  mov    al, sil
+0x18008D578  je     0x18008d57d  ; -> +0x466D
+0x18008D57A  mov    al, dil
+0x18008D57D  test   al, al
+0x18008D57F  je     0x18008d631  ; -> +0x4721
+0x18008D585  mov    qword ptr [rsp + 0x668], 0x1000000
+0x18008D591  lea    rax, [rsp + 0x668]
+0x18008D599  mov    qword ptr [rsp + 0x1bd0], rax
+0x18008D5A1  mov    qword ptr [rsp + 0x1bd8], 8
+0x18008D5AD  mov    dword ptr [rsp + 0x4fc], ebx
+0x18008D5B4  lea    rax, [rsp + 0x4fc]
+0x18008D5BC  mov    qword ptr [rsp + 0x1be0], rax
+0x18008D5C4  mov    qword ptr [rsp + 0x1be8], 4
+0x18008D5D0  cmp    qword ptr [rsp + 0x330], rdi
+0x18008D5D8  setne  byte ptr [rsp + 0x1b7]
+0x18008D5E0  lea    rax, [rsp + 0x1b7]
+0x18008D5E8  mov    qword ptr [rsp + 0x1bf0], rax
+0x18008D5F0  mov    qword ptr [rsp + 0x1bf8], 1
+0x18008D5FC  lea    rax, [rsp + 0x1bb0]
+0x18008D604  mov    qword ptr [rsp + 0x28], rax
+0x18008D609  mov    dword ptr [rsp + 0x20], r14d
+0x18008D60E  lea    r9, [rsp + 0x970]
+0x18008D616  lea    r8, [rsp + 0x980]
+0x18008D61E  lea    rdx, [rip + 0x2cdc7b]
+0x18008D625  lea    rcx, [rip + 0x3119f4]
+0x18008D62C  call   0x180106118
+0x18008D631  test   ebx, ebx
+0x18008D633  je     0x18008d653  ; -> +0x4743
+0x18008D635  mov    dword ptr [rsp + 0x148], 0xc0000001
+0x18008D640  mov    ecx, ebx
+0x18008D642  call   qword ptr [rip + 0x207f87]  ; -> ntdll.dll!RtlSetLastWin32Error
+0x18008D649  nop    dword ptr [rax + rax]
+0x18008D64E  jmp    0x18008d4da  ; -> +0x45CA
+0x18008D653  mov    rcx, qword ptr [rsp + 0x330]
+0x18008D65B  test   rcx, rcx
+0x18008D65E  je     0x18008d7f6  ; -> +0x48E6
+0x18008D664  mov    qword ptr [rsp + 0x240], rcx
+0x18008D66C  mov    qword ptr [rsp + 0x330], rdi
+0x18008D674  mov    dword ptr [rsp + 0x4f8], 0x80
+0x18008D67F  lea    r8, [rsp + 0x1d70]
+0x18008D687  lea    rdx, [rsp + 0x4f8]
+0x18008D68F  call   0x18003dda0  ; -> GetPackageFullNameFromToken
+0x18008D694  mov    ebx, eax
+0x18008D696  cmp    dword ptr [rip + 0x311983], r14d
+0x18008D69D  jbe    0x18008d787  ; -> +0x4877
+0x18008D6A3  test   qword ptr [rip + 0x311986], r13
+0x18008D6AA  je     0x18008d6c2  ; -> +0x47B2
+0x18008D6AC  mov    rcx, qword ptr [rip + 0x311985]
+0x18008D6B3  and    rcx, r13
+0x18008D6B6  cmp    rcx, qword ptr [rip + 0x31197b]
+0x18008D6BD  mov    al, sil
+0x18008D6C0  je     0x18008d6c5  ; -> +0x47B5
+0x18008D6C2  mov    al, dil
+0x18008D6C5  test   al, al
+0x18008D6C7  je     0x18008d787  ; -> +0x4877
+0x18008D6CD  mov    qword ptr [rsp + 0x670], 0x1000000
+0x18008D6D9  lea    rax, [rsp + 0x670]
+0x18008D6E1  mov    qword ptr [rsp + 0x1d30], rax
+0x18008D6E9  mov    qword ptr [rsp + 0x1d38], 8
+0x18008D6F5  mov    dword ptr [rsp + 0x49c], ebx
+0x18008D6FC  lea    rax, [rsp + 0x49c]
+0x18008D704  mov    qword ptr [rsp + 0x1d40], rax
+0x18008D70C  mov    qword ptr [rsp + 0x1d48], 4
+0x18008D718  mov    rdx, qword ptr [rsp + 0x260]
+0x18008D720  lea    rcx, [rsp + 0x1d50]
+0x18008D728  call   0x18006f9b4
+0x18008D72D  lea    rdx, [rsp + 0x1d70]
+0x18008D735  test   ebx, ebx
+0x18008D737  lea    rax, [rip + 0x213fb2]
+0x18008D73E  cmovne rdx, rax
+0x18008D742  lea    rcx, [rsp + 0x1d60]
+0x18008D74A  call   0x18006f9b4
+0x18008D74F  lea    rax, [rsp + 0x1d10]
+0x18008D757  lea    rdx, [rip + 0x2cd29c]
+0x18008D75E  mov    qword ptr [rsp + 0x28], rax
+0x18008D763  lea    r8, [rsp + 0x980]
+0x18008D76B  lea    r9, [rsp + 0x970]
+0x18008D773  mov    dword ptr [rsp + 0x20], 6
+0x18008D77B  lea    rcx, [rip + 0x31189e]
+0x18008D782  call   0x180106118
+0x18008D787  test   ebx, ebx
+0x18008D789  jne    0x18008d635  ; -> +0x4725
+0x18008D78F  lea    rdx, [rsp + 0x1d70]
+0x18008D797  lea    rcx, [rsp + 0x218]
+0x18008D79F  call   qword ptr [rip + 0x207d02]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008D7A6  nop    dword ptr [rax + rax]
+0x18008D7AB  cmp    qword ptr [rsp + 0x338], rdi
+0x18008D7B3  je     0x18008bd91  ; -> +0x2E81
+0x18008D7B9  lea    rcx, [rsp + 0x440]
+0x18008D7C1  call   0x1800f9a40
+0x18008D7C6  mov    rdx, qword ptr [rsp + 0x338]
+0x18008D7CE  lea    rcx, [rsp + 0x440]
+0x18008D7D6  call   qword ptr [rip + 0x207ccb]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008D7DD  nop    dword ptr [rax + rax]
+0x18008D7E2  mov    byte ptr [rsp + 0x460], sil
+0x18008D7EA  mov    dword ptr [rsp + 0x1fc], esi
+0x18008D7F1  jmp    0x18008bd91  ; -> +0x2E81
+0x18008D7F6  mov    r13d, 2
+0x18008D7FC  call   0x18018b954
+0x18008D801  test   eax, eax
+0x18008D803  je     0x18008da83  ; -> +0x4B73
+0x18008D809  cmp    qword ptr [rsp + 0x240], rdi
+0x18008D811  jne    0x18008da83  ; -> +0x4B73
+0x18008D817  test   byte ptr [rsp + 0x1c8], r13b
+0x18008D81F  je     0x18008da83  ; -> +0x4B73
+0x18008D825  mov    dword ptr [rsp + 0x494], 0x82
+0x18008D830  lea    r8, [rsp + 0x494]
+0x18008D838  lea    rdx, [rsp + 0x1f80]
+0x18008D840  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008D848  call   0x18018c718
+0x18008D84D  test   eax, eax
+0x18008D84F  je     0x18008da83  ; -> +0x4B73
+0x18008D855  lea    r9, [rsp + 0x330]
+0x18008D85D  mov    r8d, esi
+0x18008D860  mov    rdx, qword ptr [rsp + 0x310]
+0x18008D868  lea    rcx, [rsp + 0x1f80]
+0x18008D870  call   qword ptr [rip + 0x32ef01]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-2-0.dll!BasepGetPackageActivationTokenForSxS3
+0x18008D877  nop    dword ptr [rax + rax]
+0x18008D87C  mov    ebx, eax
+0x18008D87E  movabs r13, 0x400000000000
+0x18008D888  cmp    dword ptr [rip + 0x311791], r14d
+0x18008D88F  jbe    0x18008d96b  ; -> +0x4A5B
+0x18008D895  test   qword ptr [rip + 0x311794], r13
+0x18008D89C  je     0x18008d8b4  ; -> +0x49A4
+0x18008D89E  mov    rcx, qword ptr [rip + 0x311793]
+0x18008D8A5  and    rcx, r13
+0x18008D8A8  cmp    rcx, qword ptr [rip + 0x311789]
+0x18008D8AF  mov    al, sil
+0x18008D8B2  je     0x18008d8b7  ; -> +0x49A7
+0x18008D8B4  mov    al, dil
+0x18008D8B7  test   al, al
+0x18008D8B9  je     0x18008d96b  ; -> +0x4A5B
+0x18008D8BF  mov    qword ptr [rsp + 0x678], 0x1000000
+0x18008D8CB  lea    rax, [rsp + 0x678]
+0x18008D8D3  mov    qword ptr [rsp + 0x1c20], rax
+0x18008D8DB  mov    qword ptr [rsp + 0x1c28], 8
+0x18008D8E7  mov    dword ptr [rsp + 0x48c], ebx
+0x18008D8EE  lea    rax, [rsp + 0x48c]
+0x18008D8F6  mov    qword ptr [rsp + 0x1c30], rax
+0x18008D8FE  mov    qword ptr [rsp + 0x1c38], 4
+0x18008D90A  cmp    qword ptr [rsp + 0x330], rdi
+0x18008D912  setne  byte ptr [rsp + 0x1b5]
+0x18008D91A  lea    rax, [rsp + 0x1b5]
+0x18008D922  mov    qword ptr [rsp + 0x1c40], rax
+0x18008D92A  mov    qword ptr [rsp + 0x1c48], 1
+0x18008D936  lea    rax, [rsp + 0x1c00]
+0x18008D93E  mov    qword ptr [rsp + 0x28], rax
+0x18008D943  mov    dword ptr [rsp + 0x20], r14d
+0x18008D948  lea    r9, [rsp + 0x970]
+0x18008D950  lea    r8, [rsp + 0x980]
+0x18008D958  lea    rdx, [rip + 0x2cd110]
+0x18008D95F  lea    rcx, [rip + 0x3116ba]
+0x18008D966  call   0x180106118
+0x18008D96B  test   ebx, ebx
+0x18008D96D  jne    0x18008d635  ; -> +0x4725
+0x18008D973  mov    rcx, qword ptr [rsp + 0x330]
+0x18008D97B  test   rcx, rcx
+0x18008D97E  je     0x18008da83  ; -> +0x4B73
+0x18008D984  mov    qword ptr [rsp + 0x240], rcx
+0x18008D98C  mov    qword ptr [rsp + 0x330], rdi
+0x18008D994  mov    dword ptr [rsp + 0x4a0], 0x80
+0x18008D99F  lea    r8, [rsp + 0x1d70]
+0x18008D9A7  lea    rdx, [rsp + 0x4a0]
+0x18008D9AF  call   0x18003dda0  ; -> GetPackageFullNameFromToken
+0x18008D9B4  mov    ebx, eax
+0x18008D9B6  cmp    dword ptr [rip + 0x311663], r14d
+0x18008D9BD  jbe    0x18008d787  ; -> +0x4877
+0x18008D9C3  test   qword ptr [rip + 0x311666], r13
+0x18008D9CA  je     0x18008d9e2  ; -> +0x4AD2
+0x18008D9CC  mov    rcx, qword ptr [rip + 0x311665]
+0x18008D9D3  and    rcx, r13
+0x18008D9D6  cmp    rcx, qword ptr [rip + 0x31165b]
+0x18008D9DD  mov    al, sil
+0x18008D9E0  je     0x18008d9e5  ; -> +0x4AD5
+0x18008D9E2  mov    al, dil
+0x18008D9E5  test   al, al
+0x18008D9E7  je     0x18008d787  ; -> +0x4877
+0x18008D9ED  mov    qword ptr [rsp + 0x680], 0x1000000
+0x18008D9F9  lea    rax, [rsp + 0x680]
+0x18008DA01  mov    qword ptr [rsp + 0x1cd0], rax
+0x18008DA09  mov    qword ptr [rsp + 0x1cd8], 8
+0x18008DA15  mov    dword ptr [rsp + 0x4f0], ebx
+0x18008DA1C  lea    rax, [rsp + 0x4f0]
+0x18008DA24  mov    qword ptr [rsp + 0x1ce0], rax
+0x18008DA2C  mov    qword ptr [rsp + 0x1ce8], 4
+0x18008DA38  mov    rdx, qword ptr [rsp + 0x260]
+0x18008DA40  lea    rcx, [rsp + 0x1cf0]
+0x18008DA48  call   0x18006f9b4
+0x18008DA4D  lea    rdx, [rsp + 0x1d70]
+0x18008DA55  test   ebx, ebx
+0x18008DA57  lea    rax, [rip + 0x213c92]
+0x18008DA5E  cmovne rdx, rax
+0x18008DA62  lea    rcx, [rsp + 0x1d00]
+0x18008DA6A  call   0x18006f9b4
+0x18008DA6F  lea    rax, [rsp + 0x1cb0]
+0x18008DA77  lea    rdx, [rip + 0x2cd049]
+0x18008DA7E  jmp    0x18008d75e  ; -> +0x484E
+0x18008DA83  call   0x180122d38
+0x18008DA88  test   eax, eax
+0x18008DA8A  je     0x18008db73  ; -> +0x4C63
+0x18008DA90  mov    rax, qword ptr [rsp + 0x410]
+0x18008DA98  test   byte ptr [rax + 3], 0x10
+0x18008DA9C  jne    0x18008daa6  ; -> +0x4B96
+0x18008DA9E  test   r12, r12
+0x18008DAA1  mov    al, dil
+0x18008DAA4  je     0x18008daa9  ; -> +0x4B99
+0x18008DAA6  mov    al, sil
+0x18008DAA9  cmp    byte ptr [rsp + 0x143], dil
+0x18008DAB1  jne    0x18008db73  ; -> +0x4C63
+0x18008DAB7  test   al, al
+0x18008DAB9  je     0x18008db73  ; -> +0x4C63
+0x18008DABF  cmp    dword ptr [rsp + 0x2d4], edi
+0x18008DAC6  jne    0x18008db73  ; -> +0x4C63
+0x18008DACC  mov    qword ptr [rsp + 0x4b8], rdi
+0x18008DAD4  lea    r8, [rsp + 0x4b8]
+0x18008DADC  mov    edx, r15d
+0x18008DADF  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DAE7  call   qword ptr [rip + 0x208572]  ; -> ntdll.dll!NtOpenProcessToken
+0x18008DAEE  nop    dword ptr [rax + rax]
+0x18008DAF3  test   eax, eax
+0x18008DAF5  jns    0x18008db02  ; -> +0x4BF2
+0x18008DAF7  mov    ecx, eax
+0x18008DAF9  call   0x1800353c0
+0x18008DAFE  mov    eax, edi
+0x18008DB00  jmp    0x18008db04  ; -> +0x4BF4
+0x18008DB02  mov    eax, esi
+0x18008DB04  test   eax, eax
+0x18008DB06  je     0x18008db73  ; -> +0x4C63
+0x18008DB08  mov    dword ptr [rsp + 0x4f4], 0x80
+0x18008DB13  lea    r8, [rsp + 0x1d70]
+0x18008DB1B  lea    rdx, [rsp + 0x4f4]
+0x18008DB23  mov    rcx, qword ptr [rsp + 0x4b8]
+0x18008DB2B  call   0x18003dda0  ; -> GetPackageFullNameFromToken
+0x18008DB30  mov    ebx, eax
+0x18008DB32  mov    rcx, qword ptr [rsp + 0x4b8]
+0x18008DB3A  call   qword ptr [rip + 0x2080bf]  ; -> ntdll.dll!NtClose
+0x18008DB41  nop    dword ptr [rax + rax]
+0x18008DB46  test   ebx, ebx
+0x18008DB48  jne    0x18008db73  ; -> +0x4C63
+0x18008DB4A  mov    byte ptr [rsp + 0x168], sil
+0x18008DB52  lea    rdx, [rsp + 0x1d70]
+0x18008DB5A  lea    rcx, [rsp + 0x218]
+0x18008DB62  call   qword ptr [rip + 0x20793f]  ; -> ntdll.dll!RtlInitUnicodeString
+0x18008DB69  nop    dword ptr [rax + rax]
+0x18008DB6E  jmp    0x18008bd91  ; -> +0x2E81
+0x18008DB73  call   0x180187bb4
+0x18008DB78  test   eax, eax
+0x18008DB7A  je     0x18008dbad  ; -> +0x4C9D
+0x18008DB7C  mov    rdx, qword ptr [rsp + 0x5b0]
+0x18008DB84  test   rdx, rdx
+0x18008DB87  je     0x18008dbad  ; -> +0x4C9D
+0x18008DB89  mov    r8, qword ptr [rsp + 0x5b8]
+0x18008DB91  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DB99  call   0x18018b19c
+0x18008DB9E  mov    dword ptr [rsp + 0xe0], eax
+0x18008DBA5  test   eax, eax
+0x18008DBA7  js     0x180089b8d  ; -> +0xC7D
+0x18008DBAD  test   byte ptr [rsp + 0x510], sil
+0x18008DBB5  jne    0x18008de57  ; -> +0x4F47
+0x18008DBBB  call   0x18012ca04
+0x18008DBC0  test   al, al
+0x18008DBC2  je     0x18008dc74  ; -> +0x4D64
+0x18008DBC8  lea    rax, [rsp + 0x1cc]
+0x18008DBD0  mov    qword ptr [rsp + 0x68], rax
+0x18008DBD5  lea    rax, [rsp + 0x210]
+0x18008DBDD  mov    qword ptr [rsp + 0x60], rax
+0x18008DBE2  lea    rax, [rsp + 0x200]
+0x18008DBEA  mov    qword ptr [rsp + 0x58], rax
+0x18008DBEF  lea    rax, [rsp + 0x298]
+0x18008DBF7  mov    qword ptr [rsp + 0x50], rax
+0x18008DBFC  mov    eax, dword ptr [rsp + 0x2d8]
+0x18008DC03  mov    dword ptr [rsp + 0x48], eax
+0x18008DC07  mov    rax, qword ptr [rsp + 0x418]
+0x18008DC0F  mov    qword ptr [rsp + 0x40], rax
+0x18008DC14  movzx  eax, word ptr [rsp + 0x188]
+0x18008DC1C  mov    word ptr [rsp + 0x38], ax
+0x18008DC21  lea    rax, [rsp + 0x710]
+0x18008DC29  mov    qword ptr [rsp + 0x30], rax
+0x18008DC2E  lea    rax, [rsp + 0xf60]
+0x18008DC36  mov    qword ptr [rsp + 0x28], rax
+0x18008DC3B  lea    rax, [rsp + 0xf4c]
+0x18008DC43  mov    qword ptr [rsp + 0x20], rax
+0x18008DC48  lea    r9, [rsp + 0xf40]
+0x18008DC50  lea    r8, [rsp + 0x1b0]
+0x18008DC58  mov    rdx, qword ptr [rsp + 0x220]
+0x18008DC60  mov    rcx, qword ptr [rsp + 0x258]
+0x18008DC68  call   qword ptr [rip + 0x32ea51]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepGetAppCompatData
+0x18008DC6F  nop    dword ptr [rax + rax]
+0x18008DC74  cmp    qword ptr [rsp + 0x210], rdi
+0x18008DC7C  je     0x18008de06  ; -> +0x4EF6
+0x18008DC82  call   0x18018ba34
+0x18008DC87  test   eax, eax
+0x18008DC89  je     0x18008dcca  ; -> +0x4DBA
+0x18008DC8B  mov    eax, 0xaa64
+0x18008DC90  cmp    word ptr [rsp + 0x18c], ax
+0x18008DC98  jne    0x18008dcca  ; -> +0x4DBA
+0x18008DC9A  mov    edx, dword ptr [rsp + 0xf0]
+0x18008DCA1  bt     edx, 0x17
+0x18008DCA5  jb     0x18008dcca  ; -> +0x4DBA
+0x18008DCA7  mov    rax, qword ptr [rsp + 0x210]
+0x18008DCAF  movzx  ecx, byte ptr [rax + 0x11a8]
+0x18008DCB6  test   cl, cl
+0x18008DCB8  jns    0x18008dcca  ; -> +0x4DBA
+0x18008DCBA  bts    edx, 0x17
+0x18008DCBE  mov    dword ptr [rsp + 0xf0], edx
+0x18008DCC5  jmp    0x18008bd91  ; -> +0x2E81
+0x18008DCCA  mov    qword ptr [rsp + 0x3e8], rdi
+0x18008DCD2  mov    eax, dword ptr [rsp + 0x1cc]
+0x18008DCD9  mov    qword ptr [rsp + 0x5d0], rax
+0x18008DCE1  mov    dword ptr [rsp + 0x28], 4
+0x18008DCE9  mov    dword ptr [rsp + 0x20], 0x1000
+0x18008DCF1  lea    r9, [rsp + 0x5d0]
+0x18008DCF9  xor    r8d, r8d
+0x18008DCFC  lea    rdx, [rsp + 0x3e8]
+0x18008DD04  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DD0C  call   qword ptr [rip + 0x2086c5]  ; -> ntdll.dll!NtAllocateVirtualMemory
+0x18008DD13  nop    dword ptr [rax + rax]
+0x18008DD18  mov    dword ptr [rsp + 0xe0], eax
+0x18008DD1F  test   eax, eax
+0x18008DD21  js     0x180089b8d  ; -> +0xC7D
+0x18008DD27  mov    r9d, dword ptr [rsp + 0x1cc]
+0x18008DD2F  mov    qword ptr [rsp + 0x20], rdi
+0x18008DD34  mov    r8, qword ptr [rsp + 0x210]
+0x18008DD3C  mov    rdx, qword ptr [rsp + 0x3e8]
+0x18008DD44  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DD4C  call   qword ptr [rip + 0x20867d]  ; -> ntdll.dll!NtWriteVirtualMemory
+0x18008DD53  nop    dword ptr [rax + rax]
+0x18008DD58  mov    dword ptr [rsp + 0xe0], eax
+0x18008DD5F  test   eax, eax
+0x18008DD61  js     0x180089b8d  ; -> +0xC7D
+0x18008DD67  mov    rdx, qword ptr [rsp + 0x1c0]
+0x18008DD6F  add    rdx, 0x2d8
+0x18008DD76  mov    qword ptr [rsp + 0x20], rdi
+0x18008DD7B  mov    r9, r15
+0x18008DD7E  lea    r8, [rsp + 0x3e8]
+0x18008DD86  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DD8E  call   qword ptr [rip + 0x20863b]  ; -> ntdll.dll!NtWriteVirtualMemory
+0x18008DD95  nop    dword ptr [rax + rax]
+0x18008DD9A  mov    dword ptr [rsp + 0xe0], eax
+0x18008DDA1  test   eax, eax
+0x18008DDA3  js     0x180089b8d  ; -> +0xC7D
+0x18008DDA9  mov    ecx, dword ptr [rsp + 0x540]
+0x18008DDB0  test   ecx, ecx
+0x18008DDB2  je     0x18008ddfe  ; -> +0x4EEE
+0x18008DDB4  mov    dword ptr [rsp + 0x3a0], edi
+0x18008DDBB  mov    rax, qword ptr [rsp + 0x3e8]
+0x18008DDC3  mov    dword ptr [rsp + 0x3a0], eax
+0x18008DDCA  lea    edx, [rcx + 0x1e8]
+0x18008DDD0  mov    qword ptr [rsp + 0x20], rdi
+0x18008DDD5  mov    r9d, 4
+0x18008DDDB  lea    r8, [rsp + 0x3a0]
+0x18008DDE3  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DDEB  call   qword ptr [rip + 0x2085de]  ; -> ntdll.dll!NtWriteVirtualMemory
+0x18008DDF2  nop    dword ptr [rax + rax]
+0x18008DDF7  mov    dword ptr [rsp + 0xe0], eax
+0x18008DDFE  test   eax, eax
+0x18008DE00  js     0x180089b8d  ; -> +0xC7D
+0x18008DE06  cmp    byte ptr [rsp + 0x144], dil
+0x18008DE0E  jne    0x18008df6e  ; -> +0x505E
+0x18008DE14  test   byte ptr [rsp + 0x510], sil
+0x18008DE1C  jne    0x18008df6e  ; -> +0x505E
+0x18008DE22  call   0x18012ca04
+0x18008DE27  test   al, al
+0x18008DE29  je     0x18008df55  ; -> +0x5045
+0x18008DE2F  mov    r8, qword ptr [rsp + 0xf8]
+0x18008DE37  movzx  edx, word ptr [rsp + 0x110]
+0x18008DE3F  mov    ecx, dword ptr [rsp + 0x1b0]
+0x18008DE46  call   qword ptr [rip + 0x32e863]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseElevationPostProcessing
+0x18008DE4D  nop    dword ptr [rax + rax]
+0x18008DE52  jmp    0x18008df57  ; -> +0x5047
+0x18008DE57  cmp    byte ptr [rsp + 0x130], dil
+0x18008DE5F  je     0x18008de06  ; -> +0x4EF6
+0x18008DE61  call   0x18012ca04
+0x18008DE66  test   al, al
+0x18008DE68  je     0x18008de06  ; -> +0x4EF6
+0x18008DE6A  call   0x18012ca04
+0x18008DE6F  test   al, al
+0x18008DE71  je     0x18008de06  ; -> +0x4EF6
+0x18008DE73  lea    rax, [rsp + 0x1cc]
+0x18008DE7B  mov    qword ptr [rsp + 0x68], rax
+0x18008DE80  lea    rax, [rsp + 0x210]
+0x18008DE88  mov    qword ptr [rsp + 0x60], rax
+0x18008DE8D  lea    rax, [rsp + 0x200]
+0x18008DE95  mov    qword ptr [rsp + 0x58], rax
+0x18008DE9A  lea    rax, [rsp + 0x298]
+0x18008DEA2  mov    qword ptr [rsp + 0x50], rax
+0x18008DEA7  mov    eax, dword ptr [rsp + 0x2d8]
+0x18008DEAE  mov    dword ptr [rsp + 0x48], eax
+0x18008DEB2  mov    rax, qword ptr [rsp + 0x418]
+0x18008DEBA  mov    qword ptr [rsp + 0x40], rax
+0x18008DEBF  movzx  eax, word ptr [rsp + 0x188]
+0x18008DEC7  mov    word ptr [rsp + 0x38], ax
+0x18008DECC  lea    rax, [rsp + 0x710]
+0x18008DED4  mov    qword ptr [rsp + 0x30], rax
+0x18008DED9  lea    rax, [rsp + 0xf60]
+0x18008DEE1  mov    qword ptr [rsp + 0x28], rax
+0x18008DEE6  lea    rax, [rsp + 0xf4c]
+0x18008DEEE  mov    qword ptr [rsp + 0x20], rax
+0x18008DEF3  lea    r9, [rsp + 0xf40]
+0x18008DEFB  lea    r8, [rsp + 0x1b0]
+0x18008DF03  mov    rdx, qword ptr [rsp + 0x220]
+0x18008DF0B  mov    rcx, qword ptr [rsp + 0x258]
+0x18008DF13  call   qword ptr [rip + 0x32e7a6]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepGetAppCompatData
+0x18008DF1A  nop    dword ptr [rax + rax]
+0x18008DF1F  mov    r8d, dword ptr [rsp + 0x1cc]
+0x18008DF27  mov    rdx, qword ptr [rsp + 0x210]
+0x18008DF2F  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DF37  call   qword ptr [rip + 0x32e77a]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepInitAppCompatData
+0x18008DF3E  nop    dword ptr [rax + rax]
+0x18008DF43  test   eax, eax
+0x18008DF45  jne    0x18008de06  ; -> +0x4EF6
+0x18008DF4B  mov    eax, 0xc0000022
+0x18008DF50  jmp    0x18008adf5  ; -> +0x1EE5
+0x18008DF55  mov    eax, edi
+0x18008DF57  mov    dword ptr [rsp + 0xe0], eax
+0x18008DF5E  test   eax, eax
+0x18008DF60  jns    0x18008df6e  ; -> +0x505E
+0x18008DF62  mov    dword ptr [rsp + 0x148], eax
+0x18008DF69  jmp    0x180089b8d  ; -> +0xC7D
+0x18008DF6E  mov    rdx, qword ptr [rsp + 0x180]
+0x18008DF76  test   rdx, rdx
+0x18008DF79  je     0x18008e131  ; -> +0x5221
+0x18008DF7F  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DF87  call   qword ptr [rip + 0x32e71a]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepPostSuccessAppXExtension
+0x18008DF8E  nop    dword ptr [rax + rax]
+0x18008DF93  mov    dword ptr [rsp + 0xe0], eax
+0x18008DF9A  test   eax, eax
+0x18008DF9C  js     0x18008df62  ; -> +0x5052
+0x18008DF9E  mov    rdx, qword ptr [rsp + 0x180]
+0x18008DFA6  add    rdx, 0x48
+0x18008DFAA  cmp    qword ptr [rdx], rdi
+0x18008DFAD  je     0x18008dfeb  ; -> +0x50DB
+0x18008DFAF  lea    rax, [rsp + 0x500]
+0x18008DFB7  mov    qword ptr [rsp + 0x30], rax
+0x18008DFBC  mov    qword ptr [rsp + 0x28], 0x298
+0x18008DFC5  mov    qword ptr [rsp + 0x20], 0x400
+0x18008DFCE  mov    r9d, 4
+0x18008DFD4  mov    r8, r15
+0x18008DFD7  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008DFDF  call   0x180103a68
+0x18008DFE4  mov    dword ptr [rsp + 0xe0], eax
+0x18008DFEB  test   eax, eax
+0x18008DFED  js     0x18008df62  ; -> +0x5052
+0x18008DFF3  mov    dword ptr [rsp + 0x268], edi
+0x18008DFFA  mov    rcx, qword ptr [rsp + 0x160]
+0x18008E002  test   rcx, rcx
+0x18008E005  je     0x18008e0a7  ; -> +0x5197
+0x18008E00B  mov    edx, dword ptr [rcx + 0x224]
+0x18008E011  cmp    edx, esi
+0x18008E013  je     0x18008e0a7  ; -> +0x5197
+0x18008E019  mov    byte ptr [rsp + 0xf6], sil
+0x18008E021  mov    eax, edi
+0x18008E023  cmp    byte ptr [rcx + 0x220], dil
+0x18008E02A  setne  al
+0x18008E02D  mov    r9d, edi
+0x18008E030  cmp    edx, 2
+0x18008E033  sete   r9b
+0x18008E037  mov    r8d, edi
+0x18008E03A  cmp    edx, 3
+0x18008E03D  sete   r8b
+0x18008E041  lea    rcx, [rsp + 0x268]
+0x18008E049  mov    qword ptr [rsp + 0x40], rcx
+0x18008E04E  mov    qword ptr [rsp + 0x38], r12
+0x18008E053  mov    dword ptr [rsp + 0x30], eax
+0x18008E057  mov    rax, qword ptr [rsp + 0x108]
+0x18008E05F  mov    qword ptr [rsp + 0x28], rax
+0x18008E064  mov    rax, qword ptr [rsp + 0x1e8]
+0x18008E06C  mov    qword ptr [rsp + 0x20], rax
+0x18008E071  mov    rdx, qword ptr [rsp + 0x190]
+0x18008E079  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008E081  call   qword ptr [rip + 0x32e290]  ; -> DELAY:ext-ms-win-appmodel-appexecutionalias-l1-1-3.dll!CompletePackagedProcessCreationEx
+0x18008E088  nop    dword ptr [rax + rax]
+0x18008E08D  test   eax, eax
+0x18008E08F  je     0x18008e11f  ; -> +0x520F
+0x18008E095  mov    dword ptr [rsp + 0x148], 0xc0000001
+0x18008E0A0  mov    ecx, eax
+0x18008E0A2  jmp    0x180089d4d  ; -> +0xE3D
+0x18008E0A7  mov    rax, qword ptr [rsp + 0x100]
+0x18008E0AF  test   rax, rax
+0x18008E0B2  je     0x18008e1bd  ; -> +0x52AD
+0x18008E0B8  mov    r8d, dword ptr [rax + 0x20]
+0x18008E0BC  cmp    r8d, esi
+0x18008E0BF  je     0x18008e1bd  ; -> +0x52AD
+0x18008E0C5  mov    byte ptr [rsp + 0xf5], sil
+0x18008E0CD  lea    rax, [rsp + 0x268]
+0x18008E0D5  mov    qword ptr [rsp + 0x30], rax
+0x18008E0DA  mov    qword ptr [rsp + 0x28], r12
+0x18008E0DF  mov    rax, qword ptr [rsp + 0x108]
+0x18008E0E7  mov    qword ptr [rsp + 0x20], rax
+0x18008E0EC  mov    r9, qword ptr [rsp + 0x1e8]
+0x18008E0F4  mov    rdx, qword ptr [rsp + 0x190]
+0x18008E0FC  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008E104  call   qword ptr [rip + 0x32e1fd]  ; -> DELAY:ext-ms-win-appmodel-appexecutionalias-l1-1-1.dll!CompleteAppExecutionAliasProcessCreationEx
+0x18008E10B  nop    dword ptr [rax + rax]
+0x18008E110  mov    dword ptr [rsp + 0xe0], eax
+0x18008E117  test   eax, eax
+0x18008E119  js     0x18008df62  ; -> +0x5052
+0x18008E11F  test   byte ptr [rsp + 0x268], sil
+0x18008E127  je     0x18008e131  ; -> +0x5221
+0x18008E129  or     dword ptr [rsp + 0xe8], 4
+0x18008E131  test   byte ptr [rsp + 0xe8], 4
+0x18008E139  jne    0x18008e162  ; -> +0x5252
+0x18008E13B  xor    edx, edx
+0x18008E13D  mov    rcx, qword ptr [rsp + 0x190]
+0x18008E145  call   qword ptr [rip + 0x2085cc]  ; -> ntdll.dll!NtResumeThread
+0x18008E14C  nop    dword ptr [rax + rax]
+0x18008E151  mov    ebx, eax
+0x18008E153  mov    dword ptr [rsp + 0xe0], eax
+0x18008E15A  test   eax, eax
+0x18008E15C  js     0x18008cefc  ; -> +0x3FEC
+0x18008E162  mov    dword ptr [rsp + 0xd0], esi
+0x18008E169  cmp    dword ptr [rsp + 0x154], edi
+0x18008E170  je     0x18008e17a  ; -> +0x526A
+0x18008E172  or     dword ptr [rsp + 0x154], r15d
+0x18008E17A  mov    rax, qword ptr [rsp + 0x270]
+0x18008E182  mov    r14, qword ptr [rsp + 0x2b8]
+0x18008E18A  test   rax, rax
+0x18008E18D  je     0x18008e237  ; -> +0x5327
+0x18008E193  cmp    dword ptr [rsp + 0x158], 0x20
+0x18008E19B  jne    0x18008e20e  ; -> +0x52FE
+0x18008E19D  or     rax, 2
+0x18008E1A1  mov    qword ptr [r14], rax
+0x18008E1A4  test   byte ptr [rsp + 0x154], 4
+0x18008E1AC  je     0x18008e21c  ; -> +0x530C
+0x18008E1AE  xorps  xmm0, xmm0
+0x18008E1B1  movdqu xmmword ptr [rsp + 0x5c0], xmm0
+0x18008E1BA  jmp    0x18008e21c  ; -> +0x530C
+0x18008E1BC  nop    
+0x18008E1BD  cmp    qword ptr [rsp + 0x240], rdi
+0x18008E1C5  je     0x18008e11f  ; -> +0x520F
+0x18008E1CB  lea    rax, [rsp + 0x268]
+0x18008E1D3  mov    qword ptr [rsp + 0x28], rax
+0x18008E1D8  mov    qword ptr [rsp + 0x20], r12
+0x18008E1DD  mov    r9, qword ptr [rsp + 0x108]
+0x18008E1E5  mov    r8, qword ptr [rsp + 0x1e8]
+0x18008E1ED  mov    rdx, qword ptr [rsp + 0x190]
+0x18008E1F5  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008E1FD  call   qword ptr [rip + 0x32e52c]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-1.dll!BasepFinishPackageActivationForSxS
+0x18008E204  nop    dword ptr [rax + rax]
+0x18008E209  jmp    0x18008e08d  ; -> +0x517D
+0x18008E20E  mov    rax, qword ptr [rsp + 0x270]
+0x18008E216  or     rax, rsi
+0x18008E219  mov    qword ptr [r14], rax
+0x18008E21C  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008E224  test   rcx, rcx
+0x18008E227  je     0x18008e242  ; -> +0x5332
+0x18008E229  call   qword ptr [rip + 0x2079d0]  ; -> ntdll.dll!NtClose
+0x18008E230  nop    dword ptr [rax + rax]
+0x18008E235  jmp    0x18008e242  ; -> +0x5332
+0x18008E237  mov    rax, qword ptr [rsp + 0xf8]
+0x18008E23F  mov    qword ptr [r14], rax
+0x18008E242  mov    rax, qword ptr [rsp + 0x190]
+0x18008E24A  mov    qword ptr [r14 + 8], rax
+0x18008E24E  mov    rax, qword ptr [rsp + 0x5c0]
+0x18008E256  mov    dword ptr [r14 + 0x10], eax
+0x18008E25A  mov    rax, qword ptr [rsp + 0x5c8]
+0x18008E262  mov    dword ptr [r14 + 0x14], eax
+0x18008E266  mov    qword ptr [rsp + 0xf8], rdi
+0x18008E26E  mov    qword ptr [rsp + 0x190], rdi
+0x18008E276  movabs r13, 0x400000000000
+0x18008E280  mov    r12d, 8
+0x18008E286  mov    rbx, qword ptr [rsp + 0xd8]
+0x18008E28E  jmp    0x18008e2fd  ; -> +0x53ED
+0x18008E290  xor    edi, edi
+0x18008E292  lea    esi, [rdi + 1]
+0x18008E295  lea    r12d, [rdi + 8]
+0x18008E299  movabs r13, 0x400000000000
+0x18008E2A3  mov    rbx, qword ptr [rsp + 0x4c0]
+0x18008E2AB  mov    qword ptr [rsp + 0xd8], rbx
+0x18008E2B3  mov    rax, qword ptr [rsp + 0x590]
+0x18008E2BB  mov    qword ptr [rsp + 0x2b8], rax
+0x18008E2C3  mov    rax, qword ptr [rsp + 0x5e8]
+0x18008E2CB  mov    qword ptr [rsp + 0x358], rax
+0x18008E2D3  mov    rax, qword ptr [rsp + 0x5f0]
+0x18008E2DB  mov    qword ptr [rsp + 0x360], rax
+0x18008E2E3  jmp    0x18008e2fd  ; -> +0x53ED
+0x18008E2E5  mov    rbx, qword ptr [rsp + 0xd8]
+0x18008E2ED  movabs r13, 0x400000000000
+0x18008E2F7  mov    r12d, 8
+0x18008E2FD  mov    rax, qword ptr gs:[0x30]
+0x18008E306  mov    r15d, dword ptr [rax + 0x68]
+0x18008E30A  mov    r8, qword ptr [rsp + 0x2a8]
+0x18008E312  test   r8, r8
+0x18008E315  je     0x18008e328  ; -> +0x5418
+0x18008E317  xor    edx, edx
+0x18008E319  mov    rcx, rbx
+0x18008E31C  call   qword ptr [rip + 0x207c3d]  ; -> ntdll.dll!RtlFreeHeap
+0x18008E323  nop    dword ptr [rax + rax]
+0x18008E328  mov    r8, qword ptr [rsp + 0x370]
+0x18008E330  test   r8, r8
+0x18008E333  je     0x18008e346  ; -> +0x5436
+0x18008E335  xor    edx, edx
+0x18008E337  mov    rcx, rbx
+0x18008E33A  call   qword ptr [rip + 0x207c1f]  ; -> ntdll.dll!RtlFreeHeap
+0x18008E341  nop    dword ptr [rax + rax]
+0x18008E346  lea    rcx, [rsp + 0x320]
+0x18008E34E  call   qword ptr [rip + 0x20714b]  ; -> ntdll.dll!RtlFreeUnicodeString
+0x18008E355  nop    dword ptr [rax + rax]
+0x18008E35A  cmp    dword ptr [rsp + 0x158], edi
+0x18008E361  jne    0x18008e380  ; -> +0x5470
+0x18008E363  call   0x18012ca04
+0x18008E368  test   al, al
+0x18008E36A  je     0x18008e380  ; -> +0x5470
+0x18008E36C  lea    rcx, [rsp + 0x8f0]
+0x18008E374  call   qword ptr [rip + 0x32e30d]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepReleaseSxsCreateProcessUtilityStruct
+0x18008E37B  nop    dword ptr [rax + rax]
+0x18008E380  mov    rcx, qword ptr [rsp + 0x438]
+0x18008E388  test   rcx, rcx
+0x18008E38B  je     0x18008e399  ; -> +0x5489
+0x18008E38D  call   qword ptr [rip + 0x208474]  ; -> ntdll.dll!RtlDestroyEnvironment
+0x18008E394  nop    dword ptr [rax + rax]
+0x18008E399  mov    rbx, qword ptr [rsp + 0x100]
+0x18008E3A1  test   rbx, rbx
+0x18008E3A4  je     0x18008e907  ; -> +0x59F7
+0x18008E3AA  xor    edx, edx
+0x18008E3AC  lea    r8d, [rdx + 0x64]
+0x18008E3B0  lea    rcx, [rsp + 0x814]
+0x18008E3B8  call   0x1801298d1
+0x18008E3BD  mov    r14d, 0x68
+0x18008E3C3  mov    dword ptr [rsp + 0x810], r14d
+0x18008E3CB  cmp    dword ptr [rbx + 0x20], edi
+0x18008E3CE  jne    0x18008e63e  ; -> +0x572E
+0x18008E3D4  cmp    dword ptr [rip + 0x310c45], 5
+0x18008E3DB  jbe    0x18008e8ca  ; -> +0x59BA
+0x18008E3E1  test   qword ptr [rip + 0x310c48], r13
+0x18008E3E8  je     0x18008e400  ; -> +0x54F0
+0x18008E3EA  mov    rax, qword ptr [rip + 0x310c47]
+0x18008E3F1  and    rax, r13
+0x18008E3F4  cmp    rax, qword ptr [rip + 0x310c3d]
+0x18008E3FB  mov    al, sil
+0x18008E3FE  je     0x18008e403  ; -> +0x54F3
+0x18008E400  mov    al, dil
+0x18008E403  test   al, al
+0x18008E405  je     0x18008e8ca  ; -> +0x59BA
+0x18008E40B  mov    byte ptr [rsp + 0x14c], sil
+0x18008E413  lea    rax, [rsp + 0x14c]
+0x18008E41B  mov    qword ptr [rsp + 0x1840], rax
+0x18008E423  mov    qword ptr [rsp + 0x1848], 1
+0x18008E42F  mov    dword ptr [rsp + 0x2dc], r15d
+0x18008E437  lea    rax, [rsp + 0x2dc]
+0x18008E43F  mov    qword ptr [rsp + 0x1850], rax
+0x18008E447  mov    qword ptr [rsp + 0x1858], 4
+0x18008E453  mov    al, byte ptr [rsp + 0xf5]
+0x18008E45A  mov    byte ptr [rsp + 0x14d], al
+0x18008E461  lea    rax, [rsp + 0x14d]
+0x18008E469  mov    qword ptr [rsp + 0x1860], rax
+0x18008E471  mov    qword ptr [rsp + 0x1868], 1
+0x18008E47D  mov    rdx, qword ptr [rbx]
+0x18008E480  lea    rcx, [rsp + 0x1870]
+0x18008E488  call   0x18006f9b4
+0x18008E48D  mov    rax, qword ptr [rsp + 0x100]
+0x18008E495  mov    rcx, qword ptr [rax + 8]
+0x18008E499  test   rcx, rcx
+0x18008E49C  je     0x18008e4a5  ; -> +0x5595
+0x18008E49E  call   0x18018b5e8
+0x18008E4A3  jmp    0x18008e4ac  ; -> +0x559C
+0x18008E4A5  lea    rax, [rip + 0x20e988]
+0x18008E4AC  mov    rdx, rax
+0x18008E4AF  lea    rcx, [rsp + 0x1880]
+0x18008E4B7  call   0x18006f9b4
+0x18008E4BC  cmp    dword ptr [rsp + 0xd0], esi
+0x18008E4C3  sete   byte ptr [rsp + 0x14e]
+0x18008E4CB  lea    rax, [rsp + 0x14e]
+0x18008E4D3  mov    qword ptr [rsp + 0x1890], rax
+0x18008E4DB  mov    qword ptr [rsp + 0x1898], 1
+0x18008E4E7  cmp    qword ptr [rsp + 0x5f8], rdi
+0x18008E4EF  setne  byte ptr [rsp + 0x14f]
+0x18008E4F7  lea    rax, [rsp + 0x14f]
+0x18008E4FF  mov    qword ptr [rsp + 0x18a0], rax
+0x18008E507  mov    qword ptr [rsp + 0x18a8], 1
+0x18008E513  cmp    qword ptr [rsp + 0x600], rdi
+0x18008E51B  setne  byte ptr [rsp + 0x150]
+0x18008E523  lea    rax, [rsp + 0x150]
+0x18008E52B  mov    qword ptr [rsp + 0x18b0], rax
+0x18008E533  mov    qword ptr [rsp + 0x18b8], 1
+0x18008E53F  cmp    dword ptr [rsp + 0x2108], esi
+0x18008E546  sete   byte ptr [rsp + 0x120]
+0x18008E54E  lea    rax, [rsp + 0x120]
+0x18008E556  mov    qword ptr [rsp + 0x18c0], rax
+0x18008E55E  mov    qword ptr [rsp + 0x18c8], 1
+0x18008E56A  mov    eax, dword ptr [rsp + 0xe8]
+0x18008E571  mov    dword ptr [rsp + 0x2e0], eax
+0x18008E578  lea    rax, [rsp + 0x2e0]
+0x18008E580  mov    qword ptr [rsp + 0x18d0], rax
+0x18008E588  mov    qword ptr [rsp + 0x18d8], 4
+0x18008E594  cmp    qword ptr [rsp + 0x170], rdi
+0x18008E59C  setne  byte ptr [rsp + 0x121]
+0x18008E5A4  lea    rax, [rsp + 0x121]
+0x18008E5AC  mov    qword ptr [rsp + 0x18e0], rax
+0x18008E5B4  mov    qword ptr [rsp + 0x18e8], 1
+0x18008E5C0  mov    r8, r14
+0x18008E5C3  lea    rdx, [rsp + 0x810]
+0x18008E5CB  lea    rcx, [rsp + 0x690]
+0x18008E5D3  call   0x18019492b
+0x18008E5D8  test   eax, eax
+0x18008E5DA  sete   byte ptr [rsp + 0x122]
+0x18008E5E2  lea    rax, [rsp + 0x122]
+0x18008E5EA  mov    qword ptr [rsp + 0x18f0], rax
+0x18008E5F2  mov    qword ptr [rsp + 0x18f8], 1
+0x18008E5FE  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008E606  sete   byte ptr [rsp + 0x123]
+0x18008E60E  lea    rax, [rsp + 0x123]
+0x18008E616  mov    qword ptr [rsp + 0x1900], rax
+0x18008E61E  mov    qword ptr [rsp + 0x1908], 1
+0x18008E62A  lea    rax, [rsp + 0x1820]
+0x18008E632  lea    rdx, [rip + 0x2cc503]
+0x18008E639  jmp    0x18008e8a3  ; -> +0x5993
+0x18008E63E  cmp    dword ptr [rip + 0x3109db], 5
+0x18008E645  jbe    0x18008e8ca  ; -> +0x59BA
+0x18008E64B  test   qword ptr [rip + 0x3109de], r13
+0x18008E652  je     0x18008e66a  ; -> +0x575A
+0x18008E654  mov    rax, qword ptr [rip + 0x3109dd]
+0x18008E65B  and    rax, r13
+0x18008E65E  cmp    rax, qword ptr [rip + 0x3109d3]
+0x18008E665  mov    al, sil
+0x18008E668  je     0x18008e66d  ; -> +0x575D
+0x18008E66A  mov    al, dil
+0x18008E66D  test   al, al
+0x18008E66F  je     0x18008e8ca  ; -> +0x59BA
+0x18008E675  mov    byte ptr [rsp + 0x124], sil
+0x18008E67D  lea    rax, [rsp + 0x124]
+0x18008E685  mov    qword ptr [rsp + 0x1930], rax
+0x18008E68D  mov    qword ptr [rsp + 0x1938], 1
+0x18008E699  mov    dword ptr [rsp + 0x2e4], r15d
+0x18008E6A1  lea    rax, [rsp + 0x2e4]
+0x18008E6A9  mov    qword ptr [rsp + 0x1940], rax
+0x18008E6B1  mov    qword ptr [rsp + 0x1948], 4
+0x18008E6BD  mov    al, byte ptr [rsp + 0xf5]
+0x18008E6C4  mov    byte ptr [rsp + 0x125], al
+0x18008E6CB  lea    rax, [rsp + 0x125]
+0x18008E6D3  mov    qword ptr [rsp + 0x1950], rax
+0x18008E6DB  mov    qword ptr [rsp + 0x1958], 1
+0x18008E6E7  mov    rdx, qword ptr [rbx]
+0x18008E6EA  lea    rcx, [rsp + 0x1960]
+0x18008E6F2  call   0x18006f9b4
+0x18008E6F7  mov    rax, qword ptr [rsp + 0x100]
+0x18008E6FF  mov    rcx, qword ptr [rax + 8]
+0x18008E703  test   rcx, rcx
+0x18008E706  je     0x18008e70f  ; -> +0x57FF
+0x18008E708  call   0x18018b5e8
+0x18008E70D  jmp    0x18008e716  ; -> +0x5806
+0x18008E70F  lea    rax, [rip + 0x20e71e]
+0x18008E716  mov    rdx, rax
+0x18008E719  lea    rcx, [rsp + 0x1970]
+0x18008E721  call   0x18006f9b4
+0x18008E726  cmp    dword ptr [rsp + 0xd0], esi
+0x18008E72D  sete   byte ptr [rsp + 0x126]
+0x18008E735  lea    rax, [rsp + 0x126]
+0x18008E73D  mov    qword ptr [rsp + 0x1980], rax
+0x18008E745  mov    qword ptr [rsp + 0x1988], 1
+0x18008E751  cmp    qword ptr [rsp + 0x608], rdi
+0x18008E759  setne  byte ptr [rsp + 0x127]
+0x18008E761  lea    rax, [rsp + 0x127]
+0x18008E769  mov    qword ptr [rsp + 0x1990], rax
+0x18008E771  mov    qword ptr [rsp + 0x1998], 1
+0x18008E77D  cmp    qword ptr [rsp + 0x610], rdi
+0x18008E785  setne  byte ptr [rsp + 0x128]
+0x18008E78D  lea    rax, [rsp + 0x128]
+0x18008E795  mov    qword ptr [rsp + 0x19a0], rax
+0x18008E79D  mov    qword ptr [rsp + 0x19a8], 1
+0x18008E7A9  cmp    dword ptr [rsp + 0x2108], esi
+0x18008E7B0  sete   byte ptr [rsp + 0x129]
+0x18008E7B8  lea    rax, [rsp + 0x129]
+0x18008E7C0  mov    qword ptr [rsp + 0x19b0], rax
+0x18008E7C8  mov    qword ptr [rsp + 0x19b8], 1
+0x18008E7D4  mov    eax, dword ptr [rsp + 0xe8]
+0x18008E7DB  mov    dword ptr [rsp + 0x2e8], eax
+0x18008E7E2  lea    rax, [rsp + 0x2e8]
+0x18008E7EA  mov    qword ptr [rsp + 0x19c0], rax
+0x18008E7F2  mov    qword ptr [rsp + 0x19c8], 4
+0x18008E7FE  cmp    qword ptr [rsp + 0x170], rdi
+0x18008E806  setne  byte ptr [rsp + 0x12a]
+0x18008E80E  lea    rax, [rsp + 0x12a]
+0x18008E816  mov    qword ptr [rsp + 0x19d0], rax
+0x18008E81E  mov    qword ptr [rsp + 0x19d8], 1
+0x18008E82A  mov    r8, r14
+0x18008E82D  lea    rdx, [rsp + 0x810]
+0x18008E835  lea    rcx, [rsp + 0x690]
+0x18008E83D  call   0x18019492b
+0x18008E842  test   eax, eax
+0x18008E844  sete   byte ptr [rsp + 0x12b]
+0x18008E84C  lea    rax, [rsp + 0x12b]
+0x18008E854  mov    qword ptr [rsp + 0x19e0], rax
+0x18008E85C  mov    qword ptr [rsp + 0x19e8], 1
+0x18008E868  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008E870  sete   byte ptr [rsp + 0x12c]
+0x18008E878  lea    rax, [rsp + 0x12c]
+0x18008E880  mov    qword ptr [rsp + 0x19f0], rax
+0x18008E888  mov    qword ptr [rsp + 0x19f8], 1
+0x18008E894  lea    rax, [rsp + 0x1910]
+0x18008E89C  lea    rdx, [rip + 0x2cc3d2]
+0x18008E8A3  mov    qword ptr [rsp + 0x28], rax
+0x18008E8A8  mov    dword ptr [rsp + 0x20], 0xf
+0x18008E8B0  xor    r9d, r9d
+0x18008E8B3  xor    r8d, r8d
+0x18008E8B6  lea    rcx, [rip + 0x310763]
+0x18008E8BD  call   0x180106118
+0x18008E8C2  mov    rbx, qword ptr [rsp + 0x100]
+0x18008E8CA  cmp    dword ptr [rsp + 0xd0], edi
+0x18008E8D1  jne    0x18008e8ee  ; -> +0x59DE
+0x18008E8D3  mov    rdx, qword ptr [rbx + 0x10]
+0x18008E8D7  mov    rcx, qword ptr [rbx]
+0x18008E8DA  call   qword ptr [rip + 0x32da1f]  ; -> DELAY:ext-ms-win-appmodel-appexecutionalias-l1-1-1.dll!PerformAppxLicenseRundownEx
+0x18008E8E1  nop    dword ptr [rax + rax]
+0x18008E8E6  mov    rbx, qword ptr [rsp + 0x100]
+0x18008E8EE  mov    rcx, rbx
+0x18008E8F1  call   qword ptr [rip + 0x32d9f0]  ; -> DELAY:ext-ms-win-appmodel-appexecutionalias-l1-1-0.dll!FreeAppExecutionAliasInfoEx
+0x18008E8F8  nop    dword ptr [rax + rax]
+0x18008E8FD  mov    qword ptr [rsp + 0x100], rdi
+0x18008E905  jmp    0x18008e90d  ; -> +0x59FD
+0x18008E907  mov    r14d, 0x68
+0x18008E90D  mov    rcx, qword ptr [rsp + 0x180]
+0x18008E915  test   rcx, rcx
+0x18008E918  je     0x18008e92e  ; -> +0x5A1E
+0x18008E91A  call   qword ptr [rip + 0x32dd57]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepReleaseAppXContext
+0x18008E921  nop    dword ptr [rax + rax]
+0x18008E926  mov    qword ptr [rsp + 0x180], rdi
+0x18008E92E  mov    rcx, qword ptr [rsp + 0x3f8]
+0x18008E936  test   rcx, rcx
+0x18008E939  je     0x18008e947  ; -> +0x5A37
+0x18008E93B  call   qword ptr [rip + 0x32dd36]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepReleaseAppXContext
+0x18008E942  nop    dword ptr [rax + rax]
+0x18008E947  mov    rcx, qword ptr [rsp + 0x248]
+0x18008E94F  test   rcx, rcx
+0x18008E952  je     0x18008e960  ; -> +0x5A50
+0x18008E954  call   qword ptr [rip + 0x2072a5]  ; -> ntdll.dll!NtClose
+0x18008E95B  nop    dword ptr [rax + rax]
+0x18008E960  mov    rcx, qword ptr [rsp + 0x240]
+0x18008E968  test   rcx, rcx
+0x18008E96B  je     0x18008e979  ; -> +0x5A69
+0x18008E96D  call   qword ptr [rip + 0x20728c]  ; -> ntdll.dll!NtClose
+0x18008E974  nop    dword ptr [rax + rax]
+0x18008E979  cmp    dword ptr [rsp + 0x2ec], esi
+0x18008E980  jne    0x18008eaaf  ; -> +0x5B9F
+0x18008E986  cmp    dword ptr [rip + 0x310693], 5
+0x18008E98D  jbe    0x18008eaaf  ; -> +0x5B9F
+0x18008E993  test   qword ptr [rip + 0x310696], r13
+0x18008E99A  je     0x18008e9b2  ; -> +0x5AA2
+0x18008E99C  mov    rax, qword ptr [rip + 0x310695]
+0x18008E9A3  and    rax, r13
+0x18008E9A6  cmp    rax, qword ptr [rip + 0x31068b]
+0x18008E9AD  mov    al, sil
+0x18008E9B0  je     0x18008e9b5  ; -> +0x5AA5
+0x18008E9B2  mov    al, dil
+0x18008E9B5  test   al, al
+0x18008E9B7  je     0x18008eaaf  ; -> +0x5B9F
+0x18008E9BD  mov    qword ptr [rsp + 0x4c8], 0x1000000
+0x18008E9C9  lea    rax, [rsp + 0x4c8]
+0x18008E9D1  mov    qword ptr [rsp + 0x1a20], rax
+0x18008E9D9  mov    qword ptr [rsp + 0x1a28], 8
+0x18008E9E5  mov    dword ptr [rsp + 0x2f0], r15d
+0x18008E9ED  lea    rax, [rsp + 0x2f0]
+0x18008E9F5  mov    qword ptr [rsp + 0x1a30], rax
+0x18008E9FD  mov    qword ptr [rsp + 0x1a38], 4
+0x18008EA09  mov    rdx, qword ptr [rsp + 0x260]
+0x18008EA11  lea    rcx, [rsp + 0x1a40]
+0x18008EA19  call   0x18006f9b4
+0x18008EA1E  cmp    dword ptr [rsp + 0xd0], esi
+0x18008EA25  sete   byte ptr [rsp + 0x12d]
+0x18008EA2D  lea    rax, [rsp + 0x12d]
+0x18008EA35  mov    qword ptr [rsp + 0x1a50], rax
+0x18008EA3D  mov    qword ptr [rsp + 0x1a58], 1
+0x18008EA49  mov    rax, qword ptr [rsp + 0x2b8]
+0x18008EA51  mov    eax, dword ptr [rax + 0x10]
+0x18008EA54  mov    dword ptr [rsp + 0x2f4], eax
+0x18008EA5B  lea    rax, [rsp + 0x2f4]
+0x18008EA63  mov    qword ptr [rsp + 0x1a60], rax
+0x18008EA6B  mov    qword ptr [rsp + 0x1a68], 4
+0x18008EA77  lea    rax, [rsp + 0x1a00]
+0x18008EA7F  mov    qword ptr [rsp + 0x28], rax
+0x18008EA84  mov    dword ptr [rsp + 0x20], 7
+0x18008EA8C  lea    r9, [rsp + 0x970]
+0x18008EA94  lea    r8, [rsp + 0x980]
+0x18008EA9C  lea    rdx, [rip + 0x2cc307]
+0x18008EAA3  lea    rcx, [rip + 0x310576]
+0x18008EAAA  call   0x180106118
+0x18008EAAF  mov    rcx, qword ptr [rsp + 0x288]
+0x18008EAB7  test   rcx, rcx
+0x18008EABA  je     0x18008eac8  ; -> +0x5BB8
+0x18008EABC  call   qword ptr [rip + 0x207d45]  ; -> ntdll.dll!RtlDestroyEnvironment
+0x18008EAC3  nop    dword ptr [rax + rax]
+0x18008EAC8  mov    r8, qword ptr [rsp + 0x2a0]
+0x18008EAD0  mov    rbx, qword ptr [rsp + 0xd8]
+0x18008EAD8  test   r8, r8
+0x18008EADB  je     0x18008eaee  ; -> +0x5BDE
+0x18008EADD  xor    edx, edx
+0x18008EADF  mov    rcx, rbx
+0x18008EAE2  call   qword ptr [rip + 0x207477]  ; -> ntdll.dll!RtlFreeHeap
+0x18008EAE9  nop    dword ptr [rax + rax]
+0x18008EAEE  mov    r8, qword ptr [rsp + 0x280]
+0x18008EAF6  test   r8, r8
+0x18008EAF9  je     0x18008eb0c  ; -> +0x5BFC
+0x18008EAFB  xor    edx, edx
+0x18008EAFD  mov    rcx, rbx
+0x18008EB00  call   qword ptr [rip + 0x207459]  ; -> ntdll.dll!RtlFreeHeap
+0x18008EB07  nop    dword ptr [rax + rax]
+0x18008EB0C  cmp    qword ptr [rsp + 0x3f0], rdi
+0x18008EB14  je     0x18008eb39  ; -> +0x5C29
+0x18008EB16  mov    rcx, qword ptr gs:[0x60]
+0x18008EB1F  mov    r8, qword ptr [rsp + 0x3f0]
+0x18008EB27  xor    edx, edx
+0x18008EB29  mov    rcx, qword ptr [rcx + 0x30]
+0x18008EB2D  call   qword ptr [rip + 0x20742c]  ; -> ntdll.dll!RtlFreeHeap
+0x18008EB34  nop    dword ptr [rax + rax]
+0x18008EB39  mov    r8, qword ptr [rsp + 0x278]
+0x18008EB41  test   r8, r8
+0x18008EB44  je     0x18008eb57  ; -> +0x5C47
+0x18008EB46  xor    edx, edx
+0x18008EB48  mov    rcx, rbx
+0x18008EB4B  call   qword ptr [rip + 0x20740e]  ; -> ntdll.dll!RtlFreeHeap
+0x18008EB52  nop    dword ptr [rax + rax]
+0x18008EB57  mov    rcx, qword ptr [rsp + 0x1d8]
+0x18008EB5F  test   rcx, rcx
+0x18008EB62  je     0x18008eb70  ; -> +0x5C60
+0x18008EB64  call   qword ptr [rip + 0x207095]  ; -> ntdll.dll!NtClose
+0x18008EB6B  nop    dword ptr [rax + rax]
+0x18008EB70  mov    rcx, qword ptr [rsp + 0x368]
+0x18008EB78  test   rcx, rcx
+0x18008EB7B  je     0x18008eb89  ; -> +0x5C79
+0x18008EB7D  call   qword ptr [rip + 0x20707c]  ; -> ntdll.dll!NtClose
+0x18008EB84  nop    dword ptr [rax + rax]
+0x18008EB89  cmp    qword ptr [rsp + 0x190], rdi
+0x18008EB91  je     0x18008ebff  ; -> +0x5CEF
+0x18008EB93  mov    rax, qword ptr [rsp + 0x398]
+0x18008EB9B  test   rax, rax
+0x18008EB9E  je     0x18008ebb7  ; -> +0x5CA7
+0x18008EBA0  mov    rdx, rax
+0x18008EBA3  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008EBAB  call   qword ptr [rip + 0x207d66]  ; -> ntdll.dll!NtRemoveProcessDebug
+0x18008EBB2  nop    dword ptr [rax + rax]
+0x18008EBB7  mov    edx, dword ptr [rsp + 0x148]
+0x18008EBBE  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008EBC6  call   qword ptr [rip + 0x206cab]  ; -> ntdll.dll!NtTerminateProcess
+0x18008EBCD  nop    dword ptr [rax + rax]
+0x18008EBD2  xor    r8d, r8d
+0x18008EBD5  xor    edx, edx
+0x18008EBD7  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008EBDF  call   qword ptr [rip + 0x2069f2]  ; -> ntdll.dll!NtWaitForSingleObject
+0x18008EBE6  nop    dword ptr [rax + rax]
+0x18008EBEB  mov    rcx, qword ptr [rsp + 0x190]
+0x18008EBF3  call   qword ptr [rip + 0x207006]  ; -> ntdll.dll!NtClose
+0x18008EBFA  nop    dword ptr [rax + rax]
+0x18008EBFF  mov    rcx, qword ptr [rsp + 0xf8]
+0x18008EC07  test   rcx, rcx
+0x18008EC0A  je     0x18008ec18  ; -> +0x5D08
+0x18008EC0C  call   qword ptr [rip + 0x206fed]  ; -> ntdll.dll!NtClose
+0x18008EC13  nop    dword ptr [rax + rax]
+0x18008EC18  call   0x18012ca04
+0x18008EC1D  test   al, al
+0x18008EC1F  je     0x18008ec45  ; -> +0x5D35
+0x18008EC21  mov    r8, qword ptr [rsp + 0x298]
+0x18008EC29  mov    rdx, qword ptr [rsp + 0x318]
+0x18008EC31  mov    rcx, qword ptr [rsp + 0x210]
+0x18008EC39  call   qword ptr [rip + 0x32da40]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BasepFreeAppCompatData
+0x18008EC40  nop    dword ptr [rax + rax]
+0x18008EC45  lea    rcx, [rsp + 0x468]
+0x18008EC4D  call   qword ptr [rip + 0x20684c]  ; -> ntdll.dll!RtlFreeUnicodeString
+0x18008EC54  nop    dword ptr [rax + rax]
+0x18008EC59  cmp    qword ptr [rsp + 0x588], rdi
+0x18008EC61  jne    0x18008ec6d  ; -> +0x5D5D
+0x18008EC63  cmp    qword ptr [rsp + 0x578], rdi
+0x18008EC6B  je     0x18008ec92  ; -> +0x5D82
+0x18008EC6D  call   0x18012ca04
+0x18008EC72  test   al, al
+0x18008EC74  je     0x18008ec92  ; -> +0x5D82
+0x18008EC76  lea    rdx, [rsp + 0x570]
+0x18008EC7E  lea    rcx, [rsp + 0x580]
+0x18008EC86  call   qword ptr [rip + 0x32da13]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseDestroyVDMEnvironment
+0x18008EC8D  nop    dword ptr [rax + rax]
+0x18008EC92  cmp    dword ptr [rsp + 0x154], edi
+0x18008EC99  je     0x18008eced  ; -> +0x5DDD
+0x18008EC9B  test   byte ptr [rsp + 0x154], r12b
+0x18008ECA3  jne    0x18008eced  ; -> +0x5DDD
+0x18008ECA5  call   0x18012ca04
+0x18008ECAA  test   al, al
+0x18008ECAC  je     0x18008ecd4  ; -> +0x5DC4
+0x18008ECAE  mov    r9d, dword ptr [rsp + 0x158]
+0x18008ECB6  mov    r8d, dword ptr [rsp + 0x154]
+0x18008ECBE  lea    rdx, [rsp + 0x1d0]
+0x18008ECC6  xor    ecx, ecx
+0x18008ECC8  call   qword ptr [rip + 0x32da31]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-0.dll!BaseUpdateVDMEntry
+0x18008ECCF  nop    dword ptr [rax + rax]
+0x18008ECD4  mov    rcx, qword ptr [rsp + 0x270]
+0x18008ECDC  test   rcx, rcx
+0x18008ECDF  je     0x18008eced  ; -> +0x5DDD
+0x18008ECE1  call   qword ptr [rip + 0x206f18]  ; -> ntdll.dll!NtClose
+0x18008ECE8  nop    dword ptr [rax + rax]
+0x18008ECED  mov    rcx, qword ptr [rsp + 0x350]
+0x18008ECF5  test   rcx, rcx
+0x18008ECF8  je     0x18008ed06  ; -> +0x5DF6
+0x18008ECFA  call   qword ptr [rip + 0x20759f]  ; -> ntdll.dll!RtlReleasePath
+0x18008ED01  nop    dword ptr [rax + rax]
+0x18008ED06  mov    rcx, qword ptr [rsp + 0x290]
+0x18008ED0E  test   rcx, rcx
+0x18008ED11  je     0x18008ed27  ; -> +0x5E17
+0x18008ED13  call   qword ptr [rip + 0x206d66]  ; -> ntdll.dll!CsrFreeCaptureBuffer
+0x18008ED1A  nop    dword ptr [rax + rax]
+0x18008ED1F  mov    qword ptr [rsp + 0x290], rdi
+0x18008ED27  mov    r8, qword ptr [rsp + 0x420]
+0x18008ED2F  test   r8, r8
+0x18008ED32  je     0x18008ed45  ; -> +0x5E35
+0x18008ED34  xor    edx, edx
+0x18008ED36  mov    rcx, rbx
+0x18008ED39  call   qword ptr [rip + 0x207220]  ; -> ntdll.dll!RtlFreeHeap
+0x18008ED40  nop    dword ptr [rax + rax]
+0x18008ED45  mov    r8, qword ptr [rsp + 0x390]
+0x18008ED4D  test   r8, r8
+0x18008ED50  je     0x18008ed63  ; -> +0x5E53
+0x18008ED52  xor    edx, edx
+0x18008ED54  mov    rcx, rbx
+0x18008ED57  call   qword ptr [rip + 0x207202]  ; -> ntdll.dll!RtlFreeHeap
+0x18008ED5E  nop    dword ptr [rax + rax]
+0x18008ED63  mov    rbx, qword ptr [rsp + 0x160]
+0x18008ED6B  test   rbx, rbx
+0x18008ED6E  je     0x18008f307  ; -> +0x63F7
+0x18008ED74  xor    edx, edx
+0x18008ED76  lea    r8d, [rdx + 0x64]
+0x18008ED7A  lea    rcx, [rsp + 0x884]
+0x18008ED82  call   0x1801298d1
+0x18008ED87  mov    dword ptr [rsp + 0x880], r14d
+0x18008ED8F  cmp    dword ptr [rbx + 0x224], 4
+0x18008ED96  jne    0x18008f035  ; -> +0x6125
+0x18008ED9C  cmp    dword ptr [rip + 0x31027d], 5
+0x18008EDA3  jbe    0x18008f2f0  ; -> +0x63E0
+0x18008EDA9  test   qword ptr [rip + 0x310280], r13
+0x18008EDB0  je     0x18008edc8  ; -> +0x5EB8
+0x18008EDB2  mov    rax, qword ptr [rip + 0x31027f]
+0x18008EDB9  and    rax, r13
+0x18008EDBC  cmp    rax, qword ptr [rip + 0x310275]
+0x18008EDC3  mov    al, sil
+0x18008EDC6  je     0x18008edcb  ; -> +0x5EBB
+0x18008EDC8  mov    al, dil
+0x18008EDCB  test   al, al
+0x18008EDCD  je     0x18008f2f0  ; -> +0x63E0
+0x18008EDD3  mov    qword ptr [rsp + 0x4e8], 0x1000000
+0x18008EDDF  lea    rax, [rsp + 0x4e8]
+0x18008EDE7  mov    qword ptr [rsp + 0x1640], rax
+0x18008EDEF  mov    qword ptr [rsp + 0x1648], 8
+0x18008EDFB  mov    byte ptr [rsp + 0x12e], sil
+0x18008EE03  lea    rax, [rsp + 0x12e]
+0x18008EE0B  mov    qword ptr [rsp + 0x1650], rax
+0x18008EE13  mov    qword ptr [rsp + 0x1658], 1
+0x18008EE1F  mov    dword ptr [rsp + 0x2f8], r15d
+0x18008EE27  lea    rax, [rsp + 0x2f8]
+0x18008EE2F  mov    qword ptr [rsp + 0x1660], rax
+0x18008EE37  mov    qword ptr [rsp + 0x1668], 4
+0x18008EE43  mov    al, byte ptr [rsp + 0xf6]
+0x18008EE4A  mov    byte ptr [rsp + 0x12f], al
+0x18008EE51  lea    rax, [rsp + 0x12f]
+0x18008EE59  mov    qword ptr [rsp + 0x1670], rax
+0x18008EE61  mov    qword ptr [rsp + 0x1678], 1
+0x18008EE6D  lea    rdx, [rbx + 0x106]
+0x18008EE74  lea    rcx, [rsp + 0x1680]
+0x18008EE7C  call   0x18006f9b4
+0x18008EE81  mov    rax, qword ptr [rsp + 0x160]
+0x18008EE89  mov    rcx, qword ptr [rax + 0x208]
+0x18008EE90  test   rcx, rcx
+0x18008EE93  je     0x18008ee9c  ; -> +0x5F8C
+0x18008EE95  call   0x18018b5e8
+0x18008EE9A  jmp    0x18008eea3  ; -> +0x5F93
+0x18008EE9C  lea    rax, [rip + 0x20df91]
+0x18008EEA3  mov    rdx, rax
+0x18008EEA6  lea    rcx, [rsp + 0x1690]
+0x18008EEAE  call   0x18006f9b4
+0x18008EEB3  cmp    dword ptr [rsp + 0xd0], esi
+0x18008EEBA  sete   byte ptr [rsp + 0x145]
+0x18008EEC2  lea    rax, [rsp + 0x145]
+0x18008EECA  mov    qword ptr [rsp + 0x16a0], rax
+0x18008EED2  mov    qword ptr [rsp + 0x16a8], 1
+0x18008EEDE  cmp    qword ptr [rsp + 0x618], rdi
+0x18008EEE6  setne  byte ptr [rsp + 0x131]
+0x18008EEEE  lea    rax, [rsp + 0x131]
+0x18008EEF6  mov    qword ptr [rsp + 0x16b0], rax
+0x18008EEFE  mov    qword ptr [rsp + 0x16b8], 1
+0x18008EF0A  cmp    qword ptr [rsp + 0x620], rdi
+0x18008EF12  setne  byte ptr [rsp + 0x132]
+0x18008EF1A  lea    rax, [rsp + 0x132]
+0x18008EF22  mov    qword ptr [rsp + 0x16c0], rax
+0x18008EF2A  mov    qword ptr [rsp + 0x16c8], 1
+0x18008EF36  cmp    dword ptr [rsp + 0x2108], esi
+0x18008EF3D  sete   byte ptr [rsp + 0x133]
+0x18008EF45  lea    rax, [rsp + 0x133]
+0x18008EF4D  mov    qword ptr [rsp + 0x16d0], rax
+0x18008EF55  mov    qword ptr [rsp + 0x16d8], 1
+0x18008EF61  mov    eax, dword ptr [rsp + 0xe8]
+0x18008EF68  mov    dword ptr [rsp + 0x2fc], eax
+0x18008EF6F  lea    rax, [rsp + 0x2fc]
+0x18008EF77  mov    qword ptr [rsp + 0x16e0], rax
+0x18008EF7F  mov    qword ptr [rsp + 0x16e8], 4
+0x18008EF8B  cmp    qword ptr [rsp + 0x170], rdi
+0x18008EF93  setne  byte ptr [rsp + 0x134]
+0x18008EF9B  lea    rax, [rsp + 0x134]
+0x18008EFA3  mov    qword ptr [rsp + 0x16f0], rax
+0x18008EFAB  mov    qword ptr [rsp + 0x16f8], 1
+0x18008EFB7  mov    r8, r14
+0x18008EFBA  lea    rdx, [rsp + 0x880]
+0x18008EFC2  lea    rcx, [rsp + 0x690]
+0x18008EFCA  call   0x18019492b
+0x18008EFCF  test   eax, eax
+0x18008EFD1  sete   byte ptr [rsp + 0x135]
+0x18008EFD9  lea    rax, [rsp + 0x135]
+0x18008EFE1  mov    qword ptr [rsp + 0x1700], rax
+0x18008EFE9  mov    qword ptr [rsp + 0x1708], 1
+0x18008EFF5  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008EFFD  sete   byte ptr [rsp + 0x136]
+0x18008F005  lea    rax, [rsp + 0x136]
+0x18008F00D  mov    qword ptr [rsp + 0x1710], rax
+0x18008F015  mov    qword ptr [rsp + 0x1718], 1
+0x18008F021  lea    rax, [rsp + 0x1620]
+0x18008F029  lea    rdx, [rip + 0x2cbdd7]
+0x18008F030  jmp    0x18008f2c9  ; -> +0x63B9
+0x18008F035  cmp    dword ptr [rip + 0x30ffe4], 5
+0x18008F03C  jbe    0x18008f2f0  ; -> +0x63E0
+0x18008F042  test   qword ptr [rip + 0x30ffe7], r13
+0x18008F049  je     0x18008f061  ; -> +0x6151
+0x18008F04B  mov    rax, qword ptr [rip + 0x30ffe6]
+0x18008F052  and    rax, r13
+0x18008F055  cmp    rax, qword ptr [rip + 0x30ffdc]
+0x18008F05C  mov    al, sil
+0x18008F05F  je     0x18008f064  ; -> +0x6154
+0x18008F061  mov    al, dil
+0x18008F064  test   al, al
+0x18008F066  je     0x18008f2f0  ; -> +0x63E0
+0x18008F06C  mov    qword ptr [rsp + 0x4d8], 0x1000000
+0x18008F078  lea    rax, [rsp + 0x4d8]
+0x18008F080  mov    qword ptr [rsp + 0x1740], rax
+0x18008F088  mov    qword ptr [rsp + 0x1748], 8
+0x18008F094  mov    byte ptr [rsp + 0x137], sil
+0x18008F09C  lea    rax, [rsp + 0x137]
+0x18008F0A4  mov    qword ptr [rsp + 0x1750], rax
+0x18008F0AC  mov    qword ptr [rsp + 0x1758], 1
+0x18008F0B8  mov    dword ptr [rsp + 0x300], r15d
+0x18008F0C0  lea    rax, [rsp + 0x300]
+0x18008F0C8  mov    qword ptr [rsp + 0x1760], rax
+0x18008F0D0  mov    qword ptr [rsp + 0x1768], 4
+0x18008F0DC  mov    al, byte ptr [rsp + 0xf6]
+0x18008F0E3  mov    byte ptr [rsp + 0x138], al
+0x18008F0EA  lea    rax, [rsp + 0x138]
+0x18008F0F2  mov    qword ptr [rsp + 0x1770], rax
+0x18008F0FA  mov    qword ptr [rsp + 0x1778], 1
+0x18008F106  lea    rdx, [rbx + 0x106]
+0x18008F10D  lea    rcx, [rsp + 0x1780]
+0x18008F115  call   0x18006f9b4
+0x18008F11A  mov    rax, qword ptr [rsp + 0x160]
+0x18008F122  mov    rcx, qword ptr [rax + 0x208]
+0x18008F129  test   rcx, rcx
+0x18008F12C  je     0x18008f135  ; -> +0x6225
+0x18008F12E  call   0x18018b5e8
+0x18008F133  jmp    0x18008f13c  ; -> +0x622C
+0x18008F135  lea    rax, [rip + 0x20dcf8]
+0x18008F13C  mov    rdx, rax
+0x18008F13F  lea    rcx, [rsp + 0x1790]
+0x18008F147  call   0x18006f9b4
+0x18008F14C  cmp    dword ptr [rsp + 0xd0], esi
+0x18008F153  sete   byte ptr [rsp + 0x139]
+0x18008F15B  lea    rax, [rsp + 0x139]
+0x18008F163  mov    qword ptr [rsp + 0x17a0], rax
+0x18008F16B  mov    qword ptr [rsp + 0x17a8], 1
+0x18008F177  cmp    qword ptr [rsp + 0x358], rdi
+0x18008F17F  setne  byte ptr [rsp + 0x13a]
+0x18008F187  lea    rax, [rsp + 0x13a]
+0x18008F18F  mov    qword ptr [rsp + 0x17b0], rax
+0x18008F197  mov    qword ptr [rsp + 0x17b8], 1
+0x18008F1A3  cmp    qword ptr [rsp + 0x360], rdi
+0x18008F1AB  setne  byte ptr [rsp + 0x13b]
+0x18008F1B3  lea    rax, [rsp + 0x13b]
+0x18008F1BB  mov    qword ptr [rsp + 0x17c0], rax
+0x18008F1C3  mov    qword ptr [rsp + 0x17c8], 1
+0x18008F1CF  cmp    dword ptr [rsp + 0x2108], esi
+0x18008F1D6  sete   byte ptr [rsp + 0x13c]
+0x18008F1DE  lea    rax, [rsp + 0x13c]
+0x18008F1E6  mov    qword ptr [rsp + 0x17d0], rax
+0x18008F1EE  mov    qword ptr [rsp + 0x17d8], 1
+0x18008F1FA  mov    eax, dword ptr [rsp + 0xe8]
+0x18008F201  mov    dword ptr [rsp + 0x304], eax
+0x18008F208  lea    rax, [rsp + 0x304]
+0x18008F210  mov    qword ptr [rsp + 0x17e0], rax
+0x18008F218  mov    qword ptr [rsp + 0x17e8], 4
+0x18008F224  cmp    qword ptr [rsp + 0x170], rdi
+0x18008F22C  setne  byte ptr [rsp + 0x13d]
+0x18008F234  lea    rax, [rsp + 0x13d]
+0x18008F23C  mov    qword ptr [rsp + 0x17f0], rax
+0x18008F244  mov    qword ptr [rsp + 0x17f8], 1
+0x18008F250  mov    r8, r14
+0x18008F253  lea    rdx, [rsp + 0x880]
+0x18008F25B  lea    rcx, [rsp + 0x690]
+0x18008F263  call   0x18019492b
+0x18008F268  test   eax, eax
+0x18008F26A  sete   byte ptr [rsp + 0x13e]
+0x18008F272  lea    rax, [rsp + 0x13e]
+0x18008F27A  mov    qword ptr [rsp + 0x1800], rax
+0x18008F282  mov    qword ptr [rsp + 0x1808], 1
+0x18008F28E  cmp    qword ptr [rsp + 0x1e0], rdi
+0x18008F296  sete   byte ptr [rsp + 0x13f]
+0x18008F29E  lea    rax, [rsp + 0x13f]
+0x18008F2A6  mov    qword ptr [rsp + 0x1810], rax
+0x18008F2AE  mov    qword ptr [rsp + 0x1818], 1
+0x18008F2BA  lea    rax, [rsp + 0x1720]
+0x18008F2C2  lea    rdx, [rip + 0x2cbc97]
+0x18008F2C9  mov    qword ptr [rsp + 0x28], rax
+0x18008F2CE  mov    dword ptr [rsp + 0x20], 0x10
+0x18008F2D6  xor    r9d, r9d
+0x18008F2D9  xor    r8d, r8d
+0x18008F2DC  lea    rcx, [rip + 0x30fd3d]
+0x18008F2E3  call   0x180106118
+0x18008F2E8  mov    rbx, qword ptr [rsp + 0x160]
+0x18008F2F0  mov    rcx, rbx
+0x18008F2F3  call   qword ptr [rip + 0x32d44e]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-1-2.dll!BasepReleasePackagedAppInfo
+0x18008F2FA  nop    dword ptr [rax + rax]
+0x18008F2FF  mov    qword ptr [rsp + 0x160], rdi
+0x18008F307  lea    rcx, [rsp + 0x440]
+0x18008F30F  call   0x1800f9a40
+0x18008F314  lea    rcx, [rsp + 0x330]
+0x18008F31C  call   qword ptr [rip + 0x32d45d]  ; -> DELAY:ext-ms-win-kernelbase-processthread-l1-2-0.dll!BasepFreeActivationTokenInfo
+0x18008F323  nop    dword ptr [rax + rax]
+0x18008F328  mov    rax, qword ptr gs:[0x30]
+0x18008F331  mov    dword ptr [rax + 0x68], r15d
+0x18008F335  mov    eax, dword ptr [rsp + 0xd0]
+0x18008F33C  jmp    0x18008f34a  ; -> +0x643A
+0x18008F33E  mov    ecx, 0xc000000d
+0x18008F343  call   0x1800353c0
+0x18008F348  xor    eax, eax
+0x18008F34A  mov    rcx, qword ptr [rsp + 0x2090]
+0x18008F352  xor    rcx, rsp
+0x18008F355  call   0x180194980
+0x18008F35A  add    rsp, 0x20a0
+0x18008F361  pop    r15
+0x18008F363  pop    r14
+0x18008F365  pop    r13
+0x18008F367  pop    r12
+0x18008F369  pop    rdi
+0x18008F36A  pop    rsi
+0x18008F36B  pop    rbx
+0x18008F36C  ret    
+0x18008F36D  int3   

@@ -57,6 +57,38 @@ dc_target->BindDC(hdc, &dirty);
 text_layout->Draw(client_context, text_renderer, origin_x, origin_y);
 ```
 
+## Source Code Reading
+
+`wangwenx190/d2d-mica/main.cpp` is the most useful linked source because it decomposes "Mica-like backdrop" into D3D11, DXGI, D2D, WIC, DWM timing, and a D2D effect graph. The global COM objects tell the ownership story: `ID3D11Device`/context, `IDXGIDevice`, `IDXGIAdapter`, `IDXGIFactory2`, `IDXGISwapChain1`, `IDXGISurface`, `ID2D1Device1`, `ID2D1DeviceContext1`, and an `ID2D1Bitmap1` target created from the swap-chain surface.
+
+Setup sequence:
+
+```cpp
+D3D11CreateDevice(nullptr, HARDWARE, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT, ...);
+d3d.As(&dxgi_device);
+d2d_factory->CreateDevice(dxgi_device, &d2d_device);
+d2d_device->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &d2d_context);
+dxgi_device->GetAdapter(&adapter);
+adapter->GetParent(IID_PPV_ARGS(&factory));
+factory->CreateSwapChainForHwnd(d3d_device, hwnd, &swap_desc, nullptr, nullptr, &swap);
+swap->GetBuffer(0, IID_PPV_ARGS(&surface));
+d2d_context->CreateBitmapFromDxgiSurface(surface, bitmap_props, &target);
+d2d_context->SetTarget(target);
+```
+
+The effect graph is explicit and testable: WIC wallpaper bitmap source -> Gaussian blur -> luminosity blend with a theme color -> color blend with tint -> tiled noise through `CLSID_D2D1Border` -> opacity -> final composite. `D2DDraw` computes the non-client/content rectangle from DPI-aware frame metrics, `DrawImage`s the final effect into that rect, `Present1`s the swap chain, then calls `DwmFlush` to reduce resize/animation flicker.
+
+```cpp
+wallpaper = D2D BitmapSource(WIC wallpaper);
+blur = GaussianBlur(wallpaper, radius, HARD_BORDER, SPEED);
+luminosity = Blend(LUMINOSITY, blur, theme_color_opacity);
+tinted = Blend(COLOR, luminosity, tint_opacity);
+noise = Opacity(Border(WIC noise, WRAP), noise_opacity);
+final = Composite(SOURCE_OVER, tinted, noise);
+```
+
+`mmozeiko/c_d2d_dwrite/cd2d.h` contributes a different kind of code value: pure-C COM declarations for D2D/DWrite. If writing C probes, mirror its pattern: forward-declare COM interfaces as structs with vtables, include the necessary DXGI/D3D/WIC base types, and call methods through a tiny local wrapper/macro. That removes C++/WRL noise when the goal is to test one API boundary.
+
 ## References
 - <https://github.com/wangwenx190/d2d-mica> - D2D/DComp device-context setup for Mica-like effects.
 - <https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/Direct2D/GdiInteropSample> - DC render target bridge for mixed GDI/D2D code.

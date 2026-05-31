@@ -6,3 +6,21 @@ Use this as the middle rung between raw ABI samples and full Windows App SDK/Win
 
 ## References
 - <https://github.com/tgraupmann/Cpp_Win32_To_WinRT/blob/main/main.cpp> - minimal C++ Win32 process consuming a WinRT runtime class.
+
+## Experiment Harness
+
+Goal: prove a classic Win32 process can consume a simple WinRT class before adding UI or packaging.
+
+```cpp
+RoInitializeWrapper init(RO_INIT_MULTITHREADED);
+HStringReference name(RuntimeClass_Windows_Globalization_Calendar);
+ComPtr<IActivationFactory> factory;
+HRESULT hr = RoGetActivationFactory(name.Get(), IID_PPV_ARGS(&factory));
+wprintf(L"Calendar factory=%08lx\n", hr);
+```
+
+Procedure: run from console, from a GUI subsystem EXE, and from an MFC/WTL host; then change to a WinAppSDK runtime class and compare.
+
+Measured signal: HRESULT, thread apartment, process package identity from `GetCurrentPackageFullName`.
+
+Failure interpretation: Win32 versus WinRT is not the blocker; apartment and activation context are. Reference: <https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/intro-to-using-cpp-with-winrt>.

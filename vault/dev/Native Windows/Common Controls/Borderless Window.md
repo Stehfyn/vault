@@ -34,6 +34,67 @@ case WM_NCHITTEST: {
 }
 ```
 
+## Source Code Reading
+
+`melak47/BorderlessWindow/src/BorderlessWindow.cpp` is a concrete answer to "what composes a borderless helper?"
+
+The style table defines three states:
+
+```cpp
+windowed         = WS_OVERLAPPEDWINDOW
+aero_borderless  = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | ...
+basic_borderless = WS_POPUP | WS_THICKFRAME              | WS_SYSMENU | ...
+```
+
+`select_borderless_style` calls `DwmIsCompositionEnabled` and chooses the Aero path only when composition is active. `set_borderless` compares the current mode, updates the stored boolean, calls `SetWindowLongPtrW(handle, GWL_STYLE, new_style)`, toggles shadow state, calls `ShowWindow(handle, SW_SHOW)`, and finally calls `SetWindowPos(..., SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE)`. That last call is the cache invalidation for USER's non-client metrics.
+
+`set_shadow` calls `DwmExtendFrameIntoClientArea` with one of two `MARGINS` values. The sample uses DWM frame extension as the shadow/backdrop lever; it is not produced by `WS_POPUP` alone.
+
+The WndProc path stores the C++ object pointer during `WM_NCCREATE`:
+
+```cpp
+auto* userdata = ((CREATESTRUCT*)lparam)->lpCreateParams;
+SetWindowLongPtrW(hwnd, GWLP_USERDATA, (LONG_PTR)userdata);
+```
+
+Then it routes:
+
+- `WM_NCCALCSIZE`: when `wParam == TRUE` and borderless mode is active, return `0` so the client consumes the frame area.
+- `WM_NCHITTEST`: call `DefWindowProcW` first; if the result is `HTCLIENT` and borderless mode is active, compute edge/corner zones and return `HTLEFT`, `HTTOPRIGHT`, `HTCAPTION`, or `HTCLIENT`.
+- `WM_KEYUP`: F8/F9/F10/F11 toggle drag, resize, borderless mode, and shadow.
+
+The helper behind hit testing is not magic. It compares the screen-space cursor point with `GetWindowRect`, uses `GetSystemMetrics(SM_CXFRAME)` and `SM_CYFRAME` for border thickness, builds a bitmask for left/right/top/bottom, and maps the bitmask to `HT*` constants. The observable result is normal OS resize cursors and resize loops even though the visible caption is gone.
+
+## Discussion Claim To Verify
+
+Claim: the "resizable border without the bogus stripe" discussion is not solved by a style bit. It is a three-part contract: invalidate cached frame metrics with `SWP_FRAMECHANGED`, answer non-client sizing/hit-test messages, and decide whether DWM frame extension is part of the visual result.
+
+Why it matters for new code: a borderless helper that only toggles `WS_POPUP` will ship broken maximize bounds, missing resize cursors, invisible resize grips, or stale frame metrics. New code should expose these as separately testable functions: `ApplyStyle`, `ApplyDwmFrame`, `HitTestResizeBorder`, and `ApplyMaximizeBounds`.
+
+How to verify:
+
+- Use Spy++ to watch `WM_NCCALCSIZE`, `WM_NCHITTEST`, and `WM_GETMINMAXINFO` while toggling borderless mode.
+- Temporarily remove `SWP_FRAMECHANGED`; the visual/style state and USER's cached non-client metrics should diverge.
+- Set breakpoints on your `WM_NCHITTEST` branch and drag each edge/corner. The return value must move through `HTLEFT`, `HTTOPLEFT`, `HTBOTTOMRIGHT`, etc., not just `HTCLIENT`.
+
+Minimal code/pseudocode:
+
+```text
+ApplyBorderless(hwnd):
+    style = GetWindowLongPtr(hwnd, GWL_STYLE)
+    style = (style & ~WS_CAPTION) | WS_THICKFRAME | WS_SYSMENU
+    SetWindowLongPtr(hwnd, GWL_STYLE, style)
+    SetWindowPos(hwnd, 0, 0, 0, 0, 0,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED)
+
+WndProc(WM_NCHITTEST):
+    if edge_or_corner(cursor, window_rect, dpi_frame):
+        return matching_HT_constant
+    return HTCAPTION_or_HTCLIENT
+```
+
+Interpretation: if Spy++ never sees your non-client messages after the style change, your helper is not participating in USER's frame negotiation. If hit testing works but maximize still covers the taskbar, the missing piece is `WM_GETMINMAXINFO`, not the borderless style.
+
 ## References
 
 - <https://github.com/melak47/BorderlessWindow> - focused runtime style-toggle example.

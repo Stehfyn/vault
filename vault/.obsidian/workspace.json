@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6eee7ba08acf0add",
+        "id": "8e22d7535be5b7b6",
         "type": "tabs",
         "children": [
           {
-            "id": "6648c4c29564a475",
+            "id": "c727c55761b93d19",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "dev/Native Windows/Shell/Legacy Shell References.md",
+                "file": "dev/macros/Bitmap, Pixel, Color, And Image Format Math.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Legacy Shell References"
+              "title": "Bitmap, Pixel, Color, And Image Format Math"
             }
           }
         ]
@@ -98,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 345.49999618530273
+    "width": 315.5
   },
   "right": {
     "id": "2205038d022520ec",
@@ -165,6 +165,20 @@
               "icon": "lucide-list",
               "title": "Outline of unsorted"
             }
+          },
+          {
+            "id": "6563b885f0c3e5ca",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
           }
         ]
       }
@@ -184,34 +198,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6648c4c29564a475",
+  "active": "c727c55761b93d19",
   "lastOpenFiles": [
-    "dev/Native Windows/Shell/Windows Explorer Integration.md",
-    "dev/Native Windows/sktoolslib — Stefan Kueng Win32 Utility Library.md",
-    "dev/Native Windows/Windows Installer/MsiDefs.h — MSI Constants.md",
-    "dev/Native Windows/Shell/Drag and Drop.md",
-    "dev/Native Windows/Shell/DLL Load Notification.md",
-    "dev/Native Windows/Shell/DUI70 — Shell DirectUI Framework.md",
-    "dev/Native Windows/Shell/Edit Clipboard Contents — Per-Format Clipboard Editor.md",
-    "dev/Native Windows/Shell/Explorer Patcher (Win11 Shell Restore).md",
-    "dev/Native Windows/Shell/FastCopy-M — Multilingual Fork of Fast Windows Copier.md",
-    "dev/Native Windows/Shell/Known Folders.md",
-    "dev/Native Windows/Shell/Legacy Shell References.md",
-    "dev/Native Windows/Shell/Remove Windows AI Copilot Recall.md",
-    "dev/Native Windows/Shell/Phone-Style App Launcher Shell.md",
-    "dev/Native Windows/Shell/Shell App Manager (IShellApp).md",
-    "dev/Native Windows/Shell/Shell Execute.md",
-    "dev/Native Windows/Shell/Shell Utilities (shlwapi).md",
-    "dev/Native Windows/Shell/ShellExecute and File Operations.md",
-    "dev/Native Windows/Shell/Tray App Scratch Reference.md",
-    "dev/Native Windows/Shell/Visual Style (msstyles) Editor.md",
-    "dev/Native Windows/Shell/Windows 3.1 File Manager Source.md",
-    "dev/Native Windows/Shell/Explorer++ (Tabbed Win32 Explorer).md",
-    "dev/Native Windows/Shell/Classic Explorer Search Box Restore.md",
-    "dev/Native Windows/Shell/ColorAdjustLuma (HLS Luminance Helper).md",
-    "dev/Native Windows/Shell/7-Zip (Official Igor Pavlov Sources).md",
-    "dev/Native Windows/Tricks/SipHash.md",
-    "dev/Native Windows/Tricks/SimpleUI — Personal Win32 UI Repros.md",
+    "dev/macros/Bitsets, Flags, Packing, And Protocol Fields.md",
+    "dev/macros/Byte Order, Nibbles, And Unaligned Loads.md",
+    "dev/macros/COM, Shell, Window, And Control Helpers.md",
+    "dev/macros/Debugging, Logging, Assertions, And Tracing.md",
+    "dev/macros/Error Handling, Validation, Cleanup, And Lifetime.md",
+    "dev/macros/macros.md",
+    "dev/macros/Miscellaneous Local Idioms.md",
+    "dev/macros/Message Map And Message Cracker Macros.md",
+    "dev/ImGui/Vertical Text.md",
+    "dev/Native Windows/Esoteric APIs/YY-Thunks — Post-XP API Fallback.md",
+    "dev/Native Windows/Esoteric APIs/unsorted.md",
+    "dev/Native Windows/Esoteric APIs/Power State APIs.md",
+    "dev/Native Windows/Esoteric APIs/Ghost Window Prevention.md",
+    "dev/Native Windows/Headers/aux_ulib.h.md",
+    "dev/Native Windows/Headers/basestd.h.md",
+    "dev/Native Windows/Headers/Appnotify.h.md",
+    "dev/Native Windows/Headers/ActivityCoordinator.h.md",
+    "dev/Native Windows/Headers/MessageDispatcherApi.h.md",
+    "dev/Native Windows/Headers/mdcommsg.h.md",
+    "dev/Native Windows/Headers/Math3DHelper.h.md",
+    "dev/Native Windows/Headers/MSTask.h.md",
+    "dev/Native Windows/Headers/minappmodel.h.md",
+    "dev/Native Windows/Headers/processenv.h.md",
+    "dev/Native Windows/Headers/propvarutil.h.md",
+    "dev/Native Windows/Headers/pwm.h.md",
+    "dev/Native Windows/Headers/psapi.h.md",
+    "dev/Native Windows/createprocess-survey/src/gui_tiny.c",
+    "dev/Native Windows/createprocess-survey/src/gui_tiny.c.tmp.1836.185a9c34a2a2",
     "Untitled 1.base",
     "Untitled.base",
     "dev/Native Windows/(DWM) Desktop Window Manager/DCompositionWaitForCompositorClock — Decompiled.md.tmp.33292.09a535ef24ae",
@@ -220,8 +236,6 @@
     "dev/Networking/nurettin-libnuwen.md.tmp.33292.3315bd42d5d9",
     "dev/Graphics/Vulkan/tgfrerer-island.md.tmp.33292.d67ea8ffdf87",
     "dev/Native Windows/Headers/MSTask.h.md.tmp.33292.bc8812e044ae",
-    "dev/Maps and GIS/PDAL-PDAL.md.tmp.33292.5689676245b6",
-    "dev/Systems/Compilers/llvm-llvm-project.md.tmp.33292.b2ac0166c951",
     "media/AlwaysOnTop-TrayWnd.png",
     "media/Untitled2.png",
     "media/Untitled.png",

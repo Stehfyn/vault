@@ -6,3 +6,18 @@ Keep this near `xbox-live-api` and `HaloMCC-DiscordRPC`. Those entries show why 
 
 ## References
 - `XblIdpAuthManager.h`
+
+## Experiment Harness
+
+Goal: separate broker/account failure from service-call failure.
+
+Probe shape:
+
+```cpp
+printf("package=%ld\n", GetCurrentPackageFullName(&len, nullptr));
+// Acquire user/account handle, request token, print HRESULT and token audience only.
+```
+
+Measured signal: package identity, user handle acquisition HRESULT, token request HRESULT, token audience/scope metadata without logging secrets.
+
+Failure interpretation: no package/title identity or no signed-in broker account fails before HTTP service calls matter.

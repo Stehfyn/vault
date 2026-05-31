@@ -145,6 +145,25 @@ NTSTATUS WINAPI DCompositionWaitForCompositorClock(
 
 Return is **NTSTATUS** (typed as `DWORD` in the header), *not* a Win32 `WAIT_OBJECT_0`-style index. The caller doesn't get told which handle satisfied the wait; they have to poll signaled state on the handles afterwards if they need to know.
 
+## Experiment Harness
+
+Goal: validate the public wait contract at runtime: clock cadence, timeout behavior, handle-count limits, and access-denied contexts.
+
+Procedure:
+1. In a normal interactive desktop process, call `DCompositionWaitForCompositorClock(0, nullptr, 100)` in a loop and timestamp returns.
+2. Repeat with 1 event handle, 32 event handles, and 33 event handles.
+3. Repeat before/after creating a DComp device/target, with display on/off if safe, and from a non-interactive/service-like context if available.
+
+```cpp
+auto before = qpc();
+DWORD st = DCompositionWaitForCompositorClock(count, handles, timeout_ms);
+log(st, qpc() - before, count, timeout_ms);
+```
+
+Metric: return status, interval distribution, timeout hit rate, and status transition after invalid handle count or no compositor.
+
+Failure interpretation: `STATUS_INVALID_PARAMETER` confirms bad count/handle shape. `STATUS_ACCESS_DENIED` points at no per-thread compositor/desktop context. Immediate occluded/display-off status is a display state result, not a timing result. Jitter here is compositor-clock jitter, not physical scanline jitter.
+
 ## Sibling syscalls in the same family
 
 Confirmed from `win32u.dll` exports on the same build:

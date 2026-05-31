@@ -12,5 +12,33 @@ Chapter09-Memory/         # VirtualAlloc, AWE, large pages, MEM_REPLACE_PLACEHOL
 Chapter12-IPC/            # named pipes, mailslots, ALPC sketches
 ```
 
+## Diagnostics Route
+
+The samples are a bridge between isolated API learning and the observability notes in this folder. Treat the ETW and TraceLogging examples as producer-side companions to krabsetw, Sealighter, wtrace, and ProcMonXv2.
+
+```cpp
+// TraceLogging-style producer shape from the Windows system-programming family.
+#include <TraceLoggingProvider.h>
+
+TRACELOGGING_DEFINE_PROVIDER(
+    g_provider,
+    "NativeWindows.Sample",
+    (0x01234567, 0x89ab, 0xcdef, 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef));
+
+TraceLoggingRegister(g_provider);
+TraceLoggingWrite(g_provider, "WorkerState",
+    TraceLoggingUInt32(GetCurrentProcessId(), "PID"),
+    TraceLoggingWideString(L"Running", "State"));
+TraceLoggingUnregister(g_provider);
+```
+
+```text
+learning route:
+  threads/thread pools -> service worker lifetime
+  handles/tokens/SIDs -> NanaRun and service identity
+  IPC/named pipes/ALPC -> NpEtw and ProcMon-style observation
+  ETW/TraceLogging -> EventWrite, krabsetw, Sealighter, UIforETW
+```
+
 ## References
 - <https://github.com/zodiacon/Win10SysProgBookSamples>

@@ -17,3 +17,17 @@ oWndProc = (WNDPROC)SetWindowLongPtrW(target, GWLP_WNDPROC, (LONG_PTR)hkWndProc)
 ## References
 - <https://github.com/seiftnesse/DWM_Hook>
 - Related: `DWM Process Overlay Injection.md`, `DwmGetDxSharedSurface Window Capture.md`
+
+## Discussion Claim To Verify
+
+The useful claim is not "hook WndProc"; it is that input routing and rendering are separate boundaries. A present-hook-only overlay can draw but fail to receive coherent ImGui input; a WndProc route can receive input but does not prove the compositor draw path is stable.
+
+```cpp
+LRESULT CALLBACK ProbeWndProc(HWND h, UINT m, WPARAM w, LPARAM l) {
+    bool imgui_wants = ImGui_ImplWin32_WndProcHandler(h, m, w, l);
+    log_message(qpc_now(), h, m, w, l, imgui_wants);
+    return imgui_wants ? 1 : CallWindowProcW(original, h, m, w, l);
+}
+```
+
+Verification route: synthesize mouse move, click, DPI-change, resize, and activation messages against the same target and compare the WndProc log with visible overlay state. Failure cases: wrong HWND, subclass overwritten by another component, reentrancy during destruction, or input captured by another top-level window. Keep this note at the message-boundary level; do not turn it into a DWM injection recipe.

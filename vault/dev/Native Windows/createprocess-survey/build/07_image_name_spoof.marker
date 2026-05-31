@@ -1,0 +1,53 @@
+07_image_name_spoof
+pid=13384
+argc=3
+argv0=C:\Windows\System32\notepad.exe
+parent_pid=31060
+params.MaximumLength=1806
+params.Length=1806
+params.Flags=0x00004001
+params.DebugFlags=0x00000000
+ConsoleHandle=0000000000000068
+ConsoleFlags=0x00000000
+StandardInput=000000000000006C
+StandardOutput=0000000000000070
+StandardError=0000000000000074
+CurrentDirectory.DosPath=C:\dev\cp\createprocess-survey\build\
+DllPath=(empty)
+ImagePathName=C:\Windows\System32\notepad.exe
+CommandLine="C:\Windows\System32\notepad.exe" untitled.txt /spoofed
+Loader.GetModuleFileNameW=C:\Windows\System32\notepad.exe
+Loader.GetModuleHandleW(NULL)=00007FF6D21E0000
+Kernel.ProcessImageFileName=\Device\HarddiskVolume3\dev\cp\createprocess-survey\build\test_target.exe
+Kernel.ProcessImageFileNameWin32=C:\dev\cp\createprocess-survey\build\test_target.exe
+WindowTitle=(empty)
+DesktopInfo=(empty)
+ShellInfo=(empty)
+RuntimeData=(empty)
+StartingX=0
+StartingY=0
+CountX=0
+CountY=0
+CountCharsX=0
+CountCharsY=0
+FillAttribute=0x00000000
+WindowFlags=0x00000000
+ShowWindowFlags=0x0
+Win32.dwFlags=0x00000000
+Win32.dwX=0 Win32.dwY=0
+Win32.dwXSize=0 Win32.dwYSize=0
+Win32.dwXCountChars=0 dwYCountChars=0
+Win32.dwFillAttribute=0x00000000
+Win32.wShowWindow=0
+Win32.lpTitle=
+Win32.lpDesktop=
+Win32.hStdInput=0000000000000000 hStdOutput=0000000000000000 hStdError=0000000000000000
+EnvironmentSize=270
+ProcessGroupId=0x3448
+LoaderThreads=0
+RedirectionDllName=(empty)
+HeapPartitionName=(empty)
+DefaultThreadpoolCpuSetMaskCount=0
+DefaultThreadpoolThreadMaximum=0
+HeapMemoryTypeMask=0x0
+env.CPS_TARGET_TAG=07_image_name_spoof

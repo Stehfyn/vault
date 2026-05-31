@@ -70,3 +70,23 @@ taskbar->ThumbBarAddButtons(hwnd, 1, &button);
 ```
 
 Connections: `Tray App Scratch Reference.md` is the small app-shaped example; `Shell Execute.md` handles launching from menu commands; `Shell App Manager (IShellApp).md` and Game Bar notes cover newer app/presence surfaces.
+
+## Experiment Harness
+
+Goal: test tray identity and Explorer-restart recovery, not just icon display.
+
+```cpp
+UINT taskbarCreated = RegisterWindowMessageW(L"TaskbarCreated");
+// WndProc:
+if (msg == taskbarCreated) {
+    Shell_NotifyIconW(NIM_ADD, &nid);
+    Shell_NotifyIconW(NIM_SETVERSION, &nid);
+    OutputDebugStringW(L"tray re-added after Explorer restart\n");
+}
+```
+
+Procedure: add an icon using `(HWND,uID)`, then using `NIF_GUID`; restart Explorer; count callbacks and whether the icon reappears.
+
+Measured signal: add/modify/delete return values, callback message IDs, Explorer restart re-add count, notification state from `SHQueryUserNotificationState`.
+
+Failure interpretation: a visible icon is not enough; robust tray code must survive shell recreation and user notification policy. Reference: <https://learn.microsoft.com/en-us/windows/win32/shell/notification-area>.

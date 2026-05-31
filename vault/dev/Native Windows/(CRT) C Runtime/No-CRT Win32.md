@@ -43,10 +43,65 @@ The old small-executable guides contribute linker mechanics, but they are last-m
 /OPT:REF /OPT:ICF /MERGE:.rdata=.text /ALIGN:16
 ```
 
+## Source Code Reading
+
+Two linked source projects illustrate different no-CRT depths.
+
+`alexandru-cazacu/win32-template-no-crt` is the narrow Win32 version. Its `src/app.c` starts at `WinMainCRTStartup`, calls `WinMain`, and exits through `ExitProcess`; its helper files provide only compiler-required glue: `memset`, `memcpy`, `_fltused`, x86 float-to-int helpers, and x86 64-bit math helpers. Its `src/win32.c` is really a header-surface reducer: it pins `_WIN32_WINNT` to Windows 7 and defines `WIN32_LEAN_AND_MEAN`, `STRICT`, and many `NO*` macros before including `windows.h`.
+
+`chizhaolin/Simple-CRT` is a broader toy runtime. `my_crt.c` defines `my_crt_entry`, reads `GetCommandLineA`, tokenizes a fixed-size `argv`, calls `heap_init`, then enters `main(argc, argv)` and exits with `ExitProcess`. Its companion files are the missing-library bodies: `malloc.c` for heap allocation, `stdio.c` for formatted/console-ish I/O, and `string.c` for byte/string primitives.
+
+The implementation contrast is the useful lesson:
+
+```text
+tiny Win32 template:
+  WinMainCRTStartup -> WinMain -> ExitProcess
+  provide only compiler helper symbols actually emitted
+
+Simple-CRT:
+  my_crt_entry -> GetCommandLineA -> tokenize argv
+  heap_init -> main(argc, argv) -> ExitProcess
+  reimplement enough malloc/stdio/string for C-style programs
+```
+
+Steps to turn this into a serious probe:
+1. Build with `/NODEFAULTLIB /ENTRY:WinMainCRTStartup`.
+2. Run `dumpbin /imports` and confirm no `ucrtbase.dll` or `vcruntime*.dll`.
+3. Add one feature at a time: command-line parsing, floating point, 64-bit division, stack-heavy functions, formatted output.
+4. Treat each unresolved external as a design decision: avoid the feature, implement the exact ABI helper, or restore the CRT.
+
+## Discussion Claim Verification
+
+Claim: "No-CRT means the program has no runtime."
+
+Why it matters for new code: false. No-CRT means the program supplies or avoids the runtime work the compiler and source still require. The interesting audit is not whether `/NODEFAULTLIB` appears; it is which hidden helper symbols the object files still demand.
+
+How to verify:
+
+```powershell
+cl /nologo /c /GS- /GR- /EHs-c- tiny.c
+link /nologo tiny.obj kernel32.lib /ENTRY:WinMainCRTStartup /NODEFAULTLIB /SUBSYSTEM:WINDOWS /MAP:tiny.map
+dumpbin /imports tiny.exe
+dumpbin /symbols tiny.obj | findstr /i "memcpy memset chkstk fltused security atexit Cxx"
+dumpbin /disasm tiny.exe > tiny.disasm.txt
+```
+
+Minimal code/pseudocode:
+
+```c
+void WinMainCRTStartup(void) {
+    ExitProcess(WinMain(GetModuleHandleW(0), 0, GetCommandLineW(), SW_SHOWDEFAULT));
+}
+```
+
+Interpretation: the old small-executable articles are directionally useful but often oversell linker tricks. Verified no-CRT means no CRT imports and no unresolved compiler helpers after link. Nullify any "no runtime" claim when the source reintroduces helper bodies for `memcpy`, `_fltused`, division, stack probing, or security cookies; those helpers are the runtime, just locally owned.
+
 ## Connections
 - `Win32 No-CRT C Template` is the concrete C version of this pattern.
 - `CRT Startup Hooks` explains what you lose when CRT startup is skipped.
 - `Binary Size Reduction` covers less invasive linker optimization before removing the CRT entirely.
+- `winnt.h`, `sdkddkver.h`, and PE loader notes explain the headers/imports/entry-point contract that remains after the CRT is gone.
+- `RTL_USER_PROCESS_PARAMETERS` is where command line and environment really come from before a CRT turns them into `argv` and `environ`.
 
 ## References
 - <https://github.com/chizhaolin/Simple-CRT>

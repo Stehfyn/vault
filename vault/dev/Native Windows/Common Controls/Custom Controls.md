@@ -43,6 +43,39 @@ case WM_PAINT: {
 }
 ```
 
+## Source Code Reading
+
+`mykola2312/win32ctrl` is a wrapper layer, but the teaching value is still the same Win32 contract: controls are HWNDs that communicate through messages. `win32ctrl.cpp` and `win32ctrl.h` define small C++ objects around HWND creation, enumeration, and command routing; `win32util.cpp` contributes utility enumeration such as `_CheckWindow(HWND, LPARAM)`. When a wrapper method says "create a button," decompose it to `CreateWindowEx`, class name, style bits, parent HWND, menu/control ID, instance handle, and optional `lpParam`.
+
+`andlabs/wintable` is the more interesting custom-control source. `api.c` defines `apiHandlers`, which handles private table messages such as `tableAddColumn` and `tableSetModel`, plus stock messages such as `WM_SETFONT` and `WM_GETFONT`. The table does not expose random public C++ methods; it exposes a message API around an HWND.
+
+The key ownership path in `api.c` is:
+
+```cpp
+tableSetModel:
+    tableModel_tableUnsubscribe(oldModel, hwnd)
+    tableModel_Release(oldModel)
+    tableModel_AddRef(newModel)
+    tableModel_tableSubscribe(newModel, hwnd)
+    updateAll(table)
+```
+
+That is what "custom control state" means in code: the control owns references, invalidation, and notification timing. The parent owns the model behavior.
+
+The notification path is explicit:
+
+```cpp
+tableNM nm = {};
+nm.nmhdr.hwndFrom = t->hwnd;
+nm.nmhdr.idFrom = GetDlgCtrlID(t->hwnd);
+nm.nmhdr.code = code;
+nm.row = row;
+nm.column = column;
+SendMessageW(GetParent(t->hwnd), WM_NOTIFY, nm.nmhdr.idFrom, &nm);
+```
+
+A custom control is not finished when it paints. It needs a stable notification struct, parent routing, font handling, model lifetime, redraw policy, keyboard/focus behavior, and teardown. Those are the missing details behind vague helpers like `NotifyParent`, `SetModel`, or `DrawControl`.
+
 ## References
 - <https://www.codeproject.com/Articles/620045/Custom-Controls-in-Win32-API-Visual-Styles> - themed drawing for custom controls.
 - <https://github.com/mykola2312/win32ctrl/blob/master/win32ctrl.cpp> - stock-control subclassing example.

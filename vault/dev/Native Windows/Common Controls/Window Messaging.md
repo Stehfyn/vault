@@ -38,12 +38,68 @@ SendMessageW(target, WM_COPYDATA, reinterpret_cast<WPARAM>(hwnd),
              reinterpret_cast<LPARAM>(&cds));
 ```
 
+## Discussion Claims to Test
+
+The Raymond Chen link is useful because it turns `PostMessage` from a convenience API into a lifetime contract. A posted message copies `HWND`, `UINT`, `WPARAM`, and `LPARAM` values into a queue; it does not deep-copy whatever your `LPARAM` points at. The falsifiable rule is simple: post an `LPARAM` pointer to stack memory, return, then let the receiver read it later. If the receiver "works," it is luck and timing, not a contract.
+
+Probe:
+
+```cpp
+struct Payload { DWORD magic; wchar_t text[32]; };
+
+void BadPost(HWND target) {
+    Payload p = { 0x12345678, L"stack" };
+    PostMessageW(target, WM_APP + 1, 0, (LPARAM)&p);
+} // p is dead here
+
+case WM_APP + 1:
+    // This intentionally tests a bug. The pointer lifetime is invalid.
+    Inspect((Payload*)lParam);
+    return 0;
+```
+
+Now replace `PostMessageW` with `SendMessageW`; the pointer remains valid for the duration of the call, but the sender is synchronously executing receiver code and can be reentered through nested pumps. Replace both with `WM_COPYDATA` when you need a synchronous, structured cross-window payload and make the receiver copy the bytes before returning.
+
+Message tracing should show the practical difference:
+
+- Spy++ sees a posted app message arrive later when the target thread pumps.
+- A debugger breakpoint inside the receiver during `SendMessage` runs on the sender's call stack.
+- `WM_COPYDATA` only works with `SendMessage`; posting it is invalid because the payload lifetime cannot be guaranteed.
+
+## Verification Route
+
+Claim: thread messages and window messages fail differently in modal loops. The Old New Thing modal-loop discussion is a warning that `PostThreadMessage` to a GUI thread is not interchangeable with `PostMessage(hwnd, ...)` because `DispatchMessage` has no window procedure to call for a thread message.
+
+Why it matters for new code: background-to-UI signaling should target a real message-only or normal HWND owned by the UI thread. Posting to the thread itself looks simpler until menus, move/size loops, dialog boxes, or accelerators introduce nested dispatch behavior.
+
+How to verify:
+
+- Create a UI thread with both a hidden message-only window and a thread-message handler in the outer pump.
+- Start a move/size drag or modal dialog, then post both `PostThreadMessage(threadId, WM_APP+1, ...)` and `PostMessage(hwndMessageOnly, WM_APP+2, ...)`.
+- Trace with Spy++ or debugger logging. The window-targeted message reaches `WndProc`; the thread message can be consumed by a loop that only calls `TranslateMessage` / `DispatchMessage`.
+
+Minimal code/pseudocode:
+
+```cpp
+PostThreadMessageW(ui_tid, WM_APP + 1, 0, 0);   // fragile on GUI threads
+PostMessageW(hwnd_signal, WM_APP + 2, 0, 0);    // dispatch has a WndProc target
+
+while (GetMessageW(&msg, nullptr, 0, 0)) {
+    TranslateMessage(&msg);
+    DispatchMessageW(&msg); // thread message has no hwnd dispatch target
+}
+```
+
+Interpretation: if the signal must survive modal UI behavior, create an HWND signal target. Use thread messages for worker-style loops that deliberately inspect `msg.hwnd == nullptr`; do not use them as a casual GUI-thread mailbox.
+
 ## References
 
 - <https://learn.microsoft.com/en-us/windows/win32/api/Winuser/ns-winuser-copydatastruct> - `COPYDATASTRUCT` layout.
 - <https://learn.microsoft.com/en-us/windows/win32/dataxchg/wm-copydata> - synchronous cross-window data message contract.
 - <https://learn.microsoft.com/en-us/windows/win32/winmsg/messages-and-message-queues> - queue ownership and pump behavior.
 - <https://devblogs.microsoft.com/oldnewthing/20110516-00/?p=10663> - Old New Thing discussion of posted-message timing.
+- <https://devblogs.microsoft.com/oldnewthing/20050426-18/?p=35783> - Old New Thing discussion of thread messages lost through modal loops.
+- <https://devblogs.microsoft.com/oldnewthing/20110916-00/?p=9623> - why `WM_COPYDATA` is a sent-message lifetime contract, not a posted-message contract.
 
 ## Connections
 

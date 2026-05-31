@@ -45,6 +45,23 @@ lDwmpUpdateSharedMultiWindowVisual(hMultiThumb,
     &rcSource, &destSize, 1);
 ```
 
+## Discussion Claim To Verify
+
+The ADeltaX blog/gist claim is that private DWM thumbnail exports can produce an `IDCompositionVisual`, not just paint a legacy thumbnail into a destination HWND. That drives very different code: the caller can insert the returned visual into its own DComp tree, apply transforms/effects/clips, and compose multi-window sets.
+
+```cpp
+auto before = qpc_now();
+hr = DwmpCreateSharedThumbnailVisual(dst, src, 0, &props,
+                                     dcomp_device, (void**)&visual, &thumb);
+log(hr, visual != nullptr, thumb != nullptr, qpc_now() - before);
+
+root->AddVisual(visual, TRUE, nullptr);
+visual->SetOffsetX(80.0f);
+dcomp_device->Commit();
+```
+
+Verification route: compare three paths against the same source HWND: public `DwmRegisterThumbnail`, private shared-thumbnail visual, and private multi-window visual. Record HRESULT, returned handle/visual presence, visual transform success, source window occlusion behavior, and output pixels via DXGI duplication. If only the private visual path moves/animates as part of the caller's DComp tree, the claim survives. If it behaves like a static bitmap or fails after a Windows build change, the note should classify it as build-sensitive reverse-engineering evidence, not a stable UI primitive.
+
 ## References
 - https://gist.github.com/ADeltaX/aea6aac248604d0cb7d423a61b06e247
 - https://blog.adeltax.com/dwm-thumbnails-but-with-idcompositionvisual/

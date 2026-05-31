@@ -34,3 +34,18 @@ void EnableMica(HWND hwnd, bool dark) {
 ## References
 - <https://github.com/kawapure/DWM-Documentation>
 - Related: `DwmGetDxSharedSurface Window Capture.md`, `DWM Thumbnail - VirtualDesktop IDCompositionVisual.md`, `OpenGlass (Aero Blur Restoration).md`
+
+## Connections
+- `../(DX) DirectX/Windows Composition Engine.md` is the public DirectComposition side of the same visual-tree story.
+- `../Custom Frame/Acrylic Three Ways Comparison.md`, `../Custom Frame/Mica Backport for Windows 10.md`, and `OpenGlass (Aero Blur Restoration).md` are concrete theming outcomes of the undocumented compositor gap.
+- `DCompositionWaitForCompositorClock — Decompiled.md` and `VBlank Wait.md` connect compositor internals to timing and frame-pacing behavior.
+
+## Route Map
+
+Read DWM as the ownership boundary between HWND semantics and GPU-presented pixels:
+
+- **Composition route:** app renders to GDI, D2D, D3D, or GL-backed surfaces; DirectComposition can arrange app-owned DXGI content; DWM owns final desktop composition. Pair this note with `../(DX) DirectX/Windows Composition Engine.md` and `../(DX) DirectX/(DXGI) Microsoft DirectX Graphics Infrastructure.md`.
+- **Capture route:** `../(GDI) Graphics Device Interface/How to Capture the Screen.md` reads the visible desktop through GDI, `../(DX) DirectX/DXGI Output Duplication Capture.md` reads the final monitor image, and `DwmGetDxSharedSurface Window Capture.md` targets the per-window redirection surface.
+- **Protection route:** `Capture-Protected Window (Sprite Hack).md` explains why capture policy is enforced at the compositor/sprite layer; capture code below this note should explicitly state whether it expects blacked-out protected content.
+- **Timing route:** `VBlank Wait.md` is physical scanout, `DCompositionWaitForCompositorClock — Decompiled.md` is compositor scheduling, and `../(GL) OpenGL/VSync (OpenGL).md` shows how WGL swap interval can be one layer removed from both.
+- **Backdrop/custom-frame route:** `Title Bar Customization.md`, `No Title Bar Window.md`, `DWM Colorization.md`, `DWM Blur Glass (Aero Restoration).md`, and `OpenGlass (Aero Blur Restoration).md` all depend on whether the app keeps the non-client contract or patches DWM itself.

@@ -1,0 +1,6 @@
+worker_id=1
+child_pid=4304
+table_ptr=000002C4F52BBF50 (same pointer that parent owned!)
+name=task-1
+input=20
+result=417

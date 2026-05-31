@@ -9,3 +9,19 @@ Code contribution: the raw XAML contributes `ControlTemplate`, `Style`, `Trigger
 ## References
 - <https://github.com/gix/PresentationTheme.Aero> - WPF theme package containing Aero-style control templates and resources.
 - <https://raw.githubusercontent.com/gix/PresentationTheme.Aero/master/Source/PresentationTheme.Aero.Win7/Themes/Aero.Win7.NormalColor.xaml> - raw Windows 7 normal-color resource dictionary; inspect for actual template keys and brush definitions.
+
+## Experiment Harness
+
+Goal: measure which visuals come from WPF resources versus the OS theme renderer.
+
+```xaml
+<Application.Resources>
+  <ResourceDictionary Source="pack://application:,,,/PresentationTheme.Aero;component/Themes/Aero.Win7.NormalColor.xaml"/>
+</Application.Resources>
+```
+
+Procedure: render the same `Button`, `TextBox`, and `ListView` with default theme and Aero dictionary; dump `Template` type/key and screenshot both at 100%, 150%, and high contrast.
+
+Measured signal: resource keys resolved, visual tree depth, DPI/high-contrast changes, screenshot diffs.
+
+Failure interpretation: if high contrast or DPI behavior regresses, the theme dictionary is overriding platform adaptation rather than merely styling controls. Reference: <https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/styles-templates-overview>.

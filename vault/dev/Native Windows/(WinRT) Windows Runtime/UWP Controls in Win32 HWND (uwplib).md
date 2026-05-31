@@ -6,3 +6,16 @@ Use it as a comparison point rather than a primary recommendation. Official Xaml
 
 ## References
 - <https://github.com/WindowsNT/uwplib> - experimental library for using UWP controls from Win32 hosts.
+
+## Experiment Harness
+
+Goal: compare unsupported `uwplib` behavior against supported XAML Islands behavior.
+
+Procedure:
+1. Host the same simple control in `uwplib` and `DesktopWindowXamlSource`.
+2. Record child HWND presence, focus traversal, DPI resize behavior, and teardown result.
+3. Repeat with a control that uses more app-model assumptions, such as map/ink/media if available.
+
+Measured signal: attach HRESULT, child HWND, keyboard focus transitions, leaked windows after destroy, crash/exception on teardown.
+
+Failure interpretation: if XAML Islands succeeds and `uwplib` fails, the missing piece is the unsupported hosting contract, not the control itself. Reference: <https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.hosting.desktopwindowxamlsource>.

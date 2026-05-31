@@ -8,3 +8,20 @@ Code contribution: inspect node/connector controls for `ItemsControl`, `DataTemp
 
 ## References
 - <https://github.com/miroiu/nodify> - WPF node-editor controls and samples with MVVM-oriented graph editing patterns.
+
+## Experiment Harness
+
+Goal: find the visual-tree scale where WPF graph editing stops being interactive.
+
+```csharp
+var sw = Stopwatch.StartNew();
+model.Nodes = Enumerable.Range(0, n).Select(i => new NodeVm()).ToList();
+Dispatcher.InvokeAsync(() =>
+    Debug.WriteLine($"nodes={n} visuals={CountVisuals(editor)} ms={sw.ElapsedMilliseconds}"));
+```
+
+Procedure: generate 100, 1,000, and 10,000 nodes; toggle virtualization/pan-zoom features; record frame time while dragging.
+
+Measured signal: visual count, layout/render time, input latency, memory.
+
+Failure interpretation: WPF retained-mode cost is usually visual tree size and layout invalidation, not line drawing itself. Reference: <https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/optimizing-performance-controls>.

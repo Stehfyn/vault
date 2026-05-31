@@ -4,3 +4,8 @@ A maintained, packaged fork of the ysc3839 dark-mode work, turned into a drop-in
 
 ## References
 - <https://github.com/ozone10/win32-darkmodelib>
+
+## Connections
+- `../Common Controls/Darkmode.md` is the conceptual map; this note is the maintained implementation candidate.
+- `Dark Mode (Uxtheme Ordinals).md` and `Dark Mode Minimal Test.md` are better for auditing undocumented ordinal use before accepting a library dependency.
+- Pair with `../(DWM) Desktop Window Manager/Title Bar Customization.md` when dark controls and dark non-client caption buttons need to agree.

@@ -69,6 +69,34 @@ bool SuspiciousInputCapture(const InputCaptureSignal& s) {
 }
 ```
 
+## Discussion Claim To Verify
+
+Claim common in offensive-reference lists: a named API family is enough to classify behavior.
+
+Why it matters: import names are weak evidence. The same APIs appear in debuggers, accessibility tools, overlays, crash reporters, terminal emulators, game clients, EDR tools, and malware. The verifiable claim is composition plus context, not the function name alone.
+
+Safe verification route:
+
+```powershell
+dumpbin /imports .\sample.exe | findstr /i "OpenProcess VirtualAlloc WriteProcessMemory SetWindowsHookEx CreateProcess"
+Get-Process -Id $pid | Select-Object Id, ProcessName, Path, MainWindowTitle
+```
+
+Telemetry interpretation table:
+
+```text
+imports only
+  -> capability, not behavior
+import + runtime event
+  -> behavior candidate
+runtime event + target context + handle rights + artifact
+  -> defensible finding
+runtime event + benign UI/debugger/accessibility role
+  -> likely legitimate until additional evidence appears
+```
+
+Nullified claim: the linked cheat sheets support coverage-map construction; they do not support labeling every occurrence of the listed APIs as malicious.
+
 ## PE and Reconstruction Boundary
 
 The malware-analysis, sample-collection, and decompiler links belong with PE triage. Their code contribution is the shape of a triage record: imports, sections, timestamps, resources, and anti-analysis markers. Decompilation preserves control/data hints; it does not recover original source semantics.
@@ -100,3 +128,14 @@ struct PeTriageRecord {
 - `Win32 Bind Shell Reference` covers the process/socket pattern from the netcat link.
 - `Input` entries cover the keylogger-related hook and Raw Input surfaces.
 - `Blackbone Process Manipulation Library` and `Win32 Process Snippet Utilities` cover the process/handle side of the cheat sheets.
+
+## Cross-Topic Routes
+
+Six independent passes over this folder converge on these routes:
+
+- User-mode process boundary: `Win32 Process Snippet Utilities` -> `VirtualAlloc Memory API Header` -> `Blackbone Process Manipulation Library` -> `DLL Shellcode Injectors Catalog`. Track handle rights, remote memory, protection transitions, and execution transfer.
+- Kernel assist and BYOVD boundary: `Cheat Driver (IOCTL Memory R W)` -> `GDRV Loader`/`Nullmap` -> `PPL Killer` -> `PreviousMode Flip Memory R W`/`User-Mode Physical Memory Library`. Track driver load, device access, IOCTL metadata, and post-driver process access.
+- Reversing friction: `Anti-Debug Check Catalog` -> `Anti-Tamper Anti-Debug Library` -> `MoVfuscator` -> `Metamorphic PIC BOF EXE Compiler`. Track the branch or dataflow consequence, not just the presence of an anti-analysis trick.
+- Input and UI boundary: keylogger references -> `Input` notes -> `WindowCustomizer`/window-inspection notes. Track whether a process has a visible UI role before treating hooks, Raw Input, hotkeys, or HWND mutation as legitimate.
+- Socket and child-process boundary: netcat redirection -> `Win32 Bind Shell Reference` -> service/process-launch notes. Track inherited handles, stdio redirection, parent/child image pair, and listener ownership.
+- Defensive source contribution: malware-analysis and decompiler links -> PE-format notes -> memory/process notes. Extract import families, section layout, callbacks, and runtime behavior; do not assume reconstructed C is original program intent.

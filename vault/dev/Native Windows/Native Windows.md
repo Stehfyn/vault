@@ -5,10 +5,28 @@ This directory is an index for low-level Windows desktop material: Win32, COM, W
 ## Coalesced Topic Map
 - ABI and loader substrate: `Headers/winnt.h.md`, `Headers/ntdll.lib.md`, `(NTAPI) Undocumented Kernel/`, `(PE) Portable Executable Format/`.
 - Windowing and controls: `Common Controls/`, `Message Queue/`, `Hooks/`, `DPI Awareness/`, `Custom Frame/`.
-- Shell integration: `Shell/Shell Execute.md`, `Shell/Shell Shortcuts.md`, `Shell/Windows Explorer Integration.md`, `Shell/Notification Area (Tray).md`, `Shell/Legacy Shell References.md`.
+- Shell integration: `Shell/Shell Execute.md`, `Shell/Shell Shortcuts.md`, `Shell/Shell Link Tracking (Object IDs and Distributed Link Tracking).md`, `Shell/Windows Explorer Integration.md`, `Shell/Notification Area (Tray).md`, `Shell/Legacy Shell References.md`.
 - Graphics/composition: `(GDI) Graphics Device Interface/`, `(DWM) Desktop Window Manager/`, `(DX) DirectX/`, `(GL) OpenGL/`, `Display Control/`.
 - Runtime and deployment: `(CRT) C Runtime/`, `Windows Installer/`, `(REG) Windows Registry/`, `(WinRT) Windows Runtime/`, `App Compatibility/`.
 - Diagnostics and security research: `(ETW) Event Tracing For Windows/`, `(WMI) Windows Management Instrumentation/`, `OpSec/`, `Services/`.
+
+## Overarching Topic Graph
+- `HWND` is the central seam: `Message Queue/` explains delivery, `Common Controls/` explains child/control protocols, `Custom Frame/` explains non-client takeover, `DPI Awareness/` explains coordinate validity, and `Hooks/`/`Input/` explain observation and synthesis.
+- COM is the ABI spine above raw Win32: Shell items, taskbar APIs, file dialogs, WMI, DirectComposition, DXGI, Media Foundation, WinRT, and WIL all reduce to interface identity, `QueryInterface`, reference counting, HRESULTs, and apartment/threading assumptions.
+- DWM/DXGI/DirectComposition form the presentation triangle: DXGI owns adapter and swap-chain identity, DComp owns retained visuals and commit timing, and DWM owns desktop integration, thumbnails, backdrops, shadows, and most modern non-client behavior.
+- NT and PE material explains what Win32 hides: object namespaces, process parameters, native strings, loader state, section mapping, import/export resolution, status codes, and the split between documented SDK declarations and private ntdll/win32k contracts.
+- Shell and packaging are one deployment surface, not two: shortcuts, known folders, app identity, MSIX/AppX, WinAppSDK bootstrap, Explorer integration, notification area state, and AppCompat shims decide how an EXE becomes a Windows application.
+- Diagnostics should be chosen by layer: ETW for time-ordered events, WMI/SCM for system inventory and services, dump/debug APIs for process state, Spy++/window tools for USER objects, and graphics capture tools for compositor/presentation state.
+- Reversing notes should route back to legitimate boundaries: private DWM exports connect to DXGI shared resources; shell patching connects to COM/DirectUI; driver and kernel notes connect to object manager, IOCTL, signing, and ETW visibility.
+
+`Story Routes.md` is the implementation backlog above this map. It turns the local note clusters into probes, repros, bridges, matrices, and forensics helpers for window behavior, graphics, modern API identity, compatibility, diagnostics, and trust-sensitive API use.
+
+## Cross-Reference Routes
+- To build a custom top-level window: start with `Common Controls/Borderless Window.md`, then `Custom Frame/Custom Chrome Sample (NCCALCSIZE).md`, then `(DWM) Desktop Window Manager/Title Bar Customization.md`, `Common Controls/Darkmode.md`, and `DPI Awareness/Per-Window DPI Awareness.md`. That path keeps style bits, non-client hit testing, dark titlebar attributes, and per-monitor sizing in the same mental model.
+- To reason about composition and capture: read `(DX) DirectX/(DXGI) Microsoft DirectX Graphics Infrastructure.md` before `(DX) DirectX/Windows Composition Engine.md`, then use `(DWM) Desktop Window Manager/DWM Internals Documentation.md`, `(DWM) Desktop Window Manager/DwmGetDxSharedSurface Window Capture.md`, and `(GDI) Graphics Device Interface/How to Capture the Screen.md` to separate documented swap-chain ownership from undocumented redirection-surface capture.
+- To bridge Win32 into modern Windows UI: pair `(COM) Component Object Model/COM in plain C.md` with `(WinRT) Windows Runtime/WinRT is fundamentally COM.md`, then use `(WinRT) Windows Runtime/Windows App SDK Bootstrapper.md`, `(WinRT) Windows Runtime/WinUI 3 in Pure C (No cppwinrt).md`, and `Custom Frame/Acrylic via WinRT Composition Interop.md`. This prevents treating WinRT, XAML Islands, and WinAppSDK deployment as one undifferentiated "modern UI" blob.
+- To extend Explorer or shell UX: start with `Shell/Shell Items and Folders.md`, `Shell/Known Folders.md`, and `Shell/Shell Execute.md` for supported COM/API surfaces; then compare `Shell/DUI70 — Shell DirectUI Framework.md`, `Shell/Explorer Patcher (Win11 Shell Restore).md`, `libvalinet — ExplorerPatcher Helpers.md`, and `Custom Frame/Immersive Context Menu (Explorer Look-Alike).md` for unsupported patching and shell-internals work.
+- To debug runtime behavior: combine `(ETW) Event Tracing For Windows/`, `Examples/wintrace.md`, `(WMI) Windows Management Instrumentation/WMI C++ Usage.md`, `Services/Win32 Service Template.md`, and `(NTAPI) Undocumented Kernel/Process Dump Tools.md`. ETW explains what happened, WMI/SCM explain long-lived system state, and dumps/native APIs explain the process boundary.
 
 The rule for this page is strict: external links stay only when they point at code, ABI contracts, or a doc page whose declarations are directly useful while writing code. Reading-list links should be promoted into a specific note with a concrete code contribution or removed.
 

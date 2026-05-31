@@ -40,3 +40,30 @@ if ((INT_PTR)h <= 32) {
 ```
 
 Connections: `ShellExecute and File Operations.md` covers older shell-file APIs; `Shell Shortcuts.md` covers persisted launch metadata; `Windows Explorer Integration.md` covers shell namespace/dialog integration when the target is not simply a process.
+
+## Experiment Harness
+
+Goal: separate shell verb resolution from process creation.
+
+```cpp
+SHELLEXECUTEINFOW sei{ sizeof(sei) };
+sei.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_FLAG_NO_UI;
+sei.lpVerb = L"open";
+sei.lpFile = L"https://example.com/";
+sei.nShow = SW_SHOWNORMAL;
+
+BOOL ok = ShellExecuteExW(&sei);
+DWORD exitCode = 0;
+if (ok && sei.hProcess) {
+    WaitForInputIdle(sei.hProcess, 5000);
+    GetExitCodeProcess(sei.hProcess, &exitCode);
+    CloseHandle(sei.hProcess);
+}
+wprintf(L"ok=%d hProcess=%p exit=%lu gle=%lu\n", ok, sei.hProcess, exitCode, GetLastError());
+```
+
+Procedure: run against `.txt`, `.html`, URL, folder, and `runas`; record whether a process handle exists and whether UAC/UI appears.
+
+Measured signal: `BOOL`, `GetLastError`, `hProcess`, exit code, associated app launched.
+
+Failure interpretation: no process handle can be normal for brokered/protocol/app activation; `ShellExecuteEx` answers "did the shell accept the verb?", not "did a child process behave like `CreateProcessW`." Reference: <https://learn.microsoft.com/en-us/windows/desktop/api/shellapi/ns-shellapi-shellexecuteinfoa>.

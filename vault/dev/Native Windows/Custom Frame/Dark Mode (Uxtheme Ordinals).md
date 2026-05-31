@@ -6,3 +6,9 @@ Code contribution: the link contributes ordinal-loaded `uxtheme.dll` functions, 
 
 ## References
 - <https://github.com/ysc3839/win32-darkmode>
+
+## Connections
+- `Dark Mode Minimal Test.md` is the smallest harness for validating the ordinal map on a real build.
+- `Dark Mode Library (Maintained).md` packages the same surface behind a maintained library boundary.
+- `../Common Controls/Dark Mode (C Port).md` is the C-only route for codebases that cannot take a C++ shim.
+- `../Common Controls/Visual Styles.md` covers the documented UxTheme side; this note covers the undocumented dark-mode extension around it.

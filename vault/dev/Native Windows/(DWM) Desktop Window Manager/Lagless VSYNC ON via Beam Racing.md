@@ -34,6 +34,56 @@ swapChain->Present(0, DXGI_PRESENT_DO_NOT_WAIT);
 // the kLeadScanlines guard prevents future scanlines from being committed early.
 ```
 
+## Discussion Claim To Verify
+
+The Blur Busters page 10 discussion makes several concrete Windows claims: `D3DKMTWaitForVerticalBlankEvent` can be used as a VSYNC timestamp source, `D3DKMTGetScanLine` can be used as a current-raster source, `QueryDisplayConfig` can provide vertical-total data for VBI estimation, and calling `Flush` before the precision-timed `Present` can improve frameslice accuracy. Treat those as hypotheses, not facts.
+
+Falsifiable probe:
+
+```cpp
+// 1. Resolve adapter/source identity.
+display = EnumDisplayDevices(...).DeviceName;       // e.g. \\.\DISPLAY1
+adapter = D3DKMTOpenAdapterFromHdcOrGdiName(display);
+path = QueryDisplayConfig(QDC_ONLY_ACTIVE_PATHS);
+
+// 2. Timestamp raw vblank and scanline.
+for (;;) {
+    qpc_before = qpc();
+    D3DKMTWaitForVerticalBlankEvent(adapter, source);
+    qpc_vblank = qpc();
+    D3DKMTGetScanLine(adapter, source, &scanline, &in_vblank);
+    log(qpc_vblank, scanline, in_vblank, present_id);
+}
+
+// 3. Compare Present variants.
+RenderSlice(slice);
+if (variant_flush_before_present) glFlush_or_dx_flush();
+Present(0, 0);
+```
+
+Measurement that matters: scanline prediction error in physical rows, p95/p99 vblank timestamp jitter, tearline vertical position variance, and missed-slice count when the emulator workload is intentionally disturbed. A claim survives only if the measured tearline stays inside the configured jitter margin while input-to-photon delay drops below ordinary `Present(1,0)`/VSYNC ON. If `D3DKMTGetScanLine` polling itself increases jitter or GPU time, the discussion's warning about not busylooping on it is confirmed.
+
+Forum-to-code route: split the thread's advice into two probes, not one demo. First, build a passive timing logger that never presents; it verifies whether `D3DKMTWaitForVerticalBlankEvent`, `D3DKMTGetScanLine`, and `QueryDisplayConfig` produce a coherent model of the active VidPN source. Second, build a frameslice presenter and feed it the model. If the first probe is noisy, the second one cannot prove beam racing.
+
+```cpp
+struct BeamTimingSample {
+    int64_t qpc_after_vblank;
+    uint32_t scanline;
+    bool in_vblank;
+    uint32_t active_height;
+    uint32_t total_height; // from DisplayConfig mode/target timing when available
+};
+
+// Passive logger: no rendering, no Present, just characterize the output.
+wait_for_vblank(adapter, source);
+auto s0 = qpc_now();
+auto scan = get_scanline(adapter, source);
+auto predicted = predict_scanline_from_last_vblank(s0, mode_timing);
+log(s0, scan.ScanLine, scan.InVerticalBlank, predicted);
+```
+
+Expected result: the measured scanline should advance monotonically outside VBI and wrap near the next vblank sample. Failure cases are useful: `STATUS_INVALID_PARAMETER` means adapter/source identity is wrong; a scanline value that jumps between outputs means the window/display mapping is wrong; correct vblank intervals with unusable scanline reads means use the registerless QPC model with a larger jitter margin. The Blur Busters claim is nullified for a given machine if the passive model cannot stay within the slice lead margin under CPU/GPU load.
+
 ## References
 - <https://forums.blurbusters.com/viewtopic.php?t=3972&start=90>
 - <https://forums.blurbusters.com/viewtopic.php?f=22&t=3972> (thread root, "Emulator Developers: Lagless VSYNC ON Algorithm")

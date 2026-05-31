@@ -1,0 +1,4 @@
+stage2 running. pid=35668
+Console attached after FreeConsole: 0000000000000000 (NULL = good)
+STARTUPINFO.dwFlags=0x00000000
+Subsystem at runtime: CUI (linked /SUBSYSTEM:CONSOLE)

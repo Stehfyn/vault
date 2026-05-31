@@ -4,5 +4,16 @@
 
 Do not confuse it with fixing responsiveness. The real cure is keeping the UI thread out of blocking work, which connects this entry to `Threaded Message Queue`, service-control handlers, and long-running shell extensions. Use the API when ghosting itself corrupts a repro or debugger session.
 
+Call-shape:
+
+```cpp
+int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int) {
+    DisableProcessWindowsGhosting();
+    return RunMessageLoop();
+}
+```
+
+The connection to `WindowCustomizer` and window-inspection tools is diagnostic: a ghost window is a USER32 substitute surface, not the real app window behaving normally. If the goal is correctness, investigate blocked message pumps, synchronous cross-thread sends, shell-extension callbacks, and long work on the GUI thread.
+
 ## References
 - <https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-disableprocesswindowsghosting>

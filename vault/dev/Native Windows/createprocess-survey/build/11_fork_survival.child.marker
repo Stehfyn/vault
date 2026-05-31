@@ -1,0 +1,10 @@
+FORK SURVIVAL REPORT
+child_pid=32912  parent_pid=34232
+(1) g_counter        = 0xABCDEF    (parent set 0xABCDEF)  OK
+(2) heap_blob (0000016F77EE17B0) = "I-was-allocated-by-the-parent"
+(3) TlsGetValue(1) = 00000000DEADC0DE    (parent set 0xDEADC0DE)  OK
+(4) TryEnterCriticalSection = FALSE (expected)  (BUG: child sees lock held by phantom owner -> FALSE)
+(5) WaitForSingleObject(event,0) = 0x0  (0 = WAIT_OBJECT_0 = signaled)
+(6) PEB->NumberOfHeaps = 1  (parent had 1)
+(6) PEB->ProcessHeap   = 0000016F77EC0000  (parent had 0000016F77EC0000)
+(6) PEB pointer itself = 0000006951C35000  (parent had 0000006951C35000)

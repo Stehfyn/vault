@@ -30,10 +30,25 @@ WritePrivateProfileStringW(L"Settings", L"Mode", L"Fast", path);
 WritePrivateProfileStringW(nullptr, nullptr, nullptr, path);
 ```
 
+Mapping prefixes are part of the API contract: `USR:` targets `HKCU`, `SYS:` targets `HKLM\Software`, `!` writes through to both registry and file, and `@` prevents fallback to the disk file. That is why installer searches and manual text-file inspection can disagree.
+
+## Experiment Harness
+
+Use one real INI file and one mapped INI name. Read through `GetPrivateProfileStringW`, then compare disk contents, registry contents, and MSI `IniLocator` results.
+
+```powershell
+Set-Content C:\Temp\probe.ini "[Settings]`nMode=Disk"
+.\ini_probe.exe C:\Temp\probe.ini Settings Mode
+reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\IniFileMapping"
+```
+
+Signal: disk-backed reads match the file; mapped reads may match registry values instead. Failure interpretation: if an installer detects a value that a text editor cannot find, `IniFileMapping` or Windows-directory `IniLocator` behavior is the first suspect.
+
 ## Connections
 
 - `Registry Setup (RegInstallW)` and `MSI Search Conditions`: installers still query INI data for upgrade detection, often beside registry and file searches.
 - `(REG) Windows Registry`: `IniFileMapping` is the bridge between the legacy API shape and real registry-backed storage.
+- `RegStr.h` is the neighboring legacy-configuration vocabulary for shell/setup code that predates modern app settings.
 
 ## References
 

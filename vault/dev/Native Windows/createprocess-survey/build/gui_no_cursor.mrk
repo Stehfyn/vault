@@ -1,0 +1,2 @@
+gui_no_cursor: stage_entry ran, console hidden+detached, GUI shown.
+GetConsoleWindow()=0000000000000000

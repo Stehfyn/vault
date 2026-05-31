@@ -1,0 +1,53 @@
+untagged
+pid=31632
+argc=1
+argv0=C:\dev\cp\createprocess-survey\build\test_target.exe
+parent_pid=19372
+params.MaximumLength=1974
+params.Length=1974
+params.Flags=0x00004001
+params.DebugFlags=0x00000000
+ConsoleHandle=0000000000000068
+ConsoleFlags=0x00000000
+StandardInput=000000000000006C
+StandardOutput=0000000000000070
+StandardError=0000000000000074
+CurrentDirectory.DosPath=C:\dev\cp\createprocess-survey\build\
+DllPath=(empty)
+ImagePathName=C:\dev\cp\createprocess-survey\build\test_target.exe
+CommandLine="C:\dev\cp\createprocess-survey\build\test_target.exe" 
+Loader.GetModuleFileNameW=C:\dev\cp\createprocess-survey\build\test_target.exe
+Loader.GetModuleHandleW(NULL)=00007FF63EF00000
+Kernel.ProcessImageFileName=\Device\HarddiskVolume3\dev\cp\createprocess-survey\build\test_target.exe
+Kernel.ProcessImageFileNameWin32=C:\dev\cp\createprocess-survey\build\test_target.exe
+WindowTitle=C:\dev\cp\createprocess-survey\build\test_target.exe
+DesktopInfo=Winsta0\Default
+ShellInfo=(empty)
+RuntimeData=(empty)
+StartingX=0
+StartingY=0
+CountX=0
+CountY=0
+CountCharsX=0
+CountCharsY=0
+FillAttribute=0x00000000
+WindowFlags=0x00000001
+ShowWindowFlags=0x1
+Win32.dwFlags=0x00000001
+Win32.dwX=0 Win32.dwY=0
+Win32.dwXSize=0 Win32.dwYSize=0
+Win32.dwXCountChars=0 dwYCountChars=0
+Win32.dwFillAttribute=0x00000000
+Win32.wShowWindow=1
+Win32.lpTitle=C:\dev\cp\createprocess-survey\build\test_target.exe
+Win32.lpDesktop=Winsta0\Default
+Win32.hStdInput=0000000000000000 hStdOutput=0000000000000000 hStdError=0000000000000000
+EnvironmentSize=6206
+ProcessGroupId=0x8D0
+LoaderThreads=0
+RedirectionDllName=(empty)
+HeapPartitionName=(empty)
+DefaultThreadpoolCpuSetMaskCount=0
+DefaultThreadpoolThreadMaximum=0
+HeapMemoryTypeMask=0x0
+env.CPS_TARGET_TAG=

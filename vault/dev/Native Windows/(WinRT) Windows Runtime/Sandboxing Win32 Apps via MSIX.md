@@ -6,3 +6,26 @@ This is the packaging counterpart to WinRT/WinUI interop. Xaml Islands and Windo
 
 ## References
 - <https://github.com/microsoft/win32-app-isolation> - tooling and samples for MSIX/AppContainer-style isolation of Win32 applications.
+
+## Experiment Harness
+
+Goal: measure which legacy assumptions break under package identity/isolation.
+
+```cpp
+UINT32 len = 0;
+LONG pkg = GetCurrentPackageFullName(&len, nullptr);
+wprintf(L"package-status=%ld\n", pkg);
+
+for (PCWSTR p : { L"C:\\Temp\\probe.txt", L".\\probe.txt" }) {
+    HANDLE h = CreateFileW(p, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS,
+                           FILE_ATTRIBUTE_NORMAL, nullptr);
+    wprintf(L"%ls h=%p gle=%lu\n", p, h, GetLastError());
+    if (h != INVALID_HANDLE_VALUE) CloseHandle(h);
+}
+```
+
+Procedure: run unpackaged and then packaged/isolated; compare file, registry, named object, and COM activation probes.
+
+Measured signal: package identity, success/failure by resource type, virtualization location if redirected.
+
+Failure interpretation: isolation failures identify manifest/capability/fixup work; they are useful requirements, not random breakage. Reference: <https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes>.

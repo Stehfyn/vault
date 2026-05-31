@@ -1,0 +1,7 @@
+gui_target launched
+pid=25808
+STARTUPINFO.dwFlags=0x00000401
+STARTF_FORCEOFFFEEDBACK (0x80)=clear
+STARTF_FORCEONFEEDBACK  (0x40)=clear
+wShowWindow=1
+MessageBoxW returned=1  (IDOK=1)

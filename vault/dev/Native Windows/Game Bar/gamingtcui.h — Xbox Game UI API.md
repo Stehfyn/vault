@@ -6,3 +6,19 @@ This is the UI counterpart to `xbox-live-api`. Use the service bindings when you
 
 ## References
 - `gamingtcui.h`
+
+## Experiment Harness
+
+Goal: confirm when the platform accepts ownership of trusted Xbox UI.
+
+Probe shape:
+
+```cpp
+auto start = GetTickCount64();
+HRESULT hr = ShowProfileCardUI(/* user/account target */);
+printf("tcui=%08lx elapsed=%llu\n", hr, GetTickCount64() - start);
+```
+
+Measured signal: HRESULT, elapsed time until callback/completion, foreground/focus transition, account state.
+
+Failure interpretation: failures usually mean missing Xbox services/account context/title identity, not a rendering bug in the caller.

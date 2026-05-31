@@ -4,3 +4,22 @@ Reverse-engineering notes and a partial reimplementation of `DUI70.dll`, the und
 
 ## References
 - <https://github.com/seven-mile/dui70>
+
+## Connections
+- `Explorer Patcher (Win11 Shell Restore).md` and `../libvalinet - ExplorerPatcher Helpers.md` show the same unsupported-shell territory from the runtime patching side.
+- `../Common Controls/DUIThink (DirectUI Framework).md` is the public/reimplementation-adjacent DirectUI study note; read it before assuming DUI70 behaves like normal HWND controls.
+- `Visual Style (msstyles) Editor.md` and `../Custom Frame/Immersive Context Menu (Explorer Look-Alike).md` are adjacent when the goal is shell appearance rather than shell behavior.
+
+## Experiment Harness
+
+Goal: observe DirectUI presence without depending on unstable private vtables.
+
+Procedure:
+1. Enumerate loaded modules in Explorer and confirm `dui70.dll` version/path.
+2. Use UI Automation or Spy++-style HWND inspection to map the outer shell HWNDs.
+3. Compare visible element changes after theme/DPI/search interactions.
+4. Keep private symbol/vtable assumptions in a separate, version-keyed report.
+
+Measured signal: module version, shell surface under test, UIA tree deltas, Windows build.
+
+Failure interpretation: if UIA/HWND observation is enough, avoid private DUI hooks; if not, the hook must be build-gated like ExplorerPatcher signatures.
